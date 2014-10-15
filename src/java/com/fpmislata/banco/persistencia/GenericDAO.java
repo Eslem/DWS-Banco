@@ -18,7 +18,7 @@ public interface GenericDAO <T>{
     
     public T update(T entidad);
     
-    public boolean delete(int id);
+    public void delete(int id);
     
     public List<T> findAll();
     

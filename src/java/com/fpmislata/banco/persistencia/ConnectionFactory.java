@@ -15,6 +15,6 @@ public interface ConnectionFactory {
     //public Connection createConnection();
     // public void closeConnection();
 
-    public Connection getConnection();
-    public void closeConnection();
+    public Connection getConnection() throws Exception;
+    public void closeConnection(Connection connection);
 }
