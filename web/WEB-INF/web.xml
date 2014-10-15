@@ -16,7 +16,7 @@
     
     <!--flyway-->
     <listener>
-        <listener-class>com.fpmislata.banco.common.databasemigration.DatabaseMigrationImplFlyway</listener-class>
+        <listener-class>com.fpmislata.banco.common.servletlisteners.DatabaseMigrationListener</listener-class>
     </listener> 
     
     <listener>
