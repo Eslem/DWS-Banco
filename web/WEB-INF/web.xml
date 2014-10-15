@@ -13,6 +13,12 @@
 
     </session-config>
     
+    
+    <!--flyway-->
+    <listener>
+        <listener-class>com.fpmislata.banco.common.databasemigration.DatabaseMigrationImplFlyway</listener-class>
+    </listener> 
+    
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener> 
