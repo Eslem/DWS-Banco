@@ -2,8 +2,8 @@ package com.fpmislata.banco.entidades;
 
 import java.util.Date;
 
-public class EntidadBancaria {    
-    private int idEntidadBancaria = -1;
+public class EntidadBancaria {
+    private int idEntidadBancaria;
     private String nombre;
     private String codigoEntidad;
     private Date fechaCreacion;
@@ -28,7 +28,7 @@ public class EntidadBancaria {
      * @param idEntidadBancaria the idEntidadBancaria to set
      */
     public void setIdEntidadBancaria(int idEntidadBancaria) {
-        if (this.idEntidadBancaria == -1) this.idEntidadBancaria = idEntidadBancaria;
+        this.idEntidadBancaria = idEntidadBancaria;
     }
 
     /**
