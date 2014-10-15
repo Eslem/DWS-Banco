@@ -1,5 +1,6 @@
 package com.fpmislata.banco.entidades;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Movimiento {
@@ -8,10 +9,10 @@ public class Movimiento {
     private String tipo;
     private int cuentaOrigen;
     private int cuentaDestino;
-    private float cantidad;
+    private BigDecimal cantidad;
     private Date fecha;
 
-    public Movimiento(int idMovimiento, String tipo, int cuentaOrigen, int cuentaDestino, float cantidad, Date fecha) {
+    public Movimiento(int idMovimiento, String tipo, int cuentaOrigen, int cuentaDestino, BigDecimal cantidad, Date fecha) {
         this.idMovimiento = idMovimiento;
         this.tipo = tipo;
         this.cuentaOrigen = cuentaOrigen;
@@ -52,11 +53,11 @@ public class Movimiento {
         this.cuentaDestino = cuentaDestino;
     }
 
-    public float getCantidad() {
+    public BigDecimal getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(float cantidad) {
+    public void setCantidad(BigDecimal cantidad) {
         this.cantidad = cantidad;
     }
 
