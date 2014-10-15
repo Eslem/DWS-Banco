@@ -9,7 +9,8 @@
   
     <context:annotation-config/>
     
-    <!--
-    <bean class="com.alzatezabala.fp.persistencia.impl.EntidadBancariaDAOImplDataSource" /-->
+    <bean class="com.fpmislata.banco.persistencia.impl.ConnectionFactoryImplDataSource"/>
+    <bean class="com.fpmislata.banco.persistencia.impl.EntidadBancariaDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.common.json.impl.JSONConverterImplJackson"/>
  
 </beans>
