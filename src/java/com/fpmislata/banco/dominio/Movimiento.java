@@ -1,4 +1,4 @@
-package com.fpmislata.banco.entidades;
+package com.fpmislata.banco.dominio;
 
 import java.math.BigDecimal;
 import java.util.Date;
