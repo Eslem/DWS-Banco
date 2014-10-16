@@ -11,6 +11,7 @@
     
     <bean class="com.fpmislata.banco.persistencia.impl.ConnectionFactoryImplDataSource"/>
     <bean class="com.fpmislata.banco.persistencia.impl.EntidadBancariaDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.persistencia.impl.MovimientoDAOImplJDBC"/>
     <bean class="com.fpmislata.banco.common.json.impl.JSONConverterImplJackson"/>
  
 </beans>
