@@ -13,26 +13,13 @@ import org.flywaydb.core.Flyway;
  *
  * @author eslem
  */
-public class DatabaseMigrationImplFlyway implements DatabaseMigration, ServletContextListener{
+public class DatabaseMigrationImplFlyway implements DatabaseMigration{
 
     @Override
     public void migrate(String databaseurl) {
-        System.out.println(databaseurl);
-        
-        /*
         Flyway flyway = new Flyway();
-        flyway.setDataSource("jdbc:h2:file:target/foobar", "sa", null);
-        flyway.migrate();*/
-    }
-
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        migrate("migration");
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+        flyway.setDataSource(databaseurl, "root", "root");
+        flyway.setLocations("com.fpmislata.banco.common.databasemigration.migrations");
+        flyway.migrate();
+    }    
 }
