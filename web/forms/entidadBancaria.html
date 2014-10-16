@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Controlador Entidad</title>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="../lib/angular/js/angular.js"></script>
+        <script type="text/javascript" src="../js/entidadBancariaForm.js"></script>
+        <script type="text/javascript" src="../js/contextPath.js.jsp"></script>
+    </head>
+    <body ng-controller="ControladorEntidad">
+        <h1>Entidad Bancaria:</h1>
+        <p><label for="idEntidadBancaria">ID:</label><br/>
+            <input id="idEntidadBancaria" ng-model="entidadBancaria.idEntidadBancaria" type="text"></p>
+        <p><label for="nombre">Nombre:</label><br/>
+            <input id="nombre" ng-model="entidadBancaria.nombre" type="text"></p>
+        <p><label for="codigoEntidad">Código:</label><br/>
+            <input id="codigoEntidad" ng-model="entidadBancaria.codigoEntidad" type="text"></p>
+        <p><label for="fechaCreacion">Fecha de Creación:</label><br/>
+            <input id="fechaCreacion" ng-model="entidadBancaria.fechaCreacion" type="text"></p>
+
+        <button ng-click="getEntidadBancaria();">Cargar</button>
+        <button onclick="javascript:idEntidadBancaria.value=''" ng-click="insertEntidadBancaria();">Insertar</button>
+        <button ng-click="updateEntidadBancaria();">Actualizar</button>
+        <button ng-click="deleteEntidadBancaria();">Borrar</button>
+    </body>
+</html>
