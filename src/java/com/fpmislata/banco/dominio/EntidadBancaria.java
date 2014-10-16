@@ -1,4 +1,4 @@
-package com.fpmislata.banco.entidades;
+package com.fpmislata.banco.dominio;
 
 import java.util.Date;
 
