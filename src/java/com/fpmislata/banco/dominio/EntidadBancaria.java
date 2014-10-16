@@ -1,18 +1,14 @@
 package com.fpmislata.banco.dominio;
 
-import java.util.Date;
-
 public class EntidadBancaria {
     private int idEntidadBancaria;
     private String nombre;
     private String codigoEntidad;
-    private Date fechaCreacion;
     
-    public EntidadBancaria(int idEntidadBancaria, String nombre, String codigoEntidad, Date fechaCreacion) {
+    public EntidadBancaria(int idEntidadBancaria, String nombre, String codigoEntidad) {
         this.idEntidadBancaria = idEntidadBancaria;
         this.nombre = nombre;
         this.codigoEntidad = codigoEntidad;
-        this.fechaCreacion = fechaCreacion;
     }
 
     public EntidadBancaria() {}
@@ -57,19 +53,5 @@ public class EntidadBancaria {
      */
     public void setCodigoEntidad(String codigoEntidad) {
         this.codigoEntidad = codigoEntidad;
-    }
-
-    /**
-     * @return the fechaCreacion
-     */
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    /**
-     * @param fechaCreacion the fechaCreacion to set
-     */
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 }

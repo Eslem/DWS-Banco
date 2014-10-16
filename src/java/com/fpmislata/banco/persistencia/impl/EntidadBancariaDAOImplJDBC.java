@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
@@ -26,8 +25,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
                 EntidadBancaria entidadBancaria = new EntidadBancaria(
                         resultSet.getInt("idEntidadBancaria"),
                         resultSet.getString("nombre"),
-                        resultSet.getString("codigoEntidad"),
-                        resultSet.getDate("fechaCreacion")
+                        resultSet.getString("codigoEntidad")
                 );
                 connection.close();
                 return entidadBancaria;
@@ -42,11 +40,10 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
     public EntidadBancaria insert(EntidadBancaria entidadBancaria) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO entidadbancaria (nombre, codigoEntidad, fechaCreacion) VALUES (?, ?, ?)";
+            String query = "INSERT INTO entidadbancaria (nombre, codigoEntidad, fechaCreacion) VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, entidadBancaria.getNombre());
             preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
-            preparedStatement.setDate(3, new java.sql.Date(new Date().getTime()));
             preparedStatement.executeUpdate();
             connection.close();
             return null;
@@ -99,8 +96,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
                 entidadesBancarias.add(new EntidadBancaria(
                         resultSet.getInt("idEntidadBancaria"),
                         resultSet.getString("nombre"),
-                        resultSet.getString("codigoEntidad"),
-                        resultSet.getDate("fechaCreacion")
+                        resultSet.getString("codigoEntidad")
                 ));
             }
             connection.close();
