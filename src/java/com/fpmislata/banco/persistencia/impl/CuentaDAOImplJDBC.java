@@ -83,6 +83,7 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
                         resultSet.getInt("idsucursal"),
                         resultSet.getString("tipo")
                 ));
+                
             }
             connection.close();
             return cuentas;
