@@ -9,17 +9,17 @@
     </head>
     <body ng-controller="ControladorEntidad">
         <h1>Entidad Bancaria:</h1>
-        <p><label for="idEntidadBancaria">ID:</label><br/>
-            <input id="idEntidadBancaria" ng-model="entidadBancaria.idEntidadBancaria" type="text"></p>
+        <p><label for="id">ID:</label><br/>
+            <input id="id" ng-model="entidadBancaria.id" type="text"></p>
         <p><label for="nombre">Nombre:</label><br/>
             <input id="nombre" ng-model="entidadBancaria.nombre" type="text"></p>
-        <p><label for="codigoEntidad">Código:</label><br/>
-            <input id="codigoEntidad" ng-model="entidadBancaria.codigoEntidad" type="text"></p>
-        <p><label for="fechaCreacion">Fecha de Creación:</label><br/>
-            <input id="fechaCreacion" ng-model="entidadBancaria.fechaCreacion" type="text"></p>
+        <p><label for="codigo">Código:</label><br/>
+            <input id="codigo" ng-model="entidadBancaria.codigo" type="text"></p>
+        <p><label for="fecha">Fecha de Creación:</label><br/>
+            <input id="fecha" ng-model="entidadBancaria.fecha" type="text"></p>
 
         <button ng-click="getEntidadBancaria();">Cargar</button>
-        <button onclick="javascript:idEntidadBancaria.value=''" ng-click="insertEntidadBancaria();">Insertar</button>
+        <button onclick="javascript:id.value=''" ng-click="insertEntidadBancaria();">Insertar</button>
         <button ng-click="updateEntidadBancaria();">Actualizar</button>
         <button ng-click="deleteEntidadBancaria();">Borrar</button>
     </body>

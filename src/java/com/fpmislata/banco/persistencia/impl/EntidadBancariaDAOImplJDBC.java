@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
@@ -14,18 +15,18 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
     ConnectionFactory connectionFactory = new ConnectionFactoryImplDataSource();
 
     @Override
-    public EntidadBancaria get(int idEntidadBancaria) {
+    public EntidadBancaria get(int id) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "SELECT * FROM entidadbancaria WHERE idEntidadBancaria = ?";
+            String query = "SELECT * FROM entidadesbancarias WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idEntidadBancaria);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 EntidadBancaria entidadBancaria = new EntidadBancaria(
-                        resultSet.getInt("idEntidadBancaria"),
+                        resultSet.getInt("id"),
                         resultSet.getString("nombre"),
-                        resultSet.getString("codigoEntidad")
+                        resultSet.getString("codigo")
                 );
                 connection.close();
                 return entidadBancaria;
@@ -40,10 +41,11 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
     public EntidadBancaria insert(EntidadBancaria entidadBancaria) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO entidadbancaria (nombre, codigoEntidad, fechaCreacion) VALUES (?, ?)";
+            String query = "INSERT INTO entidadesbancarias (nombre, codigo, fecha) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, entidadBancaria.getNombre());
             preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
+            preparedStatement.setDate(3, new java.sql.Date(new Date().getTime()));
             preparedStatement.executeUpdate();
             connection.close();
             return null;
@@ -56,7 +58,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
     public EntidadBancaria update(EntidadBancaria entidadBancaria) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "UPDATE entidadbancaria SET nombre = ?, codigoEntidad = ? WHERE idEntidadBancaria = ?";
+            String query = "UPDATE entidadesbancarias SET nombre = ?, codigo = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, entidadBancaria.getNombre());
             preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
@@ -71,12 +73,12 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
     }
 
     @Override
-    public void delete(int idEntidadBancaria) {
+    public void delete(int id) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "DELETE FROM entidadbancaria WHERE idEntidadBancaria = ?";
+            String query = "DELETE FROM entidadesbancarias WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idEntidadBancaria);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (Exception ex) {
@@ -88,15 +90,15 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
     public List<EntidadBancaria> findAll() {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "SELECT * FROM entidadbancaria";
+            String query = "SELECT * FROM entidadesbancarias";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             List<EntidadBancaria> entidadesBancarias = new ArrayList<EntidadBancaria>();
             while (resultSet.next()) {
                 entidadesBancarias.add(new EntidadBancaria(
-                        resultSet.getInt("idEntidadBancaria"),
+                        resultSet.getInt("id"),
                         resultSet.getString("nombre"),
-                        resultSet.getString("codigoEntidad")
+                        resultSet.getString("codigo")
                 ));
             }
             connection.close();

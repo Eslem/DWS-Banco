@@ -15,16 +15,16 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     ConnectionFactory connectionFactory = new ConnectionFactoryImplDataSource();
 
     @Override
-    public Movimiento get(int idMovimiento) {
+    public Movimiento get(int id) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "SELECT * FROM movimientos WHERE idMovimiento = ?";
+            String query = "SELECT * FROM movimientos WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idMovimiento);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Movimiento movimiento = new Movimiento(
-                        resultSet.getInt("idMovimiento"),
+                        resultSet.getInt("id"),
                         resultSet.getString("tipo"),
                         resultSet.getInt("cuentaOrigen"),
                         resultSet.getInt("cuentaDestino"),
@@ -63,7 +63,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public Movimiento update(Movimiento entidad) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "UPDATE movimientos SET tipo = ?, cuentaOrigen = ?, cuentaDestino = ?, cantidad = ? WHERE idMovimiento = ?";
+            String query = "UPDATE movimientos SET tipo = ?, cuentaOrigen = ?, cuentaDestino = ?, cantidad = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, entidad.getTipo());
             preparedStatement.setInt(2, entidad.getCuentaOrigen());
@@ -80,12 +80,12 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     }
 
     @Override
-    public void delete(int idMovimiento) {
+    public void delete(int id) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "DELETE FROM movimientos WHERE idMovimiento = ?";
+            String query = "DELETE FROM movimientos WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idMovimiento);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (Exception ex) {
@@ -103,7 +103,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
             List<Movimiento> movimientos = new ArrayList<Movimiento>();
             while (resultSet.next()) {
                 movimientos.add(new Movimiento(
-                        resultSet.getInt("idMovimiento"),
+                        resultSet.getInt("id"),
                         resultSet.getString("tipo"),
                         resultSet.getInt("cuentaOrigen"),
                         resultSet.getInt("cuentaDestino"),
