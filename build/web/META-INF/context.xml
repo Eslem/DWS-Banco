@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/DAW-1">
+<<<<<<< HEAD
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/datasource" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/banco" username="root" validationQuery="SELECT 1 FROM dual"/>
 </Context>
+=======
+    <Resource
+        type="javax.sql.DataSource"
+        auth="Container"
+        name="jdbc/hibernate1"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost/banco"
+        username="root"
+        password="root"
+
+        maxActive="100"
+        maxIdle="30"
+        maxWait="10000"
+        validationQuery="SELECT 1 FROM dual"
+    />
+</Context>
+>>>>>>> origin/master
