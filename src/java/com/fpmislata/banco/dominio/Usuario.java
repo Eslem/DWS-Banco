@@ -7,12 +7,13 @@ package com.fpmislata.banco.dominio;
 
 import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
+import java.io.Serializable;
 
 /**
  *
  * @author eslem
  */
-public class Usuario {
+public class Usuario implements Serializable{
     private int id;
     private String nombre;
     private String apellidos;

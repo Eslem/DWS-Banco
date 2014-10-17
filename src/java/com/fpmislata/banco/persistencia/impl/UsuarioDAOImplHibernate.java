@@ -76,7 +76,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
     @Override
     public List<Usuario> findAll() {
         Session session = getSessionFactory().openSession();
-        List usuarios = session.createQuery("FROM usuarios").list();
+        List usuarios = session.createQuery("FROM Usuario").list();
         session.close();
         return usuarios;
     }

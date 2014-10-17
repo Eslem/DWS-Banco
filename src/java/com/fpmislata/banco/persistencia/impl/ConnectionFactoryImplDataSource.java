@@ -14,7 +14,7 @@ public class ConnectionFactoryImplDataSource implements ConnectionFactory {
         try {
             InitialContext initialContext = new InitialContext();
             Context context = (Context) initialContext.lookup("java:comp/env");
-            DataSource dataSource = (DataSource) context.lookup("jdbc/hibernate1");
+            DataSource dataSource = (DataSource) context.lookup("jdbc/datasource");
             Connection connection = dataSource.getConnection();
 
             return connection;
