@@ -4,7 +4,7 @@ function ControladorMovimiento($scope, $http) {
     $scope.getMovimiento = function() {
         $http({
             method: "GET",
-            url: contextPath + "/api/movimiento/" + $scope.movimiento.idMovimiento
+            url: contextPath + "/api/movimiento/" + $scope.movimiento.id
         }).success(function(data, status) {
             $scope.movimiento = data;
         }).error(function(data, status) {
@@ -19,7 +19,7 @@ function ControladorMovimiento($scope, $http) {
             url: contextPath + "/api/movimiento/"
         }).success(function(data, status) {
             alert("Movimiento correctamente insertada.");
-            $scope.getMovimiento($scope.entidadBancaria.idMovimientoBancaria); // Pending
+            $scope.getMovimiento($scope.movimiento.idBancaria); // Pending
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
@@ -31,8 +31,8 @@ function ControladorMovimiento($scope, $http) {
             data: scopeToJSON(),
             url: contextPath + "/api/movimiento/"
         }).success(function(data, status) {
-            alert("Movimiento " + $scope.movimiento.idMovimiento + " correctamente actualizada.");
-            $scope.getMovimiento($scope.entidadBancaria.idMovimientoBancaria); // Pending
+            alert("Movimiento " + $scope.movimiento.id + " correctamente actualizada.");
+            $scope.getMovimiento($scope.movimiento.id); // Pending
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
@@ -41,9 +41,9 @@ function ControladorMovimiento($scope, $http) {
     $scope.deleteMovimiento = function() {
         $http({
             method: "DELETE",
-            url: contextPath + "/api/movimiento/" + $scope.movimiento.idMovimiento
+            url: contextPath + "/api/movimiento/" + $scope.movimiento.id
         }).success(function() {
-            alert("Movimiento " + $scope.movimiento.idMovimiento + " correctamente borrada.");
+            alert("Movimiento " + $scope.movimiento.id + " correctamente borrada.");
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });

@@ -28,19 +28,19 @@ public class EntidadBancariaController {
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/entidadBancaria"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/entidadBancaria/"}, method = RequestMethod.POST)
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         entidadBancariaDAO.insert(jsonConverter.fromJSON(jsonEntrada, EntidadBancaria.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/entidadBancaria"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/entidadBancaria/"}, method = RequestMethod.PUT)
     public void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         entidadBancariaDAO.update(jsonConverter.fromJSON(jsonEntrada, EntidadBancaria.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/entidadBancaria"})
+    @RequestMapping(value = {"/entidadBancaria/"})
     public void findAll(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
         httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));

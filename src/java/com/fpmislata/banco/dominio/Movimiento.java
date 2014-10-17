@@ -5,15 +5,15 @@ import java.util.Date;
 
 public class Movimiento {
 
-    private int idMovimiento;
+    private int id;
     private String tipo;
     private int cuentaOrigen;
     private int cuentaDestino;
     private BigDecimal cantidad;
     private Date fecha;
 
-    public Movimiento(int idMovimiento, String tipo, int cuentaOrigen, int cuentaDestino, BigDecimal cantidad, Date fecha) {
-        this.idMovimiento = idMovimiento;
+    public Movimiento(int id, String tipo, int cuentaOrigen, int cuentaDestino, BigDecimal cantidad, Date fecha) {
+        this.id = id;
         this.tipo = tipo;
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
@@ -22,11 +22,11 @@ public class Movimiento {
     }
 
     public int getIdMovimiento() {
-        return idMovimiento;
+        return id;
     }
 
-    public void setIdMovimiento(int idMovimiento) {
-        this.idMovimiento = idMovimiento;
+    public void setIdMovimiento(int id) {
+        this.id = id;
     }
 
     public String getTipo() {

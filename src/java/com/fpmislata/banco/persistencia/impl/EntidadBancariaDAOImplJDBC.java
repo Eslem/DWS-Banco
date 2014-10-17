@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
@@ -41,11 +40,10 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
     public EntidadBancaria insert(EntidadBancaria entidadBancaria) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO entidadesbancarias (nombre, codigo, fecha) VALUES (?, ?, ?)";
+            String query = "INSERT INTO entidadesbancarias (nombre, codigo) VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, entidadBancaria.getNombre());
-            preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
-            preparedStatement.setDate(3, new java.sql.Date(new Date().getTime()));
+            preparedStatement.setString(2, entidadBancaria.getCodigo());
             preparedStatement.executeUpdate();
             connection.close();
             return null;
@@ -61,8 +59,8 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             String query = "UPDATE entidadesbancarias SET nombre = ?, codigo = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, entidadBancaria.getNombre());
-            preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
-            preparedStatement.setInt(3, entidadBancaria.getIdEntidadBancaria());
+            preparedStatement.setString(2, entidadBancaria.getCodigo());
+            preparedStatement.setInt(3, entidadBancaria.getId());
             preparedStatement.executeUpdate();
             connection.close();
             return null; /* PENDING */
