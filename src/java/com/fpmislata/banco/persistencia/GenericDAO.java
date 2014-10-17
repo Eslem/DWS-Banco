@@ -12,6 +12,7 @@ import java.util.List;
  * @author eslem
  */
 public interface GenericDAO <T>{
+    
     public T get(int id);
     
     public T insert(T entidad);
