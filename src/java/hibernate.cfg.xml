@@ -11,6 +11,7 @@
 
         
         <mapping resource="com/fpmislata/banco/persistencia/hibernate/usuario.hbm.xml"/>
+        <mapping class="com.fpmislata.banco.dominio.Usuario"/>
 
     </session-factory>
 </hibernate-configuration>

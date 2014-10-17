@@ -17,7 +17,7 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public Cuenta get(int idCuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "SELECT * FROM cuenta WHERE id = ?";
+            String query = "SELECT * FROM cuentas WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, idCuenta);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -41,7 +41,7 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public Cuenta insert(Cuenta cuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO cuenta (saldo, idsucursal, tipo) VALUES (?, ?, ?)";
+            String query = "INSERT INTO cuentas (saldo, idsucursal, tipo) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setBigDecimal(1, cuenta.getSaldoCuenta());
             preparedStatement.setInt(2, cuenta.getIdSucursal());
@@ -58,7 +58,7 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public void delete(int idCuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "DELETE FROM cuenta WHERE id = ?";
+            String query = "DELETE FROM cuentas WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, idCuenta);
             preparedStatement.executeUpdate();
@@ -72,7 +72,7 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public List<Cuenta> findAll() {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "SELECT * FROM cuenta";
+            String query = "SELECT * FROM cuentas";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Cuenta> cuentas = new ArrayList<Cuenta>();
@@ -96,7 +96,7 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public Cuenta update(Cuenta cuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "UPDATE cuenta SET saldo = ?, idsucursal = ? WHERE id = ?";
+            String query = "UPDATE cuentas SET saldo = ?, idsucursal = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setBigDecimal(1, cuenta.getSaldoCuenta());
             preparedStatement.setInt(2, cuenta.getIdSucursal());
