@@ -18,7 +18,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public Movimiento get(int idMovimiento) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "SELECT * FROM movimiento WHERE idMovimiento = ?";
+            String query = "SELECT * FROM movimientos WHERE idMovimiento = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, idMovimiento);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -44,7 +44,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public Movimiento insert(Movimiento movimiento) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO movimiento (nombre, codigoEntidad, fechaCreacion) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO movimientos (nombre, codigoEntidad, fechaCreacion) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, movimiento.getTipo());
             preparedStatement.setInt(2, movimiento.getCuentaOrigen());
@@ -63,7 +63,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public Movimiento update(Movimiento entidad) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "UPDATE movimiento SET tipo = ?, cuentaOrigen = ?, cuentaDestino = ?, cantidad = ? WHERE idMovimiento = ?";
+            String query = "UPDATE movimientos SET tipo = ?, cuentaOrigen = ?, cuentaDestino = ?, cantidad = ? WHERE idMovimiento = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, entidad.getTipo());
             preparedStatement.setInt(2, entidad.getCuentaOrigen());
@@ -83,7 +83,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public void delete(int idMovimiento) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "DELETE FROM movimiento WHERE idMovimiento = ?";
+            String query = "DELETE FROM movimientos WHERE idMovimiento = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, idMovimiento);
             preparedStatement.executeUpdate();
@@ -97,7 +97,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public List<Movimiento> findAll() {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "SELECT * FROM entidadbancaria";
+            String query = "SELECT * FROM movimientos";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Movimiento> movimientos = new ArrayList<Movimiento>();
