@@ -20,32 +20,32 @@ public class CuentaController {
     @Autowired
     JSONConverter jsonConverter;
 
-    @RequestMapping(value = {"/cuenta/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/cuentas/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentaDAO.get(id)));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/cuenta"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/cuentas"}, method = RequestMethod.POST)
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         cuentaDAO.insert(jsonConverter.fromJSON(jsonEntrada, Cuenta.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/cuenta"})
+    @RequestMapping(value = {"/cuentas"})
     public void findAll(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         List<Cuenta> cuentas = cuentaDAO.findAll();
         httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentas));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
     
-    @RequestMapping(value = {"/cuenta/{id}"}, method = RequestMethod.DELETE)
+    @RequestMapping(value = {"/cuentas/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
         cuentaDAO.delete(id);
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
     
-    @RequestMapping(value = {"/cuenta"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/cuentas"}, method = RequestMethod.PUT)
     public void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         cuentaDAO.update(jsonConverter.fromJSON(jsonEntrada, Cuenta.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
