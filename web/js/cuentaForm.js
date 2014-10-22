@@ -4,9 +4,9 @@ function ControladorCuenta($scope, $http) {
     $scope.getCuenta = function() {
         $http({
             method: "GET",
-            url: contextPath + "/api/cuentas/" + $scope.Cuenta.idCuenta
+            url: contextPath + "/api/cuentas/" + $scope.cuenta.idCuenta
         }).success(function(data, status) {
-            $scope.Cuenta = data;
+            $scope.cuenta = data;
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
@@ -14,12 +14,12 @@ function ControladorCuenta($scope, $http) {
 
     $scope.insertCuenta = function() {
         $http({
-            method: "GET",
-            data: $scope.Cuenta,
+            method: "POST",
+            data: $scope.cuenta,
             url: contextPath + "/api/cuentas/"
         }).success(function(data, status) {
             alert("Cuenta insertada correctamente.");
-            $scope.getCuenta($scope.Cuenta.idCuenta); // Pending
+            $scope.getCuenta($scope.cuenta.idCuenta); // Pending
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
@@ -32,7 +32,7 @@ function ControladorCuenta($scope, $http) {
             url: contextPath + "/api/cuentas/"
         }).success(function(data, status) {
             alert("Cuenta " + $scope.Cuenta.idCuenta + " actualizada correctamente.");
-            $scope.getEntidadBancaria($scope.entidadBancaria.idEntidadBancaria); // Pending
+            $scope.getCuenta($scope.Cuenta.idCuenta); // Pending
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });

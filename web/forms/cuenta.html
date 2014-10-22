@@ -10,13 +10,13 @@
     <body ng-controller="ControladorCuenta">
         <h1>Entidad Bancaria:</h1>
         <p><label for="idCuenta">ID:</label><br/>
-            <input id="idcuenta" ng-model="cuenta.idCuenta" type="text"></p>
+            <input id="idCuenta" ng-model="cuenta.idCuenta" type="text"></p>
         <p><label for="saldo">Saldo:</label><br/>
-            <input id="saldo" ng-model="cuenta.saldo" type="text"></p>
+            <input id="saldo" ng-model="cuenta.saldoCuenta" type="text"></p>
         <p><label for="idSucursal">ID Sucursal:</label><br/>
             <input id="idSucursal" ng-model="cuenta.idSucursal" type="text"></p>
         <p><label for="tipo">Tipo de Cuenta:</label><br/>
-            <input id="tipo" ng-model="cuenta.tipo" type="text"></p>
+            <input id="tipo" ng-model="cuenta.tipoCuenta" type="text"></p>
 
         <button ng-click="getCuenta();">Cargar</button>
         <button onclick="javascript:idCuenta.value=''" ng-click="insertCuenta();">Insertar</button>
