@@ -48,4 +48,27 @@ function EntidadTablaDetailController($scope, $http) {
             alert("Fatal error: " + status);
         });
     };
+
+    $scope.launchApi = function(id) {
+        window.location.replace(contextPath + "/forms/entidadBancaria.html?id=" + id);
+    };
+
+    $scope.startDetail = function() {
+        var params = window.location.search;
+
+        $scope.entidadBancaria = {};
+        $scope.entidadBancaria.id = params.slice(params.indexOf('id=') + 3).slice(0, params.indexOf('&') - 4);
+        $scope.getEntidadBancaria();
+    };
+
+    $scope.startList = function() {
+        $http({
+            method: "GET",
+            url: contextPath + "/api/entidadBancaria/"
+        }).success(function(data, status) {
+            $scope.entidadesBancarias = data;
+        }).error(function(data, status) {
+            alert("Fatal error: " + status);
+        });
+    };
 }

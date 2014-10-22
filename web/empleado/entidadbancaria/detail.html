@@ -3,11 +3,11 @@
     <head>
         <title>Controlador Entidad</title>
         <meta charset="UTF-8">
-        <script type="text/javascript" src="../lib/angular/js/angular.js"></script>
-        <script type="text/javascript" src="../js/entidadTablaDetailController.js"></script>
-        <script type="text/javascript" src="../js/contextPath.js.jsp"></script>
+        <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
+        <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
+        <script type="text/javascript" src="controller.js"></script>
     </head>
-    <body ng-controller="EntidadTablaDetailController">
+    <body ng-controller="EntidadTablaDetailController" data-ng-init="startDetail()">
         <h1>Entidad Bancaria:</h1>
         <p><label for="id">ID:</label><br/>
             <input id="id" ng-model="entidadBancaria.id" type="text"></p>

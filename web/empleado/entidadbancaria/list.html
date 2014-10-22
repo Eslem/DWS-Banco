@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Controlador Entidad</title>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
+        <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
+        <script type="text/javascript" src="controller.js"></script>
+        <style>
+            #mainContent        {width:100%; max-width:960px; margin:auto;}
+            
+            table               {width:100%;}
+            td                  {background:#E0E0E0;}
+            td button           {width:100%;}
+            td:first-child      {width:36px; text-align:right;}
+            td:nth-child(4)     {width:64px;}
+        </style>
+    </head>
+    <body>
+        <div id="mainContent">
+            <h1>Entidades Bancarias:</h1>
+            <table ng-controller="EntidadTablaListController" data-ng-init="startList()">
+                <tr ng-repeat="entidadBancaria in entidadesBancarias">
+                    <td>{{entidadBancaria.id}}</td>
+                    <td>{{entidadBancaria.nombre}}</td>
+                    <td>{{entidadBancaria.codigo}}</td>
+                    <td><button ng-click="launchApi(entidadBancaria.id)">Editar</button></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
