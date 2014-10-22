@@ -1,15 +1,15 @@
 var app = angular.module("app", []);
 
-function ControladorEntidad($scope, $http) {
+function EntidadTablaDetailController($scope, $http) {
     $scope.getEntidadBancaria = function() {
-        /*$http({
+        $http({
             method: "GET",
             url: contextPath + "/api/entidadBancaria/" + $scope.entidadBancaria.id
         }).success(function(data, status) {
             $scope.entidadBancaria = data;
         }).error(function(data, status) {
             alert("Fatal error: " + status);
-        });*/
+        });
     };
 
     $scope.insertEntidadBancaria = function() {
