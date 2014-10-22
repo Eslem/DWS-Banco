@@ -34,7 +34,7 @@ public class CuentaController {
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/cuentas"})
+    @RequestMapping(value = {"/cuentas"}, method = RequestMethod.GET)
     public void findAll(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         List<Cuenta> cuentas = cuentaDAO.findAll();
         httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentas));
