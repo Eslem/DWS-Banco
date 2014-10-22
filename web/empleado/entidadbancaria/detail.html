@@ -5,9 +5,10 @@
         <meta charset="UTF-8">
         <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
         <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
-        <script type="text/javascript" src="controller.js"></script>
+        <script type="text/javascript" src="../../js/common.js"></script>
+        <script type="text/javascript" src="detailController.js"></script>
     </head>
-    <body ng-controller="EntidadTablaDetailController" data-ng-init="startDetail()">
+    <body ng-controller="EntidadTablaDetailController">
         <h1>Entidad Bancaria:</h1>
         <p><label for="id">ID:</label><br/>
             <input id="id" ng-model="entidadBancaria.id" type="text"></p>
