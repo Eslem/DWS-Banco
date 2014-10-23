@@ -22,11 +22,14 @@ app.controller("EntidadTablaListController", function($scope, $http) {
             alert("Fatal error: " + status);
         });
     };
+    
     $scope.launchApi = function(id) {
+        $scope.entidadBancaria.id;
         window.open(contextPath + "/empleado/entidadbancaria/detail.html?id=" + id);
     };
 
 
     /* Código de ejecución */
+    
     $scope.findAll();
 });
