@@ -5,21 +5,28 @@
         <meta charset="UTF-8">
         <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
         <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
-        <script type="text/javascript" src="listController.js"></script>
+        <script type="text/javascript" src="js/listController.js"></script>
         <style>
-            #mainContent        {width:100%; max-width:960px; margin:auto;}
+            #mainContent                {width:100%; max-width:960px; margin:auto;}
 
-            table               {width:100%;}
-            td                  {background:#E0E0E0;}
-            td button           {width:50%;}
-            td:first-child      {width:36px; text-align:right;}
-            td:last-child       {width:120px;}
+            table                       {width:100%;}
+            tr:first-child td           {background:#C0C0C0;}
+            tr:not(:first-child) td     {background:#E0E0E0;}
+            td button                   {width:50%;}
+            td:first-child              {width:36px; text-align:right;}
+            td:last-child               {width:120px; text-align:center;}
         </style>
     </head>
     <body>
         <div id="mainContent">
             <h1>Entidades Bancarias:</h1>
             <table ng-controller="EntidadTablaListController">
+                <tr>
+                    <td>Id</td>
+                    <td>Nombre</td>
+                    <td>Código</td>
+                    <td>Acciones</td>
+                </tr>
                 <tr ng-repeat="entidadBancaria in entidadesBancarias">
                     <td>{{entidadBancaria.id}}</td>
                     <td>{{entidadBancaria.nombre}}</td>
