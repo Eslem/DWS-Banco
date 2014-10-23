@@ -25,6 +25,7 @@ app.controller("listController", function($scope, $http) {
             alert("Fatal error: " + status);
         });
     };
+    
     $scope.launchApi = function(id) {
         window.open(contextPath + "/empleado/cuenta/detail.html?id=" + id);
     };
