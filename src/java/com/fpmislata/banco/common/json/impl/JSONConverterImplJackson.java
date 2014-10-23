@@ -24,6 +24,4 @@ public class JSONConverterImplJackson implements JSONConverter {
             throw new RuntimeException(ex);
         }
     }
-
 }
-
