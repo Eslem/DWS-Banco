@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
     <head>
-        <title>Controlador Entidad</title>
+        <title>Controlador Cuenta</title>
         <meta charset="UTF-8">
         <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
         <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
@@ -18,14 +18,15 @@
     </head>
     <body>
         <div id="mainContent">
-            <h1>Entidades Bancarias:</h1>
-            <table ng-controller="EntidadTablaListController">
-                <tr ng-repeat="entidadBancaria in entidadesBancarias">
-                    <td>{{entidadBancaria.id}}</td>
-                    <td>{{entidadBancaria.nombre}}</td>
-                    <td>{{entidadBancaria.codigo}}</td>
-                    <td><button ng-click="launchApi(entidadBancaria.id)">Editar
-                        </button><button ng-click="deleteEntidadBancaria(entidadBancaria.id)">Borrar</button></td>
+            <h1>Cuentas:</h1>
+            <table ng-controller="listController">
+                <tr ng-repeat="cuenta in cuentas">
+                    <td>{{cuenta.id}}</td>
+                    <td>{{cuenta.saldo}}</td>
+                    <td>{{cuenta.idsucursal}}</td>
+                    <td>{{cuenta.tipo}}</td>
+                    <td><button ng-click="launchApi(cuenta.id)">Editar
+                        </button><button ng-click="deleteCuenta(cuenta.id)">Borrar</button></td>
                 </tr>
             </table>
         </div>

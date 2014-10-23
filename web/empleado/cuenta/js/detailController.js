@@ -1,10 +1,15 @@
 var app = angular.module("app", []);
 
-function ControladorCuenta($scope, $http) {
+app.controller("detailController", function($scope, $http) {
+    
+    $scope.cuenta = {};
+    $scope.cuenta.id = getURLParameter('id');
+    $scope.getCuenta();
+    
     $scope.getCuenta = function() {
         $http({
             method: "GET",
-            url: contextPath + "/api/cuentas/" + $scope.cuenta.idCuenta
+            url: contextPath + "/api/cuenta/" + $scope.cuenta.id
         }).success(function(data, status) {
             $scope.cuenta = data;
         }).error(function(data, status) {
@@ -16,10 +21,10 @@ function ControladorCuenta($scope, $http) {
         $http({
             method: "POST",
             data: $scope.cuenta,
-            url: contextPath + "/api/cuentas/"
+            url: contextPath + "/api/cuenta/"
         }).success(function(data, status) {
-            alert("Cuenta insertada correctamente.");
-            $scope.getCuenta($scope.cuenta.idCuenta); // Pending
+            alert("Cuenta correctamente insertada.");
+            $scope.getCuenta($scope.cuenta.id); // Pending
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
@@ -28,11 +33,11 @@ function ControladorCuenta($scope, $http) {
     $scope.updateCuenta = function() {
         $http({
             method: "PUT",
-            data: $scope.Cuenta,
-            url: contextPath + "/api/cuentas/"
+            data: $scope.cuenta,
+            url: contextPath + "/api/cuenta/"
         }).success(function(data, status) {
-            alert("Cuenta " + $scope.Cuenta.idCuenta + " actualizada correctamente.");
-            $scope.getCuenta($scope.Cuenta.idCuenta); // Pending
+            alert("Cuenta " + $scope.cuenta.id + " correctamente actualizada.");
+            $scope.getCuenta($scope.cuenta.id); // Pending
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
@@ -41,13 +46,11 @@ function ControladorCuenta($scope, $http) {
     $scope.deleteCuenta = function() {
         $http({
             method: "DELETE",
-            url: contextPath + "/api/cuentas/" + $scope.Cuenta.idCuenta
+            url: contextPath + "/api/cuenta/" + $scope.cuenta.id
         }).success(function() {
-            alert("Entidad " + $scope.Cuenta.idCuenta + " borrada correctamente.");
+            alert("Cuenta " + $scope.cuenta.id + " correctamente borrada.");
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
     };
-}
-
-
+});

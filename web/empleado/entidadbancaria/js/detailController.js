@@ -1,6 +1,6 @@
 var app = angular.module("app", []);
 
-function EntidadTablaDetailController($scope, $http) {
+app.controller("EntidadTablaDetailController", function($scope, $http) {
     $scope.getEntidadBancaria = function() {
         $http({
             method: "GET",
@@ -55,4 +55,4 @@ function EntidadTablaDetailController($scope, $http) {
     $scope.entidadBancaria = {};
     $scope.entidadBancaria.id = getURLParameter('id');
     $scope.getEntidadBancaria();
-}
+});

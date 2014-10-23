@@ -3,12 +3,13 @@
     <head>
         <title>Controlador Cuenta</title>
         <meta charset="UTF-8">
-        <script type="text/javascript" src="../lib/angular/js/angular.js"></script>
-        <script type="text/javascript" src="../js/cuentaForm.js"></script>
-        <script type="text/javascript" src="../js/contextPath.js.jsp"></script>
+        <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
+        <script type="text/javascript" src="js/detailController.js"></script>
+        <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
+        <script type="text/javascript" src="../../js/common.js"></script>
     </head>
-    <body ng-controller="ControladorCuenta">
-        <h1>Entidad Bancaria:</h1>
+    <body ng-controller="detailController">
+        <h1>Cuenta:</h1>
         <p><label for="idCuenta">ID:</label><br/>
             <input id="idCuenta" ng-model="cuenta.idCuenta" type="text"></p>
         <p><label for="saldo">Saldo:</label><br/>
