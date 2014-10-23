@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html ng-app="app">
     <head>
-        <title>Controlador Entidad</title>
+        <title>Lista - Entidades Bancarias</title>
         <meta charset="UTF-8">
         <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
         <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
         <script type="text/javascript" src="js/listController.js"></script>
-        <style>
-            #mainContent                {width:100%; max-width:960px; margin:auto;}
-
-            table                       {width:100%;}
-            tr:first-child td           {background:#C0C0C0;}
-            tr:not(:first-child) td     {background:#E0E0E0;}
-            td button                   {width:50%;}
-            td:first-child              {width:36px; text-align:right;}
-            td:last-child               {width:120px; text-align:center;}
-        </style>
+        <link rel="stylesheet" href="../../lib/font-awesome/css/fontawesome.css">
+        <link rel="stylesheet" href="css/list.css">
     </head>
     <body>
         <div id="mainContent">
@@ -31,10 +23,47 @@
                     <td>{{entidadBancaria.id}}</td>
                     <td>{{entidadBancaria.nombre}}</td>
                     <td>{{entidadBancaria.codigo}}</td>
-                    <td><button ng-click="launchApi(entidadBancaria.id)">Editar
-                        </button><button ng-click="deleteEntidadBancaria(entidadBancaria.id)">Borrar</button></td>
+                    <td class="actions"><button ng-click="launchApi(entidadBancaria.id)"><i class="fa fa-edit"></i>
+                        </button><button ng-click="deleteEntidadBancaria(entidadBancaria.id)"><i class="fa fa-trash"></i></button></td>
                 </tr>
             </table>
         </div>
     </body>
+    
+    <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="usuarioEditarController">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Editar Entidad Bancaria {{entidadBancaria.id}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="inputNombre" class="col-sm-2 control-label">Id</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" ng-model="entidadBancaria.id">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputApellidos" class="col-sm-2 control-label">Nombre</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputApellidos" placeholder="Apellidos" ng-model="entidadBancaria.nombre">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDNI" class="col-sm-2 control-label">Codigo</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputDNI" placeholder="DNI" ng-model="entidadBancaria.codigo">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Gonfirmar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
 </html>
