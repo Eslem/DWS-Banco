@@ -8,12 +8,12 @@
         <script type="text/javascript" src="listController.js"></script>
         <style>
             #mainContent        {width:100%; max-width:960px; margin:auto;}
-            
+
             table               {width:100%;}
             td                  {background:#E0E0E0;}
-            td button           {width:100%;}
+            td button           {width:50%;}
             td:first-child      {width:36px; text-align:right;}
-            td:last-child       {width:64px;}
+            td:last-child       {width:120px;}
         </style>
     </head>
     <body>
@@ -24,7 +24,8 @@
                     <td>{{entidadBancaria.id}}</td>
                     <td>{{entidadBancaria.nombre}}</td>
                     <td>{{entidadBancaria.codigo}}</td>
-                    <td><button ng-click="launchApi(entidadBancaria.id)">Editar</button></td>
+                    <td><button ng-click="launchApi(entidadBancaria.id)">Editar
+                        </button><button ng-click="deleteEntidadBancaria(entidadBancaria.id)">Borrar</button></td>
                 </tr>
             </table>
         </div>

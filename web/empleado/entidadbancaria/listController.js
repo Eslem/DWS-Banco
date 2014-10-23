@@ -1,8 +1,19 @@
 var app = angular.module("app", []);
 
-function EntidadTablaListController($scope, $http) {
+app.controller("EntidadTablaListController", function($scope, $http) {
     $scope.launchApi = function(id) {
         window.open(contextPath + "/empleado/entidadbancaria/detail.html?id=" + id);
+    };
+    
+    $scope.deleteEntidadBancaria = function(id) {
+        $http({
+            method: "DELETE",
+            url: contextPath + "/api/entidadBancaria/" + id
+        }).success(function() {
+            alert("Entidad " + id + " correctamente borrada.");
+        }).error(function(data, status) {
+            alert("Fatal error: " + status);
+        });        
     };
 
 
@@ -16,4 +27,4 @@ function EntidadTablaListController($scope, $http) {
     }).error(function(data, status) {
         alert("Fatal error: " + status);
     });
-}
+});
