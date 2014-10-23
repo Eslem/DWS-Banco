@@ -23,9 +23,12 @@ and open the template in the editor.
         <input id="cuentaOrigen" type="text" ng-model="movimiento.cuentaOrigen">
         <label for="cuentaDestino">Cuenta destino:</label>
         <input id="cuentaDestino" type="text" ng-model="movimiento.cuentaDestino">
+        <label for="descripcion">Descripcion:</label>
+        <input id="descripcion" type="text" ng-model="movimiento.descripcion">
         <label for="cantidad">Cantidad:</label>
         <input id="cantidad" type="text" ng-model="movimiento.cantidad">
         <button ng-click="getMovimiento()" >get</button>
+        <button ng-click="insertMovimiento()" >insertar</button>
         
         
         
