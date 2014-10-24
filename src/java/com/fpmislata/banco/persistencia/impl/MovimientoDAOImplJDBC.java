@@ -28,6 +28,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
                         resultSet.getString("tipo"),
                         resultSet.getInt("cuentaOrigen"),
                         resultSet.getInt("cuentaDestino"),
+                        resultSet.getString("descripcion"),
                         resultSet.getBigDecimal("cantidad"),
                         resultSet.getDate("fecha")
                 );
@@ -44,13 +45,14 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public Movimiento insert(Movimiento movimiento) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO movimientos (nombre, codigoEntidad, fechaCreacion) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO movimientos (tipo,cuentaOrigen,cuentaDestino,descripcion,cantidad,fecha) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, movimiento.getTipo());
             preparedStatement.setInt(2, movimiento.getCuentaOrigen());
             preparedStatement.setInt(3, movimiento.getCuentaDestino());
-            preparedStatement.setBigDecimal(4, movimiento.getCantidad());
-            preparedStatement.setDate(5, new java.sql.Date(new Date().getTime()));
+            preparedStatement.setString(4,movimiento.getDescripcion());
+            preparedStatement.setBigDecimal(5, movimiento.getCantidad());
+            preparedStatement.setDate(6, new java.sql.Date(new Date().getTime()));
             preparedStatement.executeUpdate();
             connection.close();
             return null;
@@ -63,13 +65,14 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public Movimiento update(Movimiento entidad) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "UPDATE movimientos SET tipo = ?, cuentaOrigen = ?, cuentaDestino = ?, cantidad = ? WHERE id = ?";
+            String query = "UPDATE movimientos SET tipo = ?, cuentaOrigen = ?, cuentaDestino = ?, descripcion=?, cantidad = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, entidad.getTipo());
             preparedStatement.setInt(2, entidad.getCuentaOrigen());
             preparedStatement.setInt(3, entidad.getCuentaDestino());
-            preparedStatement.setBigDecimal(4, entidad.getCantidad());
-            preparedStatement.setDate(5, new java.sql.Date(new Date().getTime()));
+            preparedStatement.setString(4, entidad.getDescripcion());
+            preparedStatement.setBigDecimal(5, entidad.getCantidad());
+            preparedStatement.setDate(6, new java.sql.Date(new Date().getTime()));
             preparedStatement.executeUpdate();
             connection.close();
             return null; /* PENDING */
@@ -107,6 +110,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
                         resultSet.getString("tipo"),
                         resultSet.getInt("cuentaOrigen"),
                         resultSet.getInt("cuentaDestino"),
+                        resultSet.getString("descripcion"),
                         resultSet.getBigDecimal("cantidad"),
                         resultSet.getDate("fecha")
                 ));
