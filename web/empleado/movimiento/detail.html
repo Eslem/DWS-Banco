@@ -11,7 +11,7 @@ and open the template in the editor.
         <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
         <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
         <script type="text/javascript" src="../../js/common.js"></script>
-        <script type="text/javascript" src="js/movimientoController.js"></script>
+        <script type="text/javascript" src="js/detailController.js"></script>
     </head>
     <body ng-controller="movimientoDetailController" >
         <h1>Movimientos</h1>
@@ -27,6 +27,9 @@ and open the template in the editor.
         <input id="descripcion" type="text" ng-model="movimiento.descripcion"><br/>
         <label for="cantidad">Cantidad:</label>
         <input id="cantidad" type="text" ng-model="movimiento.cantidad"><br/>
+        
+        
+        
         <button ng-click="getMovimiento()" >get</button>
         <button ng-click="insertMovimiento()" >insertar</button>
         

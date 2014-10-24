@@ -24,7 +24,8 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Movimiento movimiento = new Movimiento(
-                        resultSet.getInt("id"),
+                       // resultSet.getInt("id"),
+                        id,
                         resultSet.getString("tipo"),
                         resultSet.getInt("cuentaOrigen"),
                         resultSet.getInt("cuentaDestino"),
