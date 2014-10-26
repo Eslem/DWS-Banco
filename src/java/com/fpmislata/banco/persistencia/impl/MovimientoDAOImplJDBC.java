@@ -24,8 +24,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Movimiento movimiento = new Movimiento(
-                       // resultSet.getInt("id"),
-                        id,
+                        resultSet.getInt("id"),                        
                         resultSet.getString("tipo"),
                         resultSet.getInt("cuentaOrigen"),
                         resultSet.getInt("cuentaDestino"),
@@ -51,7 +50,7 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
             preparedStatement.setString(1, movimiento.getTipo());
             preparedStatement.setInt(2, movimiento.getCuentaOrigen());
             preparedStatement.setInt(3, movimiento.getCuentaDestino());
-            preparedStatement.setString(4,movimiento.getDescripcion());
+            preparedStatement.setString(4, movimiento.getDescripcion());
             preparedStatement.setBigDecimal(5, movimiento.getCantidad());
             preparedStatement.setDate(6, new java.sql.Date(new Date().getTime()));
             preparedStatement.executeUpdate();
@@ -63,17 +62,18 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     }
 
     @Override
-    public Movimiento update(Movimiento entidad) {
+    public Movimiento update(Movimiento movimiento) {
         try {
             Connection connection = connectionFactory.getConnection();
             String query = "UPDATE movimientos SET tipo = ?, cuentaOrigen = ?, cuentaDestino = ?, descripcion=?, cantidad = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, entidad.getTipo());
-            preparedStatement.setInt(2, entidad.getCuentaOrigen());
-            preparedStatement.setInt(3, entidad.getCuentaDestino());
-            preparedStatement.setString(4, entidad.getDescripcion());
-            preparedStatement.setBigDecimal(5, entidad.getCantidad());
-            preparedStatement.setDate(6, new java.sql.Date(new Date().getTime()));
+            preparedStatement.setString(1, movimiento.getTipo());
+            preparedStatement.setInt(2, movimiento.getCuentaOrigen());
+            preparedStatement.setInt(3, movimiento.getCuentaDestino());
+            preparedStatement.setString(4, movimiento.getDescripcion());
+            preparedStatement.setBigDecimal(5, movimiento.getCantidad());
+            preparedStatement.setInt(6, movimiento.getId());
+           
             preparedStatement.executeUpdate();
             connection.close();
             return null; /* PENDING */

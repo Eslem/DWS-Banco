@@ -24,11 +24,11 @@ public class Movimiento {
         this.fecha = fecha;
     }
 
-    public int getIdMovimiento() {
+    public int getId() {
         return id;
     }
 
-    public void setIdMovimiento(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
