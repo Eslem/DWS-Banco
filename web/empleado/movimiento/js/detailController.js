@@ -2,8 +2,7 @@
 var app = angular.module("app", []);
 
 app.controller("movimientoDetailController", function ($scope, $http) {
-
-
+    
     $scope.getMovimiento = function () {
         $http({
             method: "GET",
@@ -23,10 +22,10 @@ app.controller("movimientoDetailController", function ($scope, $http) {
             data: $scope.movimiento,
             url: contextPath + "/api/movimiento/"
         }).success(function (data, status) {
-            alert("funciona" + data);
+            alert("Movimiento añadido correctamente");
             $scope.getMovimiento($scope.movimiento.id);
         }).error(function (data, status) {
-            alert("NO funciona" + status);
+            alert("Error " + status);
         });
     };
 
@@ -36,13 +35,31 @@ app.controller("movimientoDetailController", function ($scope, $http) {
             method: "PUT",
             data: $scope.movimiento,
             url: contextPath + "/api/movimiento/"
-        }).success(function (data,status) {
-            alert("Movimiento "+$scope.movimiento.id+" actualizado correctamente");
+        }).success(function (data, status) {
+            alert("Movimiento " + $scope.movimiento.id + " actualizado correctamente");
             $scope.getMovimiento($scope.movimiento.id);
-
         }).error(function (data, status) {
-            alert("Fatal error: " + status);
+            alert("Error: " + status);
         });
     };
+
+
+    $scope.deleteMovimiento = function () {
+        $http({
+            method: "DELETE",
+            url: contextPath + "/api/movimiento/" + $scope.movimiento.id
+        }).success(function (data, status) {
+            alert("Cuenta eleminada correctamente");
+            $scope.getMovimiento($scope.movimiento.id);
+        }).error(function (data, status) {
+            alert("Error " + status);
+        });
+    };
+
+    $scope.movimiento={};
+    $scope.movimiento.id=getURLParameter('id');
+    $scope.getMovimiento();
+    
+
 
 });
