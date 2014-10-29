@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html ng-app="app">
-    <head>
-        <title>Entidad Bancaria : Detalle</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="../../lib/font-awesome/css/fontawesome.css">
-        <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
-        <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
-        <script type="text/javascript" src="../../lib/angular/js/angular-route.js"></script>
-        <script type="text/javascript" src="js/detailController.js"></script>
-    </head>
-    <body>
-        <nav>
-            <a href="#insert"><i class="fa fa-file-o"></i></a>
-            <a href="#update/1"><i class="fa fa-edit"></i></a>
-            <a href="#delete/1"><i class="fa fa-trash"></i></a>
-        </nav>
-        <div ng-view id="detailView"></div>
-    </body>
-</html>
+<h1>Entidad Bancaria:</h1>
+<p><label for="id">ID:</label><br/>
+    <input id="id" ng-model="entidadBancaria.id" type="text"></p>
+<p><label for="nombre">Nombre:</label><br/>
+    <input id="nombre" ng-model="entidadBancaria.nombre" type="text"></p>
+<p><label for="codigo">Código:</label><br/>
+    <input id="codigo" ng-model="entidadBancaria.codigo" type="text"></p>
+
+<button ng-click="formSend();">{{buttonText}}</button>

@@ -1,5 +1,3 @@
-var app = angular.module("app", ['ngRoute']);
-
 function initialize($scope, $http, $routeParams) {
     $scope.getEntidadBancaria = function() {
         $http({
@@ -18,28 +16,6 @@ function initialize($scope, $http, $routeParams) {
         $scope.getEntidadBancaria();
     }
 }
-
-app.config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/insert', {
-            templateUrl: "detailForm.html",
-            controller: "EntidadBancariaInsertController"
-        });
-
-        $routeProvider.when('/update/:id', {
-            templateUrl: "detailForm.html",
-            controller: "EntidadBancariaUpdateController"
-        });
-
-        $routeProvider.when('/delete/:id', {
-            templateUrl: "detailForm.html",
-            controller: "EntidadBancariaDeleteController"
-        });
-
-        /*$routeProvider.otherwise({
-         redirectTo: "menu.html"
-         });*/
-    }
-]);
 
 
 /* Controllers */

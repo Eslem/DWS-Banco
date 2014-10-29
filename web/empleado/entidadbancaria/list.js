@@ -1,6 +1,4 @@
-var app = angular.module("app", []);
-
-app.controller("EntidadTablaListController", function($scope, $http) {
+app.controller("EntidadBancariaListController", function($scope, $http) {
     $scope.findAll = function(id) {
         $http({
             method: "GET",

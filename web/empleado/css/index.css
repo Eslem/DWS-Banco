@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  text-align: center;
+  background: #E8E8E8; }
+
+nav#routes {
+  font-size: 1.1em;
+  background: white;
+  border: 1px solid lightgray; }
+  nav#routes a {
+    color: #303030;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 0;
+    width: 25%; }
+    nav#routes a:hover {
+      background: lightskyblue; }
+
+#embedded {
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+  padding: .5em;
+  margin-top: 24px;
+  background: white; }
+  #embedded h1 {
+    margin-top: 8px; }
+
+table {
+  width: 100%; }
+  table tr:first-child {
+    background: #a6c2e0; }
+  table tr:not(:first-child):nth-child(odd) {
+    background: #DFE7F7; }
+  table tr:nth-child(even) {
+    background: #EAEFFA; }
+  table tr td:first-child {
+    width: 36px;
+    text-align: right; }
+  table tr td:last-child {
+    width: 64px;
+    text-align: center; }
+  table tr td:not(.actions) {
+    padding: 0 3px; }
+  table tr td.actions button {
+    width: 50%; }
+
+/*# sourceMappingURL=index.css.map */

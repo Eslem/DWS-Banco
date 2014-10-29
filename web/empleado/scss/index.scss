@@ -1,0 +1,72 @@
+body {
+    margin:0;
+    text-align:center;
+    background:#E8E8E8;
+}
+
+nav#routes {
+    font-size:1.1em;
+    background:white;
+    border:1px solid lightgray;
+
+    a {
+        color:#303030;
+        text-decoration:none;
+        display:inline-block;
+        padding:8px 0;
+        width:25%;
+
+        &:hover {
+            background:lightskyblue;            
+        }
+    }
+}
+
+#embedded {
+    width:100%;
+    max-width:960px;
+    margin:auto;
+    padding:.5em;
+    margin-top:24px;
+    background:white;
+    
+    h1 {
+        margin-top:8px;
+    }
+}
+
+table {
+    width:100%;
+
+    tr {
+        &:first-child {
+            background:#a6c2e0;
+        }
+
+        &:not(:first-child):nth-child(odd) {
+            background:#DFE7F7;
+        }
+
+        &:nth-child(even) {
+            background:#EAEFFA;
+        }
+
+        td {
+            &:first-child {
+                width:36px; text-align:right;
+            }
+
+            &:last-child {
+                width:64px; text-align:center;
+            }
+
+            &:not(.actions) {
+                padding:0 3px;
+            }
+
+            &.actions button {
+                width:50%;
+            }
+        }
+    }
+}
