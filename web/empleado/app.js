@@ -3,16 +3,16 @@ var app = angular.module("app", ['ngRoute']);
 app.controller("EmpleadoController", function($scope) {
     $scope.locations = [
         {
-            value: 'EntidadBancaria/',
+            value: 'entidadbancaria/',
             text: 'Entidad Bancaria'
         }, {
-            value: 'Usuario/',
+            value: 'usuario/',
             text: 'Usuario'
         }, {
-            value: 'Cuenta/',
+            value: 'cuenta/',
             text: 'Cuenta'
         }, {
-            value: 'Movimiento/',
+            value: 'movimiento/',
             text: 'Movimiento'
         }
     ];
