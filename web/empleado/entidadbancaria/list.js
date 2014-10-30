@@ -21,7 +21,7 @@ app.controller("EntidadBancariaListController", function($scope, $http) {
         });
     };
     
-    $scope.editEntidadBancaria = function(id) {
+    $scope.edit = function(id) {
         location.replace('#/entidadbancaria/update/' + id);
     };
 

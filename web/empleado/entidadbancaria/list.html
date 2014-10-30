@@ -6,12 +6,11 @@
         <td>Código</td>
         <td>Acciones</td>
     </tr>
-    <tr ng-repeat="entidadBancaria in entidadesBancarias">
+    <tr ng-repeat="entidadBancaria in entidadesBancarias" class="table table-bordered">
         <td>{{entidadBancaria.id}}</td>
         <td>{{entidadBancaria.nombre}}</td>
         <td>{{entidadBancaria.codigo}}</td>
-        <!-- <td class="actions"><button ng-click="location.replace('#/entidadbancaria/update/' + entidadBancaria.id)"><i class="fa fa-edit"></i> -->
-        <td class="actions"><button ng-click="editEntidadBancaria(entidadBancaria.id)"><i class="fa fa-edit"></i>
+        <td class="actions"><button ng-click="edit(entidadBancaria.id)"><i class="fa fa-edit"></i>
             </button><button ng-click="deleteEntidadBancaria(entidadBancaria.id)"><i class="fa fa-trash"></i></button>
         </td>
     </tr>
