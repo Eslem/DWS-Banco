@@ -5,80 +5,36 @@
  */
 package com.fpmislata.banco.persistencia.impl;
 
+import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
+import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
 import com.fpmislata.banco.dominio.Usuario;
 import com.fpmislata.banco.persistencia.UsuarioDAO;
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  *
  * @author eslem
  */
-public class UsuarioDAOImplHibernate implements UsuarioDAO {
+public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> implements UsuarioDAO {
 
-    private SessionFactory sessionFactory;
+    PasswordEncrypting passwordEncrypting = new PasswordEncryptingImplJasypt();
 
-    private SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
-            Configuration config = new Configuration();
-            config.configure();
-            ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
-            sessionFactory = config.buildSessionFactory(serviceRegistry);
-        }
-        return sessionFactory;
+    @Override
+    public void updatePassword(Usuario usuario, String plainPassword) {
+        usuario.setContraseña(passwordEncrypting.encrypt(usuario.getContraseña()));
+        update(usuario);
     }
 
     @Override
-    public Usuario get(int id) {
-        Session session = getSessionFactory().openSession();
-        Usuario bank = (Usuario) session.get(Usuario.class, id);
-        session.close();
-        return bank;
+    public boolean checkPassword(Usuario usuario, String plainPassword) {
+        return passwordEncrypting.compare(plainPassword, usuario.getContraseña());
     }
 
     @Override
-    public Usuario insert(Usuario entidad) {
-        Session session = getSessionFactory().openSession();
-        session.beginTransaction();
-        session.save(entidad);
-        session.getTransaction().commit();
-        session.flush();
-        session.close();
-        return entidad;
+    protected void preInsert(Session session, Usuario usuario) {
+         usuario.setContraseña(passwordEncrypting.encrypt(usuario.getContraseña()));
     }
-
-    @Override
-    public Usuario update(Usuario entidad) {
-        Session session = getSessionFactory().openSession();
-        session.beginTransaction();
-        session.update(entidad);
-        session.getTransaction().commit();
-        session.close();
-        return entidad;
-    }
-
-    @Override
-    public void delete(int id) {
-        Usuario usuario = this.get(id);
-        if (usuario != null) {
-            Session session = getSessionFactory().openSession();
-            session.beginTransaction();
-            session.delete(usuario);
-            session.getTransaction().commit();
-            session.close();
-        }
-    }
-
-    @Override
-    public List<Usuario> findAll() {
-        Session session = getSessionFactory().openSession();
-        List usuarios = session.createQuery("FROM Usuario").list();
-        session.close();
-        return usuarios;
-    }
+;
 
 }

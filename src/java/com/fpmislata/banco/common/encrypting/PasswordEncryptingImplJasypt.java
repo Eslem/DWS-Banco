@@ -20,10 +20,10 @@ public class PasswordEncryptingImplJasypt implements PasswordEncrypting {
     }
 
     @Override
-    public boolean compare(String pass, String encyptedPassword) {
+    public boolean compare(String pass, String encryptedPassword) {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        String encryptedPassword = passwordEncryptor.encryptPassword(pass);
-        return passwordEncryptor.checkPassword(encyptedPassword, encryptedPassword);
+        String encryptedPassword2 = passwordEncryptor.encryptPassword(pass);
+        return passwordEncryptor.checkPassword(encryptedPassword, encryptedPassword2);
     }
 
 }

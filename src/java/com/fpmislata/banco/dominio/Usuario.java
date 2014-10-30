@@ -23,8 +23,6 @@ public class Usuario implements Serializable{
     private String email;
     private String contraseña;
     
-    private PasswordEncrypting passwordEncrypting = new PasswordEncryptingImplJasypt();
-    
     public Usuario(){};
     
     public Usuario(int id){
@@ -39,7 +37,17 @@ public class Usuario implements Serializable{
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.contraseña = passwordEncrypting.encrypt(contraseña);
+        this.contraseña = contraseña;
+    }
+    
+    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
     }
 
     public Usuario(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String contraseña) {
@@ -115,13 +123,8 @@ public class Usuario implements Serializable{
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = passwordEncrypting.encrypt(contraseña);
-    }
-    
-    
-    public boolean login(String pass){
-        return passwordEncrypting.compare(pass, contraseña);
-    }
+        this.contraseña = contraseña;
+    }    
     
     
     

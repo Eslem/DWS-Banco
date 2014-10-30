@@ -9,7 +9,7 @@ function angularConfig() {
     var app = angular.module("app", []);
     app.constant("baseUrl", contextPath);
     app.provider("getListUsuarios", getListUsuariosProvider);
-    app.service("updateUsuarioService", getListUsuariosProvider);
+    app.provider("updateUsuario", updateUsuarioProvider);
 
     app.factory('usuarioService', function ($rootScope) {
         var service = {};
@@ -21,44 +21,15 @@ function angularConfig() {
         };
         return service;
     });
-    
-    app.factory('updateUsuario', function ($http) {
-        var service = {};
-        service.usuario = {};
 
-        service.updateUsuario = function (usuario) {
-            this.usuario = usuario;
-            $rootScope.$broadcast("valuesUpdated");
-        };
-        return service;
-    });
-
-    app.config(['baseUrl', 'getListUsuariosProvider', 'updateUsuarioProvider', function (baseUrl, getListUsuariosProvider) {
+    app.config(['baseUrl', 'getListUsuariosProvider', 'updateUsuarioProvider', function (baseUrl, getListUsuariosProvider, updateUsuarioProvider) {
             getListUsuariosProvider.setBaseUrl(baseUrl);
             updateUsuarioProvider.setBaseUrl(baseUrl);
         }]);
 
     app.controller("usuariosListController", ['$scope', 'getListUsuarios', 'usuarioService', usuariosListController]);
-    app.controller("usuarioEditarController", ['$scope', 'updateUsuarioService', 'usuarioService', usuarioEditarController]);
+    app.controller("usuarioEditarController", ['$scope', 'usuarioService', 'updateUsuario', usuarioEditarController]);
 
-}
-
-
-function usuariosService() {
-    var usuario;
-
-    var setUsuario = function (newObj) {
-        usuario = newObj;
-    };
-
-    var getUsuario = function () {
-        return usuario;
-    };
-
-    return {
-        setUsuario: setUsuario,
-        getUsuario: getUsuario
-    };
 }
 
 function getListUsuariosProvider() {
@@ -68,6 +39,16 @@ function getListUsuariosProvider() {
     };
     this.$get = ['$http', function ($http) {
             return new getListUsuarios($http, _baseUrl);
+        }];
+}
+
+function updateUsuarioProvider() {
+    var _baseUrl;
+    this.setBaseUrl = function (baseUrl) {
+        _baseUrl = baseUrl;
+    };
+    this.$get = ['$http', function ($http) {
+            return new updateUsuario($http, _baseUrl);
         }];
 }
 
@@ -82,13 +63,12 @@ function getListUsuarios($http, baseUrl) {
             fnError(data, status);
         });
     };
-}
 
-function updateUsuarioService($http, baseUrl) {
-    this.put = function (usuario, fnOk, fnError) {
+
+    this.delete = function (user, fnOk, fnError) {
         $http({
-            method: 'PUT',
-            url: baseUrl + '/api/usuario/' + usuario.id
+            method: 'DELETE',
+            url: baseUrl + '/api/usuario/' + user.id
         }).success(function (data, status, headers, config) {
             fnOk(data);
         }).error(function (data, status, headers, config) {
@@ -97,6 +77,18 @@ function updateUsuarioService($http, baseUrl) {
     };
 }
 
+function updateUsuario($http, baseUrl) {
+    this.update = function (usuario, fnOk, fnError) {
+        $http({
+            method: 'PUT',
+            url: baseUrl + '/api/usuario'
+        }).success(function (data, status, headers, config) {
+            fnOk(data);
+        }).error(function (data, status, headers, config) {
+            fnError(data, status);
+        });
+    };
+}
 
 
 function usuariosListController($scope, getListUsuarios, usuarioService) {
@@ -109,18 +101,48 @@ function usuariosListController($scope, getListUsuarios, usuarioService) {
     $scope.editar = function (usuario) {
         usuarioService.updateUsuario(usuario);
     };
+
+    $scope.removeUser = function (usuario) {
+        $scope.usuarioEliminar = usuario;
+    };
+
+    $scope.aceptEliminar = function () {
+        getListUsuarios.delete($scope.usuarioEliminar, function (data) {
+            removeRow($scope);
+        }, function (data) {
+            alert(data);
+        });
+    };
+
 }
 
-function usuarioEditarController($scope, updateUsuario, usuarioService) {
+
+function removeRow($scope) {
+    var index = -1;
+    var usuariosArray = eval($scope.usuarios);
+    for (var i = 0; i < usuariosArray.length; i++) {
+        if (usuariosArray[i].id === $scope.usuarioEliminar.id) {
+            index = i;
+            break;
+        }
+    }
+    if (index === -1) {
+        alert("Something gone wrong");
+    }
+    $scope.usuarios.splice(index, 1);
+    $('#modalEliminar').modal('hide')
+}
+
+function usuarioEditarController($scope, usuarioService, updateUsuario) {
     $scope.$on('valuesUpdated', function () {
         $scope.usuario = usuarioService.usuario;
     });
 
-    $scope.update = function (data) {
-        updateUsuario.put($scope.usuario, function (data) {
+    $scope.update = function () {
+        updateUsuario.update($scope.usuario, function (data) {
             console.log(data);
         }, function (data) {
-            alert(data);
+            console.log(data);
         });
     };
 }
