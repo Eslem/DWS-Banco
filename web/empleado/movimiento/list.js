@@ -23,6 +23,11 @@ app.controller("MovimientoListController", function($scope, $http) {
     };
 
 
+
+$scope.editar = function(id) {
+        location.replace('#/movimiento/update/' + id);
+    };
+
     $scope.findAll();
 });
 

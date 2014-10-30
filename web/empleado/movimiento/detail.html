@@ -7,8 +7,18 @@ and open the template in the editor.
 <h1>Movimientos:</h1>
 <p><label for="id">ID:</label><br/>
     <input id="id" ng-model="movimiento.id" type="text"></p>
-<p><label for="nombre">Nombre:</label><br/>
-    <input id="nombre" ng-model="movimiento.nombre" type="text"></p>
-<p><label for="codigo">Código:</label><br/>
-    <input id="codigo" ng-model="movimiento.codigo" type="text"></p>
+<p><label for="nombre">Tipo:</label><br/>
+    <input id="nombre"  ng-model="movimiento.tipo" type="text"></p>
+<p><label for="codigo">Cuenta Origen:</label><br/>
+    <input id="codigo" ng-model="movimiento.cuentaOrigen" type="text"></p>
+
+<p><label for="codigo">Cuenta Destino:</label><br/>
+    <input id="codigo" ng-model="movimiento.cuentaDestino" type="text"></p>
+<p><label for="codigo">Descripcion:</label><br/>
+    <input id="codigo" ng-model="movimiento.descripcion" type="text"></p>
+<p><label for="codigo">Cantidad:</label><br/>
+    <input id="codigo" ng-model="movimiento.cantidad" type="text"></p>
+
+
+
 <button ng-click="formSend();">{{buttonText}}</button>

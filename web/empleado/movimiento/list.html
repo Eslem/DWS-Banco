@@ -25,7 +25,7 @@ and open the template in the editor.
         <td>{{movimiento.descripcion}}</td>
         <td>{{movimiento.cantidad}}</td>
         <td class="actions">
-            <button ng-click=""><i class="fa fa-edit"></i>
+            <button ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i>
             </button><button ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
         </td>
     </tr>
