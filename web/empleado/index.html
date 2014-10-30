@@ -3,9 +3,9 @@
     <head>
         <title>Empleado</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="../lib/font-awesome/css/fontawesome.css">
         <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/index.css">
         <script type="text/javascript" src="../js/contextPath.js.jsp"></script>
         <script type="text/javascript" src="../lib/angular/js/angular.js"></script>
         <script type="text/javascript" src="../lib/angular/js/angular-route.js"></script>
@@ -22,7 +22,9 @@
     </head>
     <body ng-controller="EmpleadoController">
         <nav id="routes">
-            <a ng-repeat="location in locations" href="#/{{location.value}}">{{location.text}}</a>
+            <ul>
+                <li><a ng-repeat="location in locations" href="#/{{location.value}}">{{location.text}}</a></li>
+            </ul>
         </nav>
         <div ng-view id="embedded"></div>
     </body>

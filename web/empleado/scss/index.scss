@@ -8,65 +8,70 @@ nav#routes {
     font-size:1.1em;
     background:white;
     border:1px solid lightgray;
-
-    a {
-        color:#303030;
-        text-decoration:none;
-        display:inline-block;
-        padding:8px 0;
-        width:25%;
-
-        &:hover {
-            background:lightskyblue;            
+    ul {
+        margin:0;
+        padding:0;
+        li {
+            list-style:none;
+            a {
+                color:#303030;
+                text-decoration:none;
+                display:inline-block;
+                padding:8px 0;
+                width:25%;
+                &:hover {
+                    background:lightskyblue;            
+                }
+            }
         }
-    }
+    }    
 }
 
 #embedded {
     width:100%;
-    max-width:960px;
+    max-width:1024px;
     margin:auto;
-    padding:.5em;
+    padding:1em;
     margin-top:24px;
     background:white;
-    
+
     h1 {
         margin-top:8px;
     }
 }
 
-table {
+.table {
     width:100%;
 
     tr {
-        &:first-child {
+        /*&:first-child {
             background:#a6c2e0;
         }
-
         &:not(:first-child):nth-child(odd) {
             background:#DFE7F7;
         }
-
         &:nth-child(even) {
             background:#EAEFFA;
-        }
+        }*/
 
         td {
+            padding:4px !important;
+            vertical-align:middle !important;
             &:first-child {
-                width:36px; text-align:right;
+                width:48px; text-align:right;
             }
-
-            &:last-child {
-                width:64px; text-align:center;
-            }
-
-            &:not(.actions) {
-                padding:0 3px;
-            }
-
-            &.actions button {
-                width:50%;
+            &.actions {
+                width:100px;
+                .btn {
+                    padding:2px 12px;
+                }
             }
         }
     }
+}
+
+.form {
+    width:100%;
+    max-width:480px;
+    margin:auto;
 }
