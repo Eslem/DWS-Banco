@@ -1,6 +1,4 @@
-
-
-function initialize($scope, $http, $routeParams) {
+function initializeMovimiento($scope, $http, $routeParams) {
     $scope.getMovimiento = function() {
         $http({
             method: "GET",
@@ -38,7 +36,7 @@ app.controller("MovimientoInsertController", ["$scope", "$http", function($scope
             });
         };
 
-        initialize($scope, $http);
+        initializeMovimiento($scope, $http);
     }
 ]);
 
@@ -58,7 +56,7 @@ app.controller("MovimientoUpdateController", ["$scope", "$http", "$routeParams",
             });
         };
 
-        initialize($scope, $http, $routeParams);
+        initializeMovimiento($scope, $http, $routeParams);
     }
 ]);
 
@@ -76,7 +74,7 @@ app.controller("MovimientoDeleteController", ["$scope", "$http", "$routeParams",
             });
         };
 
-        initialize($scope, $http, $routeParams);
+        initializeMovimiento($scope, $http, $routeParams);
     }
 ]);
 
