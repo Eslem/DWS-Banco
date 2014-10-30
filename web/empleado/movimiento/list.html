@@ -4,45 +4,29 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html ng-app="app">
-    <head>
-        <title>Lista Movimientos</title>
-        <meta charset="UTF-8">
-        <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
-        <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
-        <script type="text/javascript" src="../../js/common.js"></script>
-        <script type="text/javascript" src="js/listController.js"></script>
-    </head>
-    <body>
-        <div >
-            <h1>Movimientos</h1>
-            <table ng-controller="movimientoListController">
-                <tr>
-                    <td>Id</td>
-                    <td>Tipo</td>
-                    <td>Cuenta Origen</td>
-                    <td>Cuenta Destino</td>
-                    <td>Descripcion</td>
-                    <td>Cantidad</td>
-            
-                    
-                </tr>
-                <tr ng-repeat="movimiento in movimientos">
-                    <td>{{movimiento.id}}</td>
-                    <td>{{movimiento.tipo}}</td>
-                    <td>{{movimiento.cuentaOrigen}}</td>
-                    <td>{{movimiento.cuentaDestino}}</td>
-                    <td>{{movimiento.descripcion}}</td>
-                    <td>{{movimiento.cantidad}}</td>
-                    <td>
-                         <button ng-click="abrirDetail(movimiento.id)">Editar</button>
-                         <button ng-click="deleteMovimiento(movimiento.id)">Borrar</button>
-                     </td>
-                </tr>
-            </table>
-        </div>
+<h1>Movimientos:</h1>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Tipo</td>
+        <td>Cuenta Origen</td>
+        <td>Cuenta Destino</td>
+        <td>Descripcion </td>
+        <td>Cantidad</td>
+        <td> Acciones</td>
+        
 
-
-
-    </body>
-</html>
+    </tr>
+    <tr ng-repeat="movimiento in movimientos">
+        <td>{{movimiento.id}}</td>
+        <td>{{movimiento.tipo}}</td>
+        <td>{{movimiento.cuentaOrigen}}</td>
+        <td>{{movimiento.cuentaDestino}}</td>
+        <td>{{movimiento.descripcion}}</td>
+        <td>{{movimiento.cantidad}}</td>
+        <td class="actions">
+            <button ng-click=""><i class="fa fa-edit"></i>
+            </button><button ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
+        </td>
+    </tr>
+</table>

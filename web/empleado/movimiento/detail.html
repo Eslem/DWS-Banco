@@ -4,39 +4,11 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html ng-app="app">
-    <head>
-        <title>Detalle Movimiento</title>
-        <meta charset="UTF-8">
-        <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
-        <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
-        <script type="text/javascript" src="../../js/common.js"></script>
-        <script type="text/javascript" src="js/detailController.js"></script>
-    </head>
-    <body ng-controller="movimientoDetailController" >
-        <h1>Movimientos</h1>
-        <label for="id">ID:</label>
-        <input id="id" type="text" ng-model="movimiento.id"><br/>
-        <label for="tipo">Tipo:</label>
-        <input id="tipo" type="text" ng-model="movimiento.tipo"><br/>
-        <label for="cuentaOrigen">Cuenta origen:</label>
-        <input id="cuentaOrigen" type="text" ng-model="movimiento.cuentaOrigen"><br/>
-        <label for="cuentaDestino">Cuenta destino:</label>
-        <input id="cuentaDestino" type="text" ng-model="movimiento.cuentaDestino"><br/>
-        <label for="descripcion">Descripcion:</label>
-        <input id="descripcion" type="text" ng-model="movimiento.descripcion"><br/>
-        <label for="cantidad">Cantidad:</label>
-        <input id="cantidad" type="text" ng-model="movimiento.cantidad"><br/>
-
-
-
-        <button ng-click="getMovimiento()" >get</button>
-        <button ng-click="insertMovimiento()" >insertar</button>
-        <button ng-click="updateMovimiento()">actualizar</button>
-        <button ng-click="deleteMovimiento()">Borrar</button>
-
-
-
-
-    </body>
-</html>
+<h1>Movimientos:</h1>
+<p><label for="id">ID:</label><br/>
+    <input id="id" ng-model="movimiento.id" type="text"></p>
+<p><label for="nombre">Nombre:</label><br/>
+    <input id="nombre" ng-model="movimiento.nombre" type="text"></p>
+<p><label for="codigo">Código:</label><br/>
+    <input id="codigo" ng-model="movimiento.codigo" type="text"></p>
+<button ng-click="formSend();">{{buttonText}}</button>
