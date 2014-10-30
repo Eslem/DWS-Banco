@@ -20,6 +20,10 @@ app.controller("EntidadBancariaListController", function($scope, $http) {
             alert("Fatal error: " + status);
         });
     };
+    
+    $scope.editEntidadBancaria = function(id) {
+        location.replace('#/entidadbancaria/update/' + id);
+    };
 
 
     /* Código de ejecución */

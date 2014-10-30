@@ -18,5 +18,9 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: "entidadbancaria/detail.html",
             controller: "EntidadBancariaDeleteController"
         });
+        
+        $routeProvider.otherwise({
+           redirectTo: '/' 
+        });
     }
 ]);

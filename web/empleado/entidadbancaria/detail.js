@@ -17,6 +17,10 @@ function initialize($scope, $http, $routeParams) {
     }
 }
 
+function getBackToList() {
+    location.replace('#/entidadbancaria/');
+}
+
 
 /* Controllers */
 
@@ -29,8 +33,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function(data) {
-                alert("Entidad correctamente insertada.");
-                $scope.getEntidadBancaria($scope.entidadBancaria.id);
+                getBackToList();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
             });
@@ -49,8 +52,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function(data) {
-                alert("Entidad " + $scope.entidadBancaria.id + " correctamente actualizada.");
-                $scope.getEntidadBancaria($scope.entidadBancaria.id);
+                getBackToList();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
             });
@@ -68,7 +70,7 @@ app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routePar
                 method: "DELETE",
                 url: contextPath + "/api/entidadBancaria/" + $scope.entidadBancaria.id
             }).success(function() {
-                alert("Entidad " + $scope.entidadBancaria.id + " correctamente borrada.");
+                getBackToList();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
             });

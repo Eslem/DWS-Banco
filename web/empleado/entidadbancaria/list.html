@@ -10,10 +10,9 @@
         <td>{{entidadBancaria.id}}</td>
         <td>{{entidadBancaria.nombre}}</td>
         <td>{{entidadBancaria.codigo}}</td>
-        <td class="actions"><button ng-click="location.replace('#/entidadbancaria/update/' + entidadBancaria.id)"><i class="fa fa-edit"></i>
+        <!-- <td class="actions"><button ng-click="location.replace('#/entidadbancaria/update/' + entidadBancaria.id)"><i class="fa fa-edit"></i> -->
+        <td class="actions"><button ng-click="editEntidadBancaria(entidadBancaria.id)"><i class="fa fa-edit"></i>
             </button><button ng-click="deleteEntidadBancaria(entidadBancaria.id)"><i class="fa fa-trash"></i></button>
-            <a href="#/entidadbancaria/update/{{entidadBancaria.id}}"><i class="fa fa-edit"></i></a>
-            <a href="javascript:deleteEntidadBancaria(entidadBancaria.id)"><i class="fa fa-trash"></i></a>
         </td>
     </tr>
 </table>
