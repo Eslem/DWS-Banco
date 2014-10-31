@@ -5,8 +5,6 @@
  */
 package com.fpmislata.banco.dominio;
 
-import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
-import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
 import java.io.Serializable;
 
 /**
@@ -58,9 +56,7 @@ public class Usuario implements Serializable{
         this.telefono = telefono;
         this.email = email;
         this.contraseña = contraseña;
-    }
-    
-    
+    }    
 
     public int getId() {
         return id;
@@ -126,6 +122,17 @@ public class Usuario implements Serializable{
         this.contraseña = contraseña;
     }    
     
+    
+    
+    /*-----Null pasword retrieving information
+     @Override
+    public void onPostLoad(PostLoadEvent ple) {
+        Usuario usuario=(Usuario)ple.getEntity();
+        //Nunca se retorna el Hash de la contraseña
+        usuario.setContraseña(null);
+
+    }   */
+
     
     
 }

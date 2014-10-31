@@ -11,7 +11,7 @@
     UsuarioDAO usuarioDAO = (UsuarioDAO) new UsuarioDAOImplHibernate();
    //suario usuario = new Usuario("usuario", "apellido", "0000", "calle tal", 01234567, "email", "0123");
     //usuarioDAO.insert(usuario);
-   //usuarioDAO.delete(3);
-    Usuario usuario = usuarioDAO.get(10);
-   out.print(""+usuarioDAO.checkPassword(usuario, "0123"));
+   usuarioDAO.delete(10);
+    /*Usuario usuario = usuarioDAO.get(10);
+   out.print(usuario.getContraseña());*/
 %>
