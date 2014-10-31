@@ -42,7 +42,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
         Session session = getSessionFactory().openSession();
         this.preGet(session, id);
         T object = (T) session.get(getClazz(), id);
-        this.postGet(session, id);
+        this.postGet(session, object);
         session.close();
         return object;
     }
@@ -102,7 +102,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     protected void preDelete(Session session, int id) {};
     protected void postInsert(Session session, T object) {};
     protected void postUpdate(Session session, T object) {};
-    protected void postGet(Session session, int id) {};
+    protected void postGet(Session session, T object) {};
     protected void postDelete(Session session, int t) {};
 
 }
