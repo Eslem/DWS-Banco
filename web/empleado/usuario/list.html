@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html ng-app="app">
+<html >
     <head >
         <title>Lista de Usuarios</title>
         <meta charset="UTF-8">
@@ -21,10 +21,10 @@ and open the template in the editor.
         <script src="js/usuarioController.js"></script>
 
     </head>
-    <body >
+    <body ng-app="app">
         <div class="container-fluid">
             <h1 class="primary">Listado de usuarios</h1>
-            <table ng-controller="listController" class="table table-striped container">
+            <table ng-controller="listUsuariosController" class="table table-striped container">
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>

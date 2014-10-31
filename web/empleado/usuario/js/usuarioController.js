@@ -3,38 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-angularConfig();
 
-function angularConfig() {
-    var app = angular.module("app", []);
-    app.constant("baseUrl", contextPath);
-    app.provider("listService", listProvider);
-    
-    app.config(["baseUrl", "listProvider", function(baseUrl, listProvider){
-        listProvider.setBaseUrl(baseUrl);
-    }]);
-
-    app.controller("listUsuariosController", ['$scope, listService', function($scope, listService){
-            
-    }]);
-    
-    
-}
-
-
-function listProvider(){
-    var _baseUrl;
+function ListUsuariosProvider() {
+    var _baseUrl = "";
     this.setBaseUrl = function (baseUrl) {
         _baseUrl = baseUrl;
     };
     this.$get = ['$http', function ($http) {
-            return new listService($http, _baseUrl);
+            return new ListUsuarios($http, _baseUrl)
         }];
 }
 
-
-function listService($http, baseUrl){
-     this.get = function (fnOk, fnError) {
+function ListUsuarios($http, baseUrl) {
+    this.get = function (fnOk, fnError) {
         $http({
             method: 'GET',
             url: baseUrl + '/api/usuario'
@@ -45,3 +26,25 @@ function listService($http, baseUrl){
         });
     };
 }
+
+var app = angular.module("app", []);
+app.constant("baseUrl", contextPath);
+app.provider("ListUsuarios", ListUsuariosProvider);
+
+app.config(['baseUrl', 'ListUsuariosProvider', function (baseUrl, ListUsuariosProvider) {
+        ListUsuariosProvider.setBaseUrl(baseUrl);
+    }]);
+
+
+app.controller("listUsuariosController", ['$scope', 'ListUsuarios', function ($scope, ListUsuarios) {
+        ListUsuarios.get(
+                function (data, status) {
+                    $scope.usuarios = data;
+                },
+                function (data, status) {
+                    alert(status + ": " + data);
+                }
+        );
+    }
+]);
+
