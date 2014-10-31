@@ -1,4 +1,4 @@
-function initialize($scope, $http, $routeParams) {
+function initializeEntidadBancaria($scope, $http, $routeParams) {
     $scope.getEntidadBancaria = function() {
         $http({
             method: "GET",
@@ -17,7 +17,7 @@ function initialize($scope, $http, $routeParams) {
     }
 }
 
-function getBackToList() {
+function goToEntidadBancariaList() {
     location.replace('#/entidadbancaria/');
 }
 
@@ -33,13 +33,13 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function(data) {
-                getBackToList();
+                goToEntidadBancariaList();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
             });
         };
 
-        initialize($scope, $http);
+        initializeEntidadBancaria($scope, $http);
     }
 ]);
 
@@ -52,13 +52,13 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function(data) {
-                getBackToList();
+                goToEntidadBancariaList();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
             });
         };
 
-        initialize($scope, $http, $routeParams);
+        initializeEntidadBancaria($scope, $http, $routeParams);
     }
 ]);
 
@@ -70,12 +70,12 @@ app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routePar
                 method: "DELETE",
                 url: contextPath + "/api/entidadBancaria/" + $scope.entidadBancaria.id
             }).success(function() {
-                getBackToList();
+                goToEntidadBancariaList();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
             });
         };
 
-        initialize($scope, $http, $routeParams);
+        initializeEntidadBancaria($scope, $http, $routeParams);
     }
 ]);
