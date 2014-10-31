@@ -9,7 +9,6 @@ import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
 import com.fpmislata.banco.dominio.Usuario;
 import com.fpmislata.banco.persistencia.UsuarioDAO;
-import java.util.List;
 import org.hibernate.Session;
 
 /**
@@ -35,6 +34,11 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
     protected void preInsert(Session session, Usuario usuario) {
          usuario.setContraseña(passwordEncrypting.encrypt(usuario.getContraseña()));
     }
+    
+    @Override
+    protected void postGet(Session session, Usuario usuario) {
+        usuario.setContraseña("");
+    };
 ;
 
 }
