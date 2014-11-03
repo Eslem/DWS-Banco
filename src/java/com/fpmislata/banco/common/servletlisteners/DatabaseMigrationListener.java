@@ -14,16 +14,15 @@ import javax.servlet.ServletContextListener;
  *
  * @author eslem
  */
-public class DatabaseMigrationListener implements ServletContextListener{
+public class DatabaseMigrationListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         DatabaseMigration databaseMigration = new DatabaseMigrationImplFlyway();
-        databaseMigration.migrate("jdbc:mysql://localhost:3306/banco");
+        databaseMigration.migrate("jdbc:mysql://localhost:3306/banco", "com.fpmislata.banco.common.databasemigration.migrations");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
     }
-    
 }

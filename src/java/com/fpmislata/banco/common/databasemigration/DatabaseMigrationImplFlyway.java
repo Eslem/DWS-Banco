@@ -5,8 +5,6 @@
  */
 package com.fpmislata.banco.common.databasemigration;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import org.flywaydb.core.Flyway;
 
 /**
@@ -16,10 +14,10 @@ import org.flywaydb.core.Flyway;
 public class DatabaseMigrationImplFlyway implements DatabaseMigration{
 
     @Override
-    public void migrate(String databaseurl) {
+    public void migrate(String datasourceName,String packageName) {
         Flyway flyway = new Flyway();
-        flyway.setDataSource(databaseurl, "root", "root");
-        flyway.setLocations("com.fpmislata.banco.common.databasemigration.migrations");
+        flyway.setDataSource(datasourceName, "root", "root");
+        flyway.setLocations(packageName);
         flyway.migrate();
     }    
 }

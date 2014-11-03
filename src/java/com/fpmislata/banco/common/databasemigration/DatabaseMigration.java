@@ -10,5 +10,5 @@ package com.fpmislata.banco.common.databasemigration;
  * @author eslem
  */
 public interface DatabaseMigration {
-    public void migrate(String databaseurl);
+    public void migrate(String datasourceName,String packageName);
 }
