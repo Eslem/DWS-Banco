@@ -37,36 +37,4 @@ and open the template in the editor.
   height: 30px;
   opacity: 1; }
 
-
-.ng-enter {
-  -webkit-transition: 1s;
-  transition: 1s;
-  
-  margin-left: 100%;
-}
-
-.ng-enter-active {
-  margin-left: 0;
-}
-
-.ng-leave {
-  -webkit-transition: 1s;
-  transition: 1s;
-  
-  margin-left: 0;
-}
-
-.ng-leave-active {
-  margin-left: 100%;
-}
-
-.ng-move {
-  -webkit-transition: 1s;
-  transition: 1s;
-  
-  background: gold;
-}
-
-.ng-move-active {
-  background: #fff;
-}
+/*# sourceMappingURL=usuarios.css.map */
