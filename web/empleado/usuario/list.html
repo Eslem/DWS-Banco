@@ -24,9 +24,9 @@ and open the template in the editor.
 
     </head>
     <body ng-app="app">
-        <div class="container-fluid">
+        <div class="container-fluid" ng-controller="listUsuariosController">
             <h1 class="primary">Listado de usuarios</h1>
-            <table ng-controller="listUsuariosController" class="table table-striped container">
+            <table  class="table table-striped container">
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>
@@ -37,7 +37,7 @@ and open the template in the editor.
                     <th>Email</th>                
                     <th></th>                
                 </tr>
-                <tr ng-repeat="usuario in usuarios" >
+                <tr ng-repeat="usuario in usuarios" class="animate">
                     <td>{{usuario.id}}</td>
                     <td>{{usuario.nombre}}</td>
                     <td>{{usuario.apellidos}}</td>
@@ -46,10 +46,30 @@ and open the template in the editor.
                     <td>{{usuario.telefono}}</td>
                     <td>{{usuario.email}}</td>            
                     <td><button type="button" class="btn btn-default" ng-click="editar(usuario)"><i class="fa fa-gear"></i></button>
-                        <button type="button" class="btn btn-danger" ng-click="borrar(usuario.id)"><i class="fa fa-trash-o"></i></button>
+                        <button type="button" class="btn btn-danger" ng-click="borrar(usuario)" data-toggle="modal" data-target="#confirmModal">
+                            <i class="fa fa-trash-o"></i></button>
                     </td>            
                 </tr>
             </table>
+
+            <div class="modal fade" id="confirmModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Borrar Usuario</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Seguro quieres eliminar el usuario {{usuarioBorrar.id}} {{usuarioBorrar.nombre}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger" ng-click="confirmBorrar()" data-dismiss="modal">Eliminar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
         </div>
     </body>
 </html>

@@ -53,6 +53,7 @@ public class UsuarioController {
     @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
         usuarioDAO.delete(id);
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        httpServletResponse.getWriter().println("ok deleted");
+        httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
 }

@@ -47,13 +47,13 @@ function ListUsuarios($http, baseUrl) {
         NProgress.start();
         $http({
             method: 'DELETE',
-            url: baseUrl + '/api/usuario/' + id,
+            url: baseUrl + '/api/usuario/'+id
         }).success(function (data, status, headers, config) {
             fnOk(data);
             NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
+            Progress.done();
         });
     }
 }
@@ -68,18 +68,21 @@ function ListUsuariosController($scope, ListUsuarios) {
             }
     );
 
-    $scope.borrar = function (id) {
-        /* ListUsuarios.delete(id,
-         function (data, status) {
-         id = getUserScoperId($scope, id);
-         $scope.usuarios.splice(id, 1);
-         },
-         function (data, status) {
-         alert(status + ": " + data);
-         }); */
-        id = getUserScoperId($scope, id);
-        $scope.usuarios.splice(id, 1);
+    $scope.borrar = function (usuario) {
+        $scope.usuarioBorrar = usuario;
     };
+
+    $scope.confirmBorrar = function () {
+        ListUsuarios.delete($scope.usuarioBorrar.id,
+                function (data, status) {
+                    var id = getUserScoperId($scope, $scope.usuarioBorrar.id);
+                    $scope.usuarios.splice(id, 1);
+                },
+                function (data, status) {
+                    alert(status + ": " + data);
+                });
+    }
+
 }
 
 
