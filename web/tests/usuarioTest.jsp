@@ -9,9 +9,11 @@
 <%@page import="com.fpmislata.banco.persistencia.impl.UsuarioDAOImplHibernate"%>
 <%
     UsuarioDAO usuarioDAO = (UsuarioDAO) new UsuarioDAOImplHibernate();
-   //suario usuario = new Usuario("usuario", "apellido", "0000", "calle tal", 01234567, "email", "0123");
-    //usuarioDAO.insert(usuario);
-   usuarioDAO.delete(10);
+   Usuario usuario = new Usuario("usuario", "apellido", "0000", "calle tal", 9784521, "email", "0123");
+   Usuario usuario2 = new Usuario("usuario2", "apellido2", "1111", "calle qwdqwd", 6984894, "email2", "0123");
+    usuarioDAO.insert(usuario);
+    usuarioDAO.insert(usuario2);
+   //usuarioDAO.delete(10);
     /*Usuario usuario = usuarioDAO.get(10);
    out.print(usuario.getContraseña());*/
 %>
