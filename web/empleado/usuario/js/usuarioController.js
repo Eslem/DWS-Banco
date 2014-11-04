@@ -4,6 +4,20 @@
  * and open the template in the editor.
  */
 
+
+
+
+var app = angular.module("app", ['ngAnimate']);
+app.constant("baseUrl", contextPath);
+app.provider("ListUsuarios", ListUsuariosProvider);
+
+app.config(['baseUrl', 'ListUsuariosProvider', function (baseUrl, ListUsuariosProvider) {
+        ListUsuariosProvider.setBaseUrl(baseUrl);
+    }]);
+
+app.controller("listUsuariosController", ['$scope', 'ListUsuarios', ListUsuariosController]);
+
+
 function ListUsuariosProvider() {
     var _baseUrl = "";
     this.setBaseUrl = function (baseUrl) {
@@ -16,35 +30,67 @@ function ListUsuariosProvider() {
 
 function ListUsuarios($http, baseUrl) {
     this.get = function (fnOk, fnError) {
+        NProgress.start();
         $http({
             method: 'GET',
             url: baseUrl + '/api/usuario'
         }).success(function (data, status, headers, config) {
             fnOk(data);
+            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
+            NProgress.done();
         });
+    };
+
+    this.delete = function (id, fnOk, fnError) {
+        NProgress.start();
+        $http({
+            method: 'DELETE',
+            url: baseUrl + '/api/usuario/' + id,
+        }).success(function (data, status, headers, config) {
+            fnOk(data);
+            NProgress.done();
+        }).error(function (data, status, headers, config) {
+            fnError(data, status);
+            NProgress.done();
+        });
+    }
+}
+
+function ListUsuariosController($scope, ListUsuarios) {
+    ListUsuarios.get(
+            function (data, status) {
+                $scope.usuarios = data;
+            },
+            function (data, status) {
+                alert(status + ": " + data);
+            }
+    );
+
+    $scope.borrar = function (id) {
+        /* ListUsuarios.delete(id,
+         function (data, status) {
+         id = getUserScoperId($scope, id);
+         $scope.usuarios.splice(id, 1);
+         },
+         function (data, status) {
+         alert(status + ": " + data);
+         }); */
+        id = getUserScoperId($scope, id);
+        $scope.usuarios.splice(id, 1);
     };
 }
 
-var app = angular.module("app", []);
-app.constant("baseUrl", contextPath);
-app.provider("ListUsuarios", ListUsuariosProvider);
 
-app.config(['baseUrl', 'ListUsuariosProvider', function (baseUrl, ListUsuariosProvider) {
-        ListUsuariosProvider.setBaseUrl(baseUrl);
-    }]);
-
-
-app.controller("listUsuariosController", ['$scope', 'ListUsuarios', function ($scope, ListUsuarios) {
-        ListUsuarios.get(
-                function (data, status) {
-                    $scope.usuarios = data;
-                },
-                function (data, status) {
-                    alert(status + ": " + data);
-                }
-        );
+function getUserScoperId($scope, userId) {
+    index = -1;
+    var array = eval($scope.usuarios);
+    for (var i = 0; i < array.length; i++) {
+        if (array[i].id === userId) {
+            index = i;
+            break;
+        }
     }
-]);
-
+    return index;
+}
