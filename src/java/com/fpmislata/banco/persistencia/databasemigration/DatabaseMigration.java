@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.common.databasemigration;
+package com.fpmislata.banco.persistencia.databasemigration;
 
 /**
  *
  * @author eslem
  */
 public interface DatabaseMigration {
-    public void migrate(String datasourceName,String packageName);
+    public void migrate(String databaseurl);
 }
