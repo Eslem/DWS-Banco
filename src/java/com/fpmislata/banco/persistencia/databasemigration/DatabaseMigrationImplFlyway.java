@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.common.databasemigration;
+package com.fpmislata.banco.persistencia.databasemigration;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import org.flywaydb.core.Flyway;
 
 /**
@@ -19,7 +17,7 @@ public class DatabaseMigrationImplFlyway implements DatabaseMigration{
     public void migrate(String databaseurl) {
         Flyway flyway = new Flyway();
         flyway.setDataSource(databaseurl, "root", "root");
-        flyway.setLocations("com.fpmislata.banco.common.databasemigration.migrations");
+        flyway.setLocations("com.fpmislata.banco.persistencia.databasemigration.migrations");
         flyway.migrate();
     }    
 }
