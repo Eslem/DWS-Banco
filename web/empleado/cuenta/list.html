@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
         <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
-        <script type="text/javascript" src="js/listController.js"></script>
+        <script type="text/javascript" src="list.js"></script>
         <style>
             #mainContent        {width:100%; max-width:960px; margin:auto;}
 
@@ -19,22 +19,20 @@
     <body>
         <div id="mainContent">
             <h1>Cuentas:</h1>
-            <table ng-controller="listController">
-                 <tr>
-                    <td>Id Prueba</td>
+            <table ng-controller="CuentaListController">
+                <tr>
+                    <td>Id</td>
                     <td>Saldo</td>
                     <td>Id Sucursal</td>
                     <td>Tipo</td>
                     <td>Acciones</td>
                 </tr>
                 <tr ng-repeat="cuenta in cuentas">
-                    <td>{{cuenta.id}}</td>
-                    <td>{{cuenta.saldo}}</td>
-                    <td>{{cuenta.idsucursal}}</td>
-                    <td>{{cuenta.tipo}}</td>
-                    <td><button ng-click="launchApi(cuenta.id)">Editar
-                        </button><button ng-click="deleteCuenta(cuenta.id)">Borrar</button></td>
-                </tr>
+                    <td>{{cuenta.idCuenta}}</td>
+                    <td>{{cuenta.Cuenta}}</td>
+                    <td>{{cuenta.idSucursal}}</td>
+                    <td>{{cuenta.tipoCuenta}}</td>
+                    </tr>
             </table>
         </div>
     </body>

@@ -1,19 +1,18 @@
-var app = angular.module("app", []);
-
-app.controller("listController", function($scope, $http) {
-    
-    $scope.findAll();
-    
-    $scope.findAll = function(id) {
+app.controller("CuentaListController", function($scope, $http) {
+        
+    $scope.findAll = function() {
         $http({
             method: "GET",
             url: contextPath + "/api/cuenta/"
-        }).success(function(data, status) {
+        }).success(function(data) {
+            alert("patata");
             $scope.cuentas = data;
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
     };
+    
+    $scope.findAll();
 
     $scope.deleteCuenta = function(id) {
         $http({
