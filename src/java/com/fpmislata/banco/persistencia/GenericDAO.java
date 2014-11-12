@@ -10,6 +10,7 @@ import java.util.List;
 /**
  *
  * @author eslem
+ * @param <T>
  */
 public interface GenericDAO <T>{
     

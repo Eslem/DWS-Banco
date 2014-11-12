@@ -24,8 +24,8 @@ function CuentaListController($scope, $http) {
         });
     };
     
-    $scope.launchApi = function(id) {
+    $scope.edit = function(id) {
         window.open(contextPath + "/empleado/cuenta/detail.html?id=" + id);
     };
 
-}//);
+}
