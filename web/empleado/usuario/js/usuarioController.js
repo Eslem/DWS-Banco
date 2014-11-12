@@ -3,45 +3,97 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-angularConfig();
 
-function angularConfig() {
-    var app = angular.module("app", []);
-    app.constant("baseUrl", contextPath);
-    app.provider("listService", listProvider);
-    
-    app.config(["baseUrl", "listProvider", function(baseUrl, listProvider){
-        listProvider.setBaseUrl(baseUrl);
+
+
+
+var app = angular.module("app", ['ngAnimate']);
+app.constant("baseUrl", contextPath);
+app.provider("ListUsuarios", ListUsuariosProvider);
+
+app.config(['baseUrl', 'ListUsuariosProvider', function (baseUrl, ListUsuariosProvider) {
+        ListUsuariosProvider.setBaseUrl(baseUrl);
     }]);
 
-    app.controller("listUsuariosController", ['$scope, listService', function($scope, listService){
-            
-    }]);
-    
-    
-}
+app.controller("listUsuariosController", ['$scope', 'ListUsuarios', ListUsuariosController]);
 
 
-function listProvider(){
-    var _baseUrl;
+function ListUsuariosProvider() {
+    var _baseUrl = "";
     this.setBaseUrl = function (baseUrl) {
         _baseUrl = baseUrl;
     };
     this.$get = ['$http', function ($http) {
-            return new listService($http, _baseUrl);
+            return new ListUsuarios($http, _baseUrl)
         }];
 }
 
-
-function listService($http, baseUrl){
-     this.get = function (fnOk, fnError) {
+function ListUsuarios($http, baseUrl) {
+    this.get = function (fnOk, fnError) {
+        NProgress.start();
         $http({
             method: 'GET',
             url: baseUrl + '/api/usuario'
         }).success(function (data, status, headers, config) {
             fnOk(data);
+            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
+            NProgress.done();
         });
     };
+
+    this.delete = function (id, fnOk, fnError) {
+        NProgress.start();
+        $http({
+            method: 'DELETE',
+            url: baseUrl + '/api/usuario/'+id
+        }).success(function (data, status, headers, config) {
+            fnOk(data);
+            NProgress.done();
+        }).error(function (data, status, headers, config) {
+            fnError(data, status);
+            Progress.done();
+        });
+    }
+}
+
+function ListUsuariosController($scope, ListUsuarios) {
+    ListUsuarios.get(
+            function (data, status) {
+                $scope.usuarios = data;
+            },
+            function (data, status) {
+                alert(status + ": " + data);
+            }
+    );
+
+    $scope.borrar = function (usuario) {
+        $scope.usuarioBorrar = usuario;
+    };
+
+    $scope.confirmBorrar = function () {
+        ListUsuarios.delete($scope.usuarioBorrar.id,
+                function (data, status) {
+                    var id = getUserScoperId($scope, $scope.usuarioBorrar.id);
+                    $scope.usuarios.splice(id, 1);
+                },
+                function (data, status) {
+                    alert(status + ": " + data);
+                });
+    }
+
+}
+
+
+function getUserScoperId($scope, userId) {
+    index = -1;
+    var array = eval($scope.usuarios);
+    for (var i = 0; i < array.length; i++) {
+        if (array[i].id === userId) {
+            index = i;
+            break;
+        }
+    }
+    return index;
 }
