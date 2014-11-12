@@ -14,6 +14,7 @@ function initializeEntidadBancaria($scope, $http, $routeParams) {
         $scope.entidadBancaria = {};
         $scope.entidadBancaria.id = $routeParams.id;
         $scope.getEntidadBancaria();
+        $scope.idVisible = true;
     }
 }
 
@@ -38,8 +39,6 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($
                 alert("Fatal error: " + status);
             });
         };
-
-        initializeEntidadBancaria($scope, $http);
     }
 ]);
 

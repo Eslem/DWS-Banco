@@ -9,6 +9,14 @@ app.controller("EntidadBancariaListController", function($scope, $http) {
             alert("Fatal error: " + status);
         });
     };
+    
+    $scope.create = function() {
+        location.replace('#/entidadbancaria/insert/');
+    };
+    
+    $scope.edit = function(id) {
+        location.replace('#/entidadbancaria/update/' + id);
+    };
 
     $scope.deleteEntidadBancaria = function(id) {
         $http({
@@ -19,10 +27,6 @@ app.controller("EntidadBancariaListController", function($scope, $http) {
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
-    };
-    
-    $scope.edit = function(id) {
-        location.replace('#/entidadbancaria/update/' + id);
     };
 
 
