@@ -28,7 +28,7 @@
     <body ng-controller="EmpleadoController">
         <nav id="routes">
             <ul>
-                <li><a ng-repeat="location in locations" href="#/{{location.value}}">{{location.text}}</a></li>
+                <li><a ng-repeat="location in locations" href="#/{{location.value}}" ng-class="{active:isActive(url.url)}">{{location.text}}</a></li>
             </ul>
         </nav>
         <div ng-view id="embedded"></div>

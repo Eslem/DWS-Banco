@@ -60,21 +60,3 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
         initializeEntidadBancaria($scope, $http, $routeParams);
     }
 ]);
-
-app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
-        $scope.buttonText = 'Eliminar';
-
-        $scope.formSend = function() {
-            $http({
-                method: "DELETE",
-                url: contextPath + "/api/entidadBancaria/" + $scope.entidadBancaria.id
-            }).success(function() {
-                goToEntidadBancariaList();
-            }).error(function(data, status) {
-                alert("Fatal error: " + status);
-            });
-        };
-
-        initializeEntidadBancaria($scope, $http, $routeParams);
-    }
-]);

@@ -9,24 +9,26 @@ app.controller("EntidadBancariaListController", function($scope, $http) {
             alert("Fatal error: " + status);
         });
     };
-    
+
     $scope.create = function() {
         location.replace('#/entidadbancaria/insert/');
     };
-    
+
     $scope.edit = function(id) {
         location.replace('#/entidadbancaria/update/' + id);
     };
 
-    $scope.deleteEntidadBancaria = function(id) {
-        $http({
-            method: "DELETE",
-            url: contextPath + "/api/entidadBancaria/" + id
-        }).success(function() {
-            $scope.findAll();
-        }).error(function(data, status) {
-            alert("Fatal error: " + status);
-        });
+    $scope.deleteEntidadBancaria = function(entidadBancaria) {
+        if (confirm('¿Confirma usted el borrado de la Entidad Bancaria "' + entidadBancaria.nombre + '"?')) {
+            $http({
+                method: "DELETE",
+                url: contextPath + "/api/entidadBancaria/" + entidadBancaria.id
+            }).success(function() {
+                $scope.findAll();
+            }).error(function(data, status) {
+                alert("Fatal error: " + status);
+            });
+        }
     };
 
 
