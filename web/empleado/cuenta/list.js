@@ -1,11 +1,10 @@
-app.controller("CuentaListController", function($scope, $http) {
+function CuentaListController($scope, $http) {
         
     $scope.findAll = function() {
         $http({
             method: "GET",
             url: contextPath + "/api/cuenta/"
         }).success(function(data) {
-            alert("patata");
             $scope.cuentas = data;
         }).error(function(data, status) {
             alert("Fatal error: " + status);
@@ -29,4 +28,4 @@ app.controller("CuentaListController", function($scope, $http) {
         window.open(contextPath + "/empleado/cuenta/detail.html?id=" + id);
     };
 
-});
+}//);
