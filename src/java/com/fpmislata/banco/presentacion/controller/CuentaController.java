@@ -1,4 +1,4 @@
-package com.fpmislata.banco.presentacion.controllers;
+package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.Cuenta;
