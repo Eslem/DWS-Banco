@@ -1,7 +1,7 @@
 package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
-import com.fpmislata.banco.persistencia.databasemigration.DatabaseMigration;
+import com.fpmislata.banco.persistencia.migration.DatabaseMigration;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

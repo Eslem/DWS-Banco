@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.persistencia.impl;
+package com.fpmislata.banco.persistencia.dao.impl;
 
 import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
 import com.fpmislata.banco.dominio.Usuario;
-import com.fpmislata.banco.persistencia.UsuarioDAO;
+import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
 import org.hibernate.Session;
 
 /**
