@@ -21,23 +21,23 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
 
     @Override
     public void updatePassword(Usuario usuario, String plainPassword) {
-        usuario.setContraseña(passwordEncrypting.encrypt(usuario.getContraseña()));
+        usuario.setPass(passwordEncrypting.encrypt(usuario.getPass()));
         update(usuario);
     }
 
     @Override
     public boolean checkPassword(Usuario usuario, String plainPassword) {
-        return passwordEncrypting.compare(plainPassword, usuario.getContraseña());
+        return passwordEncrypting.compare(plainPassword, usuario.getPass());
     }
 
     @Override
     protected void preInsert(Session session, Usuario usuario) {
-         usuario.setContraseña(passwordEncrypting.encrypt(usuario.getContraseña()));
+         usuario.setPass(passwordEncrypting.encrypt(usuario.getPass()));
     }
     
     @Override
     protected void postGet(Session session, Usuario usuario) {
-        usuario.setContraseña("");
+        usuario.setPass("");
     };
 ;
 

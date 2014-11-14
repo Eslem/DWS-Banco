@@ -1,19 +1,6 @@
-var app = angular.module("app", ['ngRoute']);
+var app = angular.module("app", ['ngRoute', 'ngAnimate']);
+app.constant("baseUrl", contextPath);
 
 app.controller("EmpleadoController", function($scope) {
-    $scope.locations = [
-        {
-            value: 'entidadbancaria/',
-            text: 'Entidad Bancaria'
-        }, {
-            value: 'usuario/',
-            text: 'Usuario'
-        }, {
-            value: 'cuenta/',
-            text: 'Cuenta'
-        }, {
-            value: 'movimiento/',
-            text: 'Movimiento'
-        }
-    ];
+    //$scope.hover = false;
 });

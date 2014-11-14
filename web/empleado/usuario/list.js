@@ -5,10 +5,6 @@
  */
 
 
-
-
-var app = angular.module("app", ['ngAnimate']);
-app.constant("baseUrl", contextPath);
 app.provider("ListUsuarios", ListUsuariosProvider);
 
 app.config(['baseUrl', 'ListUsuariosProvider', function (baseUrl, ListUsuariosProvider) {
@@ -47,7 +43,7 @@ function ListUsuarios($http, baseUrl) {
         NProgress.start();
         $http({
             method: 'DELETE',
-            url: baseUrl + '/api/usuario/'+id
+            url: baseUrl + '/api/usuario/' + id
         }).success(function (data, status, headers, config) {
             fnOk(data);
             NProgress.done();
@@ -81,8 +77,10 @@ function ListUsuariosController($scope, ListUsuarios) {
                 function (data, status) {
                     alert(status + ": " + data);
                 });
-    }
-
+    };
+    $scope.editar = function (userId) {
+        location.replace('#/usuario/update/' + userId.id);
+    };
 }
 
 
