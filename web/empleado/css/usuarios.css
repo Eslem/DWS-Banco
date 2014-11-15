@@ -15,4 +15,7 @@ and open the template in the editor.
 .animate.ng-enter.ng-enter-active, .animate.ng-leave {
   opacity: 1; }
 
+.animate.ng-leave.ng-leave-active, .animate.ng-enter {
+  opacity: 0; }
+
 /*# sourceMappingURL=usuarios.css.map */
