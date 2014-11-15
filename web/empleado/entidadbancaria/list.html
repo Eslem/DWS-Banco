@@ -15,8 +15,15 @@
             <button ng-click="edit(entidadBancaria.id)" class="btn btn-primary">
                 <i class="fa fa-edit"></i>
             </button>
-            <button ng-click="deleteEntidadBancaria(entidadBancaria.id)" class="btn btn-danger">
+            <button ng-click="deleteEntidadBancaria(entidadBancaria)" class="btn btn-danger">
                 <i class="fa fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td id="add" colspan="4">
+            <button class="btn btn-sm btn-primary" ng-click="create()">
+                <i class="fa fa-plus"></i>
             </button>
         </td>
     </tr>

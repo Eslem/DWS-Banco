@@ -14,6 +14,7 @@ function initializeEntidadBancaria($scope, $http, $routeParams) {
         $scope.entidadBancaria = {};
         $scope.entidadBancaria.id = $routeParams.id;
         $scope.getEntidadBancaria();
+        $scope.idVisible = true;
     }
 }
 
@@ -38,8 +39,6 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($
                 alert("Fatal error: " + status);
             });
         };
-
-        initializeEntidadBancaria($scope, $http);
     }
 ]);
 
@@ -52,24 +51,6 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function(data) {
-                goToEntidadBancariaList();
-            }).error(function(data, status) {
-                alert("Fatal error: " + status);
-            });
-        };
-
-        initializeEntidadBancaria($scope, $http, $routeParams);
-    }
-]);
-
-app.controller("EntidadBancariaDeleteController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
-        $scope.buttonText = 'Eliminar';
-
-        $scope.formSend = function() {
-            $http({
-                method: "DELETE",
-                url: contextPath + "/api/entidadBancaria/" + $scope.entidadBancaria.id
-            }).success(function() {
                 goToEntidadBancariaList();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);

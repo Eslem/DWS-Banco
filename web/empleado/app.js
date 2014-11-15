@@ -1,6 +1,6 @@
 var app = angular.module("app", ['ngRoute']);
 
-app.controller("EmpleadoController", function($scope) {
+app.controller("EmpleadoController", function($scope, $location) {
     $scope.locations = [
         {
             value: 'entidadbancaria/',
@@ -16,4 +16,8 @@ app.controller("EmpleadoController", function($scope) {
             text: 'Movimiento'
         }
     ];
+
+    $scope.isActive = function(location) {
+        return location === ($location.path().substring(1) || '/');
+    };
 });

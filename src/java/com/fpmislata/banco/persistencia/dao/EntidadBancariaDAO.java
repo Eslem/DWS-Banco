@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistencia;
+package com.fpmislata.banco.persistencia.dao;
 
 import com.fpmislata.banco.dominio.EntidadBancaria;
 

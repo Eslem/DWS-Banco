@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.persistencia;
-
-import com.fpmislata.banco.dominio.Cuenta;
+package com.fpmislata.banco.persistencia.migration;
 
 /**
  *
  * @author eslem
  */
-public interface CuentaDAO extends GenericDAO<Cuenta> {}
+public interface DatabaseMigration {
+    public void migrate(String databaseurl);
+}

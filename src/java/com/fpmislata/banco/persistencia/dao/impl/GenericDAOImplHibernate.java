@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.persistencia.impl;
+package com.fpmislata.banco.persistencia.dao.impl;
 
-import com.fpmislata.banco.persistencia.GenericDAO;
+import com.fpmislata.banco.persistencia.dao.GenericDAO;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import org.hibernate.Session;

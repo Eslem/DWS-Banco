@@ -2,7 +2,7 @@ package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.Cuenta;
-import com.fpmislata.banco.persistencia.CuentaDAO;
+import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

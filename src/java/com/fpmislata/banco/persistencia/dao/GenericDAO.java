@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.persistencia;
+package com.fpmislata.banco.persistencia.dao;
 
 import java.util.List;
 
 /**
  *
  * @author eslem
- * @param <T>
  */
 public interface GenericDAO <T>{
     

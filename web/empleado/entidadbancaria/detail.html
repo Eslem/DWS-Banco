@@ -1,12 +1,12 @@
 <h2>Entidad Bancaria</h2>
 <hr/>
 <div class="form">
-    <p><label for="id">ID:</label><br/>
+    <p ng-show="{{idVisible}}"><label for="id">ID:</label><br/>
         <input id="id" ng-model="entidadBancaria.id" type="text" class="form-control" disabled="disabled"></p>
     <p><label for="nombre">Nombre:</label><br/>
-        <input id="nombre" ng-model="entidadBancaria.nombre" type="text" class="form-control"></p>
+        <input id="nombre" ng-model="entidadBancaria.nombre" type="text" class="form-control" placeholder="Nombre"></p>
     <p><label for="codigo">Código:</label><br/>
-        <input id="codigo" ng-model="entidadBancaria.codigo" type="text" class="form-control"></p>
+        <input id="codigo" ng-model="entidadBancaria.codigo" type="text" class="form-control" placeholder="Código"></p>
 
     <button ng-click="formSend();" class="btn btn-primary">{{buttonText}}</button>
 </div>
