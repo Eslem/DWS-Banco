@@ -23,20 +23,20 @@ function initializeMovimiento($scope, $http, $routeParams) {
 app.controller("MovimientoInsertController", ["$scope", "$http", function($scope, $http) {
         $scope.buttonText = 'Insertar';
 
-        $scope.formSend = function() {
+        $scope.insertarMovimiento = function() {
             $http({
                 method: "POST",
                 data: $scope.movimiento,
                 url: contextPath + "/api/movimiento/"
             }).success(function(data) {
-                alert("Movimiento correctamente insertado.");
+                alert("Movimiento correctamente insertado");
                 $scope.getMovimiento($scope.movimiento.id);
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
             });
         };
 
-        initializeMovimiento($scope, $http);
+       
     }
 ]);
 

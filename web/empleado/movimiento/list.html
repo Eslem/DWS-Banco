@@ -4,8 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<h1>Movimientos:</h1>
-<table>
+<div class="container-fluid">
+     <h1 class="page-header">Movimientos</h1>
+<table class="table table-striped container table-hover">
     <tr>
         <td>Id</td>
         <td>Tipo</td>
@@ -17,16 +18,18 @@ and open the template in the editor.
         
 
     </tr>
-    <tr ng-repeat="movimiento in movimientos">
+    <tr ng-repeat="movimiento in movimientos"  class="animate">
         <td>{{movimiento.id}}</td>
         <td>{{movimiento.tipo}}</td>
         <td>{{movimiento.cuentaOrigen}}</td>
         <td>{{movimiento.cuentaDestino}}</td>
         <td>{{movimiento.descripcion}}</td>
-        <td>{{movimiento.cantidad}}</td>
+        <td>{{movimiento.cantidad | currency: "€" }}</td>
         <td class="actions">
-            <button ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i>
-            </button><button ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-default" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-danger" ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
         </td>
     </tr>
 </table>
+    <button class="btn btn-link" ng-click="crear()">Añadir movimiento</button>
+</div>

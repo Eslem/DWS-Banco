@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<h1>Movimientos:</h1>
-<p><label for="id">ID:</label><br/>
-    <input id="id" ng-model="movimiento.id" type="text"></p>
-<p><label for="nombre">Tipo:</label><br/>
-    <input id="nombre"  ng-model="movimiento.tipo" type="text"></p>
-<p><label for="codigo">Cuenta Origen:</label><br/>
-    <input id="codigo" ng-model="movimiento.cuentaOrigen" type="text"></p>
 
-<p><label for="codigo">Cuenta Destino:</label><br/>
-    <input id="codigo" ng-model="movimiento.cuentaDestino" type="text"></p>
-<p><label for="codigo">Descripcion:</label><br/>
-    <input id="codigo" ng-model="movimiento.descripcion" type="text"></p>
-<p><label for="codigo">Cantidad probando mierdas:</label><br/>
-    <input id="codigo" ng-model="movimiento.cantidad" type="text"></p>
-<button ng-click="formSend();">{{buttonText}}</button>
+<div class="container-fluid"> 
+    <a href="#/movimiento/" ><h1 class="page-header">Movimiento</h1></a>
+    <div class="form">
+        <p> <label  class="badge" for="id">ID</label><br/>
+            <input   class="form-control text-center" id="id" ng-model="movimiento.id" type="text" placeholder="ID" disabled="disabled"></p>
+        <p><label  class="badge" for="nombre">Tipo</label><br/>
+            <input   class="form-control text-center " id="nombre"  ng-model="movimiento.tipo" type="text" placeholder="Nombre"></p>
+        <p><label  class="badge" for="codigo">Cuenta Origen</label><br/>
+            <input  class="form-control text-center" id="codigo" ng-model="movimiento.cuentaOrigen" type="number" placeholder="Cuenta Origen ID"></p>
+        <p><label class="badge" for="codigo">Cuenta Destino</label><br/>
+            <input class="form-control text-center"  id="codigo" ng-model="movimiento.cuentaDestino" type="number" placeholder="Cuenta Destino ID"></p>
+        <p><label class="badge" for="codigo">Descripcion</label><br/>
+            <input class="form-control text-center"  id="codigo" ng-model="movimiento.descripcion" type="text" placeholder="Descripcion"></p>
+        <p><label class="badge" for="codigo">Cantidad</label><br/>
+            <input class="form-control text-center" id="codigo" ng-model="movimiento.cantidad" type="number" placeholder="Cantidad"></p>
+        <button  class="btn btn-primary"ng-click="insertarMovimiento()">{{buttonText}}</button>
+
+    </div>
+
+
+</div>
