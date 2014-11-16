@@ -1,35 +1,29 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+app.provider("UpdateUsuario", UpdateUsuarioProvider);
 
-app.provider("UpdateAdministrador", UpdateAdministradorProvider);
-
-app.config(['baseUrl', 'UpdateAdministradorProvider', function (baseUrl, UpdateAdministradorProvider) {
-        UpdateAdministradorProvider.setBaseUrl(baseUrl);
+app.config(['baseUrl', 'UpdateUsuarioProvider', function (baseUrl, UpdateUsuarioProvider) {
+        UpdateUsuarioProvider.setBaseUrl(baseUrl);
     }]);
 
-app.controller("UpdateAdministradorController", ['$scope', '$routeParams', 'UpdateAdministrador', UpdateAdministradorController]);
+app.controller("UpdateUserController", ['$scope', '$routeParams', 'UpdateUsuario', UpdateUserController]);
 
 
-function UpdateAdministradorProvider() {
+function UpdateUsuarioProvider() {
     var _baseUrl = "";
     this.setBaseUrl = function (baseUrl) {
         _baseUrl = baseUrl;
     };
     this.$get = ['$http', function ($http) {
-            return new UpdateUser($http, _baseUrl);
+            return new UpdateUsuario($http, _baseUrl);
         }];
 }
 
-function UpdateUser($http, baseUrl) {
+function UpdateUsuario($http, baseUrl) {
     this.get = function (id, fnOk, fnError) {
         NProgress.start();
         $http({
             method: 'GET',
-            url: baseUrl + '/api/administrador/' + id
+            url: baseUrl + '/api/usuario/' + id
         }).success(function (data, status, headers, config) {
             fnOk(data);
             NProgress.done();
@@ -42,7 +36,21 @@ function UpdateUser($http, baseUrl) {
     this.update = function (user, fnOk, fnError) {
         $http({
             method: 'PUT',
-            url: baseUrl + '/api/administrador/',
+            url: baseUrl + '/api/usuario/',
+            data: user
+        }).success(function (data, status, headers, config) {
+            fnOk(data);
+            NProgress.done();
+        }).error(function (data, status, headers, config) {
+            fnError(data, status);
+            NProgress.done();
+        });
+    };
+
+    this.insert = function (user, fnOk, fnError) {
+        $http({
+            method: 'POST',
+            url: baseUrl + '/api/usuario/',
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
@@ -55,7 +63,7 @@ function UpdateUser($http, baseUrl) {
     this.changePass = function (user, fnOk, fnError) {
         $http({
             method: 'PUT',
-            url: baseUrl + '/api/administrador/password',
+            url: baseUrl + '/api/usuario/password',
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
@@ -64,12 +72,18 @@ function UpdateUser($http, baseUrl) {
             fnError(data, status);
             NProgress.done();
         });
-    }
+    };
+
+
 
 }
 
-function UpdateAdministradorController($scope, $routeParams, UpdateAdministrador) {
-    UpdateAdministrador.get($routeParams.id,
+function UpdateUserController($scope, $routeParams, UpdateUsuario) {
+    $scope.detailShown = true;
+    $scope.passShown = false;
+    $scope.mainButton = "Actualizar";
+
+    UpdateUsuario.get($routeParams.id,
             function (data, status) {
                 $scope.user = data;
             },
@@ -79,8 +93,7 @@ function UpdateAdministradorController($scope, $routeParams, UpdateAdministrador
     );
 
     $scope.update = function () {
-        // delete $scope.user.pass;
-        UpdateAdministrador.update($scope.user
+        UpdateUsuario.update($scope.user
                 , function (data, status) {
                     location.replace("#/usuario/");
                 }, function (data, status) {
@@ -93,9 +106,30 @@ function UpdateAdministradorController($scope, $routeParams, UpdateAdministrador
             alert("Las contraseñas no coinciden");
         } else {
             $scope.user.pass = $scope.pass;
-            UpdateUser.changePass($scope.user, function (data, status) {
-                location.replace("#/administrador/");
+            UpdateUsuario.changePass($scope.user, function (data, status) {
+                location.replace("#/usuario/");
             }, function (data, status) {
+                alert(status + ": " + data);
+            });
+        }
+    };
+}
+
+
+function UsuarioInsertController($scope, UpdateUsuario) {
+    $scope.detailShown = false;
+    $scope.passShown = true;
+    $scope.mainButton = "Crear";
+
+    $scope.update = function () {
+        if ($scope.pass !== $scope.passrepeat) {
+            alert("Las contraseñas no coinciden");
+        } else {
+            $scope.user.pass = $scope.pass;
+            UpdateUsuario.insert($scope.user
+                    , function (data, status) {
+                        location.replace("#/usuario/");
+                    }, function (data, status) {
                 alert(status + ": " + data);
             });
         }

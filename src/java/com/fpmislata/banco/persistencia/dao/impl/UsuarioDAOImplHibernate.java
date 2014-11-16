@@ -7,8 +7,8 @@ package com.fpmislata.banco.persistencia.dao.impl;
 
 import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
-import com.fpmislata.banco.dominio.Administrador;
-import com.fpmislata.banco.persistencia.dao.AdministradorDAO;
+import com.fpmislata.banco.dominio.Usuario;
+import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -16,14 +16,14 @@ import org.hibernate.Session;
  *
  * @author eslem
  */
-public class AdministradorDAOImplHibernate extends GenericDAOImplHibernate<Administrador> implements AdministradorDAO {
+public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> implements UsuarioDAO {
 
     PasswordEncrypting passwordEncrypting = new PasswordEncryptingImplJasypt();
 
     @Override
-    public void updatePassword(Administrador usuario) {
+    public void updatePassword(Usuario usuario) {
         Session session = getSessionFactory().openSession();
-        Query query = session.createSQLQuery("UPDATE administradores SET pass=? WHERE id=?");
+        Query query = session.createSQLQuery("UPDATE usuarios SET pass=? WHERE id=?");
         query.setString(0, passwordEncrypting.encrypt(usuario.getPass()));
         query.setInteger(1, usuario.getId());
         
@@ -32,17 +32,17 @@ public class AdministradorDAOImplHibernate extends GenericDAOImplHibernate<Admin
     }
 
     @Override
-    public boolean checkPassword(Administrador usuario, String plainPassword) {
+    public boolean checkPassword(Usuario usuario, String plainPassword) {
         return passwordEncrypting.compare(plainPassword, usuario.getPass());
     }
 
     @Override
-    protected void preInsert(Session session, Administrador usuario) {
+    protected void preInsert(Session session, Usuario usuario) {
         usuario.setPass(passwordEncrypting.encrypt(usuario.getPass()));
     }
 
     @Override
-    protected void postGet(Session session, Administrador usuario) {
+    protected void postGet(Session session, Usuario usuario) {
         usuario.setPass("");
     }
 ;

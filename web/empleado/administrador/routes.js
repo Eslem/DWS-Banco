@@ -5,10 +5,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "ListAdministradoresController"
         });
 
-       /* $routeProvider.when('/usuario/insert', {
-            templateUrl: "movimiento/detail.html",
-            controller: "MovimientoInsertController"
-        });*/
+        $routeProvider.when('/administrador/insert', {
+            templateUrl: "administrador/detail.html",
+            controller: "AdministradorInsertController"
+        });
 
         $routeProvider.when('/administrador/update/:id', {
             templateUrl: "administrador/detail.html",

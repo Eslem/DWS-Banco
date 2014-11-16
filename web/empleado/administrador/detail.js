@@ -52,6 +52,20 @@ function UpdateAdministrador($http, baseUrl) {
             NProgress.done();
         });
     };
+
+    this.insert = function (user, fnOk, fnError) {
+        $http({
+            method: 'POST',
+            url: baseUrl + '/api/administrador/',
+            data: user
+        }).success(function (data, status, headers, config) {
+            fnOk(data);
+            NProgress.done();
+        }).error(function (data, status, headers, config) {
+            fnError(data, status);
+            NProgress.done();
+        });
+    };
     this.changePass = function (user, fnOk, fnError) {
         $http({
             method: 'PUT',
@@ -69,6 +83,9 @@ function UpdateAdministrador($http, baseUrl) {
 }
 
 function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrador) {
+    $scope.detailShown = true;
+    $scope.passShown = false;
+    $scope.mainButton = "Actualizar";
     UpdateAdministrador.get($routeParams.id,
             function (data, status) {
                 $scope.user = data;
@@ -96,6 +113,26 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
             UpdateAdministrador.changePass($scope.user, function (data, status) {
                 location.replace("#/administrador/");
             }, function (data, status) {
+                alert(status + ": " + data);
+            });
+        }
+    };
+}
+
+function UsuarioInsertController($scope, UpdateAdministrador) {
+    $scope.detailShown = false;
+    $scope.passShown = true;
+    $scope.mainButton = "Crear";
+
+    $scope.update = function () {
+        if ($scope.pass !== $scope.passrepeat) {
+            alert("Las contraseñas no coinciden");
+        } else {
+            $scope.user.pass = $scope.pass;
+            UpdateAdministrador.insert($scope.user
+                    , function (data, status) {
+                        location.replace("#/administrador/");
+                    }, function (data, status) {
                 alert(status + ": " + data);
             });
         }

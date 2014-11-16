@@ -27,7 +27,7 @@ public class Usuario implements Serializable{
         this.id=id;
     }
 
-    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String contraseña) {
+    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -35,7 +35,7 @@ public class Usuario implements Serializable{
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.pass = contraseña;
+        this.pass = pass;
     }
     
     public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
@@ -48,14 +48,14 @@ public class Usuario implements Serializable{
         this.email = email;
     }
 
-    public Usuario(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String contraseña) {
+    public Usuario(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.pass = contraseña;
+        this.pass = pass;
     }    
 
     public int getId() {

@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
-    <h1 class="primary">Listado de usuarios</h1><button class="btn btn-primary pull-right"><i class="fa fa-plus-square"></i> Crear</button>
-    <table  class="table table-striped container">
+    <h1 class="primary">Listado de usuarios</h1><button class="btn btn-primary pull-right" ng-click="crear()"><i class="fa fa-plus-square"></i> Crear</button>
+    <table  class="table table-striped container table-hover">
         <tr>
             <th>Id</th>
             <th>Nombre</th>
@@ -20,7 +20,7 @@
             <td>{{usuario.direccion}}</td>
             <td>{{usuario.telefono}}</td>
             <td>{{usuario.email}}</td>            
-            <td><button type="button" class="btn btn-default" ng-click="editar(usuario)"><i class="fa fa-gear"></i></button>
+            <td><button type="button" class="btn btn-primary" ng-click="editar(usuario)"><i class="fa fa-edit"></i></button>
                 <button type="button" class="btn btn-danger" ng-click="borrar(usuario)" data-toggle="modal" data-target="#confirmModal">
                     <i class="fa fa-trash-o"></i></button>
             </td>            

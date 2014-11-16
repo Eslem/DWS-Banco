@@ -11,7 +11,7 @@ app.config(['baseUrl', 'ListUsuariosProvider', function (baseUrl, ListUsuariosPr
         ListUsuariosProvider.setBaseUrl(baseUrl);
     }]);
 
-app.controller("listUsuariosController", ['$scope', 'ListUsuarios', ListUsuariosController]);
+app.controller("ListUsuariosController", ['$scope', 'ListUsuarios', ListUsuariosController]);
 
 
 function ListUsuariosProvider() {
@@ -80,6 +80,9 @@ function ListUsuariosController($scope, ListUsuarios) {
     };
     $scope.editar = function (userId) {
         location.replace('#/usuario/update/' + userId.id);
+    };
+    $scope.crear = function () {
+        location.replace('#/usuario/insert/');
     };
 }
 

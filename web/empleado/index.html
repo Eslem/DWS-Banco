@@ -43,11 +43,11 @@
     </head>
     <body ng-controller="EmpleadoController">
         <nav class="sidebar" ng-mouseover="shown=true" ng-mouseleave="shown=false" ng-init="shown=false">
-            <a href="#/entidadbancaria"><i class="fa fa-building"></i> Entidad bancaria</a>
-            <a href="#/administrador"><i class="fa fa-user"></i> Administrador</a>
-            <a href="#/usuario"><i class="fa fa-user"></i> Usuario</a>
-            <a href="#/cuenta"><i class="fa fa-credit-card"></i> Cuenta</a>
-            <a href="#/movimiento"><i class="fa fa-envelope"></i> Movimiento</a>
+            <a href="#/entidadbancaria" ng-class="{active:isActive('/entidadbancaria/')}"><i class="fa fa-building"></i> Entidad bancaria</a>
+            <a href="#/administrador" ng-class="{active:isActive('/administrador/')}"><i class="fa fa-user"></i> Administrador</a>
+            <a href="#/usuario" ng-class="{active:isActive('/usuario/')}"><i class="fa fa-user"></i> Usuario</a>
+            <a href="#/cuenta" ng-class="{active:isActive('/cuenta')}"><i class="fa fa-credit-card"></i> Cuenta</a>
+            <a href="#/movimiento" ng-class="{active:isActive('/movimiento/')}"><i class="fa fa-envelope"></i> Movimiento</a>
         </nav>
         <div ng-view class="wrap-body" ng-class="{menuHover:shown}"></div>
     </body>

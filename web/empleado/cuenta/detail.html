@@ -1,27 +1,14 @@
-<!DOCTYPE html>
-<html ng-app="app">
-    <head>
-        <title>Controlador Cuenta</title>
-        <meta charset="UTF-8">
-        <script type="text/javascript" src="../../lib/angular/js/angular.js"></script>
-        <script type="text/javascript" src="detail.js"></script>
-        <script type="text/javascript" src="../../js/contextPath.js.jsp"></script>
-        <script type="text/javascript" src="../../js/common.js"></script>
-    </head>
-    <body ng-controller="detailController">
-        <h1>Cuenta:</h1>
-        <p><label for="idCuenta">ID:</label><br/>
-            <input id="idCuenta" ng-model="cuenta.idCuenta" type="text"></p>
-        <p><label for="saldo">Saldo:</label><br/>
-            <input id="saldo" ng-model="cuenta.saldoCuenta" type="text"></p>
-        <p><label for="idSucursal">ID Sucursal:</label><br/>
-            <input id="idSucursal" ng-model="cuenta.idSucursal" type="text"></p>
-        <p><label for="tipo">Tipo de Cuenta:</label><br/>
-            <input id="tipo" ng-model="cuenta.tipoCuenta" type="text"></p>
 
-        <button ng-click="getCuenta();">Cargar</button>
-        <button onclick="javascript:idCuenta.value=''" ng-click="insertCuenta();">Insertar</button>
-        <button ng-click="updateCuenta();">Actualizar</button>
-        <button ng-click="deleteCuenta();">Borrar</button>
-    </body>
-</html>
+<p><label for="idCuenta">ID:</label><br/>
+    <input id="idCuenta" ng-model="cuenta.idCuenta" type="text"></p>
+<p><label for="saldo">Saldo:</label><br/>
+    <input id="saldo" ng-model="cuenta.saldoCuenta" type="text"></p>
+<p><label for="idSucursal">ID Sucursal:</label><br/>
+    <input id="idSucursal" ng-model="cuenta.idSucursal" type="text"></p>
+<p><label for="tipo">Tipo de Cuenta:</label><br/>
+    <input id="tipo" ng-model="cuenta.tipoCuenta" type="text"></p>
+
+<button ng-click="getCuenta();">Cargar</button>
+<button onclick="javascript:idCuenta.value = ''" ng-click="insertCuenta();">Insertar</button>
+<button ng-click="updateCuenta();">Actualizar</button>
+<button ng-click="deleteCuenta();">Borrar</button>
