@@ -50,6 +50,6 @@ public class MovimientoController {
     @RequestMapping(value = {"/movimiento/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
         movimientoDAO.delete(id);
-        httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 }

@@ -54,8 +54,7 @@ public class UsuarioController {
     @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
         usuarioDAO.delete(id);
-        httpServletResponse.getWriter().println("ok deleted");
-        httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
     @RequestMapping(value = {"/usuario/password"}, method = RequestMethod.PUT)
