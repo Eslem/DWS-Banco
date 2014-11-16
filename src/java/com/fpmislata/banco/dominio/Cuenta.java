@@ -6,7 +6,7 @@ public class Cuenta {
     
     int idCuenta = -1;
     int idSucursal = -1;
-    String tipoCuenta;
+    String tipoCuenta = "";
     BigDecimal saldoCuenta;
     
     public Cuenta (int idCuenta, BigDecimal saldoCuenta, int idSucursal, String tipoCuenta){
