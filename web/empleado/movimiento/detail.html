@@ -6,7 +6,7 @@
         <p> <label  class="badge" for="id">ID</label><br/>
             <input   class="form-control text-center" id="id" ng-model="movimiento.id" type="text" placeholder="ID" disabled="disabled"></p>
         <p><label  class="badge" for="nombre">Tipo</label><br/>
-            <input   class="form-control text-center " id="nombre"  ng-model="movimiento.tipo" type="text" placeholder="Nombre"></p>
+            <input   class="form-control text-center " id="nombre"  ng-model="movimiento.tipo" type="text" placeholder="Tipo"></p>
         <p><label  class="badge" for="codigo">Cuenta Origen</label><br/>
             <input  class="form-control text-center" id="codigo" ng-model="movimiento.cuentaOrigen" type="number" placeholder="Cuenta Origen ID"></p>
         <p><label class="badge" for="codigo">Cuenta Destino</label><br/>
@@ -15,7 +15,7 @@
             <input class="form-control text-center"  id="codigo" ng-model="movimiento.descripcion" type="text" placeholder="Descripcion"></p>
         <p><label class="badge" for="codigo">Cantidad</label><br/>
             <input class="form-control text-center" id="codigo" ng-model="movimiento.cantidad" type="number" placeholder="Cantidad"></p>
-        <button  class="btn btn-primary"ng-click="insertarMovimiento()">{{buttonText}}</button>
+        <button  class="btn btn-primary" ng-click="formSend()">{{buttonText}}</button>
 
     </div>
 
