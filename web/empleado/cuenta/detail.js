@@ -1,72 +1,77 @@
-app.controller("CuentaNewController", function($scope, $http, $routeParams) {
-    $scope.cuenta = {
+function initializeCuenta($scope, $http, $routeParams) {
+    $scope.getCuenta = function () {
+        $http({
+            method: "GET",
+            url: contextPath + "/api/cuenta/" + $scope.cuenta.id
+        }).success(function (data) {
+            $scope.cuenta = data;
+        }).error(function (data, status) {
+            alert("Fatal error: " + status);
+        });
+    };
+
+    if ($routeParams !== undefined) {
+        $scope.cuenta = {};
+        $scope.cuenta.id = $routeParams.idCuenta;
+        $scope.getCuenta();
+    }
+}
+
+/* Controllers */
+
+app.controller("CuentaInsertController", ["$scope", "$http", function ($scope, $http) {
+        $scope.buttonText = 'Insertar';
+
+        $scope.formSend = function () {
+            $http({
+                method: "POST",
+                data: $scope.cuenta,
+                url: contextPath + "/api/cuenta"
+            }).success(function (data) {
+                alert("Cuenta correctamente insertada");
+                $scope.getCuenta($scope.cuenta.id);
+            }).error(function (data, status) {
+                alert("Fatal error: " + status);
+            });
+        };
+    }
+]);
+
+app.controller("CuentaEditController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+        $scope.buttonText = 'Actualizar';
+
+        $scope.formSend = function () {
+            console.log($scope.cuenta);
+            $http({
+                method: "PUT",
+                data: $scope.cuenta,
+                url: contextPath + "/api/cuenta"
+            }).success(function (data) {
+                alert("Cuenta " + $scope.cuenta.id + " correctamente actualizado.");
+                $scope.getCuenta($scope.cuenta.id);
+            }).error(function (data, status) {
+                alert("Fatal error: " + status);
+            });
+        };
         
-    };
+        initializeCuenta($scope, $http, $routeParams);
+    }
+]);
 
+app.controller("CuentaDeleteController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+        $scope.buttonText = 'Eliminar';
 
-    $scope.insert=function() {
-        $http({
-            url: contextPath + "/api/cuenta",
-            method: "POST",
-            data:$scope.cuenta
-        }).success(function(data) {
-            $scope.cuenta = data;
-        }).error(function(data, status) {
-            alert("");
-        });
-    };
+        $scope.formSend = function () {
+            $http({
+                method: "DELETE",
+                url: contextPath + "/api/cuenta/" + $scope.cuenta.id
+            }).success(function () {
+                alert("Cuenta " + $scope.cuenta.id + " correctamente borrada.");
+            }).error(function (data, status) {
+                alert("Fatal error: " + status);
+            });
+        };
 
-});
-
-app.controller("CuentaEditController", function($scope, $http, $routeParams) {
-    $scope.cuenta = {
-        idCuenta:$routeParams.idCuenta
-    };
-
-    $scope.get = function() {
-        $http({
-            url: contextPath + "/api/cuenta/" + $scope.cuenta.idCuenta,
-            method: "GET"
-        }).success(function(data) {
-            $scope.cuenta = data;
-
-        }).error(function(data, status) {
-            alert("");
-        });
-    };
-
-    $scope.get();
-
-    $scope.update=function() {
-        $http({
-            url: contextPath + "/api/cuenta/" + $scope.cuenta.idCuenta,
-            method: "PUT",
-            data:$scope.cuenta
-        }).success(function(data) {
-            $scope.cuenta = data;
-        }).error(function(data, status) {
-            alert("");
-        });
-    };
-
-});
-
-app.controller("CuentaDeleteController", function($scope, $http, $routeParams) {
-    $scope.cuenta = {
-        
-    };
-
-
-    $scope.delete=function() {
-        $http({
-            url: contextPath + "/api/cuenta",
-            method: "DELETE",
-            data:$scope.cuenta
-        }).success(function(data) {
-            $scope.cuenta = data;
-        }).error(function(data, status) {
-            alert("");
-        });
-    };
-
-});
+        initializeCuenta($scope, $http, $routeParams);
+    }
+]);
