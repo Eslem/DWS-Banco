@@ -11,7 +11,7 @@ app.config(['baseUrl', 'UpdateAdministradorProvider', function (baseUrl, UpdateA
         UpdateAdministradorProvider.setBaseUrl(baseUrl);
     }]);
 
-app.controller("UpdateAdministradorController", ['$scope', '$routeParams', 'UpdateAdministrador', UpdateAdministradorController]);
+app.controller("UpdateAdministradoresController", ['$scope', '$routeParams', 'UpdateAdministrador', UpdateAdministradoresController]);
 
 
 function UpdateAdministradorProvider() {
@@ -20,11 +20,11 @@ function UpdateAdministradorProvider() {
         _baseUrl = baseUrl;
     };
     this.$get = ['$http', function ($http) {
-            return new UpdateUser($http, _baseUrl);
+            return new UpdateAdministrador($http, _baseUrl);
         }];
 }
 
-function UpdateUser($http, baseUrl) {
+function UpdateAdministrador($http, baseUrl) {
     this.get = function (id, fnOk, fnError) {
         NProgress.start();
         $http({
@@ -68,7 +68,7 @@ function UpdateUser($http, baseUrl) {
 
 }
 
-function UpdateAdministradorController($scope, $routeParams, UpdateAdministrador) {
+function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrador) {
     UpdateAdministrador.get($routeParams.id,
             function (data, status) {
                 $scope.user = data;
@@ -82,7 +82,7 @@ function UpdateAdministradorController($scope, $routeParams, UpdateAdministrador
         // delete $scope.user.pass;
         UpdateAdministrador.update($scope.user
                 , function (data, status) {
-                    location.replace("#/usuario/");
+                    location.replace("#/administrador/");
                 }, function (data, status) {
             alert(status + ": " + data);
         });
@@ -93,7 +93,7 @@ function UpdateAdministradorController($scope, $routeParams, UpdateAdministrador
             alert("Las contraseñas no coinciden");
         } else {
             $scope.user.pass = $scope.pass;
-            UpdateUser.changePass($scope.user, function (data, status) {
+            UpdateAdministrador.changePass($scope.user, function (data, status) {
                 location.replace("#/administrador/");
             }, function (data, status) {
                 alert(status + ": " + data);

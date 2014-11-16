@@ -6,12 +6,11 @@
     <property name="connection.url">jdbc:mysql://localhost/banco</property>
     <property name="connection.username">root</property>
     <property name="connection.password">root</property-->
-    
     <property name="connection.datasource">java:/comp/env/jdbc/datasource</property>
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
     <property name="hibernate.show_sql">false</property>
-    
     <mapping resource="com/fpmislata/banco/persistencia/hibernate/usuario.hbm.xml"/>
+    <mapping resource="com/fpmislata/banco/persistencia/hibernate/administrador.hbm.xml"/>
     <mapping class="com.fpmislata.banco.dominio.Usuario"/>
   </session-factory>
 </hibernate-configuration>

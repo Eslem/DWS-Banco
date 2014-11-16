@@ -32,10 +32,15 @@
         <script type="text/javascript" src="usuario/list.js"></script>
         <script type="text/javascript" src="usuario/detail.js"></script>
         <script type="text/javascript" src="usuario/routes.js"></script>
+        
+        <script type="text/javascript" src="administrador/list.js"></script>
+        <script type="text/javascript" src="administrador/detail.js"></script>
+        <script type="text/javascript" src="administrador/routes.js"></script>
     </head>
     <body ng-controller="EmpleadoController">
         <nav class="sidebar" ng-mouseover="shown=true" ng-mouseleave="shown=false" ng-init="shown=false">
             <a href="#/entidadbancaria"><i class="fa fa-building"></i> Entidad bancaria</a>
+            <a href="#/administrador"><i class="fa fa-user"></i> Administrador</a>
             <a href="#/usuario"><i class="fa fa-user"></i> Usuario</a>
             <a href="#/cuenta"><i class="fa fa-credit-card"></i> Cuenta</a>
             <a href="#/movimiento"><i class="fa fa-envelope"></i> Movimiento</a>
