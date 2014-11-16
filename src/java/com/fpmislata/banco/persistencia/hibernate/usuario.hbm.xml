@@ -9,7 +9,7 @@
         <property name="direccion" />
         <property name="telefono" />
         <property name="email" />
-        <property name="pass" />        
+        <property name="pass" update="false"/>        
         
     </class>
 </hibernate-mapping>

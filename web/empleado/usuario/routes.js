@@ -12,7 +12,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/usuario/update/:id', {
             templateUrl: "usuario/detail.html",
-            controller: "updateUsuarioController"
+            controller: "UpdateUserController"
         });
 
     }

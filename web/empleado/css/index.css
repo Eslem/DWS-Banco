@@ -43,6 +43,8 @@ nav.sidebar {
   -ms-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear; }
+  nav.sidebar i.fa {
+    width: 25px; }
   nav.sidebar:hover {
     left: 0px; }
     nav.sidebar:hover h3, nav.sidebar:hover a {

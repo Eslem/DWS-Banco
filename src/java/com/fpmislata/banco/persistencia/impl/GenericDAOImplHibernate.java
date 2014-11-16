@@ -23,7 +23,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
 
     private SessionFactory sessionFactory;
 
-    private SessionFactory getSessionFactory() {
+    protected SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             Configuration config = new Configuration();
             config.configure();

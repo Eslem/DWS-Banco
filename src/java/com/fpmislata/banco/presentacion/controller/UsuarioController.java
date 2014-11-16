@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UsuarioController {
@@ -49,11 +50,17 @@ public class UsuarioController {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
-    
+
     @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
         usuarioDAO.delete(id);
         httpServletResponse.getWriter().println("ok deleted");
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+    }
+
+    @RequestMapping(value = {"/usuario/password"}, method = RequestMethod.PUT)
+    public void changePass(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
+        usuarioDAO.updatePassword(jsonConverter.fromJSON(jsonEntrada, Usuario.class));
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 }

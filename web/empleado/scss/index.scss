@@ -82,6 +82,9 @@ nav.sidebar{
     z-index: 1000;
     @include transition(all, 0.2s, linear);
 
+    i.fa{
+        width:25px;
+    }
 
     &:hover{
         left:0px;
