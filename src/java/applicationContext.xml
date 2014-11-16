@@ -14,6 +14,7 @@
     <bean class="com.fpmislata.banco.persistencia.dao.impl.MovimientoDAOImplJDBC"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.UsuarioDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.CuentaDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.AdministradorDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.migration.DatabaseMigrationImplFlyway"/>
     <bean class="com.fpmislata.banco.common.json.impl.JSONConverterImplJackson"/>
  

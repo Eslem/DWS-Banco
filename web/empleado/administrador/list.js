@@ -5,35 +5,31 @@
  */
 
 
+app.provider("ListAdministradores", ListAdministradoresProvider);
 
-
-var app = angular.module("app", ['ngAnimate']);
-app.constant("baseUrl", contextPath);
-app.provider("ListUsuarios", ListUsuariosProvider);
-
-app.config(['baseUrl', 'ListUsuariosProvider', function (baseUrl, ListUsuariosProvider) {
-        ListUsuariosProvider.setBaseUrl(baseUrl);
+app.config(['baseUrl', 'ListAdministradoresProvider', function (baseUrl, ListAdministradoresProvider) {
+        ListAdministradoresProvider.setBaseUrl(baseUrl);
     }]);
 
-app.controller("listUsuariosController", ['$scope', 'ListUsuarios', ListUsuariosController]);
+app.controller("ListAdministradoresController", ['$scope', 'ListAdministradores', ListAdministradoresController]);
 
 
-function ListUsuariosProvider() {
+function ListAdministradoresProvider() {
     var _baseUrl = "";
     this.setBaseUrl = function (baseUrl) {
         _baseUrl = baseUrl;
     };
     this.$get = ['$http', function ($http) {
-            return new ListUsuarios($http, _baseUrl)
+            return new ListAdministradores($http, _baseUrl);
         }];
 }
 
-function ListUsuarios($http, baseUrl) {
+function ListAdministradores($http, baseUrl) {
     this.get = function (fnOk, fnError) {
         NProgress.start();
         $http({
             method: 'GET',
-            url: baseUrl + '/api/usuario'
+            url: baseUrl + '/api/administrador'
         }).success(function (data, status, headers, config) {
             fnOk(data);
             NProgress.done();
@@ -47,7 +43,7 @@ function ListUsuarios($http, baseUrl) {
         NProgress.start();
         $http({
             method: 'DELETE',
-            url: baseUrl + '/api/usuario/'+id
+            url: baseUrl + '/api/administrador/' + id
         }).success(function (data, status, headers, config) {
             fnOk(data);
             NProgress.done();
@@ -58,31 +54,33 @@ function ListUsuarios($http, baseUrl) {
     }
 }
 
-function ListUsuariosController($scope, ListUsuarios) {
-    ListUsuarios.get(
+function ListAdministradoresController($scope, ListAdministradores) {
+    ListAdministradores.get(
             function (data, status) {
-                $scope.usuarios = data;
+                $scope.administradores = data;
             },
             function (data, status) {
                 alert(status + ": " + data);
             }
     );
 
-    $scope.borrar = function (usuario) {
-        $scope.usuarioBorrar = usuario;
+    $scope.borrar = function (administrador) {
+        $scope.administradorBorrar = administrador;
     };
 
     $scope.confirmBorrar = function () {
-        ListUsuarios.delete($scope.usuarioBorrar.id,
+        ListAdministradores.delete($scope.administradorBorrar.id,
                 function (data, status) {
-                    var id = getUserScoperId($scope, $scope.usuarioBorrar.id);
-                    $scope.usuarios.splice(id, 1);
+                    var id = getUserScoperId($scope, $scope.administradorBorrar.id);
+                    $scope.administradores.splice(id, 1);
                 },
                 function (data, status) {
                     alert(status + ": " + data);
                 });
-    }
-
+    };
+    $scope.editar = function (userId) {
+        location.replace('#/administrador/update/' + userId.id);
+    };
 }
 
 

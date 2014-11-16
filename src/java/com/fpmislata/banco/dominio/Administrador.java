@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author eslem
  */
-public class Usuario implements Serializable{
+public class Administrador implements Serializable{
     private int id;
     private String nombre;
     private String apellidos;
@@ -21,13 +21,13 @@ public class Usuario implements Serializable{
     private String email;
     private String pass;
     
-    public Usuario(){};
+    public Administrador(){};
     
-    public Usuario(int id){
+    public Administrador(int id){
         this.id=id;
     }
 
-    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String contraseña) {
+    public Administrador(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String contraseña) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -38,7 +38,7 @@ public class Usuario implements Serializable{
         this.pass = contraseña;
     }
     
-    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
+    public Administrador(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -48,7 +48,7 @@ public class Usuario implements Serializable{
         this.email = email;
     }
 
-    public Usuario(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String contraseña) {
+    public Administrador(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String contraseña) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;

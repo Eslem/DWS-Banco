@@ -7,12 +7,16 @@
         <link rel="stylesheet" href="../lib/font-awesome/css/fontawesome.css">
         <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="../lib/nprogress/nprogress.css">
         
         <script type="text/javascript" src="../js/contextPath.js.jsp"></script>
         <script type="text/javascript" src="../lib/angular/js/angular.min.js"></script>
         <script type="text/javascript" src="../lib/angular/js/angular-route.min.js"></script>
+        <script type="text/javascript" src="../lib/angular/js/angular-animate.min.js"></script>
         <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../lib/nprogress/nprogress.js"></script>
+        
         
         <script type="text/javascript" src="app.js"></script>
         <script type="text/javascript" src="main.js"></script>
@@ -28,13 +32,23 @@
         <script type="text/javascript" src="movimiento/list.js"></script>
         <script type="text/javascript" src="movimiento/detail.js"></script>
         <script type="text/javascript" src="movimiento/routes.js"></script>
+        
+        <script type="text/javascript" src="usuario/list.js"></script>
+        <script type="text/javascript" src="usuario/detail.js"></script>
+        <script type="text/javascript" src="usuario/routes.js"></script>
+        
+        <script type="text/javascript" src="administrador/list.js"></script>
+        <script type="text/javascript" src="administrador/detail.js"></script>
+        <script type="text/javascript" src="administrador/routes.js"></script>
     </head>
     <body ng-controller="EmpleadoController">
-        <nav id="routes">
-            <ul>
-                <li><a ng-repeat="location in locations" href="#/{{location.value}}" ng-class="{active:isActive(url.url)}">{{location.text}}</a></li>
-            </ul>
+        <nav class="sidebar" ng-mouseover="shown=true" ng-mouseleave="shown=false" ng-init="shown=false">
+            <a href="#/entidadbancaria"><i class="fa fa-building"></i> Entidad bancaria</a>
+            <a href="#/administrador"><i class="fa fa-user"></i> Administrador</a>
+            <a href="#/usuario"><i class="fa fa-user"></i> Usuario</a>
+            <a href="#/cuenta"><i class="fa fa-credit-card"></i> Cuenta</a>
+            <a href="#/movimiento"><i class="fa fa-envelope"></i> Movimiento</a>
         </nav>
-        <div ng-view id="embedded"></div>
+        <div ng-view class="wrap-body" ng-class="{menuHover:shown}"></div>
     </body>
 </html>
