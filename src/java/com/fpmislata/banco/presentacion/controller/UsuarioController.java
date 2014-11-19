@@ -5,7 +5,7 @@ import com.fpmislata.banco.dominio.EntidadBancaria;
 import com.fpmislata.banco.dominio.Usuario;
 import com.fpmislata.banco.persistencia.dao.EntidadBancariaDAO;
 import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
-import com.fpmislata.banco.persistencia.dao.impl.UsuarioDAOImplHibernate;
+import com.fpmislata.banco.persistencia.dao.impl.hibernate.UsuarioDAOImplHibernate;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

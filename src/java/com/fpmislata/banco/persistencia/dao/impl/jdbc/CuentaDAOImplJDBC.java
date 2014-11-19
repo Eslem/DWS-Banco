@@ -1,8 +1,6 @@
-package com.fpmislata.banco.persistencia.dao.impl;
+package com.fpmislata.banco.persistencia.dao.impl.jdbc;
 
-import com.fpmislata.banco.persistencia.impl.ConnectionFactoryImplDataSource;
 import com.fpmislata.banco.dominio.Cuenta;
-import com.fpmislata.banco.persistencia.ConnectionFactory;
 import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
