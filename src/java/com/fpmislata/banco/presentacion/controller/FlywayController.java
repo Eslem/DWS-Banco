@@ -21,6 +21,6 @@ public class FlywayController {
 
     @RequestMapping(value = {"/migrate"}, method = RequestMethod.POST)
     public void write(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
-        databaseMigration.migrate("jdbc:mysql://localhost:3306/banco");
+        //databaseMigration.migrate("jdbc:mysql://localhost:3306/banco");
     }
 }

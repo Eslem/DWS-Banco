@@ -5,6 +5,7 @@
  */
 package com.fpmislata.banco.persistencia.migration;
 
+import javax.sql.DataSource;
 import org.flywaydb.core.Flyway;
 
 /**
@@ -14,10 +15,11 @@ import org.flywaydb.core.Flyway;
 public class DatabaseMigrationImplFlyway implements DatabaseMigration{
 
     @Override
-    public void migrate(String databaseurl) {
+    public void migrate(DataSource dataSource, String locations) {
         Flyway flyway = new Flyway();
-        flyway.setDataSource(databaseurl, "root", "root");
-        flyway.setLocations("com.fpmislata.banco.persistencia.migration.migrations");
+        flyway.setDataSource(dataSource);
+        flyway.setEncoding("utf-8");
+        flyway.setLocations(locations);
         flyway.migrate();
     }    
 }

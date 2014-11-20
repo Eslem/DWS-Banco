@@ -1,11 +1,8 @@
 package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
-import com.fpmislata.banco.dominio.EntidadBancaria;
 import com.fpmislata.banco.dominio.Usuario;
-import com.fpmislata.banco.persistencia.dao.EntidadBancariaDAO;
 import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
-import com.fpmislata.banco.persistencia.dao.impl.UsuarioDAOImplHibernate;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UsuarioController {

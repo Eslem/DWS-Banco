@@ -25,7 +25,7 @@ function CuentaListController($scope, $http) {
     };
     
     $scope.edit = function(id) {
-        window.open(contextPath + "/empleado/cuenta/detail.html?id=" + id);
+        location.replace('#/cuenta/edit/' + id);
     };
 
 }

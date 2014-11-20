@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class Cuenta {
     
-    int idCuenta = -1;
-    int idSucursal = -1;
+    int idCuenta;
+    int idSucursal;
     String tipoCuenta;
     BigDecimal saldoCuenta;
     

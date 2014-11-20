@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.persistencia.migration;
-
-import javax.sql.DataSource;
+package com.fpmislata.banco.dominio;
 
 /**
  *
  * @author eslem
  */
-public interface DatabaseMigration {
-    public void migrate(DataSource dataSource, String locations);
+public class Credentials {
+    
+    private String password;
+    private String login;
+    
 }

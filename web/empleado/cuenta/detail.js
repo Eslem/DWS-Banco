@@ -39,28 +39,8 @@ app.controller("CuentaEditController", function($scope, $http, $routeParams) {
 
     $scope.update=function() {
         $http({
-            url: contextPath + "/api/cuenta/" + $scope.cuenta.idCuenta,
+            url: contextPath + "/api/cuenta/",
             method: "PUT",
-            data:$scope.cuenta
-        }).success(function(data) {
-            $scope.cuenta = data;
-        }).error(function(data, status) {
-            alert("");
-        });
-    };
-
-});
-
-app.controller("CuentaDeleteController", function($scope, $http, $routeParams) {
-    $scope.cuenta = {
-        
-    };
-
-
-    $scope.delete=function() {
-        $http({
-            url: contextPath + "/api/cuenta",
-            method: "DELETE",
             data:$scope.cuenta
         }).success(function(data) {
             $scope.cuenta = data;

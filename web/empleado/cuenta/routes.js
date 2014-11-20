@@ -12,7 +12,7 @@ app.config(['$routeProvider', function($routeProvider) {
 
         $routeProvider.when("/cuenta/edit/:idCuenta", {
             templateUrl: "cuenta/detail.html",
-            controller: "CuentaeditController"
+            controller: "CuentaEditController"
         });
 
         $routeProvider.when("/cuenta/delete/:idCuenta", {

@@ -31,16 +31,15 @@ public class ServletContextListenerImpl implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContextEvent.getServletContext());
         AutowireCapableBeanFactory autowireCapableBeanFactory = webApplicationContext.getAutowireCapableBeanFactory();
-        autowireCapableBeanFactory.autowireBean(this);
-
-        databaseMigration.migrate("jdbc:mysql://localhost:3306/banco");
+        autowireCapableBeanFactory.autowireBean(this);        
 
         InitialContext initialContext;
         try {
             initialContext = new InitialContext();
             Context context = (Context) initialContext.lookup("java:comp/env");
             DataSource dataSource = (DataSource) context.lookup("jdbc/datasource");
-            System.out.println("\n\n\n" + dataSource + "\n\n\n");
+            databaseMigration.migrate(dataSource, "com.fpmislata.banco.persistencia.migration.migrations");
+            
         } catch (NamingException ex) {
             Logger.getLogger(ServletContextListenerImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
