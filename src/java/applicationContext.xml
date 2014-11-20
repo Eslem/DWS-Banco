@@ -9,12 +9,12 @@
   
     <context:annotation-config/>
     
-    <bean class="com.fpmislata.banco.persistencia.impl.ConnectionFactoryImplDataSource"/>
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.EntidadBancariaDAOImplJDBC"/>
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.MovimientoDAOImplJDBC"/>
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.UsuarioDAOImplHibernate"/>
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.CuentaDAOImplJDBC"/>
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.AdministradorDAOImplHibernate"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.ConnectionFactoryImplDataSource"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.EntidadBancariaDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.MovimientoDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.CuentaDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.UsuarioDAOImplHibernate"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.AdministradorDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.migration.DatabaseMigrationImplFlyway"/>
     <bean class="com.fpmislata.banco.common.json.impl.JSONConverterImplJackson"/>
  
