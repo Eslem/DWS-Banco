@@ -82,7 +82,7 @@ function ListAdministradoresController($scope, ListAdministradores) {
         location.replace('#/administrador/update/' + userId.id);
     };
      $scope.crear = function () {
-        location.replace('#/usuario/insert/');
+        location.replace('#/administrador/insert/');
     };
 }
 

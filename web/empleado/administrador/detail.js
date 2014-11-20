@@ -119,7 +119,7 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
     };
 }
 
-function UsuarioInsertController($scope, UpdateAdministrador) {
+function AdministradorInsertController($scope, UpdateAdministrador) {
     $scope.detailShown = false;
     $scope.passShown = true;
     $scope.mainButton = "Crear";
