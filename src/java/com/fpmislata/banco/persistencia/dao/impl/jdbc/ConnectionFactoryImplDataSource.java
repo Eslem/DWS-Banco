@@ -1,6 +1,6 @@
-package com.fpmislata.banco.persistencia.impl;
+package com.fpmislata.banco.persistencia.dao.impl.jdbc;
 
-import com.fpmislata.banco.persistencia.ConnectionFactory;
+import com.fpmislata.banco.persistencia.dao.impl.jdbc.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.naming.Context;
