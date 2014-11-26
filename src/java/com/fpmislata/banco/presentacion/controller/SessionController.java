@@ -47,7 +47,7 @@ public class SessionController {
             Logger.getLogger(SessionController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (au.checkPassword(credentials, credentials.getPassword())) {
+        if (authentication.authenticateUser(credentials)) {
             httpsession.setAttribute("id", "exist");
         } else {
             httpsession.setAttribute("id", "no exist");

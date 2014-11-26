@@ -16,4 +16,6 @@ public interface UsuarioDAO extends GenericDAO<Usuario> {
     void updatePassword(Usuario usuario);
 
     boolean checkPassword(Usuario usuario, String plainPassword);
+    
+    Usuario getByName(String name);
 }
