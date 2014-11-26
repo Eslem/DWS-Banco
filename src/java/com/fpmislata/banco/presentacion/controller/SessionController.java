@@ -26,51 +26,48 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class SessionController {
-    
+
     @Autowired
     UsuarioDAO usuarioDAO;
     @Autowired
     JSONConverter jsonConverter;
-    private HttpSession httpsession ;
-    
-     
-    
-    @RequestMapping(value={ "/session"}, method = RequestMethod.POST)
-    public void login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada){
-        httpsession= httpServletRequest.getSession(true);
-        
+    private HttpSession httpsession;
+
+    @RequestMapping(value = {"/session"}, method = RequestMethod.POST)
+    public void login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) {
+        httpsession = httpServletRequest.getSession(true);
+
         Usuario usuario = jsonConverter.fromJSON(jsonEntrada, Usuario.class);
         try {
-            httpServletResponse.getWriter().println("pass: "+usuario.getPass());
+            httpServletResponse.getWriter().println("password: " + usuario.getPassword());
         } catch (IOException ex) {
             Logger.getLogger(SessionController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if(usuarioDAO.checkPassword(usuario, usuario.getPass())){
+
+        if (usuarioDAO.checkPassword(usuario, usuario.getPassword())) {
             httpsession.setAttribute("id", "exist");
-        }else{
+        } else {
             httpsession.setAttribute("id", "no exist");
         }
-        
+
     }
-    
-    @RequestMapping(value={ "/session"}, method = RequestMethod.DELETE)
-    public void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
-        httpsession= httpServletRequest.getSession(true);
+
+    @RequestMapping(value = {"/session"}, method = RequestMethod.DELETE)
+    public void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        httpsession = httpServletRequest.getSession(true);
         httpsession.removeAttribute("id");
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
-    
-    @RequestMapping(value={ "/session"}, method = RequestMethod.GET)
-    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
+
+    @RequestMapping(value = {"/session"}, method = RequestMethod.GET)
+    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         try {
-            httpsession= httpServletRequest.getSession();
-            httpServletResponse.getWriter().println("session id: "+httpsession.getAttribute("id"));
-            
+            httpsession = httpServletRequest.getSession();
+            httpServletResponse.getWriter().println("session id: " + httpsession.getAttribute("id"));
+
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
     }
-    
 }

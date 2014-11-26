@@ -19,7 +19,7 @@ public class Usuario implements Serializable{
     private String direccion;
     private int telefono;
     private String email;
-    private String pass;
+    private String password;
     
     public Usuario(){};
     
@@ -29,7 +29,7 @@ public class Usuario implements Serializable{
     
     public Usuario(String email, String pass){
         this.email=email;
-        this.pass=pass;
+        this.password=pass;
     }
 
     public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
@@ -40,7 +40,7 @@ public class Usuario implements Serializable{
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.pass = pass;
+        this.password = pass;
     }
     
     public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
@@ -60,7 +60,7 @@ public class Usuario implements Serializable{
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.pass = pass;
+        this.password = pass;
     }    
 
     public int getId() {
@@ -119,12 +119,12 @@ public class Usuario implements Serializable{
         this.email = email;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
     }    
     
     

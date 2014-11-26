@@ -24,7 +24,7 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
     public void updatePassword(Usuario usuario) {
         Session session = getSessionFactory().openSession();
         Query query = session.createSQLQuery("UPDATE usuarios SET pass=? WHERE id=?");
-        query.setString(0, passwordEncrypting.encrypt(usuario.getPass()));
+        query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());
         
         query.executeUpdate(); 
@@ -33,18 +33,16 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
 
     @Override
     public boolean checkPassword(Usuario usuario, String plainPassword) {
-        return passwordEncrypting.compare(plainPassword, usuario.getPass());
+        return passwordEncrypting.compare(plainPassword, usuario.getPassword());
     }
 
     @Override
     protected void preInsert(Session session, Usuario usuario) {
-        usuario.setPass(passwordEncrypting.encrypt(usuario.getPass()));
+        usuario.setPassword(passwordEncrypting.encrypt(usuario.getPassword()));
     }
 
     @Override
     protected void postGet(Session session, Usuario usuario) {
-        usuario.setPass("");
+        usuario.setPassword("");
     }
-;
-
 }
