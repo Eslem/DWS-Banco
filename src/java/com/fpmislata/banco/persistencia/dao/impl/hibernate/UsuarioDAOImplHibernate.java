@@ -53,7 +53,7 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
         session.close();
         return object;*/
 
-        Query query = session.createQuery("SELECT * FROM Usuario WHERE name=?");
+        Query query = session.createQuery("SELECT u FROM Usuario u WHERE name=?");
         query.setString(0, name);
         query.setCacheable(true);
         return (Usuario) query.uniqueResult();

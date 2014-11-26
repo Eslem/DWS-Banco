@@ -8,7 +8,6 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.Authentication;
 import com.fpmislata.banco.dominio.Credentials;
-import com.fpmislata.banco.dominio.Usuario;
 import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -33,12 +32,14 @@ public class SessionController {
     UsuarioDAO usuarioDAO;
     @Autowired
     JSONConverter jsonConverter;
+    @Autowired
+    Authentication authentication;
+    
     private HttpSession httpsession;
 
     @RequestMapping(value = {"/session"}, method = RequestMethod.POST)
     public void login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) {
         httpsession = httpServletRequest.getSession(true);
-        Authentication authentication = new Authentication();
 
         Credentials credentials = jsonConverter.fromJSON(jsonEntrada, Credentials.class);
         try {

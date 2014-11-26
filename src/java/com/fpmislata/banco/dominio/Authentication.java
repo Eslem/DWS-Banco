@@ -17,11 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Authentication {
 
     @Autowired
+    PasswordEncrypting passwordEncrypting;
+    @Autowired
     AdministradorDAO administradorDAO;
     @Autowired
     UsuarioDAO usuarioDAO;
-    @Autowired
-    PasswordEncrypting passwordEncrypting;
 
     public boolean authenticateUser(Credentials credentials) {
         Usuario usuario = usuarioDAO.getByName(credentials.getLogin());

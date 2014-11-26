@@ -18,5 +18,6 @@
     <bean class="com.fpmislata.banco.persistencia.migration.DatabaseMigrationImplFlyway"/>
     <bean class="com.fpmislata.banco.common.json.impl.JSONConverterImplJackson"/>
     <bean class="com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt"/>
+    <bean class="com.fpmislata.banco.dominio.Authentication"/>
      
 </beans>
