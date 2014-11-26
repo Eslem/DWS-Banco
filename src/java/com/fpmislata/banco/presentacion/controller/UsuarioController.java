@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,14 +25,20 @@ public class UsuarioController {
 
     @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+        
         httpServletResponse.getWriter().println(jsonConverter.toJSON(usuarioDAO.get(id)));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        
+          
     }
 
     @RequestMapping(value = {"/usuario"}, method = RequestMethod.POST)
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
+       
         usuarioDAO.insert(jsonConverter.fromJSON(jsonEntrada, Usuario.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+      
+
     }
 
     @RequestMapping(value = {"/usuario"}, method = RequestMethod.PUT)

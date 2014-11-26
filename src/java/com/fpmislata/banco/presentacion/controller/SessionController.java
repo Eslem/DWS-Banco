@@ -6,6 +6,8 @@
 package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
+import com.fpmislata.banco.dominio.Authentication;
+import com.fpmislata.banco.dominio.Credentials;
 import com.fpmislata.banco.dominio.Usuario;
 import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
 import java.io.IOException;
@@ -36,15 +38,16 @@ public class SessionController {
     @RequestMapping(value = {"/session"}, method = RequestMethod.POST)
     public void login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) {
         httpsession = httpServletRequest.getSession(true);
+        Authentication authentication = new Authentication();
 
-        Usuario usuario = jsonConverter.fromJSON(jsonEntrada, Usuario.class);
+        Credentials credentials = jsonConverter.fromJSON(jsonEntrada, Credentials.class);
         try {
-            httpServletResponse.getWriter().println("password: " + usuario.getPassword());
+            httpServletResponse.getWriter().println("password: " + credentials.getPassword());
         } catch (IOException ex) {
             Logger.getLogger(SessionController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (usuarioDAO.checkPassword(usuario, usuario.getPassword())) {
+        if (au.checkPassword(credentials, credentials.getPassword())) {
             httpsession.setAttribute("id", "exist");
         } else {
             httpsession.setAttribute("id", "no exist");
