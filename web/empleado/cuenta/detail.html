@@ -3,8 +3,8 @@
 <div class="container-fluid"> 
     <a href="#/cuenta/" ><h1 class="page-header">Cuenta</h1></a>
     <div class="form">
-        <p> <label  class="badge" for="id">ID:</label><br/>
-            <input   class="form-control text-center" id="id" ng-model="cuenta.idCuenta" type="text" placeholder="ID"></p>
+        <p> <label  class="badge" for="id" ng-show="{{show}}">ID:</label><br/>
+            <input   class="form-control text-center" id="id" ng-model="cuenta.idCuenta" type="text" placeholder="ID" ng-show="{{show}}"></p>
         <p><label  class="badge" for="nombre">Saldo:</label><br/>
             <input   class="form-control text-center " id="saldo"  ng-model="cuenta.saldoCuenta" type="double" placeholder="Saldo"></p>
         <p><label  class="badge" for="codigo">Id sucursal:</label><br/>

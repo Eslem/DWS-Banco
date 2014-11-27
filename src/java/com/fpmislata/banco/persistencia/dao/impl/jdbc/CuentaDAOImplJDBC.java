@@ -40,12 +40,11 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public Cuenta insert(Cuenta cuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO cuentas (id, saldo, idsucursal, tipo) VALUES (?,?, ?, ?)";
+            String query = "INSERT INTO cuentas (saldo, idsucursal, tipo) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, cuenta.getIdCuenta());
-            preparedStatement.setBigDecimal(2, cuenta.getSaldoCuenta());
-            preparedStatement.setInt(3, cuenta.getIdSucursal());
-            preparedStatement.setString(4, cuenta.getTipoCuenta());
+            preparedStatement.setBigDecimal(1, cuenta.getSaldoCuenta());
+            preparedStatement.setInt(2, cuenta.getIdSucursal());
+            preparedStatement.setString(3, cuenta.getTipoCuenta());
             preparedStatement.executeUpdate();
             connection.close();
             return null;
