@@ -5,10 +5,12 @@
  */
 package com.fpmislata.banco.persistencia.migration;
 
+import javax.sql.DataSource;
+
 /**
  *
  * @author eslem
  */
 public interface DatabaseMigration {
-    public void migrate(String databaseurl);
+    public void migrate(DataSource dataSource, String locations);
 }

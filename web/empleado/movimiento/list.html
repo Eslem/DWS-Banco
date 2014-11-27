@@ -26,7 +26,7 @@ and open the template in the editor.
         <td>{{movimiento.descripcion}}</td>
         <td>{{movimiento.cantidad | currency: "€" }}</td>
         <td class="actions">
-            <button type="button" class="btn btn-default" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-primary" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>
             <button type="button" class="btn btn-danger" ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
         </td>
     </tr>

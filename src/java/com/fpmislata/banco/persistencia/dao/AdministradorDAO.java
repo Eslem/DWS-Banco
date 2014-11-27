@@ -5,17 +5,13 @@
  */
 package com.fpmislata.banco.persistencia.dao;
 
-import com.fpmislata.banco.dominio.Usuario;
+import com.fpmislata.banco.dominio.Administrador;
 
 /**
  *
  * @author eslem
  */
-public interface UsuarioDAO extends GenericDAO<Usuario> {
-
-    void updatePassword(Usuario usuario);
-
-    boolean checkPassword(Usuario usuario, String plainPassword);
-    
-    Usuario getByName(String name);
+public interface AdministradorDAO extends GenericDAO<Administrador>{
+    void updatePassword(Administrador usuario);
+    boolean checkPassword(Administrador usuario,String plainPassword);
 }

@@ -14,15 +14,14 @@ import org.jasypt.util.password.BasicPasswordEncryptor;
 public class PasswordEncryptingImplJasypt implements PasswordEncrypting {
 
     @Override
-    public String encrypt(String pass) {
+    public String encrypt(String password) {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        return passwordEncryptor.encryptPassword(pass);
+        return passwordEncryptor.encryptPassword(password);
     }
 
     @Override
-    public boolean compare(String pass, String encryptedPassword) {
+    public boolean compare(String password, String encryptedPassword) {
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        return passwordEncryptor.checkPassword(pass, encryptedPassword);
+        return passwordEncryptor.checkPassword(password, encryptedPassword);
     }
-
 }

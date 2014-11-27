@@ -1,36 +1,3 @@
-body {
-  margin: 0;
-  text-align: center;
-  background: #E8E8E8; }
-
-nav#routes {
-  font-size: 1.1em;
-  background: white;
-  border: 1px solid lightgray; }
-  nav#routes ul {
-    margin: 0;
-    padding: 0; }
-    nav#routes ul li {
-      list-style: none; }
-      nav#routes ul li a {
-        color: #303030;
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 0;
-        width: 25%; }
-        nav#routes ul li a:hover {
-          background: lightskyblue; }
-
-#embedded {
-  width: 100%;
-  max-width: 1024px;
-  margin: auto;
-  padding: 1em;
-  margin-top: 24px;
-  background: white; }
-  #embedded h1 {
-    margin-top: 8px; }
-
 .table {
   width: 100%; }
   .table tr {
@@ -63,5 +30,75 @@ nav#routes {
   width: 100%;
   max-width: 480px;
   margin: auto; }
+
+body, html {
+  margin: 0px;
+  padding: 0px; }
+
+nav.sidebar {
+  background-color: #1d1f21;
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  left: -200px;
+  z-index: 1000;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
+  nav.sidebar i.fa {
+    width: 25px; }
+  nav.sidebar:hover {
+    left: 0px; }
+    nav.sidebar:hover h3, nav.sidebar:hover a {
+      opacity: 1; }
+  nav.sidebar h3 {
+    font-size: 1.9em;
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+    color: #ffffff; }
+  nav.sidebar a {
+    display: block;
+    color: #9d9d9d;
+    font-size: 1.1em;
+    font-weight: 300;
+    padding: 1em;
+    text-decoration: none; }
+    nav.sidebar a:hover {
+      color: #ffffff; }
+    nav.sidebar a.active {
+      color: #ffffff;
+      background-color: #080808;
+      border-right: 4px solid #0d77b6; }
+
+div.wrap-body {
+  position: absolute;
+  width: 100%;
+  padding-left: 45px;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
+  div.wrap-body.ng-leave {
+    opacity: 0; }
+  div.wrap-body.ng-enter {
+    opacity: 1; }
+  div.wrap-body.menuHover {
+    padding-left: 245px; }
+
+.animate.ng-enter, .animate.ng-leave {
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  opacity: 0; }
+
+.animate.ng-enter.ng-enter-active, .animate.ng-leave {
+  opacity: 1; }
+
+.animate.ng-leave.ng-leave-active, .animate.ng-enter {
+  opacity: 0; }
 
 /*# sourceMappingURL=index.css.map */

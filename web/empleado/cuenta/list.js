@@ -27,7 +27,11 @@ app.controller("CuentaListController", function ($scope, $http) {
             });
         } else {
             $scope.findAll();
-        }
+        } 
+    };
+    
+    $scope.edit = function(id) {
+        location.replace('#/cuenta/edit/' + id);
     };
 
     $scope.crearCuenta = function () {

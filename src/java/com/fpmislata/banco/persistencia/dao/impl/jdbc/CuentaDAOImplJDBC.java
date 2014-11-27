@@ -1,8 +1,6 @@
-package com.fpmislata.banco.persistencia.dao.impl;
+package com.fpmislata.banco.persistencia.dao.impl.jdbc;
 
-import com.fpmislata.banco.persistencia.impl.ConnectionFactoryImplDataSource;
 import com.fpmislata.banco.dominio.Cuenta;
-import com.fpmislata.banco.persistencia.ConnectionFactory;
 import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,7 +46,6 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
             preparedStatement.setBigDecimal(2, cuenta.getSaldoCuenta());
             preparedStatement.setInt(3, cuenta.getIdSucursal());
             preparedStatement.setString(4, cuenta.getTipoCuenta());
-            
             preparedStatement.executeUpdate();
             connection.close();
             return null;
@@ -99,16 +96,14 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public Cuenta update(Cuenta cuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "UPDATE cuentas SET saldo= ?, idsucursal= ?, tipo= ? WHERE id = ?";
+            String query = "UPDATE cuentas SET saldo = ?, idsucursal = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setBigDecimal(1, cuenta.getSaldoCuenta());
             preparedStatement.setInt(2, cuenta.getIdSucursal());
-            preparedStatement.setString(3, cuenta.getTipoCuenta());           
-            preparedStatement.setInt(4, cuenta.getIdCuenta());
-            
+            preparedStatement.setInt(3, cuenta.getIdCuenta());
             preparedStatement.executeUpdate();
             connection.close();
-            return null; /* PENDING */
+            return null; 
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);

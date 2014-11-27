@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.persistencia.dao.impl;
+package com.fpmislata.banco.persistencia.dao.impl.hibernate;
 
 import com.fpmislata.banco.persistencia.dao.GenericDAO;
 import java.lang.reflect.ParameterizedType;
@@ -13,7 +13,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
-import org.hibernate.type.EntityType;
 
 /**
  *
@@ -23,7 +22,7 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
 
     private SessionFactory sessionFactory;
 
-    private SessionFactory getSessionFactory() {
+    protected SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             Configuration config = new Configuration();
             config.configure();
