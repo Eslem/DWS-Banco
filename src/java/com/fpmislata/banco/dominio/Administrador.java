@@ -19,7 +19,7 @@ public class Administrador implements Serializable{
     private String direccion;
     private int telefono;
     private String email;
-    private String pass;
+    private String password;
     
     public Administrador(){};
     
@@ -27,7 +27,7 @@ public class Administrador implements Serializable{
         this.id=id;
     }
 
-    public Administrador(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
+    public Administrador(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String password) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -35,7 +35,7 @@ public class Administrador implements Serializable{
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.pass = pass;
+        this.password = password;
     }
     
     public Administrador(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
@@ -48,14 +48,14 @@ public class Administrador implements Serializable{
         this.email = email;
     }
 
-    public Administrador(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
+    public Administrador(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String password) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.pass = pass;
+        this.password = password;
     }    
 
     public int getId() {
@@ -114,25 +114,11 @@ public class Administrador implements Serializable{
         this.email = email;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
     }    
-    
-    
-    
-    /*-----Null pasword retrieving information
-     @Override
-    public void onPostLoad(PostLoadEvent ple) {
-        Usuario usuario=(Usuario)ple.getEntity();
-        //Nunca se retorna el Hash de la contraseña
-        usuario.setContraseña(null);
-
-    }   */
-
-    
-    
 }

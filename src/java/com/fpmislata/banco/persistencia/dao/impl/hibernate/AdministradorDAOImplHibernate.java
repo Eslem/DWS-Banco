@@ -24,7 +24,7 @@ public class AdministradorDAOImplHibernate extends GenericDAOImplHibernate<Admin
     public void updatePassword(Administrador usuario) {
         Session session = getSessionFactory().openSession();
         Query query = session.createSQLQuery("UPDATE administradores SET pass=? WHERE id=?");
-        query.setString(0, passwordEncrypting.encrypt(usuario.getPass()));
+        query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());
         
         query.executeUpdate(); 
@@ -33,18 +33,16 @@ public class AdministradorDAOImplHibernate extends GenericDAOImplHibernate<Admin
 
     @Override
     public boolean checkPassword(Administrador usuario, String plainPassword) {
-        return passwordEncrypting.compare(plainPassword, usuario.getPass());
+        return passwordEncrypting.compare(plainPassword, usuario.getPassword());
     }
 
     @Override
     protected void preInsert(Session session, Administrador usuario) {
-        usuario.setPass(passwordEncrypting.encrypt(usuario.getPass()));
+        usuario.setPassword(passwordEncrypting.encrypt(usuario.getPassword()));
     }
 
     @Override
     protected void postGet(Session session, Administrador usuario) {
-        usuario.setPass("");
+        usuario.setPassword("");
     }
-;
-
 }

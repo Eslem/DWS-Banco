@@ -49,10 +49,6 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
     @Override
     public Usuario getByName(String name) {
         Session session = getSessionFactory().openSession();
-        /*Usuario object = (Usuario) session.get(getClazz(), name); // Nunca va a funcionar
-        session.close();
-        return object;*/
-
         Query query = session.createQuery("SELECT u FROM Usuario u WHERE nombre=?");
         query.setString(0, name);
         query.setCacheable(true);

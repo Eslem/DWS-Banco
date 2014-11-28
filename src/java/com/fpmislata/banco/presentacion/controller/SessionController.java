@@ -42,14 +42,10 @@ public class SessionController {
         httpsession = httpServletRequest.getSession(true);
 
         Credentials credentials = jsonConverter.fromJSON(jsonEntrada, Credentials.class);
-        try {
-            httpServletResponse.getWriter().println("password: " + credentials.getPassword());
-        } catch (IOException ex) {
-            Logger.getLogger(SessionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int userId =authentication.authenticateUser(credentials);
 
-        if (authentication.authenticateUser(credentials)) {
-            httpsession.setAttribute("nombre", credentials.login);
+        if (userId!=0) {
+            httpsession.setAttribute("id", userId);
         } 
     }
 
@@ -64,7 +60,7 @@ public class SessionController {
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         try {
             httpsession = httpServletRequest.getSession();
-            httpServletResponse.getWriter().println("session nombre: " + httpsession.getAttribute("nombre"));
+            httpServletResponse.getWriter().println("session id: " + httpsession.getAttribute("id"));
 
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {

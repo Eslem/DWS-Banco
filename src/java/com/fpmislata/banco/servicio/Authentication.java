@@ -25,9 +25,11 @@ public class Authentication {
     @Autowired
     UsuarioDAO usuarioDAO;
 
-    public boolean authenticateUser(Credentials credentials) {
+    public int authenticateUser(Credentials credentials) {
         Usuario usuario = usuarioDAO.getByName(credentials.getLogin());
-
-        return passwordEncrypting.compare(credentials.getPassword(), usuario.getPassword());
+        if(passwordEncrypting.compare(credentials.getPassword(), usuario.getPassword())){
+            return usuario.getId();
+        }
+        return 0;
     }
 }

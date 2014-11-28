@@ -28,19 +28,19 @@ public class FilterImplSecurity implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        servletResponse.setContentType("text/html");
-
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         String sessionUrl = httpServletRequest.getContextPath() + "/api/session";
-        System.out.println(httpServletRequest.getRequestURI());
-        System.out.println(sessionUrl);
         httpsession = httpServletRequest.getSession();
-        if (httpsession.getAttribute("name") != null || httpServletRequest.getRequestURI().equals(sessionUrl)) {
+        
+        if (httpServletRequest.getRequestURI().equals(sessionUrl)) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            /* Return error */
-            HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-            httpServletResponse.setStatus(403);
+            if (httpsession.getAttribute("id") != null) {
+                filterChain.doFilter(servletRequest, servletResponse);
+            } else {
+                HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+                httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            }
         }
     }
 }
