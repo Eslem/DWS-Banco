@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.presentacion.listener;
+package com.fpmislata.banco.presentacion.listener.migration;
 
 import com.fpmislata.banco.persistencia.migration.DatabaseMigration;
 import java.util.logging.Level;

@@ -6,7 +6,7 @@
 package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
-import com.fpmislata.banco.dominio.Authentication;
+import com.fpmislata.banco.servicio.Authentication;
 import com.fpmislata.banco.dominio.Credentials;
 import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
 import java.io.IOException;
