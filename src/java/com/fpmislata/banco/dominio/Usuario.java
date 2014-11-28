@@ -128,16 +128,4 @@ public class Usuario implements Serializable{
     }    
     
     
-    
-    /*-----Null pasword retrieving information
-     @Override
-    public void onPostLoad(PostLoadEvent ple) {
-        Usuario usuario=(Usuario)ple.getEntity();
-        //Nunca se retorna el Hash de la contraseña
-        usuario.setContraseña(null);
-
-    }   */
-
-    
-    
 }
