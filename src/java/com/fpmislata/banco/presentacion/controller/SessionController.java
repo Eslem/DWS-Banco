@@ -49,11 +49,8 @@ public class SessionController {
         }
 
         if (authentication.authenticateUser(credentials)) {
-            httpsession.setAttribute("id", "exist");
-        } else {
-            httpsession.setAttribute("id", "no exist");
-        }
-
+            httpsession.setAttribute("nombre", credentials.login);
+        } 
     }
 
     @RequestMapping(value = {"/session"}, method = RequestMethod.DELETE)
@@ -67,7 +64,7 @@ public class SessionController {
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         try {
             httpsession = httpServletRequest.getSession();
-            httpServletResponse.getWriter().println("session id: " + httpsession.getAttribute("id"));
+            httpServletResponse.getWriter().println("session nombre: " + httpsession.getAttribute("nombre"));
 
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException ex) {

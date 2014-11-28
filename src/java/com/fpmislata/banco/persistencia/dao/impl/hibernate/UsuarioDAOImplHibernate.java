@@ -23,7 +23,7 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
     @Override
     public void updatePassword(Usuario usuario) {
         Session session = getSessionFactory().openSession();
-        Query query = session.createSQLQuery("UPDATE usuarios SET pass=? WHERE id=?");
+        Query query = session.createSQLQuery("UPDATE usuarios SET password=? WHERE id=?");
         query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());
 
@@ -53,7 +53,7 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
         session.close();
         return object;*/
 
-        Query query = session.createQuery("SELECT u FROM Usuario u WHERE name=?");
+        Query query = session.createQuery("SELECT u FROM Usuario u WHERE nombre=?");
         query.setString(0, name);
         query.setCacheable(true);
         return (Usuario) query.uniqueResult();
