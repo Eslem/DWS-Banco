@@ -2,22 +2,37 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>Banco</display-name>
     <description>Banco grupo 4</description>
+    
     <session-config>
         <session-timeout>
             15
         </session-timeout>
     </session-config>
+    
+    
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <!--flyway-->
     <listener>
-        <listener-class>com.fpmislata.banco.persistencia.migration.ServletContextListenerImpl</listener-class>
+        <listener-class>com.fpmislata.banco.presentacion.listener.ServletContextListenerImplMigration</listener-class>
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
+    
+    
+    <filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>com.fpmislata.banco.presentacion.filter.FilterImplSecurity</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+    
+    
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -27,4 +42,5 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+    
 </web-app>

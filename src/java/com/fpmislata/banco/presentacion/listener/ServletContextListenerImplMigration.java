@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.banco.persistencia.migration;
+package com.fpmislata.banco.presentacion.listener;
 
+import com.fpmislata.banco.persistencia.migration.DatabaseMigration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -22,7 +23,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  *
  * @author eslem
  */
-public class ServletContextListenerImpl implements ServletContextListener {
+public class ServletContextListenerImplMigration implements ServletContextListener {
 
     @Autowired
     DatabaseMigration databaseMigration;
@@ -41,7 +42,7 @@ public class ServletContextListenerImpl implements ServletContextListener {
             databaseMigration.migrate(dataSource, "com.fpmislata.banco.persistencia.migration.migrations");
             
         } catch (NamingException ex) {
-            Logger.getLogger(ServletContextListenerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletContextListener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
