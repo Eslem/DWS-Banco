@@ -29,10 +29,6 @@ app.controller("CuentaListController", function ($scope, $http) {
             $scope.findAll();
         } 
     };
-    
-    $scope.edit = function(id) {
-        location.replace('#/cuenta/edit/' + id);
-    };
 
     $scope.crearCuenta = function () {
         location.replace("#/cuenta/insert");

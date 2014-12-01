@@ -32,6 +32,7 @@ app.controller("CuentaInsertController", ["$scope", "$http", function ($scope, $
                 $scope.getCuenta($scope.cuenta.id);
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
+                alert($scope.cuenta.tipoCuenta);
             });
         };
     }
@@ -46,11 +47,9 @@ app.controller("CuentaEditController", ["$scope", "$http", "$routeParams", funct
                 data: $scope.cuenta,
                 url: contextPath + "/api/cuenta/"
             }).success(function (data) {
-                alert("Cuenta " + $scope.cuenta.id + " correctamente actualizado.");
-                $scope.getCuenta($scope.cuenta.id);
+                alert("Cuenta correctamente actualizado.");
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
-                console.log($scope.cuenta);
             });
         };
 
