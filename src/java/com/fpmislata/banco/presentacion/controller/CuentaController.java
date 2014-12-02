@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class CuentaController {
-    
+
     @Autowired
     CuentaDAO cuentaDAO;
     @Autowired
@@ -40,17 +40,17 @@ public class CuentaController {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentas));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
-    
+
     @RequestMapping(value = {"/cuenta/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
         cuentaDAO.delete(id);
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
-    
+
     @RequestMapping(value = {"/cuenta"}, method = RequestMethod.PUT)
     public void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         cuentaDAO.update(jsonConverter.fromJSON(jsonEntrada, Cuenta.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
-    
+
 }

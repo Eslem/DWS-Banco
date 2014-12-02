@@ -9,6 +9,8 @@ public class Cuenta {
     String tipoCuenta;
     BigDecimal saldoCuenta;
     
+    public Cuenta () {}
+    
     public Cuenta (int idCuenta, BigDecimal saldoCuenta, int idSucursal, String tipoCuenta){
     
         this.idCuenta = idCuenta;

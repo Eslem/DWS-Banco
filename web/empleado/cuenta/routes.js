@@ -5,9 +5,9 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: "CuentaListController"
         });
 
-        $routeProvider.when("/cuenta/new", {
+        $routeProvider.when("/cuenta/insert", {
             templateUrl: "cuenta/detail.html",
-            controller: "CuentaNewController"
+            controller: "CuentaInsertController"
         });
 
         $routeProvider.when("/cuenta/edit/:idCuenta", {
@@ -15,9 +15,5 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: "CuentaEditController"
         });
 
-        $routeProvider.when("/cuenta/delete/:idCuenta", {
-            templateUrl: "cuenta/detail.html",
-            controller: "CuentaDeleteController"
-        });
     }
 ]);
