@@ -15,9 +15,5 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: "CuentaEditController"
         });
 
-        $routeProvider.when("/cuenta/delete/:idCuenta", {
-            templateUrl: "cuenta/detail.html",
-            controller: "CuentaDeleteController"
-        });
     }
 ]);

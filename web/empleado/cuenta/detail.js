@@ -32,7 +32,6 @@ app.controller("CuentaInsertController", ["$scope", "$http", function ($scope, $
                 $scope.getCuenta($scope.cuenta.id);
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
-                alert($scope.cuenta.tipoCuenta);
             });
         };
     }
@@ -48,24 +47,6 @@ app.controller("CuentaEditController", ["$scope", "$http", "$routeParams", funct
                 url: contextPath + "/api/cuenta/"
             }).success(function (data) {
                 alert("Cuenta correctamente actualizado.");
-            }).error(function (data, status) {
-                alert("Fatal error: " + status);
-            });
-        };
-
-        initializeCuenta($scope, $http, $routeParams);
-    }
-]);
-
-app.controller("CuentaDeleteController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
-        $scope.buttonText = 'Eliminar';
-
-        $scope.formSend = function () {
-            $http({
-                method: "DELETE",
-                url: contextPath + "/api/cuenta/" + $scope.cuenta.id
-            }).success(function () {
-                alert("Cuenta " + $scope.cuenta.id + " correctamente borrada.");
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });

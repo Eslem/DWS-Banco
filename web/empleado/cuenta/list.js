@@ -19,7 +19,7 @@ app.controller("CuentaListController", function ($scope, $http) {
         if (ok) {
             $http({
                 method: "DELETE",
-                url: contextPath + "/api/cuenta" + id
+                url: contextPath + "/api/cuenta/" + id
             }).success(function () {
                 $scope.findAll();
             }).error(function (data, status) {

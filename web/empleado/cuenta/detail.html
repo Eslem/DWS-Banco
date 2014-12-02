@@ -10,10 +10,10 @@
         <p><label  class="badge" for="codigo">Id sucursal:</label><br/>
             <input  class="form-control text-center" id="idSuc" ng-model="cuenta.idSucursal" type="text" placeholder="Sucursal"></p>
         <p><label class="badge" for="codigo">Tipo de cuenta:</label><br/>
-            <input class="form-control text-center"  id="tipo" ng-model="cuenta.tipoCuenta" type="text" placeholder="Tipo"></p>
+            <select class="form-control">
+                <option>Corriente</option>
+                <option>Ahorro</option>
+            </select></p>
         <button  class="btn btn-primary" ng-click="formSend()">{{buttonText}}</button>
-
     </div>
-
-
 </div>
