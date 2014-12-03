@@ -25,6 +25,7 @@
         <filter-name>SessionFilter</filter-name>
         <filter-class>com.fpmislata.banco.presentacion.filter.security.FilterImplSecurity</filter-class>
     </filter>
+    
     <filter-mapping>
         <filter-name>SessionFilter</filter-name>
         <url-pattern>/api/*</url-pattern>
@@ -40,4 +41,8 @@
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
     
-</web-app>
+*
+    
+    */
+    
+    </web-app>
