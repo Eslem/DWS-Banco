@@ -26,22 +26,8 @@
                     padding:2px 12px;
                 }
             }
-            &#add {
-                padding:0 !important;
-
-                .btn {
-                    width:100%;
-                    border-radius:0;
-                }
-            }
         }
     }
-}
-
-.form {
-    width:100%;
-    max-width:480px;
-    margin:auto;
 }
 
 $sidebar-backColor:#1d1f21;
@@ -151,7 +137,7 @@ div.wrap-body{
     &.ng-enter{ 
         opacity:1;
     }
-    
+
     &.menuHover{
         padding-left:245px;
     }
@@ -168,4 +154,9 @@ div.wrap-body{
 }
 .animate.ng-leave.ng-leave-active, .animate.ng-enter {
     opacity:0;
+}
+
+.btn-left {
+    float:right;
+    margin:4px;
 }
