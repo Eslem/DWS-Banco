@@ -20,16 +20,6 @@
         width: 100px; }
         .table tr td.actions .btn {
           padding: 2px 12px; }
-      .table tr td#add {
-        padding: 0 !important; }
-        .table tr td#add .btn {
-          width: 100%;
-          border-radius: 0; }
-
-.form {
-  width: 100%;
-  max-width: 480px;
-  margin: auto; }
 
 body, html {
   margin: 0px;
@@ -100,5 +90,9 @@ div.wrap-body {
 
 .animate.ng-leave.ng-leave-active, .animate.ng-enter {
   opacity: 0; }
+
+.btn-left {
+  float: right;
+  margin: 4px; }
 
 /*# sourceMappingURL=index.css.map */

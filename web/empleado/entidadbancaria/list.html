@@ -1,11 +1,15 @@
 <h2>Entidades Bancarias</h2>
-<hr/>
+
+<button class="btn btn-sm btn-primary btn-left" ng-click="create()">
+    <i class="fa fa-plus"></i> Añadir
+</button>
+
 <table class="table table-striped container table-hover">
     <tr>
-        <td>Id</td>
-        <td>Nombre</td>
-        <td>Código</td>
-        <td>Acciones</td>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Código</th>
+        <th>Acciones</th>
     </tr>
     <tr ng-repeat="entidadBancaria in entidadesBancarias">
         <td>{{entidadBancaria.id}}</td>
@@ -17,13 +21,6 @@
             </button>
             <button ng-click="deleteEntidadBancaria(entidadBancaria)" class="btn btn-danger">
                 <i class="fa fa-trash"></i>
-            </button>
-        </td>
-    </tr>
-    <tr>
-        <td id="add" colspan="4">
-            <button class="btn btn-sm btn-primary" ng-click="create()">
-                <i class="fa fa-plus"></i>
             </button>
         </td>
     </tr>
