@@ -11,7 +11,6 @@
     
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.ConnectionFactoryImplDataSource"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.MovimientoDAOImplJDBC"/>
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.CuentaDAOImplJDBC"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.EntidadBancariaDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.CuentaDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.UsuarioDAOImplHibernate"/>
