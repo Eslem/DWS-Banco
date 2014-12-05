@@ -1,33 +1,31 @@
-<!DOCTYPE html>
-
 <div class="container-fluid">
-    <h1 class="primary">Cuentas:</h1>
-    <button ng-click="crearCuenta()" class="btn btn-primary pull-right">
-        <i class="glyphicon glyphicon-plus"></i>
-        </button>
-    <br>
-    <br>
+    <h1 class="primary">Cuentas</h1>
+
+    <button class="btn btn-primary pull-right margin-small" ng-click="crearCuenta()">
+        <i class="fa fa-plus"></i> Añadir
+    </button>
+
     <table class="table table-striped container table-hover">
-            <tr>
-                <th>Id</th>
-                <th>Saldo</th>
-                <th>Id Sucursal</th>
-                <th>Tipo</th>
-                <th>Cliente</th>
-                <th></th>
-            </tr>
-            <tr ng-repeat="cuenta in cuentas" class="animate">
-                <td>{{cuenta.idCuenta}}</td>
-                <td>{{cuenta.saldoCuenta}}€</td>
-                <td>{{cuenta.idSucursal}}</td>
-                <td>{{cuenta.tipoCuenta}}</td>
-                <td>{{cuenta.clienteCuenta}}</td>
-                <td><button ng-click="editCuenta(cuenta.idCuenta)" class="btn btn-primary">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                    <button ng-click="deleteCuenta(cuenta.idCuenta)" class="btn btn-danger">
-                        <i class="fa fa-trash"></i>
-                    </button></td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Saldo</th>
+            <th>Id Sucursal</th>
+            <th>Tipo</th>
+            <th>Cliente</th>
+            <th>Acciones</th>
+        </tr>
+        <tr ng-repeat="cuenta in cuentas" class="animate">
+            <td>{{cuenta.idCuenta}}</td>
+            <td>{{cuenta.saldoCuenta}}€</td>
+            <td>{{cuenta.idSucursal}}</td>
+            <td>{{cuenta.tipoCuenta}}</td>
+            <td>{{cuenta.clienteCuenta}}</td>
+            <td><button ng-click="editCuenta(cuenta.idCuenta)" class="btn btn-primary">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button ng-click="deleteCuenta(cuenta.idCuenta)" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                </button></td>
+        </tr>
     </table>
 </div>

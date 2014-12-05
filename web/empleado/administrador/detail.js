@@ -122,7 +122,7 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
 function AdministradorInsertController($scope, UpdateAdministrador) {
     $scope.detailShown = false;
     $scope.passShown = true;
-    $scope.mainButton = "Crear";
+    $scope.mainButton = "Insertar";
 
     $scope.update = function () {
         if ($scope.pass !== $scope.passrepeat) {

@@ -1,27 +1,29 @@
-<h2>Entidades Bancarias</h2>
+<div class="container-fluid">
+    <h1>Entidades Bancarias</h1>
 
-<button class="btn btn-sm btn-primary btn-left" ng-click="create()">
-    <i class="fa fa-plus"></i> Añadir
-</button>
+    <button class="btn btn-primary pull-right margin-small" ng-click="create()">
+        <i class="fa fa-plus"></i> Añadir
+    </button>
 
-<table class="table table-striped container table-hover">
-    <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Código</th>
-        <th>Acciones</th>
-    </tr>
-    <tr ng-repeat="entidadBancaria in entidadesBancarias">
-        <td>{{entidadBancaria.id}}</td>
-        <td>{{entidadBancaria.nombre}}</td>
-        <td>{{entidadBancaria.codigo}}</td>
-        <td class="actions">
-            <button ng-click="edit(entidadBancaria.id)" class="btn btn-primary">
-                <i class="fa fa-edit"></i>
-            </button>
-            <button ng-click="deleteEntidadBancaria(entidadBancaria)" class="btn btn-danger">
-                <i class="fa fa-trash"></i>
-            </button>
-        </td>
-    </tr>
-</table>
+    <table class="table table-striped container table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Acciones</th>
+        </tr>
+        <tr ng-repeat="entidadBancaria in entidadesBancarias">
+            <td>{{entidadBancaria.id}}</td>
+            <td>{{entidadBancaria.nombre}}</td>
+            <td>{{entidadBancaria.codigo}}</td>
+            <td class="actions">
+                <button ng-click="edit(entidadBancaria.id)" class="btn btn-primary">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button ng-click="deleteEntidadBancaria(entidadBancaria)" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
