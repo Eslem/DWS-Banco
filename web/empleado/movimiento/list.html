@@ -9,18 +9,16 @@
         <tr>
             <th>Id</th>
             <th>Tipo</th>
-            <th>Cuenta Origen</th>
-            <th>Cuenta Destino</th>
-            <th>Descripcion </th>
+            <th>Cuenta</th>
+            <th>Concepto </th>
             <th>Cantidad</th>
             <th>Acciones</th>
         </tr>
         <tr ng-repeat="movimiento in movimientos"  class="animate">
             <td>{{movimiento.id}}</td>
             <td>{{movimiento.tipo}}</td>
-            <td>{{movimiento.cuentaOrigen}}</td>
-            <td>{{movimiento.cuentaDestino}}</td>
-            <td>{{movimiento.descripcion}}</td>
+            <td>{{movimiento.idCuenta}}</td>
+            <td>{{movimiento.concepto}}</td>
             <td>{{movimiento.cantidad| currency: "€" }}</td>
             <td class="actions">
                 <button type="button" class="btn btn-primary" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>

@@ -9,6 +9,7 @@ import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
 import com.fpmislata.banco.dominio.Administrador;
 import com.fpmislata.banco.persistencia.dao.AdministradorDAO;
+import com.fpmislata.banco.persistencia.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -22,7 +23,7 @@ public class AdministradorDAOImplHibernate extends GenericDAOImplHibernate<Admin
 
     @Override
     public void updatePassword(Administrador usuario) {
-        Session session = getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Query query = session.createSQLQuery("UPDATE administradores SET pass=? WHERE id=?");
         query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());

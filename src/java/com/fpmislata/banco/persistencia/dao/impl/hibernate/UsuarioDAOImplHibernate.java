@@ -9,6 +9,7 @@ import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
 import com.fpmislata.banco.dominio.Usuario;
 import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
+import com.fpmislata.banco.persistencia.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -22,7 +23,7 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
 
     @Override
     public void updatePassword(Usuario usuario) {
-        Session session = getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Query query = session.createSQLQuery("UPDATE usuarios SET password=? WHERE id=?");
         query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());
@@ -48,7 +49,7 @@ public class UsuarioDAOImplHibernate extends GenericDAOImplHibernate<Usuario> im
 
     @Override
     public Usuario getByName(String name) {
-        Session session = getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Query query = session.createQuery("SELECT u FROM Usuario u WHERE nombre=?");
         query.setString(0, name);
         query.setCacheable(true);

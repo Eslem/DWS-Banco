@@ -24,7 +24,7 @@ CREATE TABLE `cuentas` (
   `saldo` decimal(15,2) DEFAULT '0.00',
   `idsucursal` int(10) unsigned DEFAULT '0',
   `tipo` enum('Ahorro','Corriente') NOT NULL DEFAULT 'Corriente',
-  `cliente` int(9) DEFAULT NULL,
+  `cliente` int(9) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
