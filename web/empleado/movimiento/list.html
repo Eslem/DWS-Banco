@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <div class="container-fluid">
-     <h1 class="page-header">Movimientos</h1>
-<table class="table table-striped container table-hover">
-    <tr>
-        <td>Id</td>
-        <td>Tipo</td>
-        <td>Cuenta Origen</td>
-        <td>Cuenta Destino</td>
-        <td>Descripcion </td>
-        <td>Cantidad</td>
-        <td> Acciones</td>
-        
+    <h1 class="primary">Movimientos</h1>
 
-    </tr>
-    <tr ng-repeat="movimiento in movimientos"  class="animate">
-        <td>{{movimiento.id}}</td>
-        <td>{{movimiento.tipo}}</td>
-        <td>{{movimiento.cuentaOrigen}}</td>
-        <td>{{movimiento.cuentaDestino}}</td>
-        <td>{{movimiento.descripcion}}</td>
-        <td>{{movimiento.cantidad | currency: "€" }}</td>
-        <td class="actions">
-            <button type="button" class="btn btn-primary" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>
-            <button type="button" class="btn btn-danger" ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
-        </td>
-    </tr>
-</table>
-    <button class="btn btn-link" ng-click="crear()">Nuevo movimiento</button>
+    <button class="btn btn-primary pull-right margin-small" ng-click="crear()">
+        <i class="fa fa-plus"></i> Añadir
+    </button>
+
+    <table class="table table-striped container table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Tipo</th>
+            <th>Cuenta Origen</th>
+            <th>Cuenta Destino</th>
+            <th>Descripcion </th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+        </tr>
+        <tr ng-repeat="movimiento in movimientos"  class="animate">
+            <td>{{movimiento.id}}</td>
+            <td>{{movimiento.tipo}}</td>
+            <td>{{movimiento.cuentaOrigen}}</td>
+            <td>{{movimiento.cuentaDestino}}</td>
+            <td>{{movimiento.descripcion}}</td>
+            <td>{{movimiento.cantidad| currency: "€" }}</td>
+            <td class="actions">
+                <button type="button" class="btn btn-primary" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-danger" ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+    </table>
 </div>

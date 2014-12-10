@@ -5,6 +5,7 @@
  */
 package com.fpmislata.banco.presentacion.listener.migration;
 
+import com.fpmislata.banco.persistencia.dao.DataSourceFactory;
 import com.fpmislata.banco.persistencia.migration.DatabaseMigration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,22 +29,16 @@ public class ServletContextListenerImplMigration implements ServletContextListen
     @Autowired
     DatabaseMigration databaseMigration;
 
+    @Autowired
+    DataSourceFactory dataSourceFactory;
+
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContextEvent.getServletContext());
         AutowireCapableBeanFactory autowireCapableBeanFactory = webApplicationContext.getAutowireCapableBeanFactory();
-        autowireCapableBeanFactory.autowireBean(this);        
-
-        InitialContext initialContext;
-        try {
-            initialContext = new InitialContext();
-            Context context = (Context) initialContext.lookup("java:comp/env");
-            DataSource dataSource = (DataSource) context.lookup("jdbc/datasource");
-            databaseMigration.migrate(dataSource, "com.fpmislata.banco.persistencia.migration.migrations");
-            
-        } catch (NamingException ex) {
-            Logger.getLogger(ServletContextListener.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        autowireCapableBeanFactory.autowireBean(this);
+        DataSource dataSource = dataSourceFactory.getDatasource();
+        databaseMigration.migrate(dataSource, "com.fpmislata.banco.persistencia.migration.migrations");
     }
 
     @Override

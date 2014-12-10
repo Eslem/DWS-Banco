@@ -1,4 +1,25 @@
-
+.table {
+  width: 100%; }
+  .table tr {
+    /*&:first-child {
+        background:#a6c2e0;
+    }
+    &:not(:first-child):nth-child(odd) {
+        background:#DFE7F7;
+    }
+    &:nth-child(even) {
+        background:#EAEFFA;
+    }*/ }
+    .table tr td {
+      padding: 4px !important;
+      vertical-align: middle !important; }
+      .table tr td:first-child {
+        width: 48px;
+        text-align: right; }
+      .table tr td.actions {
+        width: 100px; }
+        .table tr td.actions .btn {
+          padding: 2px 12px; }
 
 body, html {
   margin: 0px;
@@ -93,3 +114,8 @@ div.wrap-body {
 
 .animate.ng-leave.ng-leave-active, .animate.ng-enter {
   opacity: 0; }
+
+.margin-small {
+  margin: 4px; }
+
+/*# sourceMappingURL=index.css.map */

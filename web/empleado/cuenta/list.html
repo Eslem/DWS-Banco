@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<div class="container-fluid">
+    <h1>Cuentas:</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Saldo</td>
+                <td>Id Sucursal</td>
+                <td>Tipo</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="cuenta in cuentas">
+                <td>{{cuenta.idCuenta}}</td>
+                <td>{{cuenta.saldoCuenta}}€</td>
+                <td>{{cuenta.idSucursal}}</td>
+                <td>{{cuenta.tipoCuenta}}</td>
+                <td><button ng-click="editCuenta(cuenta.idCuenta)" class="btn btn-primary">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button ng-click="deleteCuenta(cuenta.idCuenta)" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button ng-click="crearCuenta()" class="btn btn-primary">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+</div>

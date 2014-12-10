@@ -119,7 +119,7 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
 function UsuarioInsertController($scope, UpdateUsuario) {
     $scope.detailShown = false;
     $scope.passShown = true;
-    $scope.mainButton = "Crear";
+    $scope.mainButton = "Insertar";
 
     $scope.update = function () {
         if ($scope.pass !== $scope.passrepeat) {

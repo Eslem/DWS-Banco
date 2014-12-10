@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author eslem
  */
-public class Administrador implements Serializable{
+public class Cliente implements Serializable {
     private int id;
     private String nombre;
     private String apellidos;
@@ -21,13 +21,18 @@ public class Administrador implements Serializable{
     private String email;
     private String password;
     
-    public Administrador(){};
+    public Cliente(){};
     
-    public Administrador(int id){
+    public Cliente(int id){
         this.id=id;
     }
+    
+    public Cliente(String email, String pass){
+        this.email=email;
+        this.password=pass;
+    }
 
-    public Administrador(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String password) {
+    public Cliente(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -35,10 +40,10 @@ public class Administrador implements Serializable{
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.password = password;
+        this.password = pass;
     }
     
-    public Administrador(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
+    public Cliente(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -48,14 +53,14 @@ public class Administrador implements Serializable{
         this.email = email;
     }
 
-    public Administrador(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String password) {
+    public Cliente(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.password = password;
+        this.password = pass;
     }    
 
     public int getId() {
@@ -121,4 +126,6 @@ public class Administrador implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }    
+    
+    
 }

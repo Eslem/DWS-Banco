@@ -5,18 +5,21 @@ import java.math.BigDecimal;
 public class Cuenta {
     
     int idCuenta;
+    
+    BigDecimal saldoCuenta;
     int idSucursal;
     String tipoCuenta;
-    BigDecimal saldoCuenta;
+    int clienteCuenta;
     
     public Cuenta () {}
     
-    public Cuenta (int idCuenta, BigDecimal saldoCuenta, int idSucursal, String tipoCuenta){
+    public Cuenta (int idCuenta, BigDecimal saldoCuenta, int idSucursal, String tipoCuenta, int clienteCuenta){
     
         this.idCuenta = idCuenta;
         this.saldoCuenta = saldoCuenta;
         this.idSucursal = idSucursal;
         this.tipoCuenta = tipoCuenta;
+        this.clienteCuenta = clienteCuenta;
         
     }
     
@@ -65,6 +68,18 @@ public class Cuenta {
     public void setTipoCuenta(String tipoCuenta){
         
         this.tipoCuenta = tipoCuenta;
+        
+    }
+    
+    public int getClienteCuenta (){
+        
+        return clienteCuenta;
+        
+    }
+    
+    public void setClienteCuenta(int clienteCuenta){
+        
+        this.clienteCuenta = clienteCuenta;
         
     }
    

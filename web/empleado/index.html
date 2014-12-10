@@ -19,7 +19,7 @@
 
 
         <script type="text/javascript" src="app.js"></script>
-        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="routes.js"></script>
 
         <script type="text/javascript" src="entidadbancaria/list.js"></script>
         <script type="text/javascript" src="entidadbancaria/detail.js"></script>
@@ -41,9 +41,11 @@
         <script type="text/javascript" src="administrador/detail.js"></script>
         <script type="text/javascript" src="administrador/routes.js"></script>
 
+        <script type="text/javascript" src="login/login.js"></script>
+
     </head>
     <body ng-controller="EmpleadoController">
-        <nav class="sidebar" ng-mouseover="shown = true" ng-mouseleave="shown = false" ng-init="shown = false">
+        <nav class="sidebar" ng-show="login">
             <a href="#/entidadbancaria" ng-class="{
                         active:isActive('/entidadbancaria/')
                     }"><i class="fa fa-building"></i> Entidad bancaria</a>
@@ -59,9 +61,10 @@
             <a href="#/movimiento" ng-class="{
                         active:isActive('/movimiento/')
                     }"><i class="fa fa-envelope"></i> Movimiento</a>
+            <a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i> Cerrar Session</a>
         </nav>
         <div ng-view class="wrap-body" ng-class="{
-                    menuHover:shown
+                    login:!login
                 }"></div>
     </body>
 </html>

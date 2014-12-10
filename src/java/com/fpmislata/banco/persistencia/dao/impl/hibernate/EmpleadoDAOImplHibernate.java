@@ -7,8 +7,9 @@ package com.fpmislata.banco.persistencia.dao.impl.hibernate;
 
 import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
-import com.fpmislata.banco.dominio.Administrador;
-import com.fpmislata.banco.persistencia.dao.AdministradorDAO;
+import com.fpmislata.banco.dominio.Cliente;
+import com.fpmislata.banco.dominio.Empleado;
+import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -16,33 +17,42 @@ import org.hibernate.Session;
  *
  * @author eslem
  */
-public class AdministradorDAOImplHibernate extends GenericDAOImplHibernate<Administrador> implements AdministradorDAO {
+public class EmpleadoDAOImplHibernate extends GenericDAOImplHibernate<Empleado> implements EmpleadoDAO {
 
     PasswordEncrypting passwordEncrypting = new PasswordEncryptingImplJasypt();
 
     @Override
-    public void updatePassword(Administrador usuario) {
+    public void updatePassword(Empleado usuario) {
         Session session = getSessionFactory().openSession();
-        Query query = session.createSQLQuery("UPDATE administradores SET pass=? WHERE id=?");
+        Query query = session.createSQLQuery("UPDATE Empleado SET password=? WHERE id=?");
         query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());
-        
-        query.executeUpdate(); 
+
+        query.executeUpdate();
         session.close();
     }
 
     @Override
-    public boolean checkPassword(Administrador usuario, String plainPassword) {
+    public boolean checkPassword(Empleado usuario, String plainPassword) {
         return passwordEncrypting.compare(plainPassword, usuario.getPassword());
     }
 
     @Override
-    protected void preInsert(Session session, Administrador usuario) {
+    public Empleado getByEmail(String name) {
+         Session session = getSessionFactory().openSession();
+        Query query = session.createQuery("SELECT u FROM Empleado u WHERE email=?");
+        query.setString(0, name);
+        query.setCacheable(true);
+        return (Empleado) query.uniqueResult();
+    }
+
+    @Override
+    protected void preInsert(Session session, Empleado usuario) {
         usuario.setPassword(passwordEncrypting.encrypt(usuario.getPassword()));
     }
 
     @Override
-    protected void postGet(Session session, Administrador usuario) {
+    protected void postGet(Session session, Empleado usuario) {
         usuario.setPassword("");
     }
 }

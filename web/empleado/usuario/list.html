@@ -1,7 +1,11 @@
-
 <div class="container-fluid">
-    <h1 class="primary">Listado de usuarios</h1><button class="btn btn-primary pull-right" ng-click="crear()"><i class="fa fa-plus-square"></i> Crear</button>
-    <table  class="table table-striped container table-hover">
+    <h1 class="primary">Usuarios</h1>
+     
+    <button class="btn btn-primary pull-right margin-small" ng-click="crear()">
+        <i class="fa fa-plus"></i> Añadir
+    </button>
+    
+    <table class="table table-striped container table-hover">
         <tr>
             <th>Id</th>
             <th>Nombre</th>
@@ -9,8 +13,8 @@
             <th>DNI</th>
             <th>Direccion</th>
             <th>Telefono</th>
-            <th>Email</th>                
-            <th></th>                
+            <th>Email</th>
+            <th>Acciones</th>         
         </tr>
         <tr ng-repeat="usuario in usuarios" class="animate">
             <td>{{usuario.id}}</td>

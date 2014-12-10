@@ -25,7 +25,8 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
                         resultSet.getInt("id"),
                         resultSet.getBigDecimal("saldo"),
                         resultSet.getInt("idsucursal"),
-                        resultSet.getString("tipo")
+                        resultSet.getString("tipo"),
+                        resultSet.getInt("cliente")
                 );
                 connection.close();
                 return cuentaBancaria;
@@ -40,11 +41,12 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public Cuenta insert(Cuenta cuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO cuentas (saldo, idsucursal, tipo) VALUES (?, ?, ?)";
+            String query = "INSERT INTO cuentas (saldo, idsucursal, tipo, cliente) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setBigDecimal(1, cuenta.getSaldoCuenta());
             preparedStatement.setInt(2, cuenta.getIdSucursal());
             preparedStatement.setString(3, cuenta.getTipoCuenta());
+            preparedStatement.setInt(4, cuenta.getClienteCuenta());
             preparedStatement.executeUpdate();
             connection.close();
             return null;
@@ -80,7 +82,8 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
                         resultSet.getInt("id"),
                         resultSet.getBigDecimal("saldo"),
                         resultSet.getInt("idsucursal"),
-                        resultSet.getString("tipo")
+                        resultSet.getString("tipo"),
+                        resultSet.getInt("cliente")
                 ));
                 
             }
@@ -95,11 +98,13 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public Cuenta update(Cuenta cuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "UPDATE cuentas SET saldo = ?, idsucursal = ? WHERE id = ?";
+            String query = "UPDATE cuentas SET saldo = ?, idsucursal = ?, tipo = ?, cliente = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setBigDecimal(1, cuenta.getSaldoCuenta());
             preparedStatement.setInt(2, cuenta.getIdSucursal());
-            preparedStatement.setInt(3, cuenta.getIdCuenta());
+            preparedStatement.setString(3, cuenta.getTipoCuenta());
+            preparedStatement.setInt(4, cuenta.getClienteCuenta());
+            preparedStatement.setInt(5, cuenta.getIdCuenta());
             preparedStatement.executeUpdate();
             connection.close();
             return null; 

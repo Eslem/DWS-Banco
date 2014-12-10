@@ -1,26 +1,21 @@
 package com.fpmislata.banco.persistencia.dao.impl.jdbc;
 
-import com.fpmislata.banco.persistencia.dao.impl.jdbc.ConnectionFactory;
+import com.fpmislata.banco.persistencia.dao.DataSourceFactory;
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ConnectionFactoryImplDataSource implements ConnectionFactory {
 
+    @Autowired
+    DataSourceFactory dataSourceFactory;
+
     @Override
     public Connection getConnection() throws Exception {
-        try {
-            InitialContext initialContext = new InitialContext();
-            Context context = (Context) initialContext.lookup("java:comp/env");
-            DataSource dataSource = (DataSource) context.lookup("jdbc/datasource");
-            Connection connection = dataSource.getConnection();
-
-            return connection;
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+        DataSource dataSource = dataSourceFactory.getDatasource();
+        Connection connection = dataSource.getConnection();
+        return connection;
     }
 
     @Override
