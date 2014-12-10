@@ -34,7 +34,7 @@ public class SessionController {
     JSONConverter jsonConverter;
     @Autowired
     Authentication authentication;
-    
+
     private HttpSession httpsession;
 
     @RequestMapping(value = {"/session"}, method = RequestMethod.POST)
@@ -42,11 +42,18 @@ public class SessionController {
         httpsession = httpServletRequest.getSession(true);
 
         Credentials credentials = jsonConverter.fromJSON(jsonEntrada, Credentials.class);
-        int userId =authentication.authenticateUser(credentials);
+        int userId = authentication.authenticateUser(credentials);
 
-        if (userId!=0) {
-            httpsession.setAttribute("id", userId);
-        } 
+        if (userId != 0) {
+            try {
+                httpsession.setAttribute("id", userId);
+                httpServletResponse.getWriter().print(jsonConverter.toJSON(usuarioDAO.get(userId)));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } else {
+            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = {"/session"}, method = RequestMethod.DELETE)
