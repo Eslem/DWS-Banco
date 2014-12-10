@@ -6,8 +6,8 @@
             <generator class="identity"/>
         </id>
         <property name="saldoCuenta" column="saldo" />
-        <property name="idSucursal" column="idsucursal" />
+        <property name="idSucursal" column="idsucursal"/>
         <property name="tipoCuenta" column="tipo" />
-        <property name="clienteCuenta" column="cliente" />
+        <property name="clienteCuenta" column="cliente"/>
     </class>
 </hibernate-mapping>

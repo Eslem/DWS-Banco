@@ -7,19 +7,18 @@ public class Movimiento {
 
     private int id;
     private String tipo;
-    private int cuentaOrigen;
-    private int cuentaDestino;
-    private String descripcion;
+    private int idCuenta;
+    private String concepto;
     private BigDecimal cantidad;
     private Date fecha;
 
     public Movimiento(){};
-    public Movimiento(int id, String tipo, int cuentaOrigen, int cuentaDestino, String descripcion, BigDecimal cantidad, Date fecha) {
+
+    public Movimiento(int id, String tipo, int idCuenta, String concepto, BigDecimal cantidad, Date fecha) {
         this.id = id;
         this.tipo = tipo;
-        this.cuentaOrigen = cuentaOrigen;
-        this.cuentaDestino = cuentaDestino;
-        this.descripcion=  descripcion;
+        this.idCuenta = idCuenta;
+        this.concepto = concepto;
         this.cantidad = cantidad;
         this.fecha = fecha;
     }
@@ -40,20 +39,20 @@ public class Movimiento {
         this.tipo = tipo;
     }
 
-    public int getCuentaOrigen() {
-        return cuentaOrigen;
+    public int getIdCuenta() {
+        return idCuenta;
     }
 
-    public void setCuentaOrigen(int cuentaOrigen) {
-        this.cuentaOrigen = cuentaOrigen;
+    public void setIdCuenta(int idCuenta) {
+        this.idCuenta = idCuenta;
     }
 
-    public int getCuentaDestino() {
-        return cuentaDestino;
+    public String getConcepto() {
+        return concepto;
     }
 
-    public void setCuentaDestino(int cuentaDestino) {
-        this.cuentaDestino = cuentaDestino;
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
     }
 
     public BigDecimal getCantidad() {
@@ -71,14 +70,6 @@ public class Movimiento {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
+  
     
 }

@@ -47,11 +47,11 @@ app.controller("CuentaEditController", ["$scope", "$http", "$routeParams", funct
                 url: contextPath + "/api/cuenta/"
             }).success(function (data) {
                 alert("Cuenta correctamente actualizado.");
+                location.replace("#/cuenta");
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
         };
-
-        initializeCuenta($scope, $http, $routeParams);
     }
 ]);
+

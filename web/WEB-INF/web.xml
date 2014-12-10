@@ -8,6 +8,12 @@
             15
         </session-timeout>
     </session-config>
+    
+    
+    <listener>
+        <listener-class>com.fpmislata.banco.presentacion.listener.hibernate.ServletContextListenerImplHibernate</listener-class>
+    </listener>
+    
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -22,12 +28,21 @@
     </context-param>
     
     <filter>
-        <filter-name>SessionFilter</filter-name>
-        <filter-class>com.fpmislata.banco.presentacion.filter.security.FilterImplSecurity</filter-class>
-    </filter>
-    
+        <filter-name>FilterImplHibernate</filter-name>
+        <filter-class>com.fpmislata.banco.presentacion.filter.hibernate.FilterImplHibernate</filter-class>
+    </filter>   
     <filter-mapping>
-        <filter-name>SessionFilter</filter-name>
+        <filter-name>FilterImplHibernate</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+    
+    
+    <filter>
+        <filter-name>FilterImplSecurity</filter-name>
+        <filter-class>com.fpmislata.banco.presentacion.filter.security.FilterImplSecurity</filter-class>
+    </filter>    
+    <filter-mapping>
+        <filter-name>FilterImplSecurity</filter-name>
         <url-pattern>/api/*</url-pattern>
     </filter-mapping>
     
@@ -41,8 +56,8 @@
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
     
-*
+
     
-    */
+    
     
     </web-app>

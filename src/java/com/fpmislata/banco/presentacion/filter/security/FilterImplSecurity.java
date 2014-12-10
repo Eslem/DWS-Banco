@@ -44,5 +44,6 @@ public class FilterImplSecurity implements Filter {
                 httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
             }
         }
+
     }
 }

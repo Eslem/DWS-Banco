@@ -25,9 +25,8 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
                 Movimiento movimiento = new Movimiento(
                         resultSet.getInt("id"),                        
                         resultSet.getString("tipo"),
-                        resultSet.getInt("cuentaOrigen"),
-                        resultSet.getInt("cuentaDestino"),
-                        resultSet.getString("descripcion"),
+                        resultSet.getInt("idcuenta"),
+                        resultSet.getString("concepto"),
                         resultSet.getBigDecimal("cantidad"),
                         resultSet.getDate("fecha")
                 );
@@ -44,14 +43,13 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public Movimiento insert(Movimiento movimiento) {
         try {
             Connection connection = connectionFactory.getConnection();
-            String query = "INSERT INTO movimientos (tipo,cuentaOrigen,cuentaDestino,descripcion,cantidad,fecha) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO movimientos (tipo,idcuenta,concepto,cantidad,fecha) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, movimiento.getTipo());
-            preparedStatement.setInt(2, movimiento.getCuentaOrigen());
-            preparedStatement.setInt(3, movimiento.getCuentaDestino());
-            preparedStatement.setString(4, movimiento.getDescripcion());
-            preparedStatement.setBigDecimal(5, movimiento.getCantidad());
-            preparedStatement.setDate(6, new java.sql.Date(new Date().getTime()));
+            preparedStatement.setInt(2, movimiento.getIdCuenta());
+            preparedStatement.setString(3, movimiento.getConcepto());
+            preparedStatement.setBigDecimal(4, movimiento.getCantidad());
+            preparedStatement.setDate(5, new java.sql.Date(new Date().getTime()));
             preparedStatement.executeUpdate();
             connection.close();
             return null;
@@ -67,11 +65,11 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
             String query = "UPDATE movimientos SET tipo = ?, cuentaOrigen = ?, cuentaDestino = ?, descripcion=?, cantidad = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, movimiento.getTipo());
-            preparedStatement.setInt(2, movimiento.getCuentaOrigen());
-            preparedStatement.setInt(3, movimiento.getCuentaDestino());
-            preparedStatement.setString(4, movimiento.getDescripcion());
-            preparedStatement.setBigDecimal(5, movimiento.getCantidad());
-            preparedStatement.setInt(6, movimiento.getId());
+            preparedStatement.setInt(2, movimiento.getIdCuenta());
+            preparedStatement.setString(3, movimiento.getConcepto());
+            preparedStatement.setBigDecimal(4, movimiento.getCantidad());
+            preparedStatement.setDate(5, new java.sql.Date(new Date().getTime()));
+            preparedStatement.executeUpdate();
            
             preparedStatement.executeUpdate();
             connection.close();
@@ -106,11 +104,10 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
             List<Movimiento> movimientos = new ArrayList<Movimiento>();
             while (resultSet.next()) {
                 movimientos.add(new Movimiento(
-                        resultSet.getInt("id"),
+                        resultSet.getInt("id"),                        
                         resultSet.getString("tipo"),
-                        resultSet.getInt("cuentaOrigen"),
-                        resultSet.getInt("cuentaDestino"),
-                        resultSet.getString("descripcion"),
+                        resultSet.getInt("idcuenta"),
+                        resultSet.getString("concepto"),
                         resultSet.getBigDecimal("cantidad"),
                         resultSet.getDate("fecha")
                 ));
