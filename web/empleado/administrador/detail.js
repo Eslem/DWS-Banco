@@ -69,7 +69,7 @@ function UpdateAdministrador($http, baseUrl) {
     this.changePass = function (user, fnOk, fnError) {
         $http({
             method: 'PUT',
-            url: baseUrl + '/api/administrador/passwordword',
+            url: baseUrl + '/api/administrador/password',
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
@@ -106,10 +106,10 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
     };
 
     $scope.changePass = function () {
-        if ($scope.passwordword !== $scope.passwordrepeat) {
+        if ($scope.password !== $scope.passrepeat) {
             alert("Las contraseñas no coinciden");
         } else {
-            $scope.user.passwordword = $scope.password;
+            $scope.user.password = $scope.password;
             UpdateAdministrador.changePass($scope.user, function (data, status) {
                 location.replace("#/administrador/");
             }, function (data, status) {
@@ -123,7 +123,8 @@ function AdministradorInsertController($scope, UpdateAdministrador) {
     $scope.detailShown = false;
     $scope.passShown = true;
     $scope.mainButton = "Insertar";
-
+    
+    
     $scope.update = function () {
         if ($scope.password !== $scope.passrepeat) {
             alert("Las contraseñas no coinciden");

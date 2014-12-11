@@ -24,7 +24,7 @@ public class ClienteDAOImplHibernate extends GenericDAOImplHibernate<Cliente> im
     @Override
     public void updatePassword(Cliente usuario) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createSQLQuery("UPDATE usuarios SET password=? WHERE id=?");
+        Query query = session.createSQLQuery("UPDATE clientes SET password=? WHERE id=?");
         query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());
 
@@ -40,7 +40,7 @@ public class ClienteDAOImplHibernate extends GenericDAOImplHibernate<Cliente> im
     @Override
     public Cliente getByEmail(String name) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("SELECT u FROM Cliente u WHERE email=?");
+        Query query = session.createQuery("SELECT u FROM clientes u WHERE email=?");
         query.setString(0, name);
         query.setCacheable(true);
         return (Cliente) query.uniqueResult();

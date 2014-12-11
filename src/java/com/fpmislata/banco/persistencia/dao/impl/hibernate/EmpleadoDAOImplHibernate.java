@@ -24,7 +24,7 @@ public class EmpleadoDAOImplHibernate extends GenericDAOImplHibernate<Empleado> 
     @Override
     public void updatePassword(Empleado usuario) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createSQLQuery("UPDATE Empleado SET password=? WHERE id=?");
+        Query query = session.createSQLQuery("UPDATE empleados SET password=? WHERE id=?");
         query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());
 
