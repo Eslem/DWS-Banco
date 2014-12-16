@@ -7,8 +7,8 @@ package com.fpmislata.banco.persistencia.dao.impl.hibernate;
 
 import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
-import com.fpmislata.banco.dominio.Administrador;
-import com.fpmislata.banco.persistencia.dao.AdministradorDAO;
+import com.fpmislata.banco.dominio.Cliente;
+import com.fpmislata.banco.persistencia.dao.ClienteDAO;
 import com.fpmislata.banco.persistencia.hibernate.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -17,33 +17,42 @@ import org.hibernate.Session;
  *
  * @author eslem
  */
-public class AdministradorDAOImplHibernate extends GenericDAOImplHibernate<Administrador> implements AdministradorDAO {
+public class ClienteDAOImplHibernate extends GenericDAOImplHibernate<Cliente> implements ClienteDAO {
 
     PasswordEncrypting passwordEncrypting = new PasswordEncryptingImplJasypt();
-
+    
     @Override
-    public void updatePassword(Administrador usuario) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Query query = session.createSQLQuery("UPDATE administradores SET pass=? WHERE id=?");
+    public void updatePassword(Cliente usuario) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createSQLQuery("UPDATE clientes SET password=? WHERE id=?");
         query.setString(0, passwordEncrypting.encrypt(usuario.getPassword()));
         query.setInteger(1, usuario.getId());
-        
-        query.executeUpdate(); 
+
+        query.executeUpdate();
         session.close();
     }
 
     @Override
-    public boolean checkPassword(Administrador usuario, String plainPassword) {
+    public boolean checkPassword(Cliente usuario, String plainPassword) {
         return passwordEncrypting.compare(plainPassword, usuario.getPassword());
-    }
+    }    
 
     @Override
-    protected void preInsert(Session session, Administrador usuario) {
+    public Cliente getByEmail(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("SELECT u FROM clientes u WHERE email=?");
+        query.setString(0, name);
+        query.setCacheable(true);
+        return (Cliente) query.uniqueResult();
+    }
+    
+    @Override
+    protected void preInsert(Session session, Cliente usuario) {
         usuario.setPassword(passwordEncrypting.encrypt(usuario.getPassword()));
     }
 
     @Override
-    protected void postGet(Session session, Administrador usuario) {
+    protected void postGet(Session session, Cliente usuario) {
         usuario.setPassword("");
     }
 }

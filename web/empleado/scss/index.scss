@@ -74,7 +74,6 @@ nav.sidebar{
     width: 240px;
     height: 100%;
     top: 0;
-    left:-200px;
     z-index: 1000;
     @include transition(all, 0.2s, linear);
 
@@ -83,7 +82,6 @@ nav.sidebar{
     }
 
     &:hover{
-        left:0px;
         h3, a{
             opacity: 1;
         }
@@ -128,7 +126,8 @@ nav.sidebar{
 div.wrap-body{
     position:absolute;
     width:100%;
-    padding-left:45px;
+    height:100%;
+    padding-left:245px;
     @include transition(all, 0.2s, linear);
 
     &.ng-leave{
@@ -138,8 +137,42 @@ div.wrap-body{
         opacity:1;
     }
 
-    &.menuHover{
-        padding-left:245px;
+    &.login{
+        padding-left:0px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #eee;
+        height:100%;
+
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+            .form-control {
+                position: relative;
+                height: auto;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
+                &:focus{
+                    z-index: 2;
+                }
+
+            }
+            input[type="email"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+            input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+
     }
 }
 

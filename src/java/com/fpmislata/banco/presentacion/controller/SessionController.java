@@ -8,7 +8,7 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.servicio.Authentication;
 import com.fpmislata.banco.dominio.Credentials;
-import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
+import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,12 +27,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SessionController {
 
     @Autowired
-    UsuarioDAO usuarioDAO;
+    EmpleadoDAO empleadoDAO;
     @Autowired
     JSONConverter jsonConverter;
     @Autowired
     Authentication authentication;
-    
+
     private HttpSession httpsession;
 
     @RequestMapping(value = {"/session"}, method = RequestMethod.POST)
@@ -40,11 +40,18 @@ public class SessionController {
         httpsession = httpServletRequest.getSession(true);
 
         Credentials credentials = jsonConverter.fromJSON(jsonEntrada, Credentials.class);
-        int userId =authentication.authenticateUser(credentials);
+        int userId = authentication.authenticateUser(credentials);
 
-        if (userId!=0) {
-            httpsession.setAttribute("id", userId);
-        } 
+        if (userId != 0) {
+            try {
+                httpsession.setAttribute("id", userId);
+                httpServletResponse.getWriter().print(jsonConverter.toJSON(empleadoDAO.get(userId)));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } else {
+            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = {"/session"}, method = RequestMethod.DELETE)
@@ -57,10 +64,19 @@ public class SessionController {
     @RequestMapping(value = {"/session"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         try {
-            httpsession = httpServletRequest.getSession();
-            httpServletResponse.getWriter().println("session id: " + httpsession.getAttribute("id"));
+            httpsession = httpServletRequest.getSession(true);
+            if (httpsession.getAttribute("id") != null) {
+                int id = (int) httpsession.getAttribute("id");
 
-            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                if (id != 0) {
+                    httpServletResponse.getWriter().print(jsonConverter.toJSON(empleadoDAO.get(id)));
+                    httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                } else {
+                    httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                }
+            }else{
+                httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            }
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

@@ -1,5 +1,5 @@
 -- Volcando estructura para tabla banco.administradores
-CREATE TABLE `administradores` (
+CREATE TABLE `empleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   `apellidos` varchar(50) DEFAULT NULL,
@@ -13,9 +13,9 @@ CREATE TABLE `administradores` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla banco.administradores: ~2 rows (aproximadamente)
-INSERT INTO `administradores` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `telefono`, `email`, `password`, `sucursal`) VALUES
-	(1, 'Administrador1', 'Ministro Admin', '47777777P', 'C/ Desconocida 1 -10', 969999999, 'algo@gmail.com', 'asdfg', 5),
-	(2, 'Administrador2', 'Ministra Admin', '48888888s', 'C/ Falsa 1- 23', 968888888, 'cosa@gmail.com', 'adfg', 2);
+INSERT INTO `empleados` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `telefono`, `email`, `password`, `sucursal`) VALUES
+	(1, 'Administrador1', 'Ministro Admin', '47777777P', 'C/ Desconocida 1 -10', 969999999, 'algo@gmail.com', 'BpAundR1yF3mcxaoWsl9Ijuwi9KmrsLd', 5),
+	(2, 'Administrador2', 'Ministra Admin', '48888888s', 'C/ Falsa 1- 23', 968888888, 'cosa@gmail.com', 'BpAundR1yF3mcxaoWsl9Ijuwi9KmrsLd', 2);
 
 
 -- Volcando estructura para tabla banco.cuentas
@@ -88,7 +88,7 @@ INSERT INTO `sucursalesbancarias` (`id`, `nombre`, `poblacion`, `cp`, `telefono`
 
 
 -- Volcando estructura para tabla banco.usuarios
-CREATE TABLE `usuarios` (
+CREATE TABLE `clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL DEFAULT '0',
   `apellidos` varchar(50) NOT NULL DEFAULT '0',
@@ -101,6 +101,6 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla banco.usuarios: ~0 rows (aproximadamente)
-INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `telefono`, `password`, `email`) VALUES
+INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `telefono`, `password`, `email`) VALUES
 	(1, 'Usuario1', 'Snow', '47777777P', 'Unknown', 965555555, 'asdfg', 'a@g.ccom'),
 	(2, 'Usuario2', 'Lannister', '41111111M', 'Casterly Rock', 964444444, 'asdfg', 'o@g.com');

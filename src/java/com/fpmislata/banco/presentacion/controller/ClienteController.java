@@ -1,8 +1,8 @@
 package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
-import com.fpmislata.banco.dominio.Administrador;
-import com.fpmislata.banco.persistencia.dao.AdministradorDAO;
+import com.fpmislata.banco.dominio.Cliente;
+import com.fpmislata.banco.persistencia.dao.ClienteDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -15,48 +15,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class AdministradorController {
+public class ClienteController {
 
     @Autowired
-    AdministradorDAO administradorDAO;
+    ClienteDAO clienteDAO;
     @Autowired
     JSONConverter jsonConverter;
 
-    @RequestMapping(value = {"/administrador/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
-        httpServletResponse.getWriter().println(jsonConverter.toJSON(administradorDAO.get(id)));
+        
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(clienteDAO.get(id)));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        
+          
     }
 
-    @RequestMapping(value = {"/administrador"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/usuario"}, method = RequestMethod.POST)
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
-        administradorDAO.insert(jsonConverter.fromJSON(jsonEntrada, Administrador.class));
+       
+        clienteDAO.insert(jsonConverter.fromJSON(jsonEntrada, Cliente.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+      
+
     }
 
-    @RequestMapping(value = {"/administrador"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/usuario"}, method = RequestMethod.PUT)
     public void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
-        administradorDAO.update(jsonConverter.fromJSON(jsonEntrada, Administrador.class));
+        clienteDAO.update(jsonConverter.fromJSON(jsonEntrada, Cliente.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/administrador"})
+    @RequestMapping(value = {"/usuario"})
     public void findAll(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
-        List<Administrador> entidadesBancarias = administradorDAO.findAll();
+        List<Cliente> entidadesBancarias = clienteDAO.findAll();
         httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/administrador/{id}"}, method = RequestMethod.DELETE)
+    @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
-        administradorDAO.delete(id);
-        httpServletResponse.getWriter().println("ok deleted");
-        httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        clienteDAO.delete(id);
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = {"/administrador/password"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/usuario/password"}, method = RequestMethod.PUT)
     public void changePass(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
-        administradorDAO.updatePassword(jsonConverter.fromJSON(jsonEntrada, Administrador.class));
+        clienteDAO.updatePassword(jsonConverter.fromJSON(jsonEntrada, Cliente.class));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 }

@@ -7,9 +7,8 @@ package com.fpmislata.banco.servicio;
 
 import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.dominio.Credentials;
-import com.fpmislata.banco.dominio.Usuario;
-import com.fpmislata.banco.persistencia.dao.AdministradorDAO;
-import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
+import com.fpmislata.banco.dominio.Empleado;
+import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -21,15 +20,17 @@ public class Authentication {
     @Autowired
     PasswordEncrypting passwordEncrypting;
     @Autowired
-    AdministradorDAO administradorDAO;
-    @Autowired
-    UsuarioDAO usuarioDAO;
+    EmpleadoDAO empleadoDAO;
 
     public int authenticateUser(Credentials credentials) {
-        Usuario usuario = usuarioDAO.getByName(credentials.getLogin());
-        if(passwordEncrypting.compare(credentials.getPassword(), usuario.getPassword())){
-            return usuario.getId();
+        Empleado empleado = empleadoDAO.getByEmail(credentials.getLogin());
+        if (empleado != null) {
+            if (passwordEncrypting.compare(credentials.getPassword(), empleado.getPassword())) {
+                return empleado.getId();
+            }
+            return 0;
+        } else {
+            return 0;
         }
-        return 0;
     }
 }
