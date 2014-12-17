@@ -38,7 +38,7 @@ header{
                     font-weight: bold;
                     &:hover{
                         color:$color-verdoso;
-                             transition: 0.4s;
+                        transition: 0.4s;
                     }
                 }
 
@@ -95,8 +95,11 @@ header{
 
 #opciones-div{
     .btn-primary{
-        background-color: $color-azul-verdoso;
+        background-color: $color-verdoso-claro;
         border-color: white;
+         &:hover{
+            background-color: $color-verdoso;
+        }
     }
 }
 
@@ -105,8 +108,19 @@ header{
 
 #opciones-div{
     margin: 30px;
+    padding: 15px;
 }
 
+
+
+
+
+.apem{
+    .btn{
+        display: none;
+       
+    }
+}
 
 
 

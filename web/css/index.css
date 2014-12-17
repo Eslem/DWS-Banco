@@ -47,11 +47,17 @@ header .navbar {
     width: 100%; }
 
 #opciones-div .btn-primary {
-  background-color: #00B4CC;
+  background-color: #008C9E;
   border-color: white; }
+  #opciones-div .btn-primary:hover {
+    background-color: #005F6B; }
 
 #opciones-div {
-  margin: 30px; }
+  margin: 30px;
+  padding: 15px; }
+
+.apem .btn {
+  display: none; }
 
 /*       Fade carousel       */
 .fade-carousel {
