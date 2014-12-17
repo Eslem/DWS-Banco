@@ -3,13 +3,13 @@
 
 $(document).ready(function () {
 
-    $(".nav ul a").click(function () {
-        $("header .nav ul a.active").removeClass("active");
+    $("header .navbar-nav ul a").click(function () {
+        $("header .navbar-nav ul a.active").removeClass("active");
         $(this).addClass("active");
     });
     
  $(".carousel").carousel({
-     interval:5000
+     interval:3000
  });
 
 });
@@ -18,22 +18,22 @@ $(function () {
     $(window).scroll(function () {
         var scrollTop = $(window).scrollTop();
         if (scrollTop != 0)
-            $('.nav').stop().animate({'opacity': '0.2'}, 400);
+            $('header .navbar').stop().animate({'opacity': '1'}, 400);
         else
-            $('.nav').stop().animate({'opacity': '1'}, 400);
+            $('header .navbar').stop().animate({'opacity': '0'}, 400);
     });
 
-    $('.nav').hover(
+    $('header .navbar').hover(
             function (e) {
                 var scrollTop = $(window).scrollTop();
                 if (scrollTop != 0) {
-                    $('.nav').stop().animate({'opacity': '1'}, 400);
+                    $('header.navbar').stop().animate({'opacity': '0.5'}, 400);
                 }
             },
             function (e) {
                 var scrollTop = $(window).scrollTop();
                 if (scrollTop != 0) {
-                    $('.nav').stop().animate({'opacity': '0.2'}, 400);
+                    $('header .navbar').stop().animate({'opacity': '1'}, 400);
                 }
             }
     );
