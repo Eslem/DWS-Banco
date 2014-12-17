@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <!--property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+  <session-factory>
+    <!--property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost/banco</property>
         <property name="connection.username">root</property>
         <property name="connection.password">root</property-->
-        <property name="connection.datasource">java:/comp/env/jdbc/datasource</property>
-        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="hibernate.show_sql">false</property>
-        <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/cliente.hbm.xml"/>
-        <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/empleado.hbm.xml"/>
-        <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/entidadbancaria.hbm.xml"/>
-        <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/cuenta.hbm.xml"/>
-        <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/movimiento.hbm.xml"/>
-        <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/sucursalbancaria.hbm.xml"/>
-        <mapping class="com.fpmislata.banco.dominio.Usuario"/>
-        <mapping class="com.fpmislata.banco.dominio.EntidadBancaria"/>
-        <mapping class="com.fpmislata.banco.dominio.Cuenta"/>
-        <mapping class="com.fpmislata.banco.dominio.Movimiento"/>
-        <mapping class="com.fpmislata.banco.dominio.SucursalBancaria"/>
-    
-    </session-factory>
-    
+    <property name="connection.datasource">java:/comp/env/jdbc/datasource</property>
+    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    <property name="hibernate.show_sql">false</property>
+    <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/cliente.hbm.xml"/>
+    <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/empleado.hbm.xml"/>
+    <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/entidadbancaria.hbm.xml"/>
+    <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/cuenta.hbm.xml"/>
+    <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/movimiento.hbm.xml"/>
+    <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/sucursalbancaria.hbm.xml"/>
+    <mapping class="com.fpmislata.banco.dominio.Usuario"/>
+    <mapping class="com.fpmislata.banco.dominio.EntidadBancaria"/>
+    <mapping class="com.fpmislata.banco.dominio.Cuenta"/>
+    <mapping class="com.fpmislata.banco.dominio.Movimiento"/>
+    <mapping class="com.fpmislata.banco.dominio.SucursalBancaria"/>
+  </session-factory>
 </hibernate-configuration>
