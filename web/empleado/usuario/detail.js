@@ -20,16 +20,13 @@ function UpdateUsuarioProvider() {
 
 function UpdateUsuario($http, baseUrl) {
     this.get = function (id, fnOk, fnError) {
-        NProgress.start();
         $http({
             method: 'GET',
             url: baseUrl + '/api/usuario/' + id
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
 
@@ -40,10 +37,8 @@ function UpdateUsuario($http, baseUrl) {
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
 
@@ -54,10 +49,8 @@ function UpdateUsuario($http, baseUrl) {
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
     this.changePass = function (user, fnOk, fnError) {
@@ -67,10 +60,8 @@ function UpdateUsuario($http, baseUrl) {
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
 

@@ -26,30 +26,24 @@ function ListAdministradoresProvider() {
 
 function ListAdministradores($http, baseUrl) {
     this.get = function (fnOk, fnError) {
-        NProgress.start();
         $http({
             method: 'GET',
             url: baseUrl + '/api/administrador'
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
 
     this.delete = function (id, fnOk, fnError) {
-        NProgress.start();
         $http({
             method: 'DELETE',
             url: baseUrl + '/api/administrador/' + id
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            Progress.done();
         });
     }
 }
