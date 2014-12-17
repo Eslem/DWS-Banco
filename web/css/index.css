@@ -6,7 +6,11 @@ body {
 
 header .navbar {
   background-color: #343838;
-  opacity: 0; }
+  opacity: 0;
+  transition: 0.4s; }
+  header .navbar:hover {
+    opacity: 1;
+    transition: 0.5s; }
   header .navbar .navbar-nav {
     margin-left: 40%; }
     header .navbar .navbar-nav li:hover {
@@ -21,7 +25,6 @@ header .navbar {
 
 #logo {
   width: 35%;
-  border: 1px solid #343838;
   margin-top: 60px;
   margin-left: 10%; }
   #logo h3 {
@@ -43,31 +46,6 @@ header .navbar {
     height: 500px;
     width: 100%; }
 
-/*#div3{
-    height: 600px;
-    margin: 0 auto;
-    text-align:center;
-    #opciones-content{
-        margin-top:2%;      
-        .opcion{
-            display: inline-block;           
-            width: 10%;
-            height: 60%;
-            border: 1px solid $color-gris;
-            margin:{
-                left:15px;
-                top:10px;
-            }
-            .opcion-imagen{
-                width:100%;
-                img{
-                    width: 50%;
-                }
-            }
-        }
-
-    }
-}*/
 #opciones-div .btn-primary {
   background-color: #00B4CC;
   border-color: white; }
@@ -140,19 +118,19 @@ header .navbar {
 
 .fade-carousel .carousel-inner .item .hero {
   opacity: 0;
-  -webkit-transition: 2s all ease-in-out .1s;
-  -moz-transition: 2s all ease-in-out .1s;
-  -ms-transition: 2s all ease-in-out .1s;
-  -o-transition: 2s all ease-in-out .1s;
-  transition: 2s all ease-in-out .1s; }
+  -webkit-transition: 2s all ease-in-out .3s;
+  -moz-transition: 2s all ease-in-out .3s;
+  -ms-transition: 2s all ease-in-out .3s;
+  -o-transition: 2s all ease-in-out .3s;
+  transition: 2s all ease-in-out .3s; }
 
 .fade-carousel .carousel-inner .item.active .hero {
   opacity: 1;
-  -webkit-transition: 2s all ease-in-out .1s;
-  -moz-transition: 2s all ease-in-out .1s;
-  -ms-transition: 2s all ease-in-out .1s;
-  -o-transition: 2s all ease-in-out .1s;
-  transition: 2s all ease-in-out .1s; }
+  -webkit-transition: 2s all ease-in-out .3s;
+  -moz-transition: 2s all ease-in-out .3s;
+  -ms-transition: 2s all ease-in-out .3s;
+  -o-transition: 2s all ease-in-out .3s;
+  transition: 2s all ease-in-out .3s; }
 
 /********************************/
 /*            Overlay           */

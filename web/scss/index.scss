@@ -21,6 +21,11 @@ header{
     .navbar{
         background-color: $color-gris;
         opacity:0;
+        transition: 0.4s;
+        &:hover{
+            opacity: 1;
+            transition: 0.5s;
+        }
         .navbar-nav{
             margin-left:40%;
             li{
@@ -50,8 +55,7 @@ header{
 
 
 #logo{
-    width: 35%;
-    border: 1px solid $color-gris;
+    width: 35%;  
 
     margin:{
         top: 60px;
@@ -88,31 +92,7 @@ header{
     }
 }
 
-/*#div3{
-    height: 600px;
-    margin: 0 auto;
-    text-align:center;
-    #opciones-content{
-        margin-top:2%;      
-        .opcion{
-            display: inline-block;           
-            width: 10%;
-            height: 60%;
-            border: 1px solid $color-gris;
-            margin:{
-                left:15px;
-                top:10px;
-            }
-            .opcion-imagen{
-                width:100%;
-                img{
-                    width: 50%;
-                }
-            }
-        }
 
-    }
-}*/
 #opciones-div{
     .btn-primary{
         background-color: $color-azul-verdoso;
@@ -205,19 +185,19 @@ header{
 
 .fade-carousel .carousel-inner .item .hero {
     opacity: 0;
-    -webkit-transition: 2s all ease-in-out .1s;
-    -moz-transition: 2s all ease-in-out .1s; 
-    -ms-transition: 2s all ease-in-out .1s; 
-    -o-transition: 2s all ease-in-out .1s; 
-    transition: 2s all ease-in-out .1s; 
+    -webkit-transition: 2s all ease-in-out .3s;
+    -moz-transition: 2s all ease-in-out .3s; 
+    -ms-transition: 2s all ease-in-out .3s; 
+    -o-transition: 2s all ease-in-out .3s; 
+    transition: 2s all ease-in-out .3s; 
 }
 .fade-carousel .carousel-inner .item.active .hero {
     opacity: 1;
-    -webkit-transition: 2s all ease-in-out .1s;
-    -moz-transition: 2s all ease-in-out .1s; 
-    -ms-transition: 2s all ease-in-out .1s; 
-    -o-transition: 2s all ease-in-out .1s; 
-    transition: 2s all ease-in-out .1s;    
+    -webkit-transition: 2s all ease-in-out .3s;
+    -moz-transition: 2s all ease-in-out .3s; 
+    -ms-transition: 2s all ease-in-out .3s; 
+    -o-transition: 2s all ease-in-out .3s; 
+    transition: 2s all ease-in-out .3s;    
 }
 
 /********************************/

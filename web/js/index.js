@@ -3,13 +3,13 @@
 
 $(document).ready(function () {
 
-    $("header .navbar-nav ul a").click(function () {
+  /*  $("header .navbar-nav ul a").click(function () {
         $("header .navbar-nav ul a.active").removeClass("active");
         $(this).addClass("active");
-    });
+    });*/
     
  $(".carousel").carousel({
-     interval:3000
+     interval:5000
  });
 
 });
