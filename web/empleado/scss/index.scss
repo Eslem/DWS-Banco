@@ -34,7 +34,7 @@ $sidebar-backColor:#1d1f21;
 $nav-elemColor:#9d9d9d;
 $nav-hoverColor:#ffffff;
 $nav-backActive : #080808;
-$nav-borderActive:#0d77b6;
+$nav-borderActive:#008C9E;
 
 @mixin transition($transition-property, $transition-time, $method) {
     -webkit-transition: $transition-property $transition-time $method;
@@ -68,6 +68,11 @@ body, html{
     padding:0px;
 }
 
+hr.colored{
+    background-color: $nav-borderActive;
+    color:$nav-borderActive;
+}
+
 nav.sidebar{
     background-color: $sidebar-backColor;
     position:fixed;
@@ -94,6 +99,8 @@ nav.sidebar{
         margin: 0;
         font-weight: 300;
         color:$nav-hoverColor;
+        text-align: center;
+        background-color: #131516;
         //opacity: 0;
         //opacity: 1;
         // @include transition-delay(all, 0.2s, linear, 0.3s);
