@@ -1,10 +1,12 @@
 app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {
-            templateUrl: "main.html"
+             templateUrl: "login/login.html",
+             controller:"LoginController"
         });
         
         $routeProvider.when('/panel', {
-            templateUrl: "panel/panel.html"
+            templateUrl: "panel/panel.html",
+            controller:"PanelController"
         });
         
         $routeProvider.when('/login', {
@@ -13,7 +15,8 @@ app.config(['$routeProvider', function($routeProvider) {
         });
         
         $routeProvider.otherwise({
-           redirectTo: '/' 
+           redirectTo: '/panel' ,
+           controller:"PanelController"
         });
     }
 ]);

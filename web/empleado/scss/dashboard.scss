@@ -1,0 +1,318 @@
+//@import 'general';
+@mixin border-radius($val){
+    -moz-border-radius: $val;
+    -webkit-border-radius: $val;
+    border-radius: $val;
+}
+
+@mixin border-radius2($val1, $val2, $val3, $val4){
+    -moz-border-radius: $val1 $val2 $val3 $val4 ;
+    -webkit-border-radius: $val1 $val2 $val3 $val4 ;
+    border-radius: $val1 $val2 $val3 $val4 ;
+}
+
+//Color
+$background:#D9E0E7;
+$navcolor: #242A30;
+$navcolorLight: #2D353C;
+$navlicolor:#777777;
+$white:#ffffff;
+$primary:#348FE2;
+$primary-dark:#1166ab;
+$primary-dark-hover:#002e4d;
+
+$purple :#727CB6;
+$purple-dark:#614369;
+$purple-dark-hover:#2b1e30;
+
+$secondary: #00ACAC;
+$secondary-dark: #037b77;
+$secondary-dark-hover: #00504e;
+
+$red:#FF5B57;
+$red-dark:#c72626;
+$red-dark-hover:#8c0000;
+
+//Dimens
+$width-tablets: 768px;
+$width-mobiles: 480px;
+
+
+@mixin boxSizing($type) {
+  -webkit-box-sizing: $type;
+  -moz-box-sizing: $type;
+  box-sizing: $type;
+
+}
+@mixin col($dividend, $rows) {
+  float: left;
+  word-wrap: break-word;
+  min-height: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: $dividend/$rows*100%;
+
+}
+.row {
+  &:after,
+  &:before {
+    clear: both;
+  }
+
+}
+
+@for $i from 1 through 12 {
+    .col-#{$i}{
+        @include col($i, 12);
+    }
+}
+
+@media screen and (max-width:$width-tablets) {
+  @for $i from 1 through 12 {
+      @if $i>6{
+          .col-#{$i}{
+              @include col(1,1);
+          }
+      }@else{
+          .col-#{$i}{
+              @include col($i,6);
+          }
+      }
+  }
+
+}
+@media screen and (max-width:$width-mobiles) {
+  @for $i from 1 through 12 {
+      @if $i>2{
+          .col-#{$i}{
+              @include col(1,1);
+          }
+      }@else{
+          .col-#{$i}{
+              @include col($i,2);
+          }
+      }
+  }
+}
+
+.dashboard{
+    .box {
+        @include border-radius(4px);
+        background-color: $white;
+
+        .header {
+            background-color: $navcolor;
+            @include border-radius2(4px, 4px, 0px, 0px);
+            color: $white;
+            padding: 10px 15px;
+
+            .title {
+                font-weight: 500!important;
+                margin: 2px 5px 7px;
+                font-size:12px;
+            }
+        }
+
+    }
+    .small-box {
+
+        color: $white;
+        @include border-radius(4px);
+
+        .titles {
+            padding: 8px;
+            width: 70%;
+            display: inline-block;
+
+            .title {
+                font-size: 1em;
+                margin: 5px;
+                font-family: inherit;
+            }
+            .value {
+                font-size: 1.2em;
+                margin: 5px;
+            }
+
+        }
+        .icon {
+            width: 30%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 4em;
+            float: right;
+        }
+        .more {
+            text-align: right;
+            width: 100%;
+            padding: 5px;
+            cursor: pointer;
+            @include border-radius2(0px, 0px, 4px, 4px);
+
+        }
+        &.primary {
+            background-color: $primary;
+
+            .more {
+                background-color: $primary-dark;
+
+                &:hover {
+                    background-color: $primary-dark-hover;
+                }
+
+            }
+            .icon {
+                color: #5ca5e7;
+            }
+
+        }
+        &.secondary {
+            background-color: $secondary;
+
+            .more {
+                background-color: $secondary-dark;
+
+                &:hover {
+                    background-color: $secondary-dark-hover;
+                }
+
+            }
+            .icon {
+                color: #33bcbc;
+            }
+
+        }
+        &.purple {
+            background-color: $purple;
+
+            .more {
+                background-color: $purple-dark;
+
+                &:hover {
+                    background-color: $purple-dark-hover;
+                }
+
+            }
+            .icon {
+                color: #8e96c4;
+            }
+
+        }
+        &.red {
+            background-color: $red;
+
+            .more {
+                background-color: $red-dark;
+
+                &:hover {
+                    background-color: $red-dark-hover;
+                }
+
+            }
+            .icon {
+                color: #ff7b78;
+            }
+
+        }
+        &:after,
+            &:before {
+            clear: both;
+        }
+
+    }
+    .padding-small {
+        padding-left: 5px;
+        padding-right: 5px;
+
+    }
+    .chart-inline {
+        display: inline-block;
+        float: left;
+        /*&:after,
+        &:before {
+          clear: both;
+        }*/
+
+    }
+    .dark {
+        background-color: $navcolorLight;
+
+    }
+    .charts {
+        display: block;
+        overflow: auto;
+        position:relative;
+        padding: 15px;
+
+        .chart1 {
+            width: 70%;
+        }
+        .chart2 {
+            background-color: $navcolor;
+            width: 30%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            //width: 230px;
+            padding: 15px;
+            @include border-radius2(0px, 4px, 4px, 0px);
+
+        }
+        .chart-title {
+            font-size: 18px!important;
+            color: #fff;
+            font-weight: 300!important;
+            margin: 2px 5px 7px;
+
+            small {
+                display: block;
+                margin-top: 5px;
+                font-size: 12px;
+                color: rgba(255,255,255,.3);
+            }
+        }
+
+
+        ul.chart-legend{
+            color:$white;
+            font-size: 12px;
+            li{
+                list-style:none;
+                span {
+                    color: rgba(255,255,255,.3);
+                }
+            }
+        }
+
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        font-family: inherit;
+        /* font-weight: 500; */
+        line-height: 1.1;
+        color: inherit;
+    }
+
+
+    span.primary, i.primary{
+        color:$primary;
+    }
+
+    span.secondary, i.secondary{
+        color:$secondary;
+    }
+
+}

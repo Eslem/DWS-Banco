@@ -45,7 +45,9 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
     }).success(function (data, status) {
         if (status === 200) {
             $rootScope.login = true;
-            $rootScope.userLogued = data;
+            $rootScope.userLogued = data;                   
+        }else{
+            location.replace('#/login');     
         }
     }).error(function (data, status) {
         if (status !== 403) {
