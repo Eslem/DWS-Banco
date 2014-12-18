@@ -33,7 +33,7 @@ public class FilterImplSecurity implements Filter {
 
         String sessionUrl = httpServletRequest.getContextPath() + "/api/session";
         boolean logged = httpsession.getAttribute("id") != null;
-
+        
 
         if (httpServletRequest.getRequestURI().equals(sessionUrl)) {
             filterChain.doFilter(servletRequest, servletResponse);
@@ -46,7 +46,5 @@ public class FilterImplSecurity implements Filter {
             }
         }
 
-      
-    
     }
 }

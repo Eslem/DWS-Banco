@@ -22,8 +22,8 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
         try {
             InitialContext initialContext = new InitialContext();
             Context context = (Context) initialContext.lookup("java:comp/env");
-           DataSource dataSource = (DataSource) context.lookup("jdbc/MySQLDS");
-           // DataSource dataSource = (DataSource) context.lookup("jdbc/datasource");
+           //DataSource dataSource = (DataSource) context.lookup("jdbc/MySQLDS");
+            DataSource dataSource = (DataSource) context.lookup("jdbc/datasource");
             return dataSource;
         } catch (NamingException ex) {
             throw new RuntimeException(ex);
