@@ -26,30 +26,24 @@ function ListUsuariosProvider() {
 
 function ListUsuarios($http, baseUrl) {
     this.get = function (fnOk, fnError) {
-        NProgress.start();
         $http({
             method: 'GET',
             url: baseUrl + '/api/usuario'
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
 
     this.delete = function (id, fnOk, fnError) {
-        NProgress.start();
         $http({
             method: 'DELETE',
             url: baseUrl + '/api/usuario/' + id
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            Progress.done();
         });
     }
 }

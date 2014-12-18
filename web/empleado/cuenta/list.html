@@ -2,17 +2,19 @@
 
 <div class="container-fluid">
     <h1>Cuentas:</h1>
+    
+    <button ng-click="crearCuenta()" class="btn btn-primary pull-right margin-small">
+        <i class="fa fa-plus"></i> Añadir
+    </button>
+    
     <table class="table table-striped container table-hover">
-        <thead>
             <tr>
-                <td>Id</td>
-                <td>Saldo</td>
-                <td>Id Sucursal</td>
-                <td>Tipo</td>
-                <td>Acciones</td>
+                <th>Id</th>
+                <th>Saldo</th>
+                <th>Id Sucursal</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
             </tr>
-        </thead>
-        <tbody>
             <tr ng-repeat="cuenta in cuentas">
                 <td>{{cuenta.idCuenta}}</td>
                 <td>{{cuenta.saldoCuenta}}€</td>
@@ -25,9 +27,5 @@
                         <i class="fa fa-trash"></i>
                     </button></td>
             </tr>
-        </tbody>
     </table>
-    <button ng-click="crearCuenta()" class="btn btn-primary">
-        <i class="glyphicon glyphicon-plus"></i>
-    </button>
 </div>

@@ -26,16 +26,13 @@ function UpdateAdministradorProvider() {
 
 function UpdateAdministrador($http, baseUrl) {
     this.get = function (id, fnOk, fnError) {
-        NProgress.start();
         $http({
             method: 'GET',
             url: baseUrl + '/api/administrador/' + id
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
 
@@ -46,10 +43,8 @@ function UpdateAdministrador($http, baseUrl) {
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
 
@@ -60,10 +55,8 @@ function UpdateAdministrador($http, baseUrl) {
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
     this.changePass = function (user, fnOk, fnError) {
@@ -73,10 +66,8 @@ function UpdateAdministrador($http, baseUrl) {
             data: user
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     }
 

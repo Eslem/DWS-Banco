@@ -19,17 +19,15 @@ function LoginServiceProvider() {
 
 function LoginService($http, baseUrl) {
     this.login = function (fnOk, fnError, body) {
-        NProgress.start();
         $http({
             method: 'POST',
             url: baseUrl + '/api/session',
             data: body
         }).success(function (data, status, headers, config) {
             fnOk(data);
-            NProgress.done();
+            
         }).error(function (data, status, headers, config) {
             fnError(data, status);
-            NProgress.done();
         });
     };
 }

@@ -25,6 +25,10 @@ body, html {
   margin: 0px;
   padding: 0px; }
 
+hr.colored {
+  background-color: #008C9E;
+  color: #008C9E; }
+
 nav.sidebar {
   background-color: #1d1f21;
   position: fixed;
@@ -46,7 +50,9 @@ nav.sidebar {
     padding: 20px;
     margin: 0;
     font-weight: 300;
-    color: #ffffff; }
+    color: #ffffff;
+    text-align: center;
+    background-color: #131516; }
   nav.sidebar a {
     display: block;
     color: #9d9d9d;
@@ -59,7 +65,7 @@ nav.sidebar {
     nav.sidebar a.active {
       color: #ffffff;
       background-color: #080808;
-      border-right: 4px solid #0d77b6; }
+      border-right: 4px solid #008C9E; }
 
 div.wrap-body {
   position: absolute;
