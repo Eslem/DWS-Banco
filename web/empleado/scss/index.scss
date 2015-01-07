@@ -183,6 +183,10 @@ div.wrap-body{
     }
 }
 
+.table-shadow {
+    box-shadow: 2px 2px 6px gray;
+}
+
 .animate.ng-enter, .animate.ng-leave {
     -webkit-transition:0.5s linear all;
     transition:0.5s linear all;

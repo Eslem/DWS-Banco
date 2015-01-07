@@ -5,17 +5,16 @@
         <i class="fa fa-plus"></i> Añadir
     </button>
 
-    <table class="table table-striped container table-hover">
+    <table class="table table-striped table-hover table-bordered table-shadow">
         <tr>
-            <th>Id</th>
+
             <th>Tipo</th>
             <th>Cuenta</th>
             <th>Concepto </th>
             <th>Cantidad</th>
-            <th>Acciones</th>
-        </tr>
+            <th>Acciones</th> 
+       </tr>
         <tr ng-repeat="movimiento in movimientos"  class="animate">
-            <td>{{movimiento.id}}</td>
             <td>{{movimiento.tipo}}</td>
             <td>{{movimiento.idCuenta}}</td>
             <td>{{movimiento.concepto}}</td>

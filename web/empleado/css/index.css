@@ -110,6 +110,9 @@ div.wrap-body {
         border-top-left-radius: 0;
         border-top-right-radius: 0; }
 
+.table-shadow {
+  box-shadow: 2px 2px 6px gray; }
+
 .animate.ng-enter, .animate.ng-leave {
   -webkit-transition: 0.5s linear all;
   transition: 0.5s linear all;
