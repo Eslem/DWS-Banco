@@ -32,7 +32,7 @@ public class SucursalBancariaController {
     JSONConverter jsonConverter;
 
     @RequestMapping(value = {"/sucursalbancaria/{id}"}, method = RequestMethod.GET)
-    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(sucursalBancariaDAO.get(id)));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
@@ -57,7 +57,7 @@ public class SucursalBancariaController {
     }
 
     @RequestMapping(value = {"/sucursalbancaria/{id}"}, method = RequestMethod.DELETE)
-    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         sucursalBancariaDAO.delete(id);
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
 

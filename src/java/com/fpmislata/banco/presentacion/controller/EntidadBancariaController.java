@@ -23,7 +23,7 @@ public class EntidadBancariaController {
     JSONConverter jsonConverter;
 
     @RequestMapping(value = {"/entidadBancaria/{id}"}, method = RequestMethod.GET)
-    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadBancariaDAO.get(id)));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
@@ -48,7 +48,7 @@ public class EntidadBancariaController {
     }
     
     @RequestMapping(value = {"/entidadBancaria/{id}"}, method = RequestMethod.DELETE)
-    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         entidadBancariaDAO.delete(id);
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }

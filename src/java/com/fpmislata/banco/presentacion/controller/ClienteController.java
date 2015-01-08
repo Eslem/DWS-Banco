@@ -23,7 +23,7 @@ public class ClienteController {
     JSONConverter jsonConverter;
 
     @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.GET)
-    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         
         httpServletResponse.getWriter().println(jsonConverter.toJSON(clienteDAO.get(id)));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
@@ -54,7 +54,7 @@ public class ClienteController {
     }
 
     @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.DELETE)
-    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         clienteDAO.delete(id);
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
