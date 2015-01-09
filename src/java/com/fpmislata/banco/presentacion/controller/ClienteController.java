@@ -1,8 +1,16 @@
 package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
+<<<<<<< HEAD:src/java/com/fpmislata/banco/presentacion/controller/ClienteController.java
 import com.fpmislata.banco.dominio.Cliente;
 import com.fpmislata.banco.persistencia.dao.ClienteDAO;
+=======
+import com.fpmislata.banco.dominio.EntidadBancaria;
+import com.fpmislata.banco.dominio.Usuario;
+import com.fpmislata.banco.persistencia.dao.EntidadBancariaDAO;
+import com.fpmislata.banco.persistencia.dao.UsuarioDAO;
+import com.fpmislata.banco.persistencia.dao.impl.hibernate.UsuarioDAOImplHibernate;
+>>>>>>> cb1371f25231ef2ade096b2075300afdeec472b1:src/java/com/fpmislata/banco/presentacion/controller/UsuarioController.java
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

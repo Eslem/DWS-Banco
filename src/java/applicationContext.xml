@@ -9,6 +9,7 @@
   
     <context:annotation-config/>
     
+<<<<<<< HEAD
     <bean class="com.fpmislata.banco.persistencia.dao.impl.DataSourceFactoryImpl"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.ConnectionFactoryImplDataSource"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.MovimientoDAOImplHibernate"/>
@@ -17,6 +18,14 @@
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.CuentaDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.ClienteDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.EmpleadoDAOImplHibernate"/>
+=======
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.ConnectionFactoryImplDataSource"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.EntidadBancariaDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.MovimientoDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.UsuarioDAOImplHibernate"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.jdbc.CuentaDAOImplJDBC"/>
+    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.AdministradorDAOImplHibernate"/>
+>>>>>>> cb1371f25231ef2ade096b2075300afdeec472b1
     <bean class="com.fpmislata.banco.persistencia.migration.DatabaseMigrationImplFlyway"/>
     <bean class="com.fpmislata.banco.common.json.impl.JSONConverterImplJackson"/>
     <bean class="com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt"/>
