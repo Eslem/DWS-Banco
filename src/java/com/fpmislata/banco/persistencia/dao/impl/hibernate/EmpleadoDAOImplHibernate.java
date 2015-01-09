@@ -9,7 +9,7 @@ import com.fpmislata.banco.common.encrypting.PasswordEncrypting;
 import com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt;
 import com.fpmislata.banco.dominio.Empleado;
 import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
-import com.fpmislata.banco.persistencia.hibernate.HibernateUtil;
+import com.fpmislata.banco.persistencia.common.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
