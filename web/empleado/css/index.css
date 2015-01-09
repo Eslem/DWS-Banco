@@ -42,7 +42,7 @@ nav.sidebar {
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear; }
   nav.sidebar i.fa {
-    width: 25px; }
+    font-size: 2en; }
   nav.sidebar:hover h3, nav.sidebar:hover a {
     opacity: 1; }
   nav.sidebar h3 {
@@ -67,6 +67,28 @@ nav.sidebar {
       background-color: #080808;
       border-right: 4px solid #008C9E; }
 
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0px !important; }
+
+.navbar-toggle {
+  margin-right: 45px; }
+
+@media screen and (max-width: 480px) {
+  nav.sidebar {
+    width: 50px; }
+    nav.sidebar a span {
+      display: none; }
+    nav.sidebar a i {
+      display: block; }
+    nav.sidebar h3 {
+      padding: 10px 5px; }
+      nav.sidebar h3 img {
+        width: 100%; }
+      nav.sidebar h3 span {
+        display: none; }
+
+  div.wrap-body {
+    padding-left: 55px !important; } }
 div.wrap-body {
   position: absolute;
   width: 100%;

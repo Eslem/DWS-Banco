@@ -1,28 +1,30 @@
 <div class="container-fluid">
-
-    <button class="btn btn-primary pull-right margin-small" ng-click="crear()">
-        <i class="fa fa-plus"></i> Añadir
-    </button>
-
-    <table class="table table-striped container table-hover">
-        <tr>
-            <th>Id</th>
-            <th>Tipo</th>
-            <th>Cuenta</th>
-            <th>Concepto </th>
-            <th>Cantidad</th>
-            <th>Acciones</th>
-        </tr>
-        <tr ng-repeat="movimiento in movimientos"  class="animate">
-            <td>{{movimiento.id}}</td>
-            <td>{{movimiento.tipo}}</td>
-            <td>{{movimiento.idCuenta}}</td>
-            <td>{{movimiento.concepto}}</td>
-            <td>{{movimiento.cantidad| currency: "€" }}</td>
-            <td class="actions">
-                <button type="button" class="btn btn-primary" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>
-                <button type="button" class="btn btn-danger" ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
-            </td>
-        </tr>
-    </table>
+    <div class='clearfix'>
+        <button class="btn btn-primary pull-right margin-small" ng-click="crear()">
+            <i class="fa fa-plus"></i> Añadir
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped container table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Cuenta</th>
+                <th>Concepto </th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+            <tr ng-repeat="movimiento in movimientos"  class="animate">
+                <td>{{movimiento.id}}</td>
+                <td>{{movimiento.tipo}}</td>
+                <td>{{movimiento.idCuenta}}</td>
+                <td>{{movimiento.concepto}}</td>
+                <td>{{movimiento.cantidad| currency: "€" }}</td>
+                <td class="actions">
+                    <button type="button" class="btn btn-primary" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

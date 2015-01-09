@@ -38,6 +38,13 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
         return (route === $location.path());
     };
 
+    $scope.$on('$routeChangeStart', function (next, current) {
+       if(!$rootScope.login && $location.path() !== "/login"){
+           alert("Aceso denegado, debes iniciar sesion");
+           location.replace('#/login');
+       }
+    });
+
     $http({
         method: "GET",
         data: $scope.entidadBancaria,
@@ -45,9 +52,9 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
     }).success(function (data, status) {
         if (status === 200) {
             $rootScope.login = true;
-            $rootScope.userLogued = data;                   
-        }else{
-            location.replace('#/login');     
+            $rootScope.userLogued = data;
+        } else {
+            location.replace('#/login');
         }
     }).error(function (data, status) {
         if (status !== 403) {
@@ -62,6 +69,7 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
             url: contextPath + "/api/session/"
         }).success(function (data, status) {
             $rootScope.login = false;
+             location.replace('#/login');
         }).error(function (data, status) {
             alert("Fatal error " + status + ": " + data);
         });

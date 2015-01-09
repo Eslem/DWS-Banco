@@ -67,6 +67,14 @@
     <body ng-controller="EmpleadoController">
 
         <nav class="navbar navbar-inverse" role="navigation" style="background-color: #1D1F21" ng-show="login">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
             <div class="container-fluid">
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -78,28 +86,28 @@
         </nav>
 
         <nav class="sidebar" ng-show="login">
-            <h3><img src="../resources/img/MetroBankLogo_small.png" alt="logo" /> MetroBank</h3>
+            <h3><img src="../resources/img/MetroBankLogo_small.png" alt="logo" /> <span>MetroBank</span></h3>
             <a href="#/panel" ng-class="{ 
                         active:isActive('/panel')
-                    }"><i class="fa fa-dashboard"></i> Panel</a>
+                    }"><i class="fa fa-dashboard"></i> <span>Panel</span></a>
             <a href="#/entidadbancaria" ng-class="{ 
                         active:isActive('/entidadbancaria/')
-                    }"><i class="fa fa-building"></i> Entidad bancaria</a>
+                    }"><i class="fa fa-building"></i> <span>Entidad bancaria</span></a>
             <a href="#/administrador" ng-class="{
                         active:isActive('/administrador/')
-                    }"><i class="fa fa-user"></i> Administrador</a>
+                    }"><i class="fa fa-user"></i> <span>Administrador</span></a>
             <a href="#/usuario" ng-class="{
                         active:isActive('/usuario/')
-                    }"><i class="fa fa-user"></i> Usuario</a>
+                    }"><i class="fa fa-user"></i> <span>Usuario</span></a>
             <a href="#/cuenta" ng-class="{
                         active:isActive('/cuenta')
-                    }"><i class="fa fa-credit-card"></i> Cuenta</a>
+                    }"><i class="fa fa-credit-card"></i> <span>Cuenta</span></a>
             <a href="#/movimiento" ng-class="{
                         active:isActive('/movimiento/')
-                    }"><i class="fa fa-envelope"></i> Movimiento</a>
+                    }"><i class="fa fa-envelope"></i> <span>Movimiento</span></a>
             <a href="#/sucursalbancaria" ng-class="{
                         active:isActive('/sucursalbancaria/')
-                    }"><i class="fa fa-suitcase"></i> Sucursal Bancaria</a>
+                    }"><i class="fa fa-suitcase"></i> <span>Sucursal Bancaria</span></a>
 
 
 

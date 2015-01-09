@@ -1,3 +1,7 @@
+//Dimens
+$width-tablets: 768px;
+$width-mobiles: 480px;
+
 .table {
     width:100%;
 
@@ -84,7 +88,7 @@ nav.sidebar{
     @include transition(all, 0.2s, linear);
 
     i.fa{
-        width:25px;
+        font-size: 2en;
     }
 
     &:hover{
@@ -130,6 +134,42 @@ nav.sidebar{
     }
 }
 
+//Space for loader
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px !important;
+}
+
+ .navbar-toggle {
+    margin-right: 45px;
+}
+
+
+@media screen and (max-width:$width-mobiles) {
+    nav.sidebar{
+        width: 50px;
+        a{
+            span{
+                display: none;                
+            }
+            i{
+                display: block;
+            }
+        }
+
+        h3{
+            padding: 10px 5px;
+            img{
+                width: 100%;
+            }
+            span{
+                display:none;
+            }
+        }
+    }
+    div.wrap-body{
+        padding-left:55px !important; 
+    }
+}
 
 div.wrap-body{
     position:absolute;

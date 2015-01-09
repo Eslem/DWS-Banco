@@ -6,7 +6,7 @@ body {
 
 header .navbar {
   background-color: #343838;
-  opacity: 0;
+  opacity: .6;
   transition: 0.4s; }
   header .navbar:hover {
     opacity: 1;
@@ -41,6 +41,10 @@ header .navbar {
     #div1 #buscador input {
       display: inline-block; }
 
+.apem:hover {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow .5s; }
+
 #div2 {
   margin: 0 auto; }
   #div2 img {
@@ -57,9 +61,6 @@ header .navbar {
 #opciones-div {
   margin: 30px;
   padding: 15px; }
-
-.apem .btn {
-  display: none; }
 
 /*       Fade carousel       */
 .fade-carousel {
@@ -209,3 +210,5 @@ header .navbar {
   display: block;
   width: 100%;
   height: auto !important; }
+
+/*# sourceMappingURL=index.css.map */

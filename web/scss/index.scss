@@ -20,7 +20,7 @@ body{
 header{
     .navbar{
         background-color: $color-gris;
-        opacity:0;
+        opacity:.6;
         transition: 0.4s;
         &:hover{
             opacity: 1;
@@ -83,6 +83,13 @@ header{
 }
 
 
+.apem{
+    &:hover{
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.1);
+        transition:box-shadow .5s;
+    }
+}
+
 #div2{
     margin: 0 auto;
 
@@ -99,7 +106,7 @@ header{
     .btn-primary{
         background-color: $color-verdoso-claro;
         border-color: white;
-         &:hover{
+        &:hover{
             background-color: $color-verdoso;
         }
     }
@@ -112,18 +119,6 @@ header{
     margin: 30px;
     padding: 15px;
 }
-
-
-
-
-
-.apem{
-    .btn{
-        display: none;
-       
-    }
-}
-
 
 
 
