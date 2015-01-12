@@ -23,7 +23,8 @@ public class EmpleadoController {
     JSONConverter jsonConverter;
 
     @RequestMapping(value = {"/administrador/{id}"}, method = RequestMethod.GET)
-    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
+                
         httpServletResponse.getWriter().println(jsonConverter.toJSON(empleadoDAO.get(id)));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
@@ -48,7 +49,7 @@ public class EmpleadoController {
     }
 
     @RequestMapping(value = {"/administrador/{id}"}, method = RequestMethod.DELETE)
-    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         empleadoDAO.delete(id);
         httpServletResponse.getWriter().println("ok deleted");
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);

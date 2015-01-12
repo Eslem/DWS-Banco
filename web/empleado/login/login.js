@@ -48,6 +48,9 @@ function LoginController($scope, $rootScope, LoginService) {
             }, $scope.credentials);
         }
     };
+    if($rootScope.login){
+        location.replace('#/panel/');
+    }
 }
 
 
