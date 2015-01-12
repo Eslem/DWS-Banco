@@ -1,3 +1,5 @@
+@import "mixins.scss";
+
 //Dimens
 $width-tablets: 768px;
 $width-mobiles: 480px;
@@ -40,33 +42,6 @@ $nav-hoverColor:#ffffff;
 $nav-backActive : #080808;
 $nav-borderActive:#008C9E;
 
-@mixin transition($transition-property, $transition-time, $method) {
-    -webkit-transition: $transition-property $transition-time $method;
-    -moz-transition: $transition-property $transition-time $method;
-    -ms-transition: $transition-property $transition-time $method;
-    -o-transition: $transition-property $transition-time $method;
-    transition: $transition-property $transition-time $method;
-}
-@mixin transition-delay($transition-property, $transition-time, $method, $delay) {
-    -webkit-transition: $transition-property $transition-time $method $delay;
-    -moz-transition: $transition-property $transition-time $method $delay;
-    -ms-transition: $transition-property $transition-time $method $delay;
-    -o-transition: $transition-property $transition-time $method$delay;
-    transition: $transition-property $transition-time $method $delay;
-}
-
-@mixin transform($val1, $val2){
-    transform-origin: $val1 $val2;
-    -webkit-transform-origin: $val1 $val2;
-}
-
-@mixin animation($type, $time, $val, $transition){
-    -webkit-animation:$type $time $val $transition;
-    -moz-animation:$type $time $val $transition;
-    animation:$type $time $val $transition; 
-}
-
-
 body, html{
     margin:0px;
     //background-color: #D9E0E7;
@@ -85,7 +60,7 @@ nav.sidebar{
     height: 100%;
     top: 0;
     z-index: 1000;
-    @include transition(all, 0.2s, linear);
+    @include transition(all 0.2s linear);
 
     i.fa{
         font-size: 2en;
@@ -161,7 +136,7 @@ nav.sidebar{
             img{
                 width: 100%;
             }
-            span{
+            span{  
                 display:none;
             }
         }
@@ -176,7 +151,7 @@ div.wrap-body{
     width:100%;
     height:100%;
     padding-left:245px;    
-    @include transition(all, 0.2s, linear);
+    @include transition(all 0.2s linear);
 
     &.ng-leave{
         opacity:0;
@@ -244,3 +219,17 @@ div.wrap-body{
 .margin-small {
     margin:4px;
 }
+
+
+
+/*Login*/
+
+.formulario-sombra{
+
+    box-shadow:4px 4px 16px 4px rgba(black, .1);
+    .form-signin-heading{
+        text-align: center;
+    }
+}
+
+
