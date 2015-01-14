@@ -1,7 +1,7 @@
 //HTTP interceptor
 
 
-var app = angular.module("app", ['ngRoute', 'ngAnimate']).run(function ($rootScope) {
+var app = angular.module("app", ['ngRoute', 'ngAnimate', 'ui.date']).run(function ($rootScope) {
     $rootScope.login = false;
 });
 
@@ -34,6 +34,7 @@ app.config(function ($provide, $httpProvider) {
 app.constant("baseUrl", contextPath);
 
 app.controller("EmpleadoController", function ($scope, $rootScope, $location, $http) {
+    
     $scope.isActive = function (route) {
         return (route === $location.path());
     };
@@ -75,4 +76,10 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
         });
     };
 
+});
+
+app.constant('uiDateConfig',{
+    dateFormat:"dd/mm/yy",
+    firstDay:1
+    
 });

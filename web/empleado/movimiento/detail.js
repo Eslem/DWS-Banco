@@ -7,6 +7,8 @@ function selectedMovimiento($scope, $http, $routeParams) {
             url: contextPath + "/api/movimiento/" + $scope.movimiento.id
         }).success(function(data) {
             $scope.movimiento = data;
+            data.fecha=new Date(data.fecha);
+            
         }).error(function(data, status) {
             alert("Fatal error: " + status);
         });
