@@ -6,6 +6,7 @@
 package com.fpmislata.banco.dominio;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Usuario implements Serializable{
     private int telefono;
     private String email;
     private String password;
+  
     
     public Usuario(){};
     

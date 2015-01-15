@@ -5,6 +5,8 @@
  */
 package com.fpmislata.banco.dominio;
 
+import java.util.Date;
+
 /**
  *
  * @author Manu
@@ -17,6 +19,7 @@ public class SucursalBancaria {
     private int codigoPostal;
     private String telefono;
     private int idEntidad;
+     private Date fecha;
 
     public SucursalBancaria() {
     }
@@ -78,6 +81,14 @@ public class SucursalBancaria {
 
     public void setIdEntidad(int idEntidad) {
         this.idEntidad = idEntidad;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
     

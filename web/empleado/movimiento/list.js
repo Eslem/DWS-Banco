@@ -5,32 +5,33 @@ app.controller("MovimientoListController", function ($scope, $http) {
             method: "GET",
             url: contextPath + "/api/movimiento/"
         }).success(function (data, status) {
-            $scope.movimientos = data;
+            $scope.movimientos = data;           
+              data.fecha = new Date(data.fecha);            
         }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
     };
 
     $scope.deleteMovimiento = function (id) {
-        ok = confirm("¿ Estas seguro que quieres borrar el movimiento con ID: " + id+" ?");
+        ok = confirm("¿ Estas seguro que quieres borrar el movimiento con ID: " + id + " ?");
         if (ok) {
             $http({
                 method: "DELETE",
                 url: contextPath + "/api/movimiento/" + id
             }).success(function () {
-                alert("Exito al borrar el movimiento con ID: "+id);
+                alert("Exito al borrar el movimiento con ID: " + id);
                 $scope.findAll();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
-        }else{
+        } else {
             $scope.findAll();
-        }   
+        }
 
     };
 
-    $scope.crear=function(){
-      location.replace("#/movimiento/insert/");
+    $scope.crear = function () {
+        location.replace("#/movimiento/insert/");
     };
 
     $scope.editar = function (id) {

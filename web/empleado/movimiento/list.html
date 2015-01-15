@@ -12,13 +12,16 @@
             <th>Cuenta</th>
             <th>Concepto </th>
             <th>Cantidad</th>
+            <th>Fecha</th>
             <th>Acciones</th> 
+            
        </tr>
         <tr ng-repeat="movimiento in movimientos"  class="animate">
             <td>{{movimiento.tipo}}</td>
             <td>{{movimiento.idCuenta}}</td>
             <td>{{movimiento.concepto}}</td>
             <td>{{movimiento.cantidad| currency: "€" }}</td>
+            <td>{{movimiento.fecha | date :"dd/MM/yyyy"}}</td>
             <td class="actions">
                 <button type="button" class="btn btn-primary" ng-click="editar(movimiento.id)"><i class="fa fa-edit"></i></button>
                 <button type="button" class="btn btn-danger" ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
