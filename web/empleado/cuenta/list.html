@@ -10,19 +10,17 @@
             <th>Saldo</th>
             <th>Id Sucursal</th>
             <th>Tipo</th>
+            <th>Fecha</th>
             <th>Acciones</th>
         </tr>
         <tr ng-repeat="cuenta in cuentas">
             <td>{{cuenta.saldoCuenta|currency: "€"}}</td>
             <td>{{cuenta.idSucursal}}</td>
             <td>{{cuenta.tipoCuenta}}</td>
+            <td>{{cuenta.fecha | date: "dd/MM/yyyy"}}</td>
             <td class="actions">
-                <button ng-click="editCuenta(cuenta.idCuenta)" class="btn btn-primary">
-                    <i class="fa fa-edit"></i>
-                </button>
-                <button ng-click="deleteCuenta(cuenta.idCuenta)" class="btn btn-danger">
-                    <i class="fa fa-trash"></i>
-                </button>
+                <button type="button" ng-click="editCuenta(cuenta.idCuenta)" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                <button type="button" ng-click="deleteCuenta(cuenta.idCuenta)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
             </td>
         </tr>
     </table>

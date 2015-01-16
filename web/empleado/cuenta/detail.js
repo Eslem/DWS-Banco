@@ -5,6 +5,7 @@ function initializeCuenta($scope, $http, $routeParams) {
             url: contextPath + "/api/cuenta/" + $scope.cuenta.id
         }).success(function (data) {
             $scope.cuenta = data;
+            data.fecha = new Date(data.fecha);
         }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
