@@ -20,6 +20,16 @@ function selectedSucursal($scope, $http, $routeParams) {
     }
 }
 
+function getEntidades($scope, $http) {
+    $http({
+        method: "GET",
+        url: contextPath + "/api/entidadBancaria/"
+    }).success(function (data, status) {
+        $scope.entidadesBancarias = data;
+    }).error(function (data, status) {
+        alert("Fatal error: " + status);
+    });
+}
 
 /* Controllers */
 
@@ -39,7 +49,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", function 
             });
         };
 
-
+        getEntidades($scope, $http);
     }
 ]);
 
