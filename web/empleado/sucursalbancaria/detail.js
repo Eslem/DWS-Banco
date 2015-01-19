@@ -20,21 +20,17 @@ function selectedSucursal($scope, $http, $routeParams) {
     }
 }
 
-function extendScopeGetEntidades($scope, $http) {
+function getEntidades($scope, $http) {
 
-    $scope.getEntidades = function () {
-
-        $http({
-            method: "GET",
-            url: contextPath + "/api/entidadBancaria/"
-        }).success(function (data, status) {
-            $scope.entidadesBancarias = data;
-        }).error(function (data, status) {
-            alert("Fatal error: " + status);
-        });
-    };
+    $http({
+        method: "GET",
+        url: contextPath + "/api/entidadBancaria/"
+    }).success(function (data, status) {
+        $scope.entidadesBancarias = data;
+    }).error(function (data, status) {
+        alert("Fatal error: " + status);
+    });
 }
-
 
 function getCuentas($scope, $http) {
     $http({
@@ -47,35 +43,6 @@ function getCuentas($scope, $http) {
     });
 }
 
-
-$scope.deleteCuenta = function (id) {
-    ok = confirm("¿ Está seguro que quiere borrar la cuenta de ID: " + id + " ?");
-
-    if (ok) {
-        $http({
-            method: "DELETE",
-            url: contextPath + "/api/cuenta/" + id
-        }).success(function () {
-            getCuentas();
-        }).error(function (data, status) {
-            alert("Fatal error: " + status);
-        });
-    } else {
-        getCuentas();
-    }
-}
-;
-
-function editCuenta(id) {
-    location.replace("#/cuenta/edit/" + id);
-}
-;
-
-
-function crearCuenta() {
-    location.replace("#/cuenta/insert");
-}
-;
 
 
 
@@ -117,8 +84,45 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             });
         };
 
+
+        $scope.deleteCuenta = function (id) {
+            ok = confirm("¿ Está seguro que quiere borrar la cuenta de ID: " + id + " ?");
+
+            if (ok) {
+                $http({
+                    method: "DELETE",
+                    url: contextPath + "/api/cuenta/" + id
+                }).success(function () {
+                    getCuentas();
+                }).error(function (data, status) {
+                    alert("Fatal error: " + status);
+                });
+            } else {
+                getCuentas();
+            }
+        };
+
+        $scope.editCuenta = function (id) {
+            location.replace("#/cuenta/edit/" + id);
+        };
+
+
+        $scope.crearCuenta = function () {
+            location.replace("#/cuenta/insert");
+        };
+
+
+
+
+
+
+
+
+
         selectedSucursal($scope, $http, $routeParams);
+        getEntidades($scope, $http);
         getCuentas($scope, $http);
+
     }
 ]);
 
