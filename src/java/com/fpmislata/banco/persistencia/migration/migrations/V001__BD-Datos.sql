@@ -62,8 +62,8 @@ CREATE TABLE `movimientos` (
 
 -- Volcando datos para la tabla banco.movimientos: ~0 rows (aproximadamente)
 INSERT INTO `movimientos` (`id`, `tipo`, `idcuenta`,  `concepto`, `cantidad`, `fecha`) VALUES
-	(1, 'Ingreso', 1,  'Factura luz', '250', '2014-12-04'),
-	(2, 'Reintregro', 3, 'Error factura luz', '0.55', NULL);
+	(1, 'Debe', 1,  'Factura luz', '250', '2014-12-04'),
+	(2, 'Haber', 3, 'Error factura luz', '0.55', NULL);
 
 
 

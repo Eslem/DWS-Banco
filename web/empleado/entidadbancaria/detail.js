@@ -1,11 +1,11 @@
 function initializeEntidadBancaria($scope, $http, $routeParams) {
-    $scope.getEntidadBancaria = function() {
+    $scope.getEntidadBancaria = function () {
         $http({
             method: "GET",
             url: contextPath + "/api/entidadBancaria/" + $scope.entidadBancaria.id
-        }).success(function(data) {
+        }).success(function (data) {
             $scope.entidadBancaria = data;
-        }).error(function(data, status) {
+        }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
     };
@@ -25,36 +25,38 @@ function goToEntidadBancariaList() {
 
 /* Controllers */
 
-app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($scope, $http) {
+app.controller("EntidadBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
         $scope.buttonText = 'Insertar';
         $scope.show = 'False';
 
-        $scope.formSend = function() {
+        $scope.formSend = function () {
             $http({
                 method: "POST",
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
-            }).success(function(data) {
+            }).success(function (data) {
                 goToEntidadBancariaList();
-            }).error(function(data, status) {
+                location.replace('#/entidadbancaria/');
+            }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
         };
     }
 ]);
 
-app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
         $scope.buttonText = 'Actualizar';
         $scope.show = 'True';
 
-        $scope.formSend = function() {
+        $scope.formSend = function () {
             $http({
                 method: "PUT",
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
-            }).success(function(data) {
+            }).success(function (data) {
                 goToEntidadBancariaList();
-            }).error(function(data, status) {
+                location.replace('#/entidadbancaria/');
+            }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
         };

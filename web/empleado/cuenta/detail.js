@@ -30,6 +30,7 @@ app.controller("CuentaInsertController", ["$scope", "$http", function ($scope, $
             }).success(function (data) {
                 alert("Cuenta correctamente insertada");
                 $scope.getCuenta($scope.cuenta.id);
+                location.replace('#/cuenta/');
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });

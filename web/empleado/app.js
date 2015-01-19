@@ -2,7 +2,6 @@
 
 
 var app = angular.module("app", ['ngRoute', 'ngAnimate']).run(function ($rootScope) {
-    $rootScope.login = false;
 });
 
 
@@ -38,12 +37,7 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
         return (route === $location.path());
     };
 
-    $scope.$on('$routeChangeStart', function (next, current) {
-       if(!$rootScope.login && $location.path() !== "/login"){
-           alert("Aceso denegado, debes iniciar sesion");
-           location.replace('#/login');
-       }
-    });
+
 
     $http({
         method: "GET",
@@ -53,6 +47,13 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
         if (status === 200) {
             $rootScope.login = true;
             $rootScope.userLogued = data;
+
+            $scope.$on('$routeChangeStart', function (next, current) {
+                if (($rootScope.login === undefined || $rootScope.login === false) && $location.path() !== "/login") {
+                    alert("Aceso denegado, debes iniciar sesion");
+                    location.replace('#/login');
+                }
+            });
         } else {
             location.replace('#/login');
         }
@@ -69,7 +70,7 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
             url: contextPath + "/api/session/"
         }).success(function (data, status) {
             $rootScope.login = false;
-             location.replace('#/login');
+            location.replace('#/login');
         }).error(function (data, status) {
             alert("Fatal error " + status + ": " + data);
         });
