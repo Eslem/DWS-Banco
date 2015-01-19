@@ -7,6 +7,7 @@ package com.fpmislata.banco.dominio;
 
 import java.io.Serializable;
 
+
 /**
  *
  * @author eslem
@@ -20,6 +21,7 @@ public class Cliente implements Serializable {
     private int telefono;
     private String email;
     private String password;
+  
     
     public Cliente(){};
     

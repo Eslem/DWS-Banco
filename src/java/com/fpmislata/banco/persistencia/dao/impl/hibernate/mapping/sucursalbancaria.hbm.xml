@@ -10,5 +10,6 @@
         <property name="codigoPostal" column="cp" />
         <property name="telefono" />
         <property name="idEntidad" column="entidad"/>
+        <property name="fecha"/>
     </class>
 </hibernate-mapping>

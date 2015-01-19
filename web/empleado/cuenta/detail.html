@@ -1,19 +1,70 @@
-<!DOCTYPE html>
 
-<div class="container-fluid"> 
-    <a href="#/cuenta/" ><h1 class="page-header">Cuenta</h1></a>
-    <div class="form">
-        <p> <label  class="badge" for="id" >ID:</label><br/>
-            <input   disabled="disabled" class="form-control text-center" id="id" ng-model="cuenta.idCuenta" type="text" placeholder="ID"></p>
-        <p><label  class="badge" for="nombre">Saldo:</label><br/>
-            <input   class="form-control text-center " id="saldo"  ng-model="cuenta.saldoCuenta" type="double" placeholder="Saldo"></p>
-        <p><label  class="badge" for="codigo">Id sucursal:</label><br/>
-            <input  class="form-control text-center" id="idSuc" ng-model="cuenta.idSucursal" type="text" placeholder="Sucursal"></p>
-        <p><label class="badge" for="codigo">Tipo de cuenta:</label><br/>
-            <select id="tipo" ng-model="cuenta.tipoCuenta" class="form-control">
-                <option value="Corriente">Corriente</option>
-                <option value="Ahorro">Ahorro</option>
-            </select></p>
-        <button  class="btn btn-primary" ng-click="formSend()">{{buttonText}}</button>
-    </div>
+<div class="container-fluid">
+    <h2>{{buttonText}} Cuenta</h2>
+    <hr/>
+
+    <form class="form-horizontal" role="form">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="id">Id</label>
+            <div class="col-sm-8">
+                <input id="id" type="text" class="form-control" placeholder="id" ng-model="cuenta.idCuenta" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="saldo" >Saldo Cuenta</label>
+            <div class="col-sm-8">
+                <input id="saldo" type="double" class="form-control" placeholder="Saldo" ng-model="cuenta.saldoCuenta">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="sucursal">Sucursal</label>
+            <div class="col-sm-8">
+                <input id="sucursal" type="text" class="form-control" placeholder="ID Sucursal" ng-model="cuenta.idSucursal">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="tipo">Tipo</label>
+            <div class="col-sm-8">
+                <select id="tipo" ng-model="cuenta.tipoCuenta" class="form-control" >
+                    <option value="Corriente">Corriente</option>
+                    <option value="Ahorro">Ahorro</option>
+                </select>
+            </div>
+        </div>
+
+        <div align="center">
+            <button ng-click="formSend();" class="btn btn-primary">{{buttonText}}</button>
+        </div>
+
+    </form>
 </div>
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<p> <label  class="badge" for="id" >ID:</label><br/>
+    <input   disabled="disabled" class="form-control text-center" id="id" ng-model="cuenta.idCuenta" type="text" placeholder="ID"></p>
+<p><label  class="badge" for="nombre">Saldo:</label><br/>
+    <input   class="form-control text-center " id="saldo"  ng-model="cuenta.saldoCuenta" type="double" placeholder="Saldo"></p>
+<p><label  class="badge" for="codigo">Id sucursal:</label><br/>
+    <input  class="form-control text-center" id="idSuc" ng-model="cuenta.idSucursal" type="text" placeholder="Sucursal"></p>
+<p><label class="badge" for="codigo">Tipo de cuenta:</label><br/>
+    <select id="tipo" ng-model="cuenta.tipoCuenta" class="form-control">
+        <option value="Corriente">Corriente</option>
+        <option value="Ahorro">Ahorro</option>
+    </select></p>
+<button  class="btn btn-primary" ng-click="formSend()">{{buttonText}}</button>
+</div>-->
+

@@ -25,6 +25,7 @@ CREATE TABLE `cuentas` (
   `idsucursal` int(10) unsigned DEFAULT '0',
   `tipo` enum('Ahorro','Corriente') NOT NULL DEFAULT 'Corriente',
   `cliente` int(9) NOT NULL DEFAULT 0,
+  `fecha` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -40,6 +41,7 @@ CREATE TABLE `entidadesbancarias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   `codigo` varchar(50) DEFAULT NULL,
+  `fecha` date DEFAULT NULL, 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -77,6 +79,7 @@ CREATE TABLE `sucursalesbancarias` (
   `cp` int(5) NOT NULL DEFAULT '0',
   `telefono` varchar(20) NOT NULL DEFAULT '0',
   `entidad` int(11) NOT NULL DEFAULT '0',
+  `fecha` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `entidad` (`entidad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;

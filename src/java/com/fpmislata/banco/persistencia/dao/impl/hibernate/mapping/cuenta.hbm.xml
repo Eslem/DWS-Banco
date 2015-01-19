@@ -9,5 +9,6 @@
         <property name="idSucursal" column="idsucursal"/>
         <property name="tipoCuenta" column="tipo" />
         <property name="clienteCuenta" column="cliente"/>
+        <property name="fecha"/>
     </class>
 </hibernate-mapping>
