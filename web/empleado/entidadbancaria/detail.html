@@ -38,12 +38,36 @@
             <div align="center">
                 <button ng-click="formSend();" class="btn btn-primary">{{buttonText}}</button>
             </div>
-
         </form>
 
+        <br/>
 
+        <button class="btn btn-primary pull-right margin-small" ng-click="create()">
+            <i class="fa fa-plus"></i> Añadir
+        </button>
 
-
-
+        <table class="table table-striped table-bordered table-hover table-shadow" ng-show="show">
+            <tr>
+                <th>Nombre</th>
+                <th>Poblacion</th>
+                <th>Codigo Postal</th>
+                <th>Telefono</th>
+                <th>Entidad</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+            <tr ng-repeat="sucursalBancaria in sucursales">
+                <td>{{sucursalBancaria.nombre}}</td>
+                <td>{{sucursalBancaria.poblacion}}</td>
+                <td>{{sucursalBancaria.codigoPostal}}</td>
+                <td>{{sucursalBancaria.telefono}}</td>
+                <td>{{sucursalBancaria.idEntidad}}</td>
+                <td>{{sucursalBancaria.fecha| date : "dd/MM/yyyy"}}</td>
+                <td class="actions">
+                    <button type="button" class="btn btn-primary" ng-click="editarSucursal(sucursalBancaria.id)"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteSucursal(sucursalBancaria.id)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>

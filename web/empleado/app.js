@@ -1,7 +1,7 @@
 //HTTP interceptor
 
 
-var app = angular.module("app", ['ngRoute', 'ngAnimate']).run(function ($rootScope) {
+var app = angular.module("app", ['ngRoute', 'ngAnimate', 'ui.date']).run(function ($rootScope) {
 });
 
 
@@ -76,4 +76,9 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
         });
     };
 
+});
+
+app.constant('uiDateConfig', {
+    dateFormat:"dd/mm/yy",
+    fistDay:1
 });

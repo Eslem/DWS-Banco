@@ -6,11 +6,13 @@
 package com.fpmislata.banco.persistencia.dao;
 
 import com.fpmislata.banco.dominio.SucursalBancaria;
+import java.util.List;
 
 /**
  *
  * @author Manu
  */
-public interface SucursalBancariaDAO extends GenericDAO<SucursalBancaria>{
-    
+public interface SucursalBancariaDAO extends GenericDAO<SucursalBancaria> {
+
+    public List<SucursalBancaria> getByEntidad(int idEntidad);
 }
