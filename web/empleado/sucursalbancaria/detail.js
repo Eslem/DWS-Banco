@@ -31,6 +31,35 @@ function getEntidades($scope, $http) {
     });
 }
 
+
+function getCuentas($scope, $http) {
+    $http({
+        method: "GET",
+        url: contextPath + "/api/sucursalbancaria/" + $scope.sucursalbancaria.id + "/cuentas/"
+    }).success(function (data, status) {
+        $scope.cuentas = data;
+    }).error(function (data, status) {
+        alert("Fatal error: " + status);
+    });
+}
+
+
+function deleteCuenta(id) {
+       location.replace("#/cuenta/delete/" + id);
+
+};
+
+function editCuenta(id) {
+    location.replace("#/cuenta/edit/" + id);
+};
+
+
+function crearCuenta () {
+    location.replace("#/cuenta/insert");
+};
+
+
+
 /* Controllers */
 
 app.controller("SucursalBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
@@ -70,6 +99,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         };
 
         selectedSucursal($scope, $http, $routeParams);
+        getCuentas($scope, $http);
     }
 ]);
 
