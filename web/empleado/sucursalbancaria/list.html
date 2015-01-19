@@ -15,12 +15,12 @@
             <th>Fecha</th>
             <th>Acciones</th>
         </tr>
-        <tr ng-repeat="sucursalbancaria in sucursales"  class="animate">
+        <tr ng-repeat="sucursalbancaria in sucursales">
             <td>{{sucursalbancaria.nombre}}</td>
             <td>{{sucursalbancaria.poblacion}}</td>
             <td>{{sucursalbancaria.codigoPostal}}</td>
             <td>{{sucursalbancaria.telefono}}</td>
-            <td>{{sucursalbancaria.Entidad}}</td>
+            <td>{{sucursalbancaria.idEntidad}}</td>
             <td>{{sucursalbancaria.fecha | date : "dd/MM/yyyy"}}</td>
             <td class="actions">
                 <button type="button" class="btn btn-primary" ng-click="editar(sucursalbancaria.id)"><i class="fa fa-edit"></i></button>

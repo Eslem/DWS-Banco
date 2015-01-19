@@ -64,8 +64,8 @@ CREATE TABLE `movimientos` (
 
 -- Volcando datos para la tabla banco.movimientos: ~0 rows (aproximadamente)
 INSERT INTO `movimientos` (`id`, `tipo`, `idcuenta`,  `concepto`, `cantidad`, `fecha`) VALUES
-	(1, 'Ingreso', 1,  'Factura luz', '250', '2014-12-04'),
-	(2, 'Reintregro', 3, 'Error factura luz', '0.55', NULL);
+	(1, 'Debe', 1,  'Factura luz', '250', '2014-12-04'),
+	(2, 'Haber', 3, 'Error factura luz', '0.55', NULL);
 
 
 
@@ -87,7 +87,7 @@ CREATE TABLE `sucursalesbancarias` (
 -- Volcando datos para la tabla banco.sucursalesbancarias: ~0 rows (aproximadamente)
 INSERT INTO `sucursalesbancarias` (`id`, `nombre`, `poblacion`, `cp`, `telefono`, `entidad`) VALUES
 	(1, 'Sucursal1', 'Manises', 46940, 961111111, 1),
-	(2, 'Sucursal2', 'Quart', 46939, 961222222, 1);
+	(2, 'Sucursal2', 'Quart', 46939, 961222222, 2);
 
 
 -- Volcando estructura para tabla banco.usuarios

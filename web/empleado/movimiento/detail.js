@@ -31,7 +31,7 @@ app.controller("MovimientoInsertController", ["$scope", "$http", function ($scop
                 url: contextPath + "/api/movimiento/"
             }).success(function (data) {
                 //alert("Movimiento correctamente insertado");
-                goToList();
+                goToListMovimiento();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -51,7 +51,7 @@ app.controller("MovimientoUpdateController", ["$scope", "$http", "$routeParams",
                 url: contextPath + "/api/movimiento/"
             }).success(function (data) {
                 alert("Movimiento " + $scope.movimiento.id + " correctamente actualizado.");
-                goToList();
+                goToListMovimiento();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -61,14 +61,7 @@ app.controller("MovimientoUpdateController", ["$scope", "$http", "$routeParams",
     }
 ]);
 
-function goToList() {
+function goToListMovimiento() {
     location.replace('#/movimiento/');
 }
-
-
-
-
-
-
-
 

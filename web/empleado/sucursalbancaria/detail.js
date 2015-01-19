@@ -44,6 +44,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", function 
             }).success(function (data) {
                 alert("Sucursal Bancaria  correctamente insertada");
                 $scope.getSucursalBancaria($scope.sucursalbancaria.id);
+                goToListSucursal();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -64,6 +65,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             }).success(function (data) {
                 alert("Sucursal Bancaria " + $scope.sucursalbancaria.id + " correctamente actualizada.");
                 $scope.getSucursalBancaria($scope.sucursalbancaria.id);
+                goToListSucursal();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -73,12 +75,6 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
     }
 ]);
 
-
-
-
-
-
-
-
-
-
+function goToListSucursal() {
+    location.replace('#/sucursalbancaria/');
+}
