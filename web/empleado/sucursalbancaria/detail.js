@@ -107,8 +107,8 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         };
 
 
-        $scope.crearCuenta = function () {
-            location.replace("#/cuenta/insert");
+        $scope.crearCuenta = function (id) {
+            location.replace("#/cuenta/insert"+id);
         };
 
 
