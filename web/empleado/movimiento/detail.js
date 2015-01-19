@@ -1,5 +1,3 @@
-
-
 function selectedMovimiento($scope, $http, $routeParams) {
     $scope.getMovimiento = function () {
         $http({
@@ -7,6 +5,7 @@ function selectedMovimiento($scope, $http, $routeParams) {
             url: contextPath + "/api/movimiento/" + $scope.movimiento.id
         }).success(function (data) {
             $scope.movimiento = data;
+            data.fecha = new Date(data.fecha);
         }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
@@ -32,8 +31,7 @@ app.controller("MovimientoInsertController", ["$scope", "$http", function ($scop
                 url: contextPath + "/api/movimiento/"
             }).success(function (data) {
                 alert("Movimiento correctamente insertado");
-                $scope.getMovimiento($scope.movimiento.id);
-                location.replace('#/movimiento/');
+                goToListMovimiento();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -53,23 +51,16 @@ app.controller("MovimientoUpdateController", ["$scope", "$http", "$routeParams",
                 url: contextPath + "/api/movimiento/"
             }).success(function (data) {
                 alert("Movimiento " + $scope.movimiento.id + " correctamente actualizado.");
-                $scope.getMovimiento($scope.movimiento.id);
-                location.replace('#/movimiento/');
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
         };
-
-        selectedMovimiento($scope, $http, $routeParams);
+                goToListMovimiento();
     }
 ]);
 
+function goToListMovimiento() {
+    location.replace('#/movimiento/');
+}
 
-
-
-
-
-
-
-
-
+        selectedMovimiento($scope, $http, $routeParams);

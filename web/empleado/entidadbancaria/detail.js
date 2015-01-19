@@ -5,6 +5,7 @@ function initializeEntidadBancaria($scope, $http, $routeParams) {
             url: contextPath + "/api/entidadBancaria/" + $scope.entidadBancaria.id
         }).success(function (data) {
             $scope.entidadBancaria = data;
+            data.fecha = new Date(data.fecha);
         }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
@@ -36,7 +37,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function (
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function (data) {
                 goToEntidadBancariaList();
-                location.replace('#/entidadbancaria/');
+                goToListEntidad();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -55,7 +56,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function (data) {
                 goToEntidadBancariaList();
-                location.replace('#/entidadbancaria/');
+                goToListEntidad();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -64,3 +65,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
         initializeEntidadBancaria($scope, $http, $routeParams);
     }
 ]);
+
+function goToListEntidad() {
+    location.replace('#/entidadbancaria/');
+}

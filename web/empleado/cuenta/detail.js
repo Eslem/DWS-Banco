@@ -5,6 +5,7 @@ function initializeCuenta($scope, $http, $routeParams) {
             url: contextPath + "/api/cuenta/" + $scope.cuenta.id
         }).success(function (data) {
             $scope.cuenta = data;
+            data.fecha = new Date(data.fecha);
         }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
@@ -29,8 +30,7 @@ app.controller("CuentaInsertController", ["$scope", "$http", function ($scope, $
                 url: contextPath + "/api/cuenta/"
             }).success(function (data) {
                 alert("Cuenta correctamente insertada");
-                $scope.getCuenta($scope.cuenta.id);
-                location.replace('#/cuenta/');
+                goToListCuenta();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -48,11 +48,17 @@ app.controller("CuentaEditController", ["$scope", "$http", "$routeParams", funct
                 url: contextPath + "/api/cuenta/"
             }).success(function (data) {
                 alert("Cuenta correctamente actualizado.");
-                location.replace("#/cuenta");
+                goToListCuenta();
+                $scope.getCuenta($scope.cuenta.id);
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
-            });
+            });           
         };
+        initializeCuenta($scope, $http, $routeParams);
     }
 ]);
+
+function goToListCuenta() {
+    location.replace('#/cuenta/');
+}
 

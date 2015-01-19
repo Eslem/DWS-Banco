@@ -17,10 +17,5 @@
         <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/cuenta.hbm.xml"/>
         <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/movimiento.hbm.xml"/>
         <mapping resource="com/fpmislata/banco/persistencia/dao/impl/hibernate/mapping/sucursalbancaria.hbm.xml"/>
-        <mapping class="com.fpmislata.banco.dominio.Usuario"/>
-        <mapping class="com.fpmislata.banco.dominio.EntidadBancaria"/>
-        <mapping class="com.fpmislata.banco.dominio.Cuenta"/>
-        <mapping class="com.fpmislata.banco.dominio.Movimiento"/>
-        <mapping class="com.fpmislata.banco.dominio.SucursalBancaria"/>
     </session-factory>
 </hibernate-configuration>

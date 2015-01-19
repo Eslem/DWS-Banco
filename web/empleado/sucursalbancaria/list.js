@@ -16,7 +16,7 @@ app.controller("SucursalBancariaListController", function ($scope, $http) {
         if (ok) {
             $http({
                 method: "DELETE",
-                url: contextPath + "/api/sucuraslbancaria/" + id
+                url: contextPath + "/api/sucursalbancaria/" + id
             }).success(function () {
                 alert("Exito al borrar la Sucursal Bancaria con ID: "+id);
                 $scope.findAll();

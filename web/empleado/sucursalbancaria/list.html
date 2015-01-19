@@ -1,32 +1,31 @@
 <div class="container-fluid">
-    <div class='clearfix'>
-        <button class="btn btn-primary pull-right margin-small" ng-click="crear()">
-            <i class="fa fa-plus"></i> Añadir
-        </button>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped container table-hover">
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Poblacion</th>
-                <th>Codigo Postal</th>
-                <th>Telefono</th>
-                <th>Entidad</th>
-                <th>Acciones</th>
-            </tr>
-            <tr ng-repeat="sucursalbancaria in sucursales"  class="animate">
-                <td>{{sucursalbancaria.id}}</td>
-                <td>{{sucursalbancaria.nombre}}</td>
-                <td>{{sucursalbancaria.poblacion}}</td>
-                <td>{{sucursalbancaria.codigoPostal}}</td>
-                <td>{{sucursalbancaria.telefono}}</td>
-                <td>{{sucursalbancaria.idEntidad}}</td>
-                <td class="actions">
-                    <button type="button" class="btn btn-primary" ng-click="editar(sucursalbancaria.id)"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-danger" ng-click="deleteSucursal(sucursalbancaria.id)"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <h1 class="primary">Sucursales Bancarias</h1>
+
+    <button class="btn btn-primary pull-right margin-small" ng-click="crear()">
+        <i class="fa fa-plus"></i> Añadir
+    </button>
+
+    <table class="table table-striped table-bordered table-hover table-shadow">
+        <tr>
+            <th>Nombre</th>
+            <th>Poblacion</th>
+            <th>Codigo Postal</th>
+            <th>Telefono</th>
+            <th>Entidad</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+        <tr ng-repeat="sucursalbancaria in sucursales">
+            <td>{{sucursalbancaria.nombre}}</td>
+            <td>{{sucursalbancaria.poblacion}}</td>
+            <td>{{sucursalbancaria.codigoPostal}}</td>
+            <td>{{sucursalbancaria.telefono}}</td>
+            <td>{{sucursalbancaria.idEntidad}}</td>
+            <td>{{sucursalbancaria.fecha | date : "dd/MM/yyyy"}}</td>
+            <td class="actions">
+                <button type="button" class="btn btn-primary" ng-click="editar(sucursalbancaria.id)"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-danger" ng-click="deleteSucursal(sucursalbancaria.id)"><i class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+    </table>
 </div>

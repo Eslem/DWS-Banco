@@ -38,8 +38,6 @@ nav.sidebar {
   z-index: 1000;
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
   transition: all 0.2s linear; }
   nav.sidebar i.fa {
     font-size: 2en; }
@@ -96,8 +94,6 @@ div.wrap-body {
   padding-left: 245px;
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
-  -ms-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
   transition: all 0.2s linear; }
   div.wrap-body.ng-leave {
     opacity: 0; }
@@ -132,6 +128,9 @@ div.wrap-body {
         border-top-left-radius: 0;
         border-top-right-radius: 0; }
 
+.table-shadow {
+  box-shadow: 2px 2px 6px gray; }
+
 .animate.ng-enter, .animate.ng-leave {
   -webkit-transition: 0.5s linear all;
   transition: 0.5s linear all;
@@ -145,5 +144,11 @@ div.wrap-body {
 
 .margin-small {
   margin: 4px; }
+
+/*Login*/
+.formulario-sombra {
+  box-shadow: 4px 4px 16px 4px rgba(0, 0, 0, 0.1); }
+  .formulario-sombra .form-signin-heading {
+    text-align: center; }
 
 /*# sourceMappingURL=index.css.map */

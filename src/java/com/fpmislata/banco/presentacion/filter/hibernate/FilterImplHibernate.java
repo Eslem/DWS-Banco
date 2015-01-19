@@ -5,7 +5,7 @@
  */
 package com.fpmislata.banco.presentacion.filter.hibernate;
 
-import com.fpmislata.banco.persistencia.hibernate.HibernateUtil;
+import com.fpmislata.banco.persistencia.common.HibernateUtil;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

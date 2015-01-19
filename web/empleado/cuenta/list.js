@@ -1,11 +1,11 @@
 app.controller("CuentaListController", function ($scope, $http) {
-
     $scope.findAll = function () {
         $http({
             method: "GET",
             url: contextPath + "/api/cuenta"
         }).success(function (data) {
             $scope.cuentas = data;
+            data.fecha = new Date(data.fecha);
         }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
@@ -27,7 +27,7 @@ app.controller("CuentaListController", function ($scope, $http) {
             });
         } else {
             $scope.findAll();
-        } 
+        }
     };
 
     $scope.crearCuenta = function () {

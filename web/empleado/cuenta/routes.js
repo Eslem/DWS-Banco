@@ -1,4 +1,4 @@
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when("/cuenta", {
             templateUrl: "cuenta/list.html",
@@ -14,6 +14,7 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: "cuenta/detail.html",
             controller: "CuentaEditController"
         });
-
+       
+        
     }
 ]);

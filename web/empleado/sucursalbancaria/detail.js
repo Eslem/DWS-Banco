@@ -7,6 +7,7 @@ function selectedSucursal($scope, $http, $routeParams) {
             url: contextPath + "/api/sucursalbancaria/" + $scope.sucursalbancaria.id
         }).success(function (data) {
             $scope.sucursalbancaria = data;
+            data.fecha = new Date(data.fecha);
         }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
@@ -30,10 +31,10 @@ function getEntidades($scope, $http) {
     });
 }
 
-
 /* Controllers */
 
-app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routeParams", function ($scope, $http) {
+
+app.controller("SucursalBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
         $scope.buttonText = 'Insertar';
 
         $scope.formSend = function () {
@@ -44,14 +45,13 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routePa
             }).success(function (data) {
                 alert("Sucursal Bancaria  correctamente insertada");
                 $scope.getSucursalBancaria($scope.sucursalbancaria.id);
-                location.replace('#/sucursalbancaria/');
+                goToListSucursal();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
         };
 
         getEntidades($scope, $http);
-
     }
 ]);
 
@@ -66,7 +66,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
             }).success(function (data) {
                 alert("Sucursal Bancaria " + $scope.sucursalbancaria.id + " correctamente actualizada.");
                 $scope.getSucursalBancaria($scope.sucursalbancaria.id);
-                location.replace('#/sucursalbancaria/');
+                goToListSucursal();
             }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
@@ -78,12 +78,6 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
     }
 ]);
 
-
-
-
-
-
-
-
-
-
+function goToListSucursal() {
+    location.replace('#/sucursalbancaria/');
+}
