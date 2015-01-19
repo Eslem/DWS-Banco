@@ -20,15 +20,19 @@ function selectedSucursal($scope, $http, $routeParams) {
     }
 }
 
-function getEntidades($scope, $http) {
-    $http({
-        method: "GET",
-        url: contextPath + "/api/entidadBancaria/"
-    }).success(function (data, status) {
-        $scope.entidadesBancarias = data;
-    }).error(function (data, status) {
-        alert("Fatal error: " + status);
-    });
+function extendScopeGetEntidades($scope, $http) {
+
+    $scope.getEntidades = function () {
+
+        $http({
+            method: "GET",
+            url: contextPath + "/api/entidadBancaria/"
+        }).success(function (data, status) {
+            $scope.entidadesBancarias = data;
+        }).error(function (data, status) {
+            alert("Fatal error: " + status);
+        });
+    };
 }
 
 
@@ -44,19 +48,34 @@ function getCuentas($scope, $http) {
 }
 
 
-function deleteCuenta(id) {
-       location.replace("#/cuenta/delete/" + id);
+$scope.deleteCuenta = function (id) {
+    ok = confirm("¿ Está seguro que quiere borrar la cuenta de ID: " + id + " ?");
 
-};
+    if (ok) {
+        $http({
+            method: "DELETE",
+            url: contextPath + "/api/cuenta/" + id
+        }).success(function () {
+            getCuentas();
+        }).error(function (data, status) {
+            alert("Fatal error: " + status);
+        });
+    } else {
+        getCuentas();
+    }
+}
+;
 
 function editCuenta(id) {
     location.replace("#/cuenta/edit/" + id);
-};
+}
+;
 
 
-function crearCuenta () {
+function crearCuenta() {
     location.replace("#/cuenta/insert");
-};
+}
+;
 
 
 
