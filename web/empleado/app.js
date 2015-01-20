@@ -1,9 +1,5 @@
-//HTTP interceptor
-
-
 var app = angular.module("app", ['ngRoute', 'ngAnimate', 'ui.date']).run(function ($rootScope) {
 });
-
 
 app.config(function ($provide, $httpProvider) {
     $provide.factory('HTTPLoadingInterceptor', function ($q) {

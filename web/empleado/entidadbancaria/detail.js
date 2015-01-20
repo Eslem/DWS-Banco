@@ -84,6 +84,10 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
 
         initializeEntidadBancaria($scope, $http, $routeParams);
         initializeSucursalesBancarias($scope, $http);
+        $scope.createSucursal = function(idEntidad) {
+            console.log(idEntidad);
+            location.replace('#/entidadbancaria/' + idEntidad + '/sucursalbancaria/');
+        };
     }
 ]);
 
