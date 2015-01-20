@@ -53,4 +53,10 @@ public class CuentaController {
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
+    @RequestMapping(value = {"/sucursalbancaria/{id}/cuentas/"}, method = RequestMethod.GET)
+    public void getCuentas(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
+        List<Cuenta> cuentas = cuentaDAO.getBySucursal(id);
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentas));
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+    }
 }

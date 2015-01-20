@@ -113,5 +113,10 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
             throw new RuntimeException(ex);
         }
     }
+
+    @Override
+    public List<Cuenta> getBySucursal(int idSucursal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

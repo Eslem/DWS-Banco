@@ -28,12 +28,13 @@ public class FilterImplSecurity implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
+        
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         httpsession = httpServletRequest.getSession(true);
 
         String sessionUrl = httpServletRequest.getContextPath() + "/api/session";
 
-        boolean logged = httpsession.getAttribute("id") != null;
+        boolean logged =httpsession.getAttribute("id") != null;
 
         if (httpServletRequest.getRequestURI().equals(sessionUrl)) {
             filterChain.doFilter(servletRequest, servletResponse);
