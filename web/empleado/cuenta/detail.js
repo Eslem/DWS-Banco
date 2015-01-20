@@ -23,7 +23,6 @@ function getMovimientos($scope, $http) {
         method: "GET",
         url: contextPath + "/api/cuenta/" + $scope.cuenta.id + "/movimiento"
     }).success(function(data, status) {
-        console.log(data);
         $scope.movimientos = data;
     }).error(function(data, status) {
         alert("Fatal error: " + status);
