@@ -46,6 +46,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routePa
                 alert("Fatal error: " + status);
             });
         };
+        getEntidades($scope, $http);
     }
 ]);
 
@@ -65,8 +66,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 alert("Fatal error: " + status);
             });
         };
-
-        getSucursal($scope, $http, $routeParams);
+        getSucursal($scope, $http, $routeParams);      
         getEntidades($scope, $http);
     }
 ]);

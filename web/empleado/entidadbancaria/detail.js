@@ -39,10 +39,6 @@ function initializeSucursalesBancarias($scope, $http) {
     };
 }
 
-function goToEntidadBancariaList() {
-    location.replace('#/entidadbancaria/');
-}
-
 
 /* Controllers */
 
@@ -56,7 +52,6 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function(data) {
-                goToEntidadBancariaList();
                 goToListEntidad();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
@@ -75,7 +70,6 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 data: $scope.entidadBancaria,
                 url: contextPath + "/api/entidadBancaria/"
             }).success(function(data) {
-                goToEntidadBancariaList();
                 goToListEntidad();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);
