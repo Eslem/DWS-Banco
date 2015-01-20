@@ -18,7 +18,8 @@ function getSucursal($scope, $http, $routeParams) {
     }
 }
 
-function getEntidades($scope, $http) {
+function getEntidades($scope, $http, $routeParams) {
+    console.log($routeParams.id);
     $http({
         method: "GET",
         url: contextPath + "/api/entidadBancaria/"
@@ -33,7 +34,6 @@ function getEntidades($scope, $http) {
 
 app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
         $scope.buttonText = 'Insertar';
-        console.log($routeParams);
 
         $scope.formSend = function() {
             $http({
@@ -46,7 +46,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routePa
                 alert("Fatal error: " + status);
             });
         };
-        getEntidades($scope, $http);
+        getEntidades($scope, $http, $routeParams);
     }
 ]);
 
