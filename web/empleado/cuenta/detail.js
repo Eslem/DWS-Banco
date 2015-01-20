@@ -18,6 +18,19 @@ function initializeCuenta($scope, $http, $routeParams) {
     }
 }
 
+function getMovimientos($scope, $http) {
+    $http({
+        method: "GET",
+        url: contextPath + "/api/cuenta/" + $scope.cuenta.id + "/movimiento"
+    }).success(function(data, status) {
+        console.log(data);
+        $scope.movimientos = data;
+    }).error(function(data, status) {
+        alert("Fatal error: " + status);
+    });
+    
+}
+
 /* Controllers */
 
 app.controller("CuentaInsertController", ["$scope", "$http", function ($scope, $http) {
@@ -55,6 +68,8 @@ app.controller("CuentaEditController", ["$scope", "$http", "$routeParams", funct
             });           
         };
         initializeCuenta($scope, $http, $routeParams);
+        getMovimientos($scope, $http);
+        
     }
 ]);
 
