@@ -19,16 +19,19 @@ function initializeEntidadBancaria($scope, $http, $routeParams) {
     }
 }
 
-function initializeSucursalesBancarias($scope, $http) {
+function getSucursalesBancarias($scope, $http) {
     $http({
         method: "GET",
         url: contextPath + "/api/entidadBancaria/" + $scope.entidadBancaria.id + "/sucursalesBancarias/"
     }).success(function(data, status) {
-        console.log(data);
         $scope.sucursales = data;
     }).error(function(data, status) {
         alert("Fatal error: " + status);
     });
+}
+
+function initializeSucursalesBancarias($scope, $http) {
+    getSucursalesBancarias($scope, $http);
 
     $scope.crearSucursal = function() {
         location.replace("#/sucursalbancaria/insert/");
@@ -87,9 +90,9 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             if (confirm('¿Confirma usted el borrado de la Sucursal Bancaria "' + sucursalBancaria.nombre + '"?')) {
                 $http({
                     method: "DELETE",
-                    url: contextPath + "/api/sucursalbancaria/" + id
+                    url: contextPath + "/api/sucursalbancaria/" + sucursalBancaria.id
                 }).success(function() {
-                    $scope.findAll();
+                    getSucursalesBancarias($scope, $http);
                 }).error(function(data, status) {
                     alert("Fatal error: " + status);
                 });
