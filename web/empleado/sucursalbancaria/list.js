@@ -10,14 +10,12 @@ app.controller("SucursalBancariaListController", function($scope, $http) {
         });
     };
 
-    $scope.deleteSucursal = function(id) {
-        ok = confirm("¿Estás seguro que quieres borrar la Sucursal Bancaria con ID: " + id + " ?");
-        if (ok) {
+    $scope.deleteSucursal = function(sucursalbancaria) {
+        if (confirm('¿Confirma usted el borrado de la Sucursal Bancaria "' + sucursalbancaria.nombre + '"?')) {
             $http({
                 method: "DELETE",
-                url: contextPath + "/api/sucursalbancaria/" + id
+                url: contextPath + "/api/sucursalbancaria/" + sucursalbancaria.id
             }).success(function() {
-                alert("Exito al borrar la Sucursal Bancaria con ID: " + id);
                 $scope.findAll();
             }).error(function(data, status) {
                 alert("Fatal error: " + status);

@@ -78,9 +78,24 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
 
         initializeEntidadBancaria($scope, $http, $routeParams);
         initializeSucursalesBancarias($scope, $http);
+
         $scope.createSucursal = function(idEntidad) {
-            console.log(idEntidad);
             location.replace('#/entidadbancaria/' + idEntidad + '/sucursalbancaria/');
+        };
+
+        $scope.deleteSucursal = function(sucursalBancaria) {
+            if (confirm('¿Confirma usted el borrado de la Sucursal Bancaria "' + sucursalBancaria.nombre + '"?')) {
+                $http({
+                    method: "DELETE",
+                    url: contextPath + "/api/sucursalbancaria/" + id
+                }).success(function() {
+                    $scope.findAll();
+                }).error(function(data, status) {
+                    alert("Fatal error: " + status);
+                });
+            } else {
+                $scope.findAll();
+            }
         };
     }
 ]);
