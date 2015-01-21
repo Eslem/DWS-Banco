@@ -15,6 +15,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "CuentaEditController"
         });
        
+       $routeProvider.when('/cuenta/:id/movimiento/', {
+            templateUrl: "cuenta/detail.html",
+            controller: "CuentaInsertController"
+        });
         
     }
 ]);

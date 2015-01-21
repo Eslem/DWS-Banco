@@ -14,10 +14,5 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: "movimiento/detail.html",
             controller: "MovimientoUpdateController"
         });
-
-        $routeProvider.when('/movimiento/delete/:id', {
-            templateUrl: "movimiento/detail.html",
-            controller: "MovimientoDeleteController"
-        });
     }
 ]);
