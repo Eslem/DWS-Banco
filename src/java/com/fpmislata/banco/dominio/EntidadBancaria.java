@@ -3,18 +3,21 @@ package com.fpmislata.banco.dominio;
 import java.util.Date;
 
 public class EntidadBancaria {
+
     private int id;
     private String nombre;
     private String codigo;
-     private Date fecha;
-    
+    private Date fecha;
+    //private List<SucursalBancaria> sucursales;
+
     public EntidadBancaria(int id, String nombre, String codigo) {
         this.id = id;
         this.nombre = nombre;
         this.codigo = codigo;
     }
 
-    public EntidadBancaria() {}
+    public EntidadBancaria() {
+    }
 
     public int getId() {
         return id;
@@ -47,7 +50,13 @@ public class EntidadBancaria {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    
-    
+
+    /*public List<SucursalBancaria> getSucursales() {
+        return sucursales;
+    }
+
+    public void setSucursales(List<SucursalBancaria> sucursales) {
+        this.sucursales = sucursales;
+    }*/
+
 }

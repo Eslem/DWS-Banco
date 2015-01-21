@@ -3,6 +3,7 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.EntidadBancaria;
 import com.fpmislata.banco.persistencia.dao.EntidadBancariaDAO;
+import com.fpmislata.banco.persistencia.dao.SucursalBancariaDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ public class EntidadBancariaController {
 
     @Autowired
     EntidadBancariaDAO entidadBancariaDAO;
+    @Autowired
+    SucursalBancariaDAO sucursalBancariaDAO;
     @Autowired
     JSONConverter jsonConverter;
 
@@ -51,5 +54,11 @@ public class EntidadBancariaController {
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         entidadBancariaDAO.delete(id);
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+    }
+
+    @RequestMapping(value = {"/entidadBancaria/{id}/sucursalesBancarias"}, method = RequestMethod.GET)
+    public void getSucursalesBancarias(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(sucursalBancariaDAO.getByEntidad(id)));
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 }
