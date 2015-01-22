@@ -129,6 +129,8 @@ div.wrap-body {
         border-top-right-radius: 0; }
       div.wrap-body.login .form-signin input {
         margin-bottom: 8px; }
+  div.wrap-body select.form-control {
+    padding-left: 8px; }
 
 .table-shadow {
   box-shadow: 2px 2px 6px gray; }
