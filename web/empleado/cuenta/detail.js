@@ -64,6 +64,7 @@ function getMovimientos($scope, $http) {
 
 app.controller("CuentaInsertController", ["$scope", "$http", function ($scope, $http) {
         $scope.buttonText = 'Insertar';
+        $scope.mostrar = false;
 
         $scope.formSend = function () {
             $http({
@@ -82,6 +83,7 @@ app.controller("CuentaInsertController", ["$scope", "$http", function ($scope, $
 
 app.controller("CuentaEditController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
         $scope.buttonText = 'Actualizar';
+        $scope.mostrar = true;
 
         $scope.formSend = function () {
             $http({

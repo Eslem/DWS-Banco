@@ -42,11 +42,11 @@
 
         <br/>
 
-        <button class="btn btn-primary pull-right margin-small" ng-click="createSucursal(entidadBancaria.id)">
+        <button ng-show="{{mostrar}}" class="btn btn-primary pull-right margin-small" ng-click="createSucursal(entidadBancaria.id)">
             <i class="fa fa-plus"></i> Añadir
         </button>
 
-        <table class="table table-striped table-bordered table-hover table-shadow" ng-show="show">
+        <table ng-show="{{mostrar}}" class="table table-striped table-bordered table-hover table-shadow" ng-show="show">
             <tr>
                 <th>Nombre</th>
                 <th>Poblacion</th>

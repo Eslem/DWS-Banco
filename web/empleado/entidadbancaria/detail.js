@@ -47,7 +47,7 @@ function initializeSucursalesBancarias($scope, $http) {
 
 app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($scope, $http) {
         $scope.buttonText = 'Insertar';
-        $scope.show = 'False';
+        $scope.mostrar = false;
 
         $scope.formSend = function() {
             $http({
@@ -65,7 +65,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($
 
 app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
         $scope.buttonText = 'Actualizar';
-        $scope.show = 'True';
+        $scope.mostrar = true;
 
         $scope.formSend = function() {
             $http({

@@ -48,6 +48,7 @@ function getCuentas($scope, $http) {
 
 app.controller("SucursalBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
         $scope.buttonText = 'Insertar';
+        $scope.mostrar = false;
 
         $scope.formSend = function () {
             $http({
@@ -68,6 +69,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", function 
 
 app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
         $scope.buttonText = 'Actualizar';
+        $scope.mostrar = true;
 
         $scope.formSend = function () {
             $http({

@@ -35,12 +35,18 @@
                 </select>
             </div>
         </div>
+        
+        <div align="center">
+            <button ng-click="formSend();" class="btn btn-primary">{{buttonText}}</button>
+        </div>
+        
+        </br>
 
-        <button ng-click="crearMovimiento()" class="btn btn-primary pull-right margin-small">
+        <button ng-click="crearMovimiento()" ng-show="{{mostrar}}" class="btn btn-primary pull-right margin-small">
             <i class="fa fa-plus"></i> Añadir
         </button>
-
-        <table class="table table-striped table-hover table-bordered table-shadow">
+        
+        <table ng-show="{{mostrar}}" class="table table-striped table-hover table-bordered table-shadow">
             <tr>
                 <th>Saldo</th>
                 <th>Id Sucursal</th>
@@ -59,10 +65,6 @@
                 </td>
             </tr>
         </table>
-
-        <div align="center">
-            <button ng-click="formSend();" class="btn btn-primary">{{buttonText}}</button>
-        </div>
 
     </form>
 </div>
