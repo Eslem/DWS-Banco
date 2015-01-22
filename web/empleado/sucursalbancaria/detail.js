@@ -19,7 +19,10 @@ function getSucursal($scope, $http, $routeParams) {
 }
 
 function getEntidades($scope, $http, $routeParams) {
-    console.log($routeParams.id);
+    if ($routeParams !== undefined && $routeParams.id !== undefined) {
+        $scope.sucursalbancaria.idEntidad = $routeParams.id * 1;
+        $scope.entidadDisabled = true;
+    }
     $http({
         method: "GET",
         url: contextPath + "/api/entidadBancaria/"
@@ -28,6 +31,11 @@ function getEntidades($scope, $http, $routeParams) {
     }).error(function(data, status) {
         alert("Fatal error: " + status);
     });
+}
+
+function start($scope) {
+    $scope.sucursalbancaria = {};
+    $scope.entidadDisabled = false;
 }
 
 /* Controllers */
@@ -46,6 +54,8 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routePa
                 alert("Fatal error: " + status);
             });
         };
+
+        start($scope);
         getEntidades($scope, $http, $routeParams);
     }
 ]);
@@ -66,7 +76,9 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 alert("Fatal error: " + status);
             });
         };
-        getSucursal($scope, $http, $routeParams);      
+
+        start($scope);
+        getSucursal($scope, $http, $routeParams);
         getEntidades($scope, $http);
     }
 ]);
