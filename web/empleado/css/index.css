@@ -146,9 +146,3 @@ div.wrap-body {
 
 .margin-small {
   margin: 4px; }
-
-/*Login*/
-.formulario-sombra {
-  box-shadow: 4px 4px 16px 4px rgba(0, 0, 0, 0.1); }
-  .formulario-sombra .form-signin-heading {
-    text-align: center; }

@@ -18,7 +18,7 @@ function getSucursal($scope, $http, $routeParams) {
     }
 }
 
-function getEntidades($scope, $http) {
+function getEntidades($scope, $http,$routeParams ) {
 
     $http({
         method: "GET",
@@ -39,6 +39,10 @@ function getCuentas($scope, $http) {
     }).error(function (data, status) {
         alert("Fatal error: " + status);
     });
+}
+
+function goToListSucursal() {
+    location.replace('#/sucursalbancaria/');
 }
 
 
@@ -82,7 +86,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         };
 
         getSucursal($scope, $http, $routeParams);      
-        getEntidades($scope, $http);
+        getEntidades($scope, $http, $routeParams);
 
 
 
@@ -108,7 +112,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         };
 
 
-        $scope.crearCuenta = function (id) {
+        $scope.crearCuenta = function () {
             location.replace("#/cuenta/insert");
         };
 
@@ -119,6 +123,3 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
     }
 ]);
 
-function goToListSucursal() {
-    location.replace('#/sucursalbancaria/');
-}
