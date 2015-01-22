@@ -18,6 +18,17 @@ function selectedMovimiento($scope, $http, $routeParams) {
     }
 }
 
+function getCuenta($scope, $http) {
+
+    $http({
+        method: "GET",
+        url: contextPath + "/api/cuenta/"
+    }).success(function (data, status) {
+        $scope.cuentas = data;
+    }).error(function (data, status) {
+        alert("Fatal error: " + status);
+    });
+}
 
 /* Controllers */
 
@@ -36,7 +47,8 @@ app.controller("MovimientoInsertController", ["$scope", "$http", function ($scop
                 alert("Fatal error: " + status);
             });
         };
-
+        
+        getCuenta($scope, $http);
 
     }
 ]);
@@ -57,7 +69,8 @@ app.controller("MovimientoUpdateController", ["$scope", "$http", "$routeParams",
             });
         };
 
-        selectedMovimiento($scope, $http, $routeParams);        
+        selectedMovimiento($scope, $http, $routeParams);
+        getCuenta($scope, $http);
     }
 ]);
 
