@@ -1,12 +1,12 @@
-function getSucursal($scope, $http, $routeParams) {
-    $scope.getSucursalBancaria = function() {
+function selectedSucursal($scope, $http, $routeParams) {
+    $scope.getSucursalBancaria = function () {
         $http({
             method: "GET",
             url: contextPath + "/api/sucursalbancaria/" + $scope.sucursalbancaria.id
-        }).success(function(data) {
+        }).success(function (data) {
             $scope.sucursalbancaria = data;
             data.fecha = new Date(data.fecha);
-        }).error(function(data, status) {
+        }).error(function (data, status) {
             alert("Fatal error: " + status);
         });
     };
@@ -18,14 +18,14 @@ function getSucursal($scope, $http, $routeParams) {
     }
 }
 
-function getEntidades($scope, $http,$routeParams ) {
+function getEntidades($scope, $http) {
 
     $http({
         method: "GET",
         url: contextPath + "/api/entidadBancaria/"
-    }).success(function(data, status) {
+    }).success(function (data, status) {
         $scope.entidadesBancarias = data;
-    }).error(function(data, status) {
+    }).error(function (data, status) {
         alert("Fatal error: " + status);
     });
 }
@@ -41,53 +41,46 @@ function getCuentas($scope, $http) {
     });
 }
 
-function goToListSucursal() {
-    location.replace('#/sucursalbancaria/');
-}
-
 
 
 
 /* Controllers */
 
-app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+app.controller("SucursalBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
         $scope.buttonText = 'Insertar';
 
-        $scope.formSend = function() {
+        $scope.formSend = function () {
             $http({
                 method: "POST",
                 data: $scope.sucursalbancaria,
                 url: contextPath + "/api/sucursalbancaria/"
-            }).success(function(data) {
-                goToListSucursal();
-            }).error(function(data, status) {
+            }).success(function (data) {
+                alert("Sucursal Bancaria  correctamente insertada");
+                $scope.getSucursalBancaria($scope.sucursalbancaria.id);
+            }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
         };
-        getEntidades($scope, $http, $routeParams);
+
+        getEntidades($scope, $http);
     }
 ]);
 
-app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
         $scope.buttonText = 'Actualizar';
 
-        $scope.formSend = function() {
+        $scope.formSend = function () {
             $http({
                 method: "PUT",
                 data: $scope.sucursalbancaria,
                 url: contextPath + "/api/sucursalbancaria/"
-            }).success(function(data) {
+            }).success(function (data) {
                 alert("Sucursal Bancaria " + $scope.sucursalbancaria.id + " correctamente actualizada.");
                 $scope.getSucursalBancaria($scope.sucursalbancaria.id);
-                goToListSucursal();
-            }).error(function(data, status) {
+            }).error(function (data, status) {
                 alert("Fatal error: " + status);
             });
         };
-
-        getSucursal($scope, $http, $routeParams);      
-        getEntidades($scope, $http, $routeParams);
-
 
 
         $scope.deleteCuenta = function (id) {
@@ -112,7 +105,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         };
 
 
-        $scope.crearCuenta = function () {
+        $scope.crearCuenta = function (id) {
             location.replace("#/cuenta/insert");
         };
 
