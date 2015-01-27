@@ -30,10 +30,10 @@ CREATE TABLE `cuentas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla banco.cuentas: ~3 rows (aproximadamente)
-INSERT INTO `cuentas` (`id`, `saldo`, `idsucursal`, `tipo`) VALUES
-	(1, 123.00, 11, 'Corriente'),
-	(2, 47585.00, 52, 'Ahorro'),
-	(3, 50.00, 1, 'Corriente');
+INSERT INTO `cuentas` (`id`, `saldo`, `idsucursal`, `tipo`, `fecha`) VALUES
+	(1, 123.00, 11, 'Corriente', '2014-12-04'),
+	(2, 47585.00, 52, 'Ahorro', '2014-01-04'),
+	(3, 50.00, 1, 'Corriente', '2012-10-20');
 
 
 -- Volcando estructura para tabla banco.entidadesbancarias
@@ -46,9 +46,9 @@ CREATE TABLE `entidadesbancarias` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla banco.entidadesbancarias: ~0 rows (aproximadamente)
-INSERT INTO `entidadesbancarias` (`id`, `nombre`, `codigo`) VALUES
-	(1, 'Entidad1', '11'),
-	(2, 'Entidad2', '12');
+INSERT INTO `entidadesbancarias` (`id`, `nombre`, `codigo`, `fecha`) VALUES
+	(1, 'Entidad1', '11', '2011-08-08'),
+	(2, 'Entidad2', '12', '2013-05-04');
 
 
 -- Volcando estructura para tabla banco.movimientos
@@ -65,7 +65,7 @@ CREATE TABLE `movimientos` (
 -- Volcando datos para la tabla banco.movimientos: ~0 rows (aproximadamente)
 INSERT INTO `movimientos` (`id`, `tipo`, `idcuenta`,  `concepto`, `cantidad`, `fecha`) VALUES
 	(1, 'Debe', 1,  'Factura luz', '250', '2014-12-04'),
-	(2, 'Haber', 3, 'Error factura luz', '0.55', NULL);
+	(2, 'Haber', 3, 'Error factura luz', '0.55', '2013-05-04');
 
 
 
@@ -85,9 +85,10 @@ CREATE TABLE `sucursalesbancarias` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla banco.sucursalesbancarias: ~0 rows (aproximadamente)
-INSERT INTO `sucursalesbancarias` (`id`, `nombre`, `poblacion`, `cp`, `telefono`, `entidad`) VALUES
-	(1, 'Sucursal1', 'Manises', 46940, 961111111, 1),
-	(2, 'Sucursal2', 'Quart', 46939, 961222222, 2);
+INSERT INTO `sucursalesbancarias` (`id`, `nombre`, `poblacion`, `cp`, `telefono`, `entidad`, `fecha`) VALUES
+	(1, 'Sucursal1', 'Manises', 46940, 961111111, 1, '2014-12-04'),
+	(2, 'Sucursal2', 'Quart', 46939, 961222222, 2, '2014-12-04');
+
 
 
 -- Volcando estructura para tabla banco.usuarios
