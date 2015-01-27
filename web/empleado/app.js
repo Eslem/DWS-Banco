@@ -35,20 +35,19 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
 
     $http({
         method: "GET",
-        data: $scope.entidadBancaria,
         url: contextPath + "/api/session/"
     }).success(function (data, status) {
         if (status === 200) {
             $rootScope.login = true;
             $rootScope.userLogued = data;
-            $scope.user = data.nombre;
-
             $scope.$on('$routeChangeStart', function (next, current) {
                 if (($rootScope.login === undefined || $rootScope.login === false) && $location.path() !== "/login") {
                     alert("Aceso denegado, debes iniciar sesion");
                     location.replace('#/login');
-                }                
+                }
             });
+
+            $scope.user = data.nombre;
         } else {
             location.replace('#/login');
         }
@@ -74,6 +73,6 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
 });
 
 app.constant('uiDateConfig', {
-    dateFormat:"dd/mm/yy",
-    fistDay:1
+    dateFormat: "dd/mm/yy",
+    fistDay: 1
 });
