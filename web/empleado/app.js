@@ -39,7 +39,7 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
     }).success(function (data, status) {
         if (status === 200) {
             $rootScope.login = true;
-            $rootScope.userLogued = data;
+            $rootScope.userLoged = data;
             $scope.$on('$routeChangeStart', function (next, current) {
                 if (($rootScope.login === undefined || $rootScope.login === false) && $location.path() !== "/login") {
                     alert("Aceso denegado, debes iniciar sesion");
