@@ -28,7 +28,7 @@ app.config(function ($provide, $httpProvider) {
 
 app.constant("baseUrl", contextPath);
 
-app.controller("EmpleadoController", function ($scope, $rootScope, $location, $http) {
+app.controller("EmpleadoController", function ($scope, $rootScope, $location, $http, UpdateAdministrador) {
     $scope.isActive = function (route) {
         return (route === $location.path());
     };
@@ -67,6 +67,15 @@ app.controller("EmpleadoController", function ($scope, $rootScope, $location, $h
             location.replace('#/login');
         }).error(function (data, status) {
             alert("Fatal error " + status + ": " + data);
+        });
+    };
+
+    $scope.update = function () {
+        UpdateAdministrador.update($scope.userLogued, function (data, status) {
+            alert("Perfil actualizado");
+            location.replace("#/profile/");
+        }, function (data, status) {
+            console.log(status + ": " + data);
         });
     };
 
