@@ -46,6 +46,7 @@ public class SessionController {
             try {
                 httpsession.setAttribute("id", userId);
                 httpServletResponse.getWriter().print(jsonConverter.toJSON(empleadoDAO.get(userId)));
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -57,7 +58,8 @@ public class SessionController {
     @RequestMapping(value = {"/session"}, method = RequestMethod.DELETE)
     public void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         httpsession = httpServletRequest.getSession(true);
-        httpsession.removeAttribute("id");
+        httpsession.invalidate();
+        //httpsession.removeAttribute("id");
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
