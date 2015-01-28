@@ -11,7 +11,7 @@ app.config(['baseUrl', 'UpdateAdministradorProvider', function (baseUrl, UpdateA
         UpdateAdministradorProvider.setBaseUrl(baseUrl);
     }]);
 
-app.controller("UpdateAdministradoresController", ['$scope', '$routeParams', 'UpdateAdministrador', UpdateAdministradoresController]);
+app.controller("UpdateAdministradoresController", ['$scope', '$routeParams', 'UpdateAdministrador', '$rootScope', UpdateAdministradoresController]);
 
 
 function UpdateAdministradorProvider() {
@@ -73,10 +73,14 @@ function UpdateAdministrador($http, baseUrl) {
 
 }
 
-function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrador) {
+function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrador, $rootScope) {
     $scope.detailShown = true;
     $scope.passwordShown = false;
     $scope.mainButton = "Actualizar";
+    if(!$rootScope.login){
+        location.replace('#/login/');
+    }
+    
     UpdateAdministrador.get($routeParams.id,
             function (data, status) {
                 $scope.user = data;
@@ -110,11 +114,14 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
     };
 }
 
-function AdministradorInsertController($scope, UpdateAdministrador) {
+function AdministradorInsertController($scope, $rootScope, UpdateAdministrador) {
     $scope.detailShown = false;
     $scope.passShown = true;
     $scope.mainButton = "Insertar";
     
+     if(!$rootScope.login){
+        location.replace('#/login/');
+    }
     
     $scope.update = function () {
         if ($scope.password !== $scope.passrepeat) {

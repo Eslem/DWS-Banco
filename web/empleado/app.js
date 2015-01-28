@@ -1,10 +1,5 @@
-//HTTP interceptor
-
-
-var app = angular.module("app", ['ngRoute', 'ngAnimate']).run(function ($rootScope) {
-    $rootScope.login = false;
+var app = angular.module("app", ['ngRoute', 'ngAnimate', 'ui.date']).run(function ($rootScope) {
 });
-
 
 app.config(function ($provide, $httpProvider) {
     $provide.factory('HTTPLoadingInterceptor', function ($q) {
@@ -33,38 +28,7 @@ app.config(function ($provide, $httpProvider) {
 
 app.constant("baseUrl", contextPath);
 
-app.controller("EmpleadoController", function ($scope, $rootScope, $location, $http) {
-    $scope.isActive = function (route) {
-        return (route === $location.path());
-    };
-
-    $http({
-        method: "GET",
-        data: $scope.entidadBancaria,
-        url: contextPath + "/api/session/"
-    }).success(function (data, status) {
-        if (status === 200) {
-            $rootScope.login = true;
-            $rootScope.userLogued = data;                   
-        }else{
-            location.replace('#/login');     
-        }
-    }).error(function (data, status) {
-        if (status !== 403) {
-            alert("Fatal error " + status + ": " + data);
-        }
-    });
-
-    $scope.logout = function () {
-        $http({
-            method: "DELETE",
-            data: $scope.entidadBancaria,
-            url: contextPath + "/api/session/"
-        }).success(function (data, status) {
-            $rootScope.login = false;
-        }).error(function (data, status) {
-            alert("Fatal error " + status + ": " + data);
-        });
-    };
-
+app.constant('uiDateConfig', {
+    dateFormat: "dd/mm/yy",
+    fistDay: 1
 });

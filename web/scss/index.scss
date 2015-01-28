@@ -20,7 +20,7 @@ body{
 header{
     .navbar{
         background-color: $color-gris;
-        opacity:0;
+        opacity:.6;
         transition: 0.4s;
         &:hover{
             opacity: 1;
@@ -83,6 +83,15 @@ header{
 }
 
 
+
+.apem{
+    padding-top:15px;
+    &:hover{
+        box-shadow:4px 4px 16px 4px rgba(black, .1);
+        transition:box-shadow .5s;
+    }
+}
+
 #div2{
     margin: 0 auto;
 
@@ -99,7 +108,7 @@ header{
     .btn-primary{
         background-color: $color-verdoso-claro;
         border-color: white;
-         &:hover{
+        &:hover{
             background-color: $color-verdoso;
         }
     }
@@ -112,18 +121,6 @@ header{
     margin: 30px;
     padding: 15px;
 }
-
-
-
-
-
-.apem{
-    .btn{
-        display: none;
-       
-    }
-}
-
 
 
 
@@ -270,6 +267,26 @@ header{
 }
 
 
+
+footer{
+
+}
+
+
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    display: block;
+    width: 100%;
+    height: auto !important;
+}
+
+
+
+
+
 /********************************/
 /*          Media Queries       */
 /********************************/
@@ -286,20 +303,4 @@ header{
     .navbar-brand{
         display: none;
     }
-}
-
-
-footer{
-
-}
-
-
-.img-responsive,
-.thumbnail > img,
-.thumbnail a > img,
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-    display: block;
-    width: 100%;
-    height: auto !important;
 }

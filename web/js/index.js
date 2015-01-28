@@ -6,15 +6,6 @@ $(document).ready(function () {
      });*/
 
 
-    $(".apem").mouseenter(function () {
-        $(this).stop().animate({"top": "-5px"});
-        $(this).find(".btn").fadeIn().delay(500);
-    });
-    $(".apem").mouseleave(function () {
-        $(this).stop().animate({"top": "5px"});
-        $(this).find(".btn").css({"display": "none"});
-    });
-
 
     $(".carousel").carousel({
         interval: 5000

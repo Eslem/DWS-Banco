@@ -2,7 +2,9 @@ package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.Cuenta;
+import com.fpmislata.banco.dominio.Movimiento;
 import com.fpmislata.banco.persistencia.dao.CuentaDAO;
+import com.fpmislata.banco.persistencia.dao.MovimientoDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +22,19 @@ public class CuentaController {
     @Autowired
     CuentaDAO cuentaDAO;
     @Autowired
+    MovimientoDAO movimientoDAO;
+    @Autowired
     JSONConverter jsonConverter;
 
     @RequestMapping(value = {"/cuenta/{id}"}, method = RequestMethod.GET)
-    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentaDAO.get(id)));
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    @RequestMapping(value = {"/cuenta/{id}/movimiento"}, method = RequestMethod.GET)
+    public void getMovimiento(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(movimientoDAO.getByIdCuenta(id)));
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
@@ -42,7 +52,7 @@ public class CuentaController {
     }
 
     @RequestMapping(value = {"/cuenta/{id}"}, method = RequestMethod.DELETE)
-    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable int id) throws IOException {
+    public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         cuentaDAO.delete(id);
         httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
@@ -53,4 +63,10 @@ public class CuentaController {
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
+    @RequestMapping(value = {"/sucursalbancaria/{id}/cuentas/"}, method = RequestMethod.GET)
+    public void getCuentas(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
+        List<Cuenta> cuentas = cuentaDAO.getBySucursal(id);
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentas));
+        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+    }
 }

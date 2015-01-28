@@ -6,7 +6,7 @@ body {
 
 header .navbar {
   background-color: #343838;
-  opacity: 0;
+  opacity: .6;
   transition: 0.4s; }
   header .navbar:hover {
     opacity: 1;
@@ -41,6 +41,12 @@ header .navbar {
     #div1 #buscador input {
       display: inline-block; }
 
+.apem {
+  padding-top: 15px; }
+  .apem:hover {
+    box-shadow: 4px 4px 16px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow .5s; }
+
 #div2 {
   margin: 0 auto; }
   #div2 img {
@@ -57,9 +63,6 @@ header .navbar {
 #opciones-div {
   margin: 30px;
   padding: 15px; }
-
-.apem .btn {
-  display: none; }
 
 /*       Fade carousel       */
 .fade-carousel {
@@ -189,6 +192,15 @@ header .navbar {
 .thumbnail {
   text-align: center; }
 
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  width: 100%;
+  height: auto !important; }
+
 /********************************/
 /*          Media Queries       */
 /********************************/
@@ -201,11 +213,3 @@ header .navbar {
 @media screen and (min-width: 800px) {
   .navbar-brand {
     display: none; } }
-.img-responsive,
-.thumbnail > img,
-.thumbnail a > img,
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-  display: block;
-  width: 100%;
-  height: auto !important; }
