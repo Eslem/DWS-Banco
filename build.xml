@@ -15,7 +15,7 @@
 	<property name="dist.dir" value="dist/" />
     <property name="context.dir" value="web/META-INF/" />
     <property name="antlib.dir" value="ant/lib/" />
-    <property name="openshift.ssh" value="ssh://54936b6c5973cad5ee000037@banco-slem.rhcloud.com/~/git/banco.git/" />
+    <property name="openshift.ssh" value="ssh://54c969cafcf933756a000160@banco-slem.rhcloud.com/~/git/banco.git/" />
     <property name="openshift.name" value="banco" />
  
  
