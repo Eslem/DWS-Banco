@@ -114,3 +114,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
         $scope.getCuentas($scope, $http);
     }
 ]);
+
+function goToListSucursal() {
+    location.replace('#/sucursalbancaria/');
+}
