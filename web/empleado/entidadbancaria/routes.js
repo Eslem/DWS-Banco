@@ -14,7 +14,7 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: "EntidadBancariaUpdateController"
         });
 
-        $routeProvider.when('/entidadbancaria/:idEntidad/sucursalbancaria/', {
+        $routeProvider.when('/entidadbancaria/:id/sucursalbancaria/', {
             templateUrl: "sucursalbancaria/detail.html",
             controller: "SucursalBancariaInsertController"
         });
