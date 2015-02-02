@@ -45,8 +45,8 @@ public class MovimientoController {
     @RequestMapping(value = {"/movimiento"}, method = RequestMethod.POST)
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         Movimiento movimiento = jsonConverter.fromJSON(jsonEntrada, Movimiento.class);
-        movimientoDAO.insert(movimiento);
         updateSaldoCuenta(movimiento);
+        movimientoDAO.insert(movimiento);
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 
