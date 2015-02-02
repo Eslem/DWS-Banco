@@ -27,6 +27,15 @@ public class MovimientoController {
     @Autowired
     JSONConverter jsonConverter;
 
+    private void updateSaldoCuenta(Movimiento movimiento) {
+        Cuenta cuenta = cuentaDAO.get(movimiento.getIdCuenta());
+        BigDecimal nuevoSaldo = movimiento.getCantidad();
+        if (movimiento.getTipo().equalsIgnoreCase("Debe"))
+            nuevoSaldo = nuevoSaldo.multiply(new BigDecimal(-1));
+        nuevoSaldo = cuenta.getSaldoCuenta().add(nuevoSaldo);
+        cuenta.setSaldoCuenta(nuevoSaldo);
+    }
+
     @RequestMapping(value = {"/movimiento/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(movimientoDAO.get(id)));
@@ -36,19 +45,8 @@ public class MovimientoController {
     @RequestMapping(value = {"/movimiento"}, method = RequestMethod.POST)
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         Movimiento movimiento = jsonConverter.fromJSON(jsonEntrada, Movimiento.class);
-        Cuenta cuenta = cuentaDAO.get(movimiento.getIdCuenta());
-        BigDecimal nuevoSaldo = movimiento.getCantidad();
-        if (movimiento.getTipo().equalsIgnoreCase("debe"))
-            nuevoSaldo = nuevoSaldo.multiply(new BigDecimal(-1));
-        nuevoSaldo = cuenta.getSaldoCuenta().add(nuevoSaldo);
-        cuenta.setSaldoCuenta(nuevoSaldo);
         movimientoDAO.insert(movimiento);
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-    }
-
-    @RequestMapping(value = {"/movimiento"}, method = RequestMethod.PUT)
-    public void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
-        movimientoDAO.update(jsonConverter.fromJSON(jsonEntrada, Movimiento.class));
+        updateSaldoCuenta(movimiento);
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
 

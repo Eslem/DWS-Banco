@@ -3,7 +3,6 @@
     <hr/>
 
     <form class="form-horizontal" role="form">
-
         <div class="form-group">
             <label class="col-sm-2 control-label" for="id">Id</label>
             <div class="col-sm-8">
@@ -21,10 +20,9 @@
                 </select>
             </div>
         </div>
-
         
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="idcuenta">Cuenta</label>
+            <label class="col-sm-2 control-label" for="cuenta">Cuenta</label>
             <div class="col-sm-8">
                 <select id="cuenta" ng-model="movimiento.idCuenta" class="form-control" placeholder="Cuenta" 
                         ng-options="opt.idCuenta as opt.idCuenta for opt in cuentas">
@@ -57,9 +55,5 @@
         <div align="center">
             <button ng-click="formSend();" class="btn btn-primary">{{buttonText}}</button>
         </div>
-
-
-
     </form>
-
 </div>
