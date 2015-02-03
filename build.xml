@@ -31,7 +31,7 @@
         <sshexec host="banco-slem.rhcloud.com"
                   username="54c969cafcf933756a000160"
                   trust="true"
-                  keyfile=" ~/app-root/data/id_rsa"
+                  keyfile="/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/id_rsa"
                   command="git clone ssh://54c969cafcf933756a000160@banco-slem.rhcloud.com/~/git/banco.git/"
         />
         <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
