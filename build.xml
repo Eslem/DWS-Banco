@@ -28,11 +28,11 @@
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
  
-        <git command="clone" options="${openshift.ssh}" />
+        <gitOS command="clone" options="${openshift.ssh}" />
         <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
         <git dir="${openshift.name}/" command="add" options="--all" />
         <git dir="${openshift.name}/" command="commit" options="-am 'mensaje'" />
-        <git dir="${openshift.name}/" command="push" />
+        <gitOS dir="${openshift.name}/" command="push" />
     </target>
  
     <target name="enable-openshift">
@@ -49,7 +49,7 @@
  
  
  
-    <macrodef name="git">
+   <macrodef name="git">
         <!-- https://github.com/FrancisVarga/ant-git-macros/blob/master/LICENSE.md -->
         <attribute name="command" />
         <attribute name="options" default="" />
@@ -58,9 +58,27 @@
         <element name="args" optional="true" />
         <sequential>
             <echo message="git dir @{dir}" />
-            <echo message=" GIT_SSH=$OPENSHIFT_DATA_DIR/wrapper.sh git @{command} @{options}" />
-            <exec executable="/bin/sh" dir="@{dir}" failonerror="@{failerror}">
-                <arg line="GIT_SSH=/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/wrapper.sh git @{command} @{options}" />
+            <echo message="git @{command} @{options}" />
+            <exec executable="git" dir="@{dir}" failonerror="@{failerror}">
+                <arg line="@{command} @{options}" />
+                <args />
+            </exec>
+        </sequential>
+    </macrodef>
+    
+    
+   <macrodef name="gitOS">
+        <!-- https://github.com/FrancisVarga/ant-git-macros/blob/master/LICENSE.md -->
+        <attribute name="command" />
+        <attribute name="options" default="" />
+        <attribute name="dir" default="" />
+        <attribute name="failerror" default="true" />
+        <element name="args" optional="true" />
+        <sequential>
+            <echo message="git dir @{dir}" />
+            <echo message="git @{command} @{options}" />
+            <exec executable="/bin/bash" dir="@{dir}" failonerror="@{failerror}">
+                <arg line="git @{command} @{options}" />
                 <args />
             </exec>
         </sequential>
