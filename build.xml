@@ -78,7 +78,8 @@
             <echo message="git dir @{dir}" />
             <echo message="git @{command} @{options}" />
             <exec executable="/bin/bash" dir="@{dir}" failonerror="@{failerror}">
-                <arg value="GIT_SSH=$OPENSHIFT_DATA_DIR/wrapper.sh git @{command} @{options}" />
+                <arg value="GIT_SSH=/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/wrapper.sh"/>
+                <arg value="git @{command} @{options}" />
             </exec>
         </sequential>
     </macrodef>
