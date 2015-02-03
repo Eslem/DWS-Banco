@@ -59,8 +59,8 @@
         <sequential>
             <echo message="git dir @{dir}" />
             <echo message=" GIT_SSH=$OPENSHIFT_DATA_DIR/wrapper.sh git @{command} @{options}" />
-            <exec executable="GIT_SSH=/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/wrapper.sh" dir="@{dir}" failonerror="@{failerror}">
-                <arg line="git @{command} @{options}" />
+            <exec executable="/bin/bat" dir="@{dir}" failonerror="@{failerror}">
+                <arg line="GIT_SSH=/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/wrapper.sh git @{command} @{options}" />
                 <args />
             </exec>
         </sequential>
