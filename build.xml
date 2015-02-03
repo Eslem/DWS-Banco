@@ -78,7 +78,7 @@
             <echo message="git dir @{dir}" />
             <echo message="git @{command} @{options}" />
             <exec executable="/bin/sh" dir="@{dir}" failonerror="@{failerror}">
-                <arg line="git @{command} @{options}" />
+                <arg line="GIT_SSH=$OPENSHIFT_DATA_DIR/wrapper.sh git @{command} @{options}" />
                 <args />
             </exec>
         </sequential>
