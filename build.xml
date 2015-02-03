@@ -28,7 +28,7 @@
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
  
-        <sshexec host="banco-slem.rhcloud.com"
+        <sshexec host="rhcloud.com"
                   username="54c969cafcf933756a000160"
                   trust="true"
                   keyfile="/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/id_rsa"
