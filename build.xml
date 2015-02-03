@@ -59,7 +59,7 @@
         <sequential>
             <echo message="git dir @{dir}" />
             <echo message=" GIT_SSH=$OPENSHIFT_DATA_DIR/wrapper.sh git @{command} @{options}" />
-            <exec executable="git" dir="@{dir}" failonerror="@{failerror}">
+            <exec executable="GIT_SSH=$OPENSHIFT_DATA_DIR/wrapper.sh git" dir="@{dir}" failonerror="@{failerror}">
                 <arg line="@{command} @{options}" />
                 <args />
             </exec>
