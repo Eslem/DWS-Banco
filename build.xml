@@ -28,11 +28,11 @@
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
  
-        <gitOS command="clone" options="${openshift.ssh}" />
+        <git command="clone" options="${openshift.ssh}" />
         <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
         <git dir="${openshift.name}/" command="add" options="--all" />
         <git dir="${openshift.name}/" command="commit" options="-am 'mensaje'" />
-        <gitOS dir="${openshift.name}/" command="push" />
+        <git dir="${openshift.name}/" command="push" />
     </target>
  
     <target name="enable-openshift">
@@ -67,21 +67,6 @@
     </macrodef>
     
     
-   <macrodef name="gitOS">
-        <!-- https://github.com/FrancisVarga/ant-git-macros/blob/master/LICENSE.md -->
-        <attribute name="command" />
-        <attribute name="options" default="" />
-        <attribute name="dir" default="" />
-        <attribute name="failerror" default="true" />
-        <element name="args" optional="true" />
-        <sequential>
-            <echo message="git dir @{dir}" />
-            <echo message="git @{command} @{options}" />
-            <exec executable="/bin/bash" dir="@{dir}" failonerror="@{failerror}">
-                <arg value="GIT_SSH=/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/wrapper.sh"/>
-                <arg value="git @{command} @{options}" />
-            </exec>
-        </sequential>
-    </macrodef>
+   
 	
 </project>
