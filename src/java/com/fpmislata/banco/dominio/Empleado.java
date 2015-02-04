@@ -17,7 +17,7 @@ public class Empleado implements Serializable{
     private String apellidos;
     private String dni;
     private String direccion;
-    private int telefono;
+    private String telefono;
     private String email;
     private String password;
     private int sucursal;
@@ -34,7 +34,7 @@ public class Empleado implements Serializable{
         this.password=pass;
     }
 
-    public Empleado(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass, int sucursal) {
+    public Empleado(int id, String nombre, String apellidos, String dni, String direccion, String telefono, String email, String pass, int sucursal) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -46,7 +46,7 @@ public class Empleado implements Serializable{
         this.sucursal = sucursal;
     }
     
-    public Empleado(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, int sucursal) {
+    public Empleado(int id, String nombre, String apellidos, String dni, String direccion, String telefono, String email, int sucursal) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -57,7 +57,7 @@ public class Empleado implements Serializable{
         this.sucursal = sucursal;
     }
 
-    public Empleado(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass, int sucursal) {
+    public Empleado(String nombre, String apellidos, String dni, String direccion, String telefono, String email, String pass, int sucursal) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
@@ -108,11 +108,11 @@ public class Empleado implements Serializable{
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
