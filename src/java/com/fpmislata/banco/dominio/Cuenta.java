@@ -2,15 +2,19 @@ package com.fpmislata.banco.dominio;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 public class Cuenta {
 
     int idCuenta;
-
+    @NotNull
     BigDecimal saldoCuenta;
     int idSucursal;
+    @NotNull
     String tipoCuenta;
+    @NotNull
     int clienteCuenta;
+    @NotNull
     private Date fecha;
 
     public Cuenta() {
@@ -93,7 +97,5 @@ public class Cuenta {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    
 
 }

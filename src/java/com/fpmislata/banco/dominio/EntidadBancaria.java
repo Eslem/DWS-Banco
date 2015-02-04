@@ -1,12 +1,19 @@
 package com.fpmislata.banco.dominio;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class EntidadBancaria {
 
     private int id;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String nombre;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String codigo;
+    @NotNull
     private Date fecha;
     //private List<SucursalBancaria> sucursales;
 
@@ -52,11 +59,10 @@ public class EntidadBancaria {
     }
 
     /*public List<SucursalBancaria> getSucursales() {
-        return sucursales;
-    }
+     return sucursales;
+     }
 
-    public void setSucursales(List<SucursalBancaria> sucursales) {
-        this.sucursales = sucursales;
-    }*/
-
+     public void setSucursales(List<SucursalBancaria> sucursales) {
+     this.sucursales = sucursales;
+     }*/
 }

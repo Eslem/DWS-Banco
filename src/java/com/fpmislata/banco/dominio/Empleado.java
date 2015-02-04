@@ -6,7 +6,6 @@
 package com.fpmislata.banco.dominio;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
