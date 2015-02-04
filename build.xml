@@ -29,7 +29,7 @@
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
  
         <sshexec host="rhcloud.com"
-                  username="54c969cafcf933756a000160"
+                  username="eslemalzate@gmail.com"
                   trust="true"
                   keyfile="/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/id_rsa"
                   command="git clone ssh://54c969cafcf933756a000160@banco-slem.rhcloud.com/~/git/banco.git/"
