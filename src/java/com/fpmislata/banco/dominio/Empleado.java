@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.fpmislata.banco.dominio;
 
 import java.io.Serializable;
@@ -139,9 +134,4 @@ public class Empleado implements Serializable{
     public void setSucursal(int sucursal) {
         this.sucursal = sucursal;
     }
-    
-    
-   
-   
-   
 }

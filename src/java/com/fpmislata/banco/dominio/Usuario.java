@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.fpmislata.banco.dominio;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
@@ -18,7 +12,7 @@ public class Usuario implements Serializable{
     private String apellidos;
     private String dni;
     private String direccion;
-    private int telefono;
+    private String telefono;
     private String email;
     private String password;
   
@@ -34,7 +28,7 @@ public class Usuario implements Serializable{
         this.password=pass;
     }
 
-    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
+    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, String telefono, String email, String pass) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -45,7 +39,7 @@ public class Usuario implements Serializable{
         this.password = pass;
     }
     
-    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
+    public Usuario(int id, String nombre, String apellidos, String dni, String direccion, String telefono, String email) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -55,7 +49,7 @@ public class Usuario implements Serializable{
         this.email = email;
     }
 
-    public Usuario(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
+    public Usuario(String nombre, String apellidos, String dni, String direccion, String telefono, String email, String pass) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
@@ -105,11 +99,11 @@ public class Usuario implements Serializable{
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -127,7 +121,5 @@ public class Usuario implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }    
-    
-    
+    }
 }
