@@ -9,6 +9,7 @@ public class Cuenta {
     int idCuenta;
     @NotNull
     BigDecimal saldoCuenta;
+    @NotNull
     int idSucursal;
     @NotNull
     String tipoCuenta;
