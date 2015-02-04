@@ -29,15 +29,21 @@
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
  
         <sshexec host="rhcloud.com"
-                  username="54c969cafcf933756a000160"
-                  trust="false"
-                  keyfile="/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/id_rsa"
-                  command="git clone ssh://54c969cafcf933756a000160@banco-slem.rhcloud.com/~/git/banco.git/"
+                 username="54c969cafcf933756a000160"
+                 trust="true"
+                 keyfile="/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/id_rsa"
+                 command="git clone ssh://54c969cafcf933756a000160@banco-slem.rhcloud.com/~/git/banco.git/"
         />
         <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
         <git dir="${openshift.name}/" command="add" options="--all" />
         <git dir="${openshift.name}/" command="commit" options="-am 'mensaje'" />
-        <git dir="${openshift.name}/" command="push" />
+        <!--git dir="${openshift.name}/" command="push" /-->
+        <sshexec host="rhcloud.com"
+                   username="54c969cafcf933756a000160"
+                   trust="true"
+                   keyfile="/var/lib/openshift/54cf47844382eca9b4000182/app-root/data/id_rsa"
+                   command="git push"
+        />
     </target>
  
     <target name="enable-openshift">
