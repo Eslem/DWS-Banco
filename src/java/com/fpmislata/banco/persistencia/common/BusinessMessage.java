@@ -45,6 +45,15 @@ public class BusinessMessage {
     public final void addMessage(String[] message) {
         messages.add(message);        
     }
+    
+    /**
+     * Add message to list
+     * @param origin Origin of the exception
+     * @param message 
+     */
+    public final void addMessage(String origin, String message) {
+        messages.add(new String[] {origin, message});        
+    }
 
     /**
      * Get message from list
