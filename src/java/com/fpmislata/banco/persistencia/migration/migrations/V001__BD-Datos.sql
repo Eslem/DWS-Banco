@@ -15,7 +15,8 @@ CREATE TABLE `empleados` (
 -- Volcando datos para la tabla banco.administradores: ~2 rows (aproximadamente)
 INSERT INTO `empleados` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `telefono`, `email`, `password`, `sucursal`) VALUES
 	(1, 'Administrador1', 'Ministro Admin', '47777777P', 'C/ Desconocida 1 -10', 969999999, 'algo@gmail.com', 'BpAundR1yF3mcxaoWsl9Ijuwi9KmrsLd', 5),
-	(2, 'Administrador2', 'Ministra Admin', '48888888s', 'C/ Falsa 1- 23', 968888888, 'cosa@gmail.com', 'BpAundR1yF3mcxaoWsl9Ijuwi9KmrsLd', 2);
+	(2, 'Administrador2', 'Ministra Admin', '48888888s', 'C/ Falsa 1- 23', 968888888, 'cosa@gmail.com', 'BpAundR1yF3mcxaoWsl9Ijuwi9KmrsLd', 2),
+	(3, 'Gilgamesh', 'Rey de Reyes', '28765439z', 'C/ Falsa 1- 23', 961475632, 'a@s.d', 'BpAundR1yF3mcxaoWsl9Ijuwi9KmrsLd', 1);
 
 
 -- Volcando estructura para tabla banco.cuentas
