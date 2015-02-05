@@ -8,8 +8,11 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.servicio.Authentication;
 import com.fpmislata.banco.dominio.Credentials;
+import com.fpmislata.banco.persistencia.common.BusinessException;
 import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,21 +40,25 @@ public class SessionController {
 
     @RequestMapping(value = {"/session"}, method = RequestMethod.POST)
     public void login(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) {
-        httpsession = httpServletRequest.getSession(true);
+        try {
+            httpsession = httpServletRequest.getSession(true);
 
-        Credentials credentials = jsonConverter.fromJSON(jsonEntrada, Credentials.class);
-        int userId = authentication.authenticateUser(credentials);
+            Credentials credentials = jsonConverter.fromJSON(jsonEntrada, Credentials.class);
+            int userId = authentication.authenticateUser(credentials);
 
-        if (userId != 0) {
-            try {
-                httpsession.setAttribute("id", userId);
-                httpServletResponse.getWriter().print(jsonConverter.toJSON(empleadoDAO.get(userId)));
-                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+            if (userId != 0) {
+                try {
+                    httpsession.setAttribute("id", userId);
+                    httpServletResponse.getWriter().print(jsonConverter.toJSON(empleadoDAO.get(userId)));
+                    httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } else {
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
-        } else {
-            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (BusinessException ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -76,11 +83,13 @@ public class SessionController {
                 } else {
                     httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
                 }
-            }else{
+            } else {
                 httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
             }
         } catch (IOException ex) {
             throw new RuntimeException(ex);
+        } catch (BusinessException ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

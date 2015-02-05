@@ -2,10 +2,13 @@ package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.EntidadBancaria;
+import com.fpmislata.banco.persistencia.common.BusinessException;
 import com.fpmislata.banco.persistencia.dao.EntidadBancariaDAO;
 import com.fpmislata.banco.persistencia.dao.SucursalBancariaDAO;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,38 +30,62 @@ public class EntidadBancariaController {
 
     @RequestMapping(value = {"/entidadBancaria/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
-        httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadBancariaDAO.get(id)));
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        try {
+            httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadBancariaDAO.get(id)));
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        } catch (BusinessException ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @RequestMapping(value = {"/entidadBancaria/"}, method = RequestMethod.POST)
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
-        entidadBancariaDAO.insert(jsonConverter.fromJSON(jsonEntrada, EntidadBancaria.class));
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        try {
+            entidadBancariaDAO.insert(jsonConverter.fromJSON(jsonEntrada, EntidadBancaria.class));
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        } catch (BusinessException ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @RequestMapping(value = {"/entidadBancaria/"}, method = RequestMethod.PUT)
     public void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
-        entidadBancariaDAO.update(jsonConverter.fromJSON(jsonEntrada, EntidadBancaria.class));
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        try {
+            entidadBancariaDAO.update(jsonConverter.fromJSON(jsonEntrada, EntidadBancaria.class));
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        } catch (BusinessException ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @RequestMapping(value = {"/entidadBancaria/"})
     public void findAll(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
-        List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
-        httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        try {
+            List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
+            httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        } catch (BusinessException ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
     @RequestMapping(value = {"/entidadBancaria/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
-        entidadBancariaDAO.delete(id);
-        httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        try {
+            entidadBancariaDAO.delete(id);
+            httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+        } catch (BusinessException ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @RequestMapping(value = {"/entidadBancaria/{id}/sucursalesBancarias"}, method = RequestMethod.GET)
     public void getSucursalesBancarias(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
-        httpServletResponse.getWriter().println(jsonConverter.toJSON(sucursalBancariaDAO.getByEntidad(id)));
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        try {
+            httpServletResponse.getWriter().println(jsonConverter.toJSON(sucursalBancariaDAO.getByEntidad(id)));
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        } catch (BusinessException ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
