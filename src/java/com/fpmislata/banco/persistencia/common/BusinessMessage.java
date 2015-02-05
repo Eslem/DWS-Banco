@@ -12,30 +12,54 @@ public class BusinessMessage {
 
     public BusinessMessage(String propertyName, String message) {
         this();
-        messages.add(new String[]{propertyName, message});
+        addMessage(new String[]{propertyName, message});
     }
 
-    public void setList(ArrayList<String[]> list) {
+    /**
+     * Set message list
+     * @param list 
+     */
+    public final void setList(ArrayList<String[]> list) {
         messages = list;
     }
 
-    public ArrayList<String[]> getList() {
+    /**
+     * Get message list
+     * @return 
+     */
+    public final ArrayList<String[]> getList() {
         return messages;
     }
-
-    public String getPropertyName(int index) {
-        return messages.get(index)[0];
+    
+    /**
+     * Empty message list
+     */
+    public final void clearList() {        
+        messages = new ArrayList();
+    }
+    
+    /**
+     * Add message to list
+     * @param message
+     */
+    public final void addMessage(String[] message) {
+        messages.add(message);        
     }
 
-    public void setPropertyName(int index, String propertyName) {
-        messages.get(index)[0] = propertyName;
+    /**
+     * Get message from list
+     * @param index Message index
+     * @return Message
+     */
+    public final String[] getMessage(int index) {
+        return messages.get(index);
     }
 
-    public String getMessage(int index) {
-        return messages.get(index)[1];
-    }
-
-    public void setMessage(int index, String message) {
-        messages.get(index)[1] = message;
+    /**
+     * Remove message from list
+     * @param index Message index
+     */
+    public final void removeMessage(int index) {
+        messages.remove(index);
     }
 }
