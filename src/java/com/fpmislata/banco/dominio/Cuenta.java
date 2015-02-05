@@ -3,6 +3,7 @@ package com.fpmislata.banco.dominio;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 public class Cuenta {
 
@@ -16,6 +17,7 @@ public class Cuenta {
     @NotNull
     int clienteCuenta;
     @NotNull
+    @Past
     private Date fecha;
 
     public Cuenta() {

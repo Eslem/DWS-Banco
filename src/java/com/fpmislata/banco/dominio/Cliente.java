@@ -3,6 +3,7 @@ package com.fpmislata.banco.dominio;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -27,6 +28,7 @@ public class Cliente implements Serializable {
     private String telefono;
     @NotNull
     @Size(min = 3, max = 50)
+    @Email
     private String email;
     @NotNull
     @Size(min = 3, max = 250)

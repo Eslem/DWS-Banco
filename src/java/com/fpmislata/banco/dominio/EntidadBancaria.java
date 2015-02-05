@@ -2,6 +2,7 @@ package com.fpmislata.banco.dominio;
 
 import java.util.Date;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 public class EntidadBancaria {
@@ -14,6 +15,7 @@ public class EntidadBancaria {
     @Size(min = 3, max = 50)
     private String codigo;
     @NotNull
+    @Past
     private Date fecha;
     //private List<SucursalBancaria> sucursales;
 

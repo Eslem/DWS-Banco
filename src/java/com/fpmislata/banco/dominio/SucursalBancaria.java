@@ -1,25 +1,36 @@
 package com.fpmislata.banco.dominio;
 
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author Manu
  */
 public class SucursalBancaria {
-    
+
     private int id;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String nombre;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String poblacion;
+    @NotNull
     private int codigoPostal;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String telefono;
+    @NotNull
     private int idEntidad;
-     private Date fecha;
+    @NotNull
+    @Past
+    private Date fecha;
 
     public SucursalBancaria() {
     }
-    
-    
 
     public SucursalBancaria(int id, String nombre, String poblacion, int codigoPostal, String telefono, int idEntidad) {
         this.id = id;
@@ -85,9 +96,5 @@ public class SucursalBancaria {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    
-    
-    
-    
+
 }
