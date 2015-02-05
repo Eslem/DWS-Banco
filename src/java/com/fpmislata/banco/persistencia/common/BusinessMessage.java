@@ -1,74 +1,57 @@
 package com.fpmislata.banco.persistencia.common;
 
-import java.util.ArrayList;
+import org.springframework.util.StringUtils;
 
-public class BusinessMessage {
+public class BusinessMessage implements Comparable<BusinessMessage> {
 
-    private ArrayList<String[]> messages;
+    private final String fieldName;
+    private final String message;
 
-    public BusinessMessage() {
-        messages = new ArrayList();
-    }
+    public BusinessMessage(String fieldName, String message) {
+        if (message == null)
+            throw new IllegalArgumentException("El mensaje no puede ser nulo");
 
-    public BusinessMessage(String propertyName, String message) {
-        this();
-        addMessage(new String[]{propertyName, message});
-    }
-
-    /**
-     * Set message list
-     * @param list 
-     */
-    public final void setList(ArrayList<String[]> list) {
-        messages = list;
-    }
-
-    /**
-     * Get message list
-     * @return 
-     */
-    public final ArrayList<String[]> getList() {
-        return messages;
+        if ((fieldName != null) && (fieldName.trim().equals(""))) {
+            this.fieldName = null;
+        } else {
+            this.fieldName = StringUtils.capitalize(fieldName);
+        }
+        this.message = StringUtils.capitalize(message);
     }
     
-    /**
-     * Empty message list
-     */
-    public final void clearList() {        
-        messages = new ArrayList();
+    public String getFieldName() {
+        return fieldName;
     }
     
-    /**
-     * Add message to list
-     * @param message
-     */
-    public final void addMessage(String[] message) {
-        messages.add(message);        
-    }
-    
-    /**
-     * Add message to list
-     * @param origin Origin of the exception
-     * @param message 
-     */
-    public final void addMessage(String origin, String message) {
-        messages.add(new String[] {origin, message});        
+    public String getMessage() {
+        return message;
     }
 
-    /**
-     * Get message from list
-     * @param index Message index
-     * @return Message
-     */
-    public final String[] getMessage(int index) {
-        return messages.get(index);
+    @Override
+    public String toString() {
+        if (fieldName != null) {
+            return "'" + fieldName + "' - " + message;
+        } else {
+            return message;
+        }
     }
 
-    /**
-     * Remove message from list
-     * @param index Message index
-     */
-    public final void removeMessage(int index) {
-        messages.remove(index);
+    @Override
+    public int compareTo(BusinessMessage o) {
+        if ((getFieldName() == null) && (o.getFieldName() == null)) {
+            return getMessage().compareTo(o.getMessage());
+        } else if ((getFieldName() == null) && (o.getFieldName() != null)) {
+            return 1;
+        } else if ((getFieldName() != null) && (o.getFieldName() == null)) {
+            return -1;
+        } else if ((getFieldName() != null) && (o.getFieldName() != null)) {
+            if (getFieldName().equals(o.getFieldName())) {
+                return getMessage().compareTo(o.getMessage());
+            } else {
+                return getFieldName().compareTo(o.getFieldName());
+            }
+        } else {
+            throw new RuntimeException("Error de lógica");
+        }
     }
 }
