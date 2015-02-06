@@ -1,13 +1,13 @@
 function selectedMovimiento($scope, $http, $routeParams) {
-    $scope.getMovimiento = function () {
+    $scope.getMovimiento = function() {
         $http({
             method: "GET",
             url: contextPath + "/api/movimiento/" + $scope.movimiento.id
-        }).success(function (data) {
+        }).success(function(data) {
             $scope.movimiento = data;
             data.fecha = new Date(data.fecha);
-        }).error(function (data, status) {
-            alert("Fatal error: " + status);
+        }).error(function(data, status) {
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
@@ -23,31 +23,32 @@ function getCuenta($scope, $http) {
     $http({
         method: "GET",
         url: contextPath + "/api/cuenta/"
-    }).success(function (data, status) {
+    }).success(function(data, status) {
         $scope.cuentas = data;
-    }).error(function (data, status) {
-        alert("Fatal error: " + status);
+    }).error(function(data, status) {
+        if (status === 400) $scope.errors = data.businessMessages;
     });
 }
 
 /* Controllers */
 
-app.controller("MovimientoInsertController", ["$scope", "$http", function ($scope, $http) {
+app.controller("MovimientoInsertController", ["$scope", "$http", function($scope, $http) {
+        $scope.movimiento = {};
         $scope.buttonText = 'Insertar';
 
-        $scope.formSend = function () {
+        $scope.formSend = function() {
             $http({
                 method: "POST",
                 data: $scope.movimiento,
                 url: contextPath + "/api/movimiento/"
-            }).success(function (data) {
+            }).success(function(data) {
                 //alert("Movimiento correctamente insertado");
                 goToListMovimiento();
-            }).error(function (data, status) {
-                alert("Fatal error: " + status);
+            }).error(function(data, status) {
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         };
-        
+
         getCuenta($scope, $http);
 
     }

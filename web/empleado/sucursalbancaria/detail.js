@@ -7,7 +7,7 @@ function start($scope, $http, $routeParams) {
             $scope.sucursalbancaria = data;
             data.fecha = new Date(data.fecha);
         }).error(function(data, status) {
-            alert("Fatal error: " + status);
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
@@ -23,7 +23,7 @@ function start($scope, $http, $routeParams) {
         }).success(function(data, status) {
             $scope.entidadesBancarias = data;
         }).error(function(data, status) {
-            alert("Fatal error: " + status);
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
@@ -34,7 +34,7 @@ function start($scope, $http, $routeParams) {
         }).success(function(data) {
             $scope.cuentas = data;
         }).error(function(data, status) {
-            alert("Fatal error: " + status);
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
@@ -61,7 +61,7 @@ app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routePa
             }).success(function(data) {
                 goToListSucursal();
             }).error(function(data, status) {
-                alert("Fatal error: " + status);
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         };
 
@@ -82,7 +82,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 alert("Sucursal Bancaria " + $scope.sucursalbancaria.id + " correctamente actualizada.");
                 $scope.getSucursalBancaria($scope.sucursalbancaria.id);
             }).error(function(data, status) {
-                alert("Fatal error: " + status);
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         };
 
@@ -95,7 +95,7 @@ app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routePa
                 }).success(function() {
                     getCuentas();
                 }).error(function(data, status) {
-                    alert("Fatal error: " + status);
+                    if (status === 400) $scope.errors = data.businessMessages;
                 });
             } else {
                 getCuentas();

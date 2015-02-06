@@ -56,10 +56,16 @@
             </div>
         </div>
 
+            <div class="formErrors">
+                <div ng-repeat="error in errors">
+                    <span class="source">"{{error.fieldName}}"</span><span> {{error.message}}</span>
+                </div>
+            </div>
+
         <div align="center">
             <button ng-click="formSend();" class="btn btn-primary">{{buttonText}}</button>
         </div>
-        </br>
+        <br/>
 
     </form>
 

@@ -7,7 +7,7 @@ function initializeEntidadBancaria($scope, $http, $routeParams) {
             $scope.entidadBancaria = data;
             data.fecha = new Date(data.fecha);
         }).error(function(data, status) {
-            alert("Fatal error: " + status);
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
@@ -26,7 +26,7 @@ function getSucursalesBancarias($scope, $http) {
     }).success(function(data, status) {
         $scope.sucursales = data;
     }).error(function(data, status) {
-        alert("Fatal error: " + status);
+        if (status === 400) $scope.errors = data.businessMessages;
     });
 }
 
@@ -46,12 +46,9 @@ function initializeSucursalesBancarias($scope, $http) {
 /* Controllers */
 
 app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($scope, $http) {
+        $scope.entidadBancaria = {};
         $scope.buttonText = 'Insertar';
         $scope.mostrar = false;
-
-        $scope.entidadBancaria={
-            
-        }
 
         $scope.formSend = function() {
             $http({
@@ -61,7 +58,7 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($
             }).success(function(data) {
                 goToListEntidad();
             }).error(function(data, status) {
-                alert("Fatal error: " + status);
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         };
     }
@@ -79,7 +76,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
             }).success(function(data) {
                 goToListEntidad();
             }).error(function(data, status) {
-                alert("Fatal error: " + status);
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         };
 
@@ -98,7 +95,7 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                 }).success(function() {
                     getSucursalesBancarias($scope, $http);
                 }).error(function(data, status) {
-                    alert("Fatal error: " + status);
+                    if (status === 400) $scope.errors = data.businessMessages;
                 });
             } else {
                 $scope.findAll();

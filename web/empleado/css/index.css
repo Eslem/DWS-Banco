@@ -158,4 +158,12 @@ div.wrap-body {
 .margin-small {
   margin: 4px; }
 
+.formErrors {
+  text-align: center;
+  color: #C22; }
+  .formErrors:not(:empty) {
+    margin-bottom: 16px; }
+  .formErrors .source {
+    font-weight: bold; }
+
 /*# sourceMappingURL=index.css.map */
