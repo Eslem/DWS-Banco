@@ -65,8 +65,8 @@ public class MovimientoController {
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         try {
             Movimiento movimiento = jsonConverter.fromJSON(jsonEntrada, Movimiento.class);
-            updateSaldoCuenta(movimiento);
             movimientoDAO.insert(movimiento);
+            updateSaldoCuenta(movimiento);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
             catchException(httpServletResponse, ex);
