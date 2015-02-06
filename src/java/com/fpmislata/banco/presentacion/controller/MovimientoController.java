@@ -46,8 +46,9 @@ public class MovimientoController {
     @RequestMapping(value = {"/movimiento/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         try {
-            httpServletResponse.getWriter().println(jsonConverter.toJSON(movimientoDAO.get(id)));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json");
+            httpServletResponse.getWriter().println(jsonConverter.toJSON(movimientoDAO.get(id)));
         } catch (BusinessException ex) {
             Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
         }

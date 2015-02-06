@@ -6,8 +6,6 @@ import com.fpmislata.banco.persistencia.common.BusinessException;
 import com.fpmislata.banco.persistencia.dao.EmpleadoDAO;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +23,21 @@ public class EmpleadoController {
     @Autowired
     JSONConverter jsonConverter;
 
+    private void catchException(HttpServletResponse httpServletResponse, Exception ex) throws IOException {
+        httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        httpServletResponse.setContentType("application/json");
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(ex));
+    }
+
     @RequestMapping(value = {"/administrador/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
 
         try {
-            httpServletResponse.getWriter().println(jsonConverter.toJSON(empleadoDAO.get(id)));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json");
+            httpServletResponse.getWriter().println(jsonConverter.toJSON(empleadoDAO.get(id)));
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -42,7 +47,7 @@ public class EmpleadoController {
             empleadoDAO.insert(jsonConverter.fromJSON(jsonEntrada, Empleado.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -52,7 +57,7 @@ public class EmpleadoController {
             empleadoDAO.update(jsonConverter.fromJSON(jsonEntrada, Empleado.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -63,7 +68,7 @@ public class EmpleadoController {
             httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -74,7 +79,7 @@ public class EmpleadoController {
             httpServletResponse.getWriter().println("ok deleted");
             httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -84,7 +89,7 @@ public class EmpleadoController {
             empleadoDAO.updatePassword(jsonConverter.fromJSON(jsonEntrada, Empleado.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 }

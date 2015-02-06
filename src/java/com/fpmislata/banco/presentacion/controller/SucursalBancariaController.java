@@ -6,15 +6,12 @@
 package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
-import com.fpmislata.banco.dominio.Cuenta;
 import com.fpmislata.banco.dominio.SucursalBancaria;
 import com.fpmislata.banco.persistencia.common.BusinessException;
 import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import com.fpmislata.banco.persistencia.dao.SucursalBancariaDAO;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +35,20 @@ public class SucursalBancariaController {
     @Autowired
     CuentaDAO cuentaDAO;
 
+    private void catchException(HttpServletResponse httpServletResponse, Exception ex) throws IOException {
+        httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        httpServletResponse.setContentType("application/json");
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(ex));
+    }
+
     @RequestMapping(value = {"/sucursalbancaria/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         try {
-            httpServletResponse.getWriter().println(jsonConverter.toJSON(sucursalBancariaDAO.get(id)));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json");
+            httpServletResponse.getWriter().println(jsonConverter.toJSON(sucursalBancariaDAO.get(id)));
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -54,7 +58,7 @@ public class SucursalBancariaController {
             sucursalBancariaDAO.insert(jsonConverter.fromJSON(jsonEntrada, SucursalBancaria.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -64,7 +68,7 @@ public class SucursalBancariaController {
             sucursalBancariaDAO.update(jsonConverter.fromJSON(jsonEntrada, SucursalBancaria.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -75,7 +79,7 @@ public class SucursalBancariaController {
             httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -85,7 +89,7 @@ public class SucursalBancariaController {
             sucursalBancariaDAO.delete(id);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 }

@@ -25,13 +25,20 @@ public class ClienteController {
     @Autowired
     JSONConverter jsonConverter;
 
+    private void catchException(HttpServletResponse httpServletResponse, Exception ex) throws IOException {
+        httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        httpServletResponse.setContentType("application/json");
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(ex));
+    }
+
     @RequestMapping(value = {"/usuario/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         try {
-            httpServletResponse.getWriter().println(jsonConverter.toJSON(clienteDAO.get(id)));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json");
+            httpServletResponse.getWriter().println(jsonConverter.toJSON(clienteDAO.get(id)));
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -41,7 +48,7 @@ public class ClienteController {
             clienteDAO.insert(jsonConverter.fromJSON(jsonEntrada, Cliente.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -51,7 +58,7 @@ public class ClienteController {
             clienteDAO.update(jsonConverter.fromJSON(jsonEntrada, Cliente.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -62,7 +69,7 @@ public class ClienteController {
             httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -72,7 +79,7 @@ public class ClienteController {
             clienteDAO.delete(id);
             httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -82,7 +89,7 @@ public class ClienteController {
             clienteDAO.updatePassword(jsonConverter.fromJSON(jsonEntrada, Cliente.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 }

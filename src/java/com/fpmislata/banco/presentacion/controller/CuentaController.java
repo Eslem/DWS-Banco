@@ -7,8 +7,6 @@ import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import com.fpmislata.banco.persistencia.dao.MovimientoDAO;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +26,20 @@ public class CuentaController {
     @Autowired
     JSONConverter jsonConverter;
 
+    private void catchException(HttpServletResponse httpServletResponse, Exception ex) throws IOException {
+        httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        httpServletResponse.setContentType("application/json");
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(ex));
+    }
+
     @RequestMapping(value = {"/cuenta/{id}"}, method = RequestMethod.GET)
     public void get(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         try {
-            httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentaDAO.get(id)));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json");
+            httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentaDAO.get(id)));
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -44,7 +49,7 @@ public class CuentaController {
             httpServletResponse.getWriter().println(jsonConverter.toJSON(movimientoDAO.getByIdCuenta(id)));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -54,7 +59,7 @@ public class CuentaController {
             cuentaDAO.insert(jsonConverter.fromJSON(jsonEntrada, Cuenta.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -65,7 +70,7 @@ public class CuentaController {
             httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentas));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -75,7 +80,7 @@ public class CuentaController {
             cuentaDAO.delete(id);
             httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -85,7 +90,7 @@ public class CuentaController {
             cuentaDAO.update(jsonConverter.fromJSON(jsonEntrada, Cuenta.class));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -96,7 +101,7 @@ public class CuentaController {
             httpServletResponse.getWriter().println(jsonConverter.toJSON(cuentas));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 }

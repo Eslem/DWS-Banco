@@ -49,6 +49,10 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function($
         $scope.buttonText = 'Insertar';
         $scope.mostrar = false;
 
+        $scope.entidadBancaria={
+            
+        }
+
         $scope.formSend = function() {
             $http({
                 method: "POST",
