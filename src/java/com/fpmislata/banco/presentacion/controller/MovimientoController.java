@@ -9,8 +9,6 @@ import com.fpmislata.banco.persistencia.dao.MovimientoDAO;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +28,25 @@ public class MovimientoController {
     @Autowired
     JSONConverter jsonConverter;
 
+    private void catchException(HttpServletResponse httpServletResponse, Exception ex) throws IOException {
+        httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        httpServletResponse.setContentType("application/json");
+        httpServletResponse.getWriter().println(jsonConverter.toJSON(ex));
+    }
+
     private void updateSaldoCuenta(Movimiento movimiento) {
         try {
-            Cuenta cuenta = cuentaDAO.get(movimiento.getIdCuenta());
-            BigDecimal nuevoSaldo = movimiento.getCantidad();
-            if (movimiento.getTipo().equalsIgnoreCase("Debe"))
-                nuevoSaldo = nuevoSaldo.multiply(new BigDecimal(-1));
-            nuevoSaldo = cuenta.getSaldoCuenta().add(nuevoSaldo);
-            cuenta.setSaldoCuenta(nuevoSaldo);
+            int idCuenta = movimiento.getIdCuenta();
+            if (idCuenta != 0) {
+                Cuenta cuenta = cuentaDAO.get(idCuenta);
+                BigDecimal nuevoSaldo = movimiento.getCantidad();
+                if (movimiento.getTipo().equalsIgnoreCase("Debe"))
+                    nuevoSaldo = nuevoSaldo.multiply(new BigDecimal(-1));
+                nuevoSaldo = cuenta.getSaldoCuenta().add(nuevoSaldo);
+                cuenta.setSaldoCuenta(nuevoSaldo);
+            }
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            //catchException(httpServletResponse, ex);
         }
     }
 
@@ -50,7 +57,7 @@ public class MovimientoController {
             httpServletResponse.setContentType("application/json");
             httpServletResponse.getWriter().println(jsonConverter.toJSON(movimientoDAO.get(id)));
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -62,7 +69,7 @@ public class MovimientoController {
             movimientoDAO.insert(movimiento);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -73,7 +80,7 @@ public class MovimientoController {
             httpServletResponse.getWriter().println(jsonConverter.toJSON(entidadesBancarias));
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -83,7 +90,7 @@ public class MovimientoController {
             movimientoDAO.delete(id);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
-            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 }

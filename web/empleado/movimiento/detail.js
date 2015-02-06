@@ -19,7 +19,6 @@ function selectedMovimiento($scope, $http, $routeParams) {
 }
 
 function getCuenta($scope, $http) {
-
     $http({
         method: "GET",
         url: contextPath + "/api/cuenta/"
@@ -48,9 +47,7 @@ app.controller("MovimientoInsertController", ["$scope", "$http", function($scope
                 if (status === 400) $scope.errors = data.businessMessages;
             });
         };
-
         getCuenta($scope, $http);
-
     }
 ]);
 
