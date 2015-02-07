@@ -14,4 +14,6 @@ import com.fpmislata.banco.dominio.Transferencia;
 public class TransferenciaDAOImplHibernate extends GenericDAOImplHibernate<Transferencia>{
     
     
+     
+    
 }

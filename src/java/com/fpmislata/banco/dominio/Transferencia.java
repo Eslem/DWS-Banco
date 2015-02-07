@@ -22,6 +22,7 @@ public class Transferencia {
         this.cantidad = cantidad;
     }
     
+    public Transferencia(){}
   
 
     public int getCuentaOrigen() {
