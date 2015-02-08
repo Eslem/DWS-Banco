@@ -6,24 +6,46 @@
 package com.fpmislata.banco.dominio;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  *
  * @author Manu
  */
 public class Transferencia {
+
     private int cuentaOrigen;
     private int cuentaDestino;
     private BigDecimal cantidad;
+    private String concepto;
+    private Date fecha;
 
-    public Transferencia(int cuentaOrigen, int cuentaDestino, BigDecimal cantidad) {
+    public Transferencia(int cuentaOrigen, int cuentaDestino, BigDecimal cantidad, String concepto, Date fecha) {
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
         this.cantidad = cantidad;
+        this.concepto = concepto;
+        this.fecha = fecha;
     }
-    
-    public Transferencia(){}
-  
+
+    public Transferencia() {
+    }
+
+    public String getConcepto() {
+        return concepto;
+    }
+
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
     public int getCuentaOrigen() {
         return cuentaOrigen;
@@ -48,7 +70,5 @@ public class Transferencia {
     public void setCantidad(BigDecimal cantidad) {
         this.cantidad = cantidad;
     }
-    
-    
-    
+
 }

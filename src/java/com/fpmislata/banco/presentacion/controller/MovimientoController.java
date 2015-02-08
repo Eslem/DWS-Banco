@@ -2,7 +2,6 @@ package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.Movimiento;
-import com.fpmislata.banco.dominio.Transferencia;
 import com.fpmislata.banco.persistencia.dao.MovimientoDAO;
 import java.io.IOException;
 import java.util.List;
@@ -54,10 +53,6 @@ public class MovimientoController {
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
     
-    @RequestMapping(value = {"/transferencia"}, method = RequestMethod.POST)
-    public void insertTransferencia(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
-        movimientoDAO.generarTransferencia(jsonConverter.fromJSON(jsonEntrada, Transferencia.class));
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-    }
+   
     
 }
