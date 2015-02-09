@@ -12,80 +12,59 @@ public class Cuenta {
     String tipoCuenta;
     int clienteCuenta;
     private Date fecha;
-    private int pin;
+    private String pin;
 
     public Cuenta() {
     }
 
-    public Cuenta(int idCuenta, BigDecimal saldoCuenta, int idSucursal, String tipoCuenta, int clienteCuenta, int pin) {
+    public Cuenta(int idCuenta, BigDecimal saldoCuenta, int idSucursal, String tipoCuenta, int clienteCuenta, String pin) {
 
         this.idCuenta = idCuenta;
         this.saldoCuenta = saldoCuenta;
         this.idSucursal = idSucursal;
         this.tipoCuenta = tipoCuenta;
         this.clienteCuenta = clienteCuenta;
-        this.pin= pin;
-
+        this.pin = pin;
     }
 
     public int getIdCuenta() {
-
         return idCuenta;
-
     }
 
     public void setIdCuenta(int idCuenta) {
-
         this.idCuenta = idCuenta;
-
     }
 
     public BigDecimal getSaldoCuenta() {
-
         return saldoCuenta;
-
     }
 
     public void setSaldoCuenta(BigDecimal saldoCuenta) {
-
         this.saldoCuenta = saldoCuenta;
-
     }
 
     public int getIdSucursal() {
-
         return idSucursal;
-
     }
 
     public void setIdSucursal(int idSucursal) {
-
         this.idSucursal = idSucursal;
-
     }
 
     public String getTipoCuenta() {
-
         return tipoCuenta;
-
     }
 
     public void setTipoCuenta(String tipoCuenta) {
-
         this.tipoCuenta = tipoCuenta;
-
     }
 
     public int getClienteCuenta() {
-
         return clienteCuenta;
-
     }
 
     public void setClienteCuenta(int clienteCuenta) {
-
         this.clienteCuenta = clienteCuenta;
-
     }
 
     public Date getFecha() {
@@ -96,14 +75,12 @@ public class Cuenta {
         this.fecha = fecha;
     }
 
-    public int getPin() {
+    public String getPin() {
         return pin;
     }
 
-    public void setPin(int pin) {
+    public void setPin(String pin) {
         this.pin = pin;
     }
-    
-    
 
 }

@@ -41,7 +41,7 @@ public class TransferenciaController {
         Cuenta cuentaDestino = cuenta.get(trans.getCuentaDestino());
 
         if ((cuentaDestino != null) && (cuentaOrigen != null)) {
-            if (cuentaDestino.getPin() == trans.getPin()) {
+            if (cuentaDestino.getPin().equals(trans.getPin())) {
                 transferencia.generarTransferencia(jsonConverter.fromJSON(jsonEntrada, Transferencia.class));
                 httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             } else {

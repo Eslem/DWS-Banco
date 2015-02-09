@@ -19,9 +19,9 @@ public class Transferencia {
     private BigDecimal cantidad;
     private String concepto;
     private Date fecha;
-    private int pin;
+    private String pin;
 
-    public Transferencia(int cuentaOrigen, int cuentaDestino, BigDecimal cantidad, String concepto, Date fecha, int pin) {
+    public Transferencia(int cuentaOrigen, int cuentaDestino, BigDecimal cantidad, String concepto, Date fecha, String pin) {
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
         this.cantidad = cantidad;
@@ -73,11 +73,11 @@ public class Transferencia {
         this.cantidad = cantidad;
     }
 
-    public int getPin() {
+    public String getPin() {
         return pin;
     }
 
-    public void setPin(int pin) {
+    public void setPin(String pin) {
         this.pin = pin;
     }
 

@@ -8,7 +8,6 @@ package com.fpmislata.banco.persistencia.dao.impl.hibernate;
 import com.fpmislata.banco.dominio.Transferencia;
 import com.fpmislata.banco.persistencia.common.HibernateUtil;
 import java.util.Date;
-import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
