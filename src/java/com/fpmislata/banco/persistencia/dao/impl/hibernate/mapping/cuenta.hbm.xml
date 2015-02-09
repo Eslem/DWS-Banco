@@ -10,5 +10,6 @@
         <property name="tipoCuenta" column="tipo" />
         <property name="clienteCuenta" column="cliente"/>
         <property name="fecha"/>
+        <property name="pin"/>
     </class>
 </hibernate-mapping>

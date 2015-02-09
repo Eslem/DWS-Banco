@@ -26,14 +26,15 @@ CREATE TABLE `cuentas` (
   `tipo` enum('Ahorro','Corriente') NOT NULL DEFAULT 'Corriente',
   `cliente` int(9) NOT NULL DEFAULT 0,
   `fecha` date DEFAULT NULL,
+  `pin` int(4) ZEROFILL NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla banco.cuentas: ~3 rows (aproximadamente)
-INSERT INTO `cuentas` (`id`, `saldo`, `idsucursal`, `tipo`) VALUES
-	(1, 123.00, 11, 'Corriente'),
-	(2, 47585.00, 52, 'Ahorro'),
-	(3, 50.00, 1, 'Corriente');
+INSERT INTO `cuentas` (`id`, `saldo`, `idsucursal`, `tipo`,`pin`) VALUES
+	(1, 123.00, 11, 'Corriente',0001),
+	(2, 47585.00, 52, 'Ahorro',1111),
+	(3, 50.00, 1, 'Corriente',0002);
 
 
 -- Volcando estructura para tabla banco.entidadesbancarias

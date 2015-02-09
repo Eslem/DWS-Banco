@@ -26,7 +26,8 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
                         resultSet.getBigDecimal("saldo"),
                         resultSet.getInt("idsucursal"),
                         resultSet.getString("tipo"),
-                        resultSet.getInt("cliente")
+                        resultSet.getInt("cliente"),
+                        resultSet.getInt("pin")
                 );
                 connection.close();
                 return cuentaBancaria;
@@ -83,7 +84,8 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
                         resultSet.getBigDecimal("saldo"),
                         resultSet.getInt("idsucursal"),
                         resultSet.getString("tipo"),
-                        resultSet.getInt("cliente")
+                        resultSet.getInt("cliente"),
+                           resultSet.getInt("pin")
                 ));
                 
             }

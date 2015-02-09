@@ -6,7 +6,9 @@
 package com.fpmislata.banco.presentacion.controller;
 
 import com.fpmislata.banco.common.json.JSONConverter;
+import com.fpmislata.banco.dominio.Cuenta;
 import com.fpmislata.banco.dominio.Transferencia;
+import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import com.fpmislata.banco.persistencia.dao.impl.hibernate.TransferenciaDAOImplHibernate;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,16 +25,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class TransferenciaController {
-  
+
     @Autowired
     TransferenciaDAOImplHibernate transferencia;
     @Autowired
     JSONConverter jsonConverter;
-    
-   @RequestMapping(value = {"/transferencia"}, method = RequestMethod.POST)
+    @Autowired
+    CuentaDAO cuenta;
+
+    @RequestMapping(value = {"/transferencia"}, method = RequestMethod.POST)
     public void insertTransferencia(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
-        transferencia.generarTransferencia(jsonConverter.fromJSON(jsonEntrada, Transferencia.class));
-        httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+
+        Transferencia trans = jsonConverter.fromJSON(jsonEntrada, Transferencia.class);
+        Cuenta cuentaOrigen = cuenta.get(trans.getCuentaOrigen());
+        Cuenta cuentaDestino = cuenta.get(trans.getCuentaDestino());
+
+        if ((cuentaDestino != null) && (cuentaOrigen != null)) {
+            if (cuentaDestino.getPin() == trans.getPin()) {
+                transferencia.generarTransferencia(jsonConverter.fromJSON(jsonEntrada, Transferencia.class));
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+
+            }
+
+        }
+
     }
-    
+
 }

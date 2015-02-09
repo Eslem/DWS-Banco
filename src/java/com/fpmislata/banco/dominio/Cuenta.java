@@ -12,17 +12,19 @@ public class Cuenta {
     String tipoCuenta;
     int clienteCuenta;
     private Date fecha;
+    private int pin;
 
     public Cuenta() {
     }
 
-    public Cuenta(int idCuenta, BigDecimal saldoCuenta, int idSucursal, String tipoCuenta, int clienteCuenta) {
+    public Cuenta(int idCuenta, BigDecimal saldoCuenta, int idSucursal, String tipoCuenta, int clienteCuenta, int pin) {
 
         this.idCuenta = idCuenta;
         this.saldoCuenta = saldoCuenta;
         this.idSucursal = idSucursal;
         this.tipoCuenta = tipoCuenta;
         this.clienteCuenta = clienteCuenta;
+        this.pin= pin;
 
     }
 
@@ -92,6 +94,14 @@ public class Cuenta {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public int getPin() {
+        return pin;
+    }
+
+    public void setPin(int pin) {
+        this.pin = pin;
     }
     
     
