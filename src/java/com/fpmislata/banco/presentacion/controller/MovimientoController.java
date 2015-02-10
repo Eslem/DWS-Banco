@@ -52,4 +52,7 @@ public class MovimientoController {
         movimientoDAO.delete(id);
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
     }
+    
+   
+    
 }

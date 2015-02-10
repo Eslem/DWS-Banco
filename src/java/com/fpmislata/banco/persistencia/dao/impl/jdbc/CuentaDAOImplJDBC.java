@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CuentaDAOImplJDBC implements CuentaDAO{
-    
+public class CuentaDAOImplJDBC implements CuentaDAO {
+
     ConnectionFactory connectionFactory = new ConnectionFactoryImplDataSource();
 
     @Override
@@ -26,7 +26,8 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
                         resultSet.getBigDecimal("saldo"),
                         resultSet.getInt("idsucursal"),
                         resultSet.getString("tipo"),
-                        resultSet.getInt("cliente")
+                        resultSet.getInt("cliente"),
+                        resultSet.getString("pin")
                 );
                 connection.close();
                 return cuentaBancaria;
@@ -83,9 +84,10 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
                         resultSet.getBigDecimal("saldo"),
                         resultSet.getInt("idsucursal"),
                         resultSet.getString("tipo"),
-                        resultSet.getInt("cliente")
+                        resultSet.getInt("cliente"),
+                        resultSet.getString("pin")
                 ));
-                
+
             }
             connection.close();
             return cuentas;
@@ -94,7 +96,7 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
         }
     }
 
-@Override
+    @Override
     public Cuenta update(Cuenta cuenta) {
         try {
             Connection connection = connectionFactory.getConnection();
@@ -107,7 +109,7 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
             preparedStatement.setInt(5, cuenta.getIdCuenta());
             preparedStatement.executeUpdate();
             connection.close();
-            return null; 
+            return null;
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -118,5 +120,5 @@ public class CuentaDAOImplJDBC implements CuentaDAO{
     public List<Cuenta> getBySucursal(int idSucursal) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
