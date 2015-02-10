@@ -20,6 +20,7 @@ public class Transferencia {
     private String concepto;
     private Date fecha;
     private String pin;
+                
 
     public Transferencia(int cuentaOrigen, int cuentaDestino, BigDecimal cantidad, String concepto, Date fecha, String pin) {
         this.cuentaOrigen = cuentaOrigen;
