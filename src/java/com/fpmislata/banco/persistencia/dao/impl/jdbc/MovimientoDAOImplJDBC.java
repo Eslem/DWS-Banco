@@ -1,7 +1,6 @@
 package com.fpmislata.banco.persistencia.dao.impl.jdbc;
 
 import com.fpmislata.banco.dominio.Movimiento;
-import com.fpmislata.banco.dominio.Transferencia;
 import com.fpmislata.banco.persistencia.dao.MovimientoDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -124,4 +123,5 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
     public List<Movimiento> getByIdCuenta(int idCuenta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }
