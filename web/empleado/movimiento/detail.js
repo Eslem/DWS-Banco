@@ -53,27 +53,6 @@ app.controller("MovimientoInsertController", ["$scope", "$http", function ($scop
     }
 ]);
 
-app.controller("MovimientoUpdateController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
-        $scope.buttonText = 'Actualizar';
-
-        $scope.formSend = function () {
-            $http({
-                method: "PUT",
-                data: $scope.movimiento,
-                url: contextPath + "/api/movimiento/"
-            }).success(function (data) {
-                alert("Movimiento " + $scope.movimiento.id + " correctamente actualizado.");
-                goToListMovimiento();
-            }).error(function (data, status) {
-                alert("Fatal error: " + status);
-            });
-        };
-
-        selectedMovimiento($scope, $http, $routeParams);
-        getCuenta($scope, $http);
-    }
-]);
-
 function goToListMovimiento() {
     location.replace('#/movimiento/');
 }
