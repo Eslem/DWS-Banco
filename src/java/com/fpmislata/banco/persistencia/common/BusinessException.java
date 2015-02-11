@@ -22,8 +22,8 @@ public class BusinessException extends Exception {
 
     public BusinessException(javax.validation.ConstraintViolationException cve) {
         for (ConstraintViolation constraintViolation : cve.getConstraintViolations()) {
-            String message = constraintViolation.getMessage();
             String fieldName = constraintViolation.getPropertyPath().toString();
+            String message = constraintViolation.getMessage();
 
             bussinessMessages.add(new BusinessMessage(fieldName, message));
         }

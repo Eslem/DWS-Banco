@@ -27,6 +27,7 @@ CREATE TABLE `cuentas` (
   `tipo` enum('Ahorro','Corriente') NOT NULL DEFAULT 'Corriente',
   `cliente` int(9) NOT NULL,
   `fecha` date DEFAULT NULL,
+  `pin` int(4) ZEROFILL NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 

@@ -4,6 +4,7 @@ import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.Cuenta;
 import com.fpmislata.banco.dominio.Movimiento;
 import com.fpmislata.banco.persistencia.common.BusinessException;
+import com.fpmislata.banco.persistencia.common.HibernateUtil;
 import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import com.fpmislata.banco.persistencia.dao.MovimientoDAO;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,8 +36,10 @@ public class MovimientoController {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(ex));
     }
 
-    private void updateSaldoCuenta(Movimiento movimiento) {
+    private void updateSaldoCuenta(HttpServletResponse httpServletResponse, Movimiento movimiento) throws IOException {
         try {
+            /*Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.getTransaction().rollback();*/
             int idCuenta = movimiento.getIdCuenta();
             if (idCuenta != 0) {
                 Cuenta cuenta = cuentaDAO.get(idCuenta);
@@ -46,7 +50,7 @@ public class MovimientoController {
                 cuenta.setSaldoCuenta(nuevoSaldo);
             }
         } catch (BusinessException ex) {
-            //catchException(httpServletResponse, ex);
+            catchException(httpServletResponse, ex);
         }
     }
 
@@ -65,8 +69,8 @@ public class MovimientoController {
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         try {
             Movimiento movimiento = jsonConverter.fromJSON(jsonEntrada, Movimiento.class);
+            updateSaldoCuenta(httpServletResponse, movimiento);
             movimientoDAO.insert(movimiento);
-            updateSaldoCuenta(movimiento);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         } catch (BusinessException ex) {
             catchException(httpServletResponse, ex);
