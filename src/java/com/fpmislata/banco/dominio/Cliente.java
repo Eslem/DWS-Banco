@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.fpmislata.banco.dominio;
 
 import java.io.Serializable;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -14,12 +11,27 @@ import java.io.Serializable;
  */
 public class Cliente implements Serializable {
     private int id;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String nombre;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String apellidos;
+    @NotNull
+    @Size(min = 9, max = 9)
     private String dni;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String direccion;
-    private int telefono;
+    @NotNull
+    @Size(min = 3, max = 50)
+    private String telefono;
+    @NotNull
+    @Size(min = 3, max = 50)
+    @Email
     private String email;
+    @NotNull
+    @Size(min = 3, max = 250)
     private String password;
   
     
@@ -34,7 +46,7 @@ public class Cliente implements Serializable {
         this.password=pass;
     }
 
-    public Cliente(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
+    public Cliente(int id, String nombre, String apellidos, String dni, String direccion, String telefono, String email, String pass) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -45,7 +57,7 @@ public class Cliente implements Serializable {
         this.password = pass;
     }
     
-    public Cliente(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email) {
+    public Cliente(int id, String nombre, String apellidos, String dni, String direccion, String telefono, String email) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -55,7 +67,7 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public Cliente(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass) {
+    public Cliente(String nombre, String apellidos, String dni, String direccion, String telefono, String email, String pass) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
@@ -105,11 +117,11 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

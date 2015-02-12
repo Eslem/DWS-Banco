@@ -1,13 +1,6 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 app.provider("UpdateAdministrador", UpdateAdministradorProvider);
 
-app.config(['baseUrl', 'UpdateAdministradorProvider', function (baseUrl, UpdateAdministradorProvider) {
+app.config(['baseUrl', 'UpdateAdministradorProvider', function(baseUrl, UpdateAdministradorProvider) {
         UpdateAdministradorProvider.setBaseUrl(baseUrl);
     }]);
 
@@ -16,57 +9,57 @@ app.controller("UpdateAdministradoresController", ['$scope', '$routeParams', 'Up
 
 function UpdateAdministradorProvider() {
     var _baseUrl = "";
-    this.setBaseUrl = function (baseUrl) {
+    this.setBaseUrl = function(baseUrl) {
         _baseUrl = baseUrl;
     };
-    this.$get = ['$http', function ($http) {
+    this.$get = ['$http', function($http) {
             return new UpdateAdministrador($http, _baseUrl);
         }];
 }
 
 function UpdateAdministrador($http, baseUrl) {
-    this.get = function (id, fnOk, fnError) {
+    this.get = function(id, fnOk, fnError) {
         $http({
             method: 'GET',
             url: baseUrl + '/api/administrador/' + id
-        }).success(function (data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
             fnOk(data);
-        }).error(function (data, status, headers, config) {
+        }).error(function(data, status, headers, config) {
             fnError(data, status);
         });
     };
 
-    this.update = function (user, fnOk, fnError) {
+    this.update = function(user, fnOk, fnError) {
         $http({
             method: 'PUT',
             url: baseUrl + '/api/administrador/',
             data: user
-        }).success(function (data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
             fnOk(data);
-        }).error(function (data, status, headers, config) {
+        }).error(function(data, status, headers, config) {
             fnError(data, status);
         });
     };
 
-    this.insert = function (user, fnOk, fnError) {
+    this.insert = function(user, fnOk, fnError) {
         $http({
             method: 'POST',
             url: baseUrl + '/api/administrador/',
             data: user
-        }).success(function (data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
             fnOk(data);
-        }).error(function (data, status, headers, config) {
+        }).error(function(data, status, headers, config) {
             fnError(data, status);
         });
     };
-    this.changePass = function (user, fnOk, fnError) {
+    this.changePass = function(user, fnOk, fnError) {
         $http({
             method: 'PUT',
             url: baseUrl + '/api/administrador/password',
             data: user
-        }).success(function (data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
             fnOk(data);
-        }).error(function (data, status, headers, config) {
+        }).error(function(data, status, headers, config) {
             fnError(data, status);
         });
     }
@@ -77,63 +70,64 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
     $scope.detailShown = true;
     $scope.passwordShown = false;
     $scope.mainButton = "Actualizar";
-    if(!$rootScope.login){
+    if (!$rootScope.login) {
         location.replace('#/login/');
     }
-    
+
     UpdateAdministrador.get($routeParams.id,
-            function (data, status) {
+            function(data, status) {
                 $scope.user = data;
             },
-            function (data, status) {
-                alert(status + ": " + data);
+            function(data, status) {
+                if (status === 400) $scope.errors = data.businessMessages;
             }
     );
 
-    $scope.update = function () {
+    $scope.update = function() {
         // delete $scope.user.password;
         UpdateAdministrador.update($scope.user
-                , function (data, status) {
+                , function(data, status) {
                     location.replace("#/administrador/");
-                }, function (data, status) {
-            alert(status + ": " + data);
+                }, function(data, status) {
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
-    $scope.changePass = function () {
+    $scope.changePass = function() {
         if ($scope.password !== $scope.passrepeat) {
             alert("Las contraseñas no coinciden");
         } else {
             $scope.user.password = $scope.password;
-            UpdateAdministrador.changePass($scope.user, function (data, status) {
+            UpdateAdministrador.changePass($scope.user, function(data, status) {
                 location.replace("#/administrador/");
-            }, function (data, status) {
-                alert(status + ": " + data);
+            }, function(data, status) {
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         }
     };
 }
 
 function AdministradorInsertController($scope, $rootScope, UpdateAdministrador) {
+    $scope.user = {};
     $scope.detailShown = false;
     $scope.passShown = true;
     $scope.mainButton = "Insertar";
-    
-     if(!$rootScope.login){
+
+    if (!$rootScope.login) {
         location.replace('#/login/');
     }
-    
-    $scope.update = function () {
+
+    $scope.update = function() {
         if ($scope.password !== $scope.passrepeat) {
             alert("Las contraseñas no coinciden");
         } else {
             console.log($scope.password);
             $scope.user.password = $scope.password;
             UpdateAdministrador.insert($scope.user
-                    , function (data, status) {
+                    , function(data, status) {
                         location.replace("#/administrador/");
-                    }, function (data, status) {
-                alert(status + ": " + data);
+                    }, function(data, status) {
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         }
     };

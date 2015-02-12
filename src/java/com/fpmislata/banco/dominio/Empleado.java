@@ -1,41 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.fpmislata.banco.dominio;
 
 import java.io.Serializable;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
  * @author eslem
  */
-public class Empleado implements Serializable{
-   private int id;
+public class Empleado implements Serializable {
+
+    private int id;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String nombre;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String apellidos;
+    @NotNull
+    @Size(min = 9, max = 9)
     private String dni;
+    @NotNull
+    @Size(min = 3, max = 50)
     private String direccion;
-    private int telefono;
+    @NotNull
+    @Size(min = 3, max = 50)
+    private String telefono;
+    @NotNull
+    @Size(min = 3, max = 50)
+    @Email
     private String email;
+    @NotNull
+    @Size(min = 3, max = 250)
     private String password;
+    @NotNull
     private int sucursal;
 
-    
-    public Empleado(){};
-    
-    public Empleado(int id){
-        this.id=id;
-    }
-    
-    public Empleado(String email, String pass){
-        this.email=email;
-        this.password=pass;
+    public Empleado() {
     }
 
-    public Empleado(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass, int sucursal) {
+    public Empleado(int id) {
+        this.id = id;
+    }
+
+    public Empleado(String email, String pass) {
+        this.email = email;
+        this.password = pass;
+    }
+
+    public Empleado(int id, String nombre, String apellidos, String dni, String direccion, String telefono, String email, String pass, int sucursal) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -46,8 +60,8 @@ public class Empleado implements Serializable{
         this.password = pass;
         this.sucursal = sucursal;
     }
-    
-    public Empleado(int id, String nombre, String apellidos, String dni, String direccion, int telefono, String email, int sucursal) {
+
+    public Empleado(int id, String nombre, String apellidos, String dni, String direccion, String telefono, String email, int sucursal) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -58,7 +72,7 @@ public class Empleado implements Serializable{
         this.sucursal = sucursal;
     }
 
-    public Empleado(String nombre, String apellidos, String dni, String direccion, int telefono, String email, String pass, int sucursal) {
+    public Empleado(String nombre, String apellidos, String dni, String direccion, String telefono, String email, String pass, int sucursal) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
@@ -67,7 +81,7 @@ public class Empleado implements Serializable{
         this.email = email;
         this.password = pass;
         this.sucursal = sucursal;
-    }    
+    }
 
     public int getId() {
         return id;
@@ -109,11 +123,11 @@ public class Empleado implements Serializable{
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -131,7 +145,7 @@ public class Empleado implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }    
+    }
 
     public int getSucursal() {
         return sucursal;
@@ -140,9 +154,4 @@ public class Empleado implements Serializable{
     public void setSucursal(int sucursal) {
         this.sucursal = sucursal;
     }
-    
-    
-   
-   
-   
 }

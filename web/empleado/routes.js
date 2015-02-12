@@ -14,6 +14,11 @@ app.config(['$routeProvider', function($routeProvider) {
             controller:"LoginController"
         });
         
+        $routeProvider.when('/profile', {
+            templateUrl: "profile.html",
+            controller:"EmpleadoController"
+        });
+        
         $routeProvider.otherwise({
            redirectTo: '/panel' ,
            controller:"PanelController"

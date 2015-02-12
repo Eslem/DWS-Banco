@@ -1,137 +1,116 @@
-
-
-function selectedSucursal($scope, $http, $routeParams) {
-    $scope.getSucursalBancaria = function () {
+function start($scope, $http, $routeParams) {
+    $scope.getSucursalBancaria = function() {
         $http({
             method: "GET",
             url: contextPath + "/api/sucursalbancaria/" + $scope.sucursalbancaria.id
-        }).success(function (data) {
+        }).success(function(data) {
             $scope.sucursalbancaria = data;
             data.fecha = new Date(data.fecha);
-        }).error(function (data, status) {
-            alert("Fatal error: " + status);
+        }).error(function(data, status) {
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
-    if ($routeParams !== undefined) {
-        $scope.sucursalbancaria = {};
+    $scope.getEntidades = function($scope, $http, $routeParams) {
+        if ($routeParams !== undefined && $routeParams.idEntidad !== undefined) {
+            $scope.sucursalbancaria.idEntidad = $routeParams.idEntidad * 1;
+            $scope.entidadDisabled = true;
+        }
+
+        $http({
+            method: "GET",
+            url: contextPath + "/api/entidadBancaria/"
+        }).success(function(data, status) {
+            $scope.entidadesBancarias = data;
+        }).error(function(data, status) {
+            if (status === 400) $scope.errors = data.businessMessages;
+        });
+    };
+
+    $scope.getCuentas = function($scope, $http) {
+        $http({
+            method: "GET",
+            url: contextPath + "/api/sucursalbancaria/" + $scope.sucursalbancaria.id + "/cuentas/"
+        }).success(function(data) {
+            $scope.cuentas = data;
+        }).error(function(data, status) {
+            if (status === 400) $scope.errors = data.businessMessages;
+        });
+    };
+
+    $scope.sucursalbancaria = {};
+    if ($routeParams !== undefined && $routeParams.id !== undefined) {
         $scope.sucursalbancaria.id = $routeParams.id;
         $scope.getSucursalBancaria();
     }
+    $scope.getEntidades($scope, $http, $routeParams);
+    $scope.entidadDisabled = false;
 }
-
-function getEntidades($scope, $http) {
-
-    $http({
-        method: "GET",
-        url: contextPath + "/api/entidadBancaria/"
-    }).success(function (data, status) {
-        $scope.entidadesBancarias = data;
-    }).error(function (data, status) {
-        alert("Fatal error: " + status);
-    });
-}
-
-function getCuentas($scope, $http) {
-    $http({
-        method: "GET",
-        url: contextPath + "/api/sucursalbancaria/" + $scope.sucursalbancaria.id + "/cuentas/"
-    }).success(function (data, status) {
-        $scope.cuentas = data;
-    }).error(function (data, status) {
-        alert("Fatal error: " + status);
-    });
-}
-
-
-
 
 /* Controllers */
 
-app.controller("SucursalBancariaInsertController", ["$scope", "$http", function ($scope, $http) {
+app.controller("SucursalBancariaInsertController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
         $scope.buttonText = 'Insertar';
+        $scope.mostrar = false;
 
-        $scope.formSend = function () {
+        $scope.formSend = function() {
             $http({
                 method: "POST",
                 data: $scope.sucursalbancaria,
                 url: contextPath + "/api/sucursalbancaria/"
-            }).success(function (data) {
-                alert("Sucursal Bancaria  correctamente insertada");
-                $scope.getSucursalBancaria($scope.sucursalbancaria.id);
-            }).error(function (data, status) {
-                alert("Fatal error: " + status);
+            }).success(function(data) {
+                goToListSucursal();
+            }).error(function(data, status) {
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         };
 
-        getEntidades($scope, $http);
+        start($scope, $http, $routeParams);
     }
 ]);
 
-app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
+app.controller("SucursalBancariaUpdateController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
         $scope.buttonText = 'Actualizar';
+        $scope.mostrar = true;
 
-        $scope.formSend = function () {
+        $scope.formSend = function() {
             $http({
                 method: "PUT",
                 data: $scope.sucursalbancaria,
                 url: contextPath + "/api/sucursalbancaria/"
-            }).success(function (data) {
+            }).success(function(data) {
                 alert("Sucursal Bancaria " + $scope.sucursalbancaria.id + " correctamente actualizada.");
                 $scope.getSucursalBancaria($scope.sucursalbancaria.id);
-            }).error(function (data, status) {
-                alert("Fatal error: " + status);
+            }).error(function(data, status) {
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         };
 
 
-        $scope.deleteCuenta = function (id) {
-            ok = confirm("¿ Está seguro que quiere borrar la cuenta de ID: " + id + " ?");
-
-            if (ok) {
+        $scope.deleteCuenta = function(id) {
+            if (confirm('¿Confirma usted el borrado de la cuenta "' + $scope.sucursalBancaria.nombre + '"?')) {
                 $http({
                     method: "DELETE",
                     url: contextPath + "/api/cuenta/" + id
-                }).success(function () {
+                }).success(function() {
                     getCuentas();
-                }).error(function (data, status) {
-                    alert("Fatal error: " + status);
+                }).error(function(data, status) {
+                    if (status === 400) $scope.errors = data.businessMessages;
                 });
             } else {
                 getCuentas();
             }
         };
 
-        $scope.editCuenta = function (id) {
+        $scope.editCuenta = function(id) {
             location.replace("#/cuenta/edit/" + id);
         };
 
-
-        $scope.crearCuenta = function (id) {
-            location.replace("#/cuenta/insert"+id);
+        $scope.crearCuenta = function(id) {
+            location.replace("#/cuenta/insert");
         };
 
-
-
-
-
-
-
-
-
-        selectedSucursal($scope, $http, $routeParams);
-        getEntidades($scope, $http);
-        getCuentas($scope, $http);
-
+        start($scope, $http, $routeParams);
+        $scope.getCuentas($scope, $http);
     }
 ]);
-
-
-
-
-
-
-
-
-
-

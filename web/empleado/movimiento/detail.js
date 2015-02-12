@@ -1,13 +1,13 @@
 function selectedMovimiento($scope, $http, $routeParams) {
-    $scope.getMovimiento = function () {
+    $scope.getMovimiento = function() {
         $http({
             method: "GET",
             url: contextPath + "/api/movimiento/" + $scope.movimiento.id
-        }).success(function (data) {
+        }).success(function(data) {
             $scope.movimiento = data;
             data.fecha = new Date(data.fecha);
-        }).error(function (data, status) {
-            alert("Fatal error: " + status);
+        }).error(function(data, status) {
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
@@ -18,57 +18,40 @@ function selectedMovimiento($scope, $http, $routeParams) {
     }
 }
 
+function getCuenta($scope, $http) {
+    $http({
+        method: "GET",
+        url: contextPath + "/api/cuenta/"
+    }).success(function(data, status) {
+        $scope.cuentas = data;
+    }).error(function(data, status) {
+        if (status === 400) $scope.errors = data.businessMessages;
+    });
+}
 
 /* Controllers */
 
-app.controller("MovimientoInsertController", ["$scope", "$http", function ($scope, $http) {
+app.controller("MovimientoInsertController", ["$scope", "$http", function($scope, $http) {
+        $scope.movimiento = {};
         $scope.buttonText = 'Insertar';
 
-        $scope.formSend = function () {
+        $scope.formSend = function() {
             $http({
                 method: "POST",
                 data: $scope.movimiento,
                 url: contextPath + "/api/movimiento/"
-            }).success(function (data) {
+            }).success(function(data) {
                 //alert("Movimiento correctamente insertado");
-                goToList();
-            }).error(function (data, status) {
-                alert("Fatal error: " + status);
+                goToListMovimiento();
+            }).error(function(data, status) {
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         };
-
-
+        getCuenta($scope, $http);
     }
 ]);
 
-app.controller("MovimientoUpdateController", ["$scope", "$http", "$routeParams", function ($scope, $http, $routeParams) {
-        $scope.buttonText = 'Actualizar';
-
-        $scope.formSend = function () {
-            $http({
-                method: "PUT",
-                data: $scope.movimiento,
-                url: contextPath + "/api/movimiento/"
-            }).success(function (data) {
-                alert("Movimiento " + $scope.movimiento.id + " correctamente actualizado.");
-                goToList();
-            }).error(function (data, status) {
-                alert("Fatal error: " + status);
-            });
-        };
-
-        selectedMovimiento($scope, $http, $routeParams);        
-    }
-]);
-
-function goToList() {
+function goToListMovimiento() {
     location.replace('#/movimiento/');
 }
-
-
-
-
-
-
-
 

@@ -2,15 +2,22 @@ package com.fpmislata.banco.dominio;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 public class Cuenta {
 
     int idCuenta;
-
+    @NotNull
     BigDecimal saldoCuenta;
+    @NotNull
     int idSucursal;
+    @NotNull
     String tipoCuenta;
+    @NotNull
     int clienteCuenta;
+    @NotNull
+    @Past
     private Date fecha;
     private String pin;
 

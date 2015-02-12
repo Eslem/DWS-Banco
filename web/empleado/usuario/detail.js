@@ -79,7 +79,7 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
                 $scope.user = data;
             },
             function (data, status) {
-                alert(status + ": " + data);
+                if (status === 400) $scope.errors = data.businessMessages;
             }
     );
 
@@ -88,7 +88,7 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
                 , function (data, status) {
                     location.replace("#/usuario/");
                 }, function (data, status) {
-            alert(status + ": " + data);
+            if (status === 400) $scope.errors = data.businessMessages;
         });
     };
 
@@ -100,7 +100,7 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
             UpdateUsuario.changePass($scope.user, function (data, status) {
                 location.replace("#/usuario/");
             }, function (data, status) {
-                alert(status + ": " + data);
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         }
     };
@@ -108,6 +108,7 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
 
 
 function UsuarioInsertController($scope, UpdateUsuario) {
+    $scope.user = {};
     $scope.detailShown = false;
     $scope.passShown = true;
     $scope.mainButton = "Insertar";
@@ -121,7 +122,7 @@ function UsuarioInsertController($scope, UpdateUsuario) {
                     , function (data, status) {
                         location.replace("#/usuario/");
                     }, function (data, status) {
-                alert(status + ": " + data);
+                if (status === 400) $scope.errors = data.businessMessages;
             });
         }
     };

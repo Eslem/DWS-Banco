@@ -13,5 +13,10 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: "entidadbancaria/detail.html",
             controller: "EntidadBancariaUpdateController"
         });
+
+        $routeProvider.when('/entidadbancaria/:idEntidad/sucursalbancaria/', {
+            templateUrl: "sucursalbancaria/detail.html",
+            controller: "SucursalBancariaInsertController"
+        });
     }
 ]);

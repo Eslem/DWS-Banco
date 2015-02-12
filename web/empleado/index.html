@@ -35,7 +35,8 @@
 
         <script type="text/javascript" src="app.js"></script>
         <script type="text/javascript" src="routes.js"></script>
-
+        <script type="text/javascript" src="js/empleadoController.js"></script>
+        
         <script type="text/javascript" src="entidadbancaria/list.js"></script>
         <script type="text/javascript" src="entidadbancaria/detail.js"></script>
         <script type="text/javascript" src="entidadbancaria/routes.js"></script>
@@ -82,7 +83,7 @@
             <div class="container-fluid">
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Usuario</a></li>
+                        <li><a href="#/profile">{{userLoged.nombre}}</a></li>
                         <li ng-click="logout()" ><a href="#">Salir</a></li>
                     </ul>
                 </div>

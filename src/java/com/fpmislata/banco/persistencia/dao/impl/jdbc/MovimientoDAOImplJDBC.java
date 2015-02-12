@@ -120,7 +120,8 @@ public class MovimientoDAOImplJDBC implements MovimientoDAO {
         }
     }
 
-  
-
-   
+    @Override
+    public List<Movimiento> getByIdCuenta(int idCuenta) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
