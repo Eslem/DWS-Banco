@@ -13,7 +13,7 @@ function LoginServiceProvider() {
         _baseUrl = baseUrl;
     };
     this.$get = ['$http', function ($http) {
-            return new LoginService($http, _baseUrl)
+            return new LoginService($http, _baseUrl);
         }];
 }
 

@@ -6,7 +6,7 @@ CREATE TABLE `empleados` (
   `dni` varchar(9) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   `telefono` varchar(20) NOT NULL DEFAULT '0',
-  `email` varchar(50) DEFAULT NULL,
+  `email` varchar(50) NOT NULL,
   `password` varchar(250) NOT NULL DEFAULT '0',
   `sucursal` int(11) DEFAULT NULL COMMENT 'idsucursal',
   PRIMARY KEY (`id`)

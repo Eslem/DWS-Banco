@@ -2,7 +2,7 @@
     <h2 class="center-block">{{mainButton}} Administrador</h2>
     <hr/>
 
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" name="adminForm">
         <div class="form-group">
             <label class="col-sm-2 control-label">Id</label>
             <div class="col-sm-8">
@@ -12,7 +12,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Nombre</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="nombre" ng-model="user.nombre">
+                <input type="text" class="form-control" placeholder="nombre" ng-model="user.nombre" ng-maxlenght="50">
             </div>
         </div>
         <div class="form-group">
@@ -24,7 +24,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">DNI</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="DNI" ng-model="user.dni" ng-pattern="(\d{8})([-]?)([A-Z]{1})">
+                <input type="text" class="form-control" placeholder="DNI" ng-model="user.dni" ng-pattern="/^\d{8}[a-zA-Z]$/">
             </div>
         </div>
         <div class="form-group">
@@ -36,26 +36,26 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Telefono</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="telefono" ng-model="user.telefono" ng-pattern="">
+                <input type="text" class="form-control" placeholder="telefono" ng-model="user.telefono" ng-maxlenght="9">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Email</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="email" ng-model="user.email">
+                <input type="email" class="form-control" placeholder="email" ng-model="user.email">
             </div>
         </div>
         <div ng-show="passShown">
             <div class="form-group">
                 <label class="col-sm-2 control-label">Contraseña</label>
                 <div class="col-sm-8">
-                    <input type="password" class="form-control" placeholder="contraseña" ng-model="password">
+                    <input type="password" class="form-control" placeholder="contraseña" ng-model="password" ng-pattern="/[a-zA-Z]{8,25}/">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Repetir contraseña</label>
                 <div class="col-sm-8">
-                    <input type="password" class="form-control" placeholder="repetir contraseña" ng-model="passrepeat">
+                    <input type="password" class="form-control" placeholder="repetir contraseña" ng-model="passrepeat" ng-pattern="/[a-zA-Z]{8,25}/">
                 </div>
             </div>
             <div class="col-sm-offset-2 col-sm-8">

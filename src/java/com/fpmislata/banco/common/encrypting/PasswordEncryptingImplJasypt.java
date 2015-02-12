@@ -21,9 +21,9 @@ public class PasswordEncryptingImplJasypt implements PasswordEncrypting {
 
     @Override
     public boolean compare(String password, String encryptedPassword) {
-        /*
+        
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        return passwordEncryptor.checkPassword(password, encryptedPassword);*/
-        return true;
+        return passwordEncryptor.checkPassword(password, encryptedPassword);
+        
     }
 }

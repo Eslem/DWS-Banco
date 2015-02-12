@@ -37,10 +37,10 @@ public class FilterImplSecurity implements Filter {
 
         boolean logged = httpsession.getAttribute("id") != null;
 
-        if (httpServletRequest.getRequestURI().equals(sessionUrl)) {
+        if (httpServletRequest.getRequestURI().equals(sessionUrl)|| httpServletRequest.getRequestURI().equals(transferenciaUrl)) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            if (logged || httpServletRequest.getRequestURI().equals(transferenciaUrl)) {
+            if (logged ) {
                 filterChain.doFilter(servletRequest, servletResponse);
                 
             } else {
