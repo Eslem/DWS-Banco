@@ -8,6 +8,7 @@ package com.fpmislata.banco.presentacion.controller;
 import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.Cuenta;
 import com.fpmislata.banco.dominio.Transferencia;
+import com.fpmislata.banco.persistencia.common.BusinessException;
 import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import com.fpmislata.banco.persistencia.dao.impl.hibernate.TransferenciaDAOImplHibernate;
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class TransferenciaController {
     CuentaDAO cuenta;
 
     @RequestMapping(value = {"/transferencia"}, method = RequestMethod.POST)
-    public void insertTransferencia(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
+    public void insertTransferencia(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException, BusinessException {
 
         Transferencia trans = jsonConverter.fromJSON(jsonEntrada, Transferencia.class);
         Cuenta cuentaOrigen = cuenta.get(trans.getCuentaOrigen());
