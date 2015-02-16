@@ -4,6 +4,7 @@ import com.fpmislata.banco.common.json.JSONConverter;
 import com.fpmislata.banco.dominio.Cuenta;
 import com.fpmislata.banco.dominio.Movimiento;
 import com.fpmislata.banco.persistencia.common.BusinessException;
+import com.fpmislata.banco.persistencia.common.BusinessMessage;
 import com.fpmislata.banco.persistencia.common.HibernateUtil;
 import com.fpmislata.banco.persistencia.dao.CuentaDAO;
 import com.fpmislata.banco.persistencia.dao.MovimientoDAO;
@@ -36,22 +37,28 @@ public class MovimientoController {
         httpServletResponse.getWriter().println(jsonConverter.toJSON(ex));
     }
 
-    private void updateSaldoCuenta(HttpServletResponse httpServletResponse, Movimiento movimiento) throws IOException {
+    private boolean updateSaldoCuenta(HttpServletResponse httpServletResponse, Movimiento movimiento) throws IOException {
         try {
             /*Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-            session.getTransaction().rollback();*/
+             session.getTransaction().rollback();*/
             int idCuenta = movimiento.getIdCuenta();
             if (idCuenta != 0) {
                 Cuenta cuenta = cuentaDAO.get(idCuenta);
-                BigDecimal nuevoSaldo = movimiento.getCantidad();
+                BigDecimal saldoNuevo = movimiento.getCantidad();
+                BigDecimal saldoViejo = cuenta.getSaldoCuenta();
                 if (movimiento.getTipo().equalsIgnoreCase("Debe"))
-                    nuevoSaldo = nuevoSaldo.multiply(new BigDecimal(-1));
-                nuevoSaldo = cuenta.getSaldoCuenta().add(nuevoSaldo);
-                cuenta.setSaldoCuenta(nuevoSaldo);
+                    saldoNuevo = saldoNuevo.multiply(new BigDecimal(-1));
+                saldoNuevo = saldoViejo.add(saldoNuevo);
+                if (saldoNuevo.compareTo(BigDecimal.ZERO) > 0) {
+                    cuenta.setSaldoCuenta(saldoNuevo);
+                    return true;
+                }
             }
         } catch (BusinessException ex) {
             catchException(httpServletResponse, ex);
         }
+
+        return false;
     }
 
     @RequestMapping(value = {"/movimiento/{id}"}, method = RequestMethod.GET)
@@ -69,9 +76,12 @@ public class MovimientoController {
     public void insert(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException {
         try {
             Movimiento movimiento = jsonConverter.fromJSON(jsonEntrada, Movimiento.class);
-            updateSaldoCuenta(httpServletResponse, movimiento);
-            movimientoDAO.insert(movimiento);
-            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            if (updateSaldoCuenta(httpServletResponse, movimiento)) {
+                movimientoDAO.insert(movimiento);
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                throw new BusinessException(new BusinessMessage(null, "El saldo del movimiento es mayor al disponible en la cuenta"));
+            }
         } catch (BusinessException ex) {
             catchException(httpServletResponse, ex);
         }

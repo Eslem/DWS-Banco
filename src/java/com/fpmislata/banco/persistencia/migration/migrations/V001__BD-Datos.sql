@@ -32,9 +32,9 @@ CREATE TABLE `cuentas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla banco.cuentas: ~3 rows (aproximadamente)
-INSERT INTO `cuentas` (`id`, `saldo`, `idsucursal`, `tipo`, `cliente`, `fecha`) VALUES
-	(1, 123.00, 11, 'Corriente', 1, '2014-12-04'),
-	(2, 47585.00, 52, 'Ahorro', 2, '2014-01-04');
+INSERT INTO `cuentas` (`id`, `saldo`, `idsucursal`, `tipo`, `cliente`, `fecha`, `pin`) VALUES
+	(1, 123.00, 11, 'Corriente', 1, '2014-12-04', 5125),
+	(2, 47585.00, 52, 'Ahorro', 2, '2014-01-04', 8645);
 
 
 -- Volcando estructura para tabla banco.entidadesbancarias
