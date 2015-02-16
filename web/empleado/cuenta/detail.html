@@ -3,7 +3,7 @@
     <h2>{{buttonText}} Cuenta</h2>
     <hr/>
 
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" name="formCuenta">
 
         <div class="form-group">
             <label class="col-sm-2 control-label" for="id">Id</label>
@@ -12,26 +12,25 @@
             </div>
         </div>
 
-      <!--  <div class="form-group">
-            <label class="col-sm-2 control-label" for="sucursal">Sucursal</label>
-            <div class="col-sm-8">
-                <input id="saldo" type="double" class="form-control" placeholder="Saldo" ng-model="cuenta.saldoCuenta" min:0 >
-            </div>
-        </div>-->
+        <!--  <div class="form-group">
+              <label class="col-sm-2 control-label" for="sucursal">Sucursal</label>
+              <div class="col-sm-8">
+                  <input id="saldo" type="double" class="form-control" placeholder="Saldo" ng-model="cuenta.saldoCuenta" min:0 >
+              </div>
+          </div>-->
 
         <div class="form-group">
             <label class="col-sm-2 control-label" for="sucursal">Usuario</label>
             <div class="col-sm-8">
-                <input id="sucursal" type="text" class="form-control" placeholder="ID Sucursal" ng-model="cuenta.idSucursal" required>
-                <input id="clienteCuenta" type="text" class="form-control" placeholder="usuario" ng-model="cuenta.clienteCuenta">
+                <input id="sucursal" type="text" class="form-control" placeholder="ID Sucursal" ng-model="cuenta.idSucursal" required name="campoSucursal"> 
+                <input id="clienteCuenta" type="text" class="form-control" placeholder="usuario" ng-model="cuenta.clienteCuenta" required name="campoCuentaCliente">
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-2 control-label" for="saldo">Saldo Cuenta</label>
             <div class="col-sm-8">
-                <input id="saldo" type="double" class="form-control" placeholder="saldo" ng-model="cuenta.saldoCuenta">
-                >>>>>>> validacionesServidor (3a710c4) - validac
+                <input id="saldo" type="number" class="form-control" placeholder="saldo" ng-model="cuenta.saldoCuenta" required min="1" name="campoSaldo">
             </div>
         </div>
 
@@ -40,8 +39,9 @@
             <div class="col-sm-8">
 
 
-                <select id="tipo" ng-model="cuenta.tipoCuenta" class="form-control">
-                    <option value="Corriente" selected>Corriente</option>
+                <select id="tipo" ng-model="cuenta.tipoCuenta" class="form-control" required name="campoTipo">
+                    <option selected>-- Eliga una opcion --</option>
+                    <option value="Corriente" >Corriente</option>
                     <option value="Ahorro">Ahorro</option>
                 </select>
             </div>
@@ -53,6 +53,17 @@
             </div>
         </div>
 
+
+        <div  ng-show="formCuenta.$invalid && mostrarErrores" class="formErrors">
+
+            <span class="source" ng-show="formCuenta.campoSucursal.$error.required"><span>SUCURSAL BANCARIA: Campo requerido</span></span>
+            <span class="source" ng-show="formCuenta.campoCuentaCliente.$error.required"><span>CUENTA CLIENTE: Campo requerido</span></span>
+            <span class="source"ng-show="formCuenta.campoSaldo.$error.required"><span>SALDO: Campo requerido</span></span>
+            <span class="source" ng-show="formCuenta.campoSaldo.$error.min" ><span>SALDO: Valor incorrecto (minimo = 0)</span></span>
+            <span class="source" ng-show="formCuenta.campoTipo.$error.required"><span>TIPO DE CUENTA: Campo requerido</span></span>
+
+        </div>
+        
         <div align="center">
             <button ng-click="formSend();" class="btn btn-primary">{{buttonText}}</button>
         </div>

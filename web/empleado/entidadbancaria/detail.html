@@ -4,7 +4,7 @@
         <h2>{{buttonText}} Entidad Bancaria</h2>
         <hr/>
 
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" name="formEntidad" novalidate>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="id">Id</label>
@@ -16,14 +16,14 @@
         <div class="form-group">
             <label class="col-sm-2 control-label" for="nombre">Nombre</label>
             <div class="col-sm-8">
-                <input id="nombre" type="text" class="form-control" placeholder="Nombre" ng-model="entidadBancaria.nombre" required>
+                <input id="nombre" type="text" class="form-control" placeholder="Nombre" ng-model="entidadBancaria.nombre" required ng-minlenth="3" ng-maxlength="50"  name="campoNombre">
             </div>
         </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="codigo">Código</label>
                 <div class="col-sm-8">
-                    <input id="codigo" type="text" class="form-control" placeholder="código" ng-model="entidadBancaria.codigo" required>
+                    <input id="codigo" type="text" class="form-control" placeholder="código" ng-model="entidadBancaria.codigo" required ng-minlength="3" ng-maxlength="50"  name="campoCodigo">
                 </div>
 
             </div>
@@ -32,9 +32,19 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="fecha">Fecha</label>
                 <div class="col-sm-8">
-                    <input id="fecha" type="text" class="form-control" placeholder="fecha" ng-model="entidadBancaria.fecha" ui-date> 
+                    <input id="fecha" type="text" class="form-control" placeholder="fecha" ng-model="entidadBancaria.fecha" ui-date required name="campoFecha"> 
                 </div>
             </div>
+            
+            
+        <div  ng-show="formEntidad.$invalid && mostrarErrores" class="formErrors">
+            <span class="source" ng-show="formEntidad.campoNombre.$error.required"><span>NOMBRE ENTIDAD: Campo requerido</span></span><br/>
+            <span class="source" ng-show="formEntidad.campoNombre.$error.minlength"><span>NOMBRE ENTIDAD: Valor incorrecto</span></span><br/>
+            <span class="source" ng-show="formEntidad.campoCodigo.$error.minlength"><span>CODIGO: Valor incorrecto</span></span><br/>
+            <span class="source" ng-show="formEntidad.campoCodigo.$error.required"><span>CODIGO: Campo requerido</span></span><br/>
+            <span class="source"ng-show="formEntidad.campoFecha.$error.required"><span>FECHA: Campo requerido</span></span><br/>
+
+        </div>
 
             <div class="formErrors">
                 <div ng-repeat="error in errors">

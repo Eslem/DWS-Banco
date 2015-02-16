@@ -31,7 +31,7 @@ public class Cliente implements Serializable {
     @Email
     private String email;
     @NotNull
-    @Size(min = 3, max = 250)
+    @Size(min = 8, max = 250)
     private String password;
   
     

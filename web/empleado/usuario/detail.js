@@ -20,6 +20,7 @@ function UpdateUsuarioProvider() {
 
 function UpdateUsuario($http, baseUrl) {
     this.get = function (id, fnOk, fnError) {
+
         $http({
             method: 'GET',
             url: baseUrl + '/api/usuario/' + id
@@ -28,6 +29,8 @@ function UpdateUsuario($http, baseUrl) {
         }).error(function (data, status, headers, config) {
             fnError(data, status);
         });
+
+
     };
 
     this.update = function (user, fnOk, fnError) {
@@ -40,6 +43,7 @@ function UpdateUsuario($http, baseUrl) {
         }).error(function (data, status, headers, config) {
             fnError(data, status);
         });
+
     };
 
     this.insert = function (user, fnOk, fnError) {
@@ -73,35 +77,51 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
     $scope.detailShown = true;
     $scope.passShown = false;
     $scope.mainButton = "Actualizar";
+    $scope.mostrarErrores = false;
+
 
     UpdateUsuario.get($routeParams.id,
             function (data, status) {
                 $scope.user = data;
             },
             function (data, status) {
-                if (status === 400) $scope.errors = data.businessMessages;
+                if (status === 400)
+                    $scope.errors = data.businessMessages;
             }
     );
 
     $scope.update = function () {
-        UpdateUsuario.update($scope.user
-                , function (data, status) {
-                    location.replace("#/usuario/");
-                }, function (data, status) {
-            if (status === 400) $scope.errors = data.businessMessages;
-        });
+        $scope.mostrarErrores = true;
+        if (!$scope.formClient.$invalid) {
+            UpdateUsuario.update($scope.user
+                    , function (data, status) {
+                        location.replace("#/usuario/");
+                        $scope.mostrarErrores = false;
+                    }, function (data, status) {
+                if (status === 400)
+                    $scope.errors = data.businessMessages;
+            });
+        }
+
+
     };
 
     $scope.changePass = function () {
+        $scope.mostrarErrores = true;
         if ($scope.pass !== $scope.passrepeat) {
             alert("Las contraseñas no coinciden");
         } else {
-            $scope.user.pass = $scope.pass;
-            UpdateUsuario.changePass($scope.user, function (data, status) {
-                location.replace("#/usuario/");
-            }, function (data, status) {
-                if (status === 400) $scope.errors = data.businessMessages;
-            });
+            if (!$scope.formClient.$invalid) {
+                $scope.user.pass = $scope.pass;
+                UpdateUsuario.changePass($scope.user, function (data, status) {
+                    location.replace("#/usuario/");
+                    $scope.mostrarErrores = false;
+                }, function (data, status) {
+                    if (status === 400)
+                        $scope.errors = data.businessMessages;
+                });
+            }
+
         }
     };
 }
@@ -112,18 +132,27 @@ function UsuarioInsertController($scope, UpdateUsuario) {
     $scope.detailShown = false;
     $scope.passShown = true;
     $scope.mainButton = "Insertar";
+    $scope.mostrarErrores = false;
+
+
 
     $scope.update = function () {
+        $scope.mostrarErrores = true;
         if ($scope.pass !== $scope.passrepeat) {
             alert("Las contraseñas no coinciden");
         } else {
-            $scope.user.pass = $scope.pass;
-            UpdateUsuario.insert($scope.user
-                    , function (data, status) {
-                        location.replace("#/usuario/");
-                    }, function (data, status) {
-                if (status === 400) $scope.errors = data.businessMessages;
-            });
+            if (!$scope.formClient.$invalid) {
+                $scope.user.pass = $scope.pass;
+                UpdateUsuario.insert($scope.user
+                        , function (data, status) {
+                            location.replace("#/usuario/");
+                            $scope.mostrarErrores = false;
+                        }, function (data, status) {
+                    if (status === 400)
+                        $scope.errors = data.businessMessages;
+                });
+            }
+
         }
     };
 }
