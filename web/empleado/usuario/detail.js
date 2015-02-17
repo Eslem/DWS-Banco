@@ -98,7 +98,7 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
             if ($scope.password !== $scope.passrepeat) {
                 alert("Las contraseñas no coinciden");
             } else {
-                $scope.user.password = $scope.password;
+               // $scope.user.password = $scope.password;
                 UpdateUsuario.update($scope.user
                         , function (data, status) {
                             location.replace("#/usuario/");
@@ -112,11 +112,11 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
 
     $scope.changePass = function () {
         $scope.mostrarErrores = true;
-        if ($scope.pass !== $scope.passrepeat) {
+         if (!$scope.formClient.$invalid) {
+        if ($scope.password !== $scope.passrepeat) {
             alert("Las contraseñas no coinciden");
         } else {
-            if (!$scope.formClient.$invalid) {
-                $scope.user.pass = $scope.pass;
+                $scope.user.password = $scope.password;
                 UpdateUsuario.changePass($scope.user, function (data, status) {
                     location.replace("#/usuario/");
                     $scope.mostrarErrores = false;
@@ -125,8 +125,7 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
                         $scope.errors = data.businessMessages;
                 });
             }
-
-        }
+        };
     };
 }
 

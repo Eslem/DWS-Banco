@@ -92,7 +92,7 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
             if ($scope.password !== $scope.passrepeat) {
                 alert("Las contraseñas no coinciden");
             } else {
-                $scope.user.password = $scope.password;
+                //$scope.user.password = $scope.password;
                 UpdateAdministrador.update($scope.user
                         , function (data, status) {
                             location.replace("#/administrador/");
@@ -118,7 +118,6 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
                 });
             }
         }
-        $scope.mostrarErrores = false;
     };
 }
 

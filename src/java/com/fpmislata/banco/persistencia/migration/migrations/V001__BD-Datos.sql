@@ -110,5 +110,5 @@ CREATE TABLE `clientes` (
 
 -- Volcando datos para la tabla banco.usuarios: ~0 rows (aproximadamente)
 INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `telefono`, `password`, `email`) VALUES
-	(1, 'Usuario1', 'Snow', '47777777P', 'Unknown', 965555555, 'asdfg', 'a@g.ccom'),
-	(2, 'Usuario2', 'Lannister', '41111111M', 'Casterly Rock', 964444444, 'asdfg', 'o@g.com');
+	(1, 'Usuario1', 'Snow', '47777777P', 'Unknown', 965555555, 'BpAundR1yF3mcxaoWsl9Ijuwi9KmrsLd', 'a@g.ccom'),
+	(2, 'Usuario2', 'Lannister', '41111111M', 'Casterly Rock', 964444444, 'BpAundR1yF3mcxaoWsl9Ijuwi9KmrsLd', 'o@g.com');
