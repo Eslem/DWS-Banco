@@ -9,6 +9,6 @@
         <property name="idCuenta" column="idcuenta" />
         <property name="concepto" />
         <property name="cantidad" />
-        <property name="fecha"/>
+        <property name="fecha" type="date"/>
     </class>
 </hibernate-mapping>

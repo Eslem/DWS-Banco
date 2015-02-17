@@ -17,7 +17,7 @@
         width: 48px;
         text-align: right; }
       .table tr td.actions {
-        width: 100px; }
+        width: 90px; }
         .table tr td.actions .btn {
           padding: 2px 12px; }
 
@@ -157,3 +157,11 @@ div.wrap-body {
 
 .margin-small {
   margin: 4px; }
+
+.formErrors {
+  text-align: center;
+  color: #C22; }
+  .formErrors:not(:empty) {
+    margin-bottom: 16px; }
+  .formErrors .source {
+    font-weight: bold; }

@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.fpmislata.banco.persistencia.dao.impl.hibernate;
 
 import com.fpmislata.banco.persistencia.dao.GenericDAO;
 import com.fpmislata.banco.persistencia.common.HibernateUtil;
+import com.fpmislata.banco.persistencia.common.BusinessException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.exception.ConstraintViolationException;
 
 /**
  *
@@ -23,17 +18,25 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     }
 
     @Override
-    final public T get(int id) {
+    final public T get(int id) throws BusinessException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        this.preGet(session, id);
-        T object = (T) session.get(getClazz(), id);
-        this.postGet(session, object);
+        try {
+            this.preGet(session, id);
+            T object = (T) session.get(getClazz(), id);
+            this.postGet(session, object);
 
-        return object;
+            return object;
+        } catch (javax.validation.ConstraintViolationException cve) {
+            session.getTransaction().rollback();
+            throw new BusinessException(cve);
+        } catch (org.hibernate.exception.ConstraintViolationException cve) {
+            session.getTransaction().rollback();
+            throw new BusinessException(cve);
+        }
     }
 
     @Override
-    final public T insert(T object) {
+    final public T insert(T object) throws BusinessException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
@@ -42,15 +45,19 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
             session.getTransaction().commit();
             this.postInsert(session, object);
             session.flush();
-        } catch (ConstraintViolationException cve) {
+        } catch (javax.validation.ConstraintViolationException cve) {
             session.getTransaction().rollback();
+            throw new BusinessException(cve);
+        } catch (org.hibernate.exception.ConstraintViolationException cve) {
+            session.getTransaction().rollback();
+            throw new BusinessException(cve);
         }
 
         return (T) object;
     }
 
     @Override
-    final public T update(T object) {
+    final public T update(T object) throws BusinessException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
@@ -58,15 +65,19 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
             session.update(object);
             session.getTransaction().commit();
             this.postUpdate(session, object);
-        } catch (ConstraintViolationException cve) {
+        } catch (javax.validation.ConstraintViolationException cve) {
             session.getTransaction().rollback();
+            throw new BusinessException(cve);
+        } catch (org.hibernate.exception.ConstraintViolationException cve) {
+            session.getTransaction().rollback();
+            throw new BusinessException(cve);
         }
 
         return (T) object;
     }
 
     @Override
-    final public void delete(int id) {
+    final public void delete(int id) throws BusinessException {
         T object = this.get(id);
         if (object != null) {
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -76,10 +87,13 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
                 session.delete(object);
                 this.postDelete(session, id);
                 session.getTransaction().commit();
-            } catch (ConstraintViolationException cve) {
+            } catch (javax.validation.ConstraintViolationException cve) {
                 session.getTransaction().rollback();
+                throw new BusinessException(cve);
+            } catch (org.hibernate.exception.ConstraintViolationException cve) {
+                session.getTransaction().rollback();
+                throw new BusinessException(cve);
             }
-
         }
     }
 
@@ -94,33 +108,24 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
     protected void preInsert(Session session, T object) {
     }
 
-    ;
     protected void preUpdate(Session session, T object) {
     }
 
-    ;
     protected void preGet(Session session, int id) {
     }
 
-    ;
     protected void preDelete(Session session, int id) {
     }
 
-    ;
     protected void postInsert(Session session, T object) {
     }
 
-    ;
     protected void postUpdate(Session session, T object) {
     }
 
-    ;
     protected void postGet(Session session, T object) {
     }
 
-    ;
     protected void postDelete(Session session, int t) {
     }
-;
-
 }

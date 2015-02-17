@@ -33,14 +33,16 @@ public class FilterImplSecurity implements Filter {
         httpsession = httpServletRequest.getSession(true);
 
         String sessionUrl = httpServletRequest.getContextPath() + "/api/session";
+        String transferenciaUrl =  httpServletRequest.getContextPath() + "/api/transferencia";
 
         boolean logged = httpsession.getAttribute("id") != null;
-        if (httpServletRequest.getRequestURI().equals(sessionUrl)) {
+
+        if (httpServletRequest.getRequestURI().equals(sessionUrl)|| httpServletRequest.getRequestURI().equals(transferenciaUrl)) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            if (logged) {
+            if (logged ) {
                 filterChain.doFilter(servletRequest, servletResponse);
-
+                
             } else {
 
                 HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
