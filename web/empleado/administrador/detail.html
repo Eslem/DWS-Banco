@@ -63,22 +63,6 @@
              </div>-->
         </div>
 
-        <div class="formErrors">
-            <div ng-repeat="error in errors">
-                <span class="source">"{{error.fieldName}}"</span><span> {{error.message}}</span>
-            </div>
-        </div>
-
-        <!--   <div class="form-group">
-               <div class="col-sm-offset-2 col-sm-8" align="center">
-                   <button type="button" class="btn btn-primary" ng-click="update()">
-                       {{mainButton}}
-                   </button>
-                   <button type="button" class="btn btn-default" ng-show="detailShown" ng-click="passShown = !passShown">Cambiar Contraseña</button>
-               </div>
-           </div>
-        -->
-
         <div  ng-show="formAdmin.$invalid && mostrarErrores" class="formErrors">
 
             <span class="source" ng-show="formAdmin.campoNombre.$error.required"><span>NOMBRE DE USUARIO: Campo requerido</span><br></span>
@@ -88,12 +72,27 @@
             <span class="source" ng-show="formAdmin.campoDireccion.$error.required"><span>DIRECCION DE USUARIO: Campo requerido</span><br></span>
             <span class="source" ng-show="formAdmin.campoEmail.$error.required" ><span>EMAIL DE USUARIO: Campo requerido </span> <br> </span>
             <span class="source" ng-show="formAdmin.campoEmail.$error.email" ><span>EMAIL DE USUARIO: Valor incorrecto (Ejemplo: x@x.x)</span><br></span>
-            <span class="source" ng-show="formAdin.campoPassword.$error.required"> <span>PASSWORD DE USUARIO: Campo requerido</span><br/></span>
-            <span class="source" ng-show="formAdin.campoPassword.$error.pattern"> <span>PASSWORD DE USUARIO: Valor incorrecto (min. 8 carácteres)</span><br/></span>
-
-            <!-- <p ng-show="formClient.pass.$error.required">PASSWORD DE USUARIO: Campo requerido</p>
-             <p ng-show="formClient.passrepeat.$error.required">CONFIRMACION PASSWORD DE USUARIO: Campo requerido</p>-->
+            <span class="source" ng-show="formAdmin.campoPassword.$error.required"> <span>PASSWORD DE USUARIO: Campo requerido</span><br/></span>
+            <span class="source" ng-show="formAdmin.campoPassword.$error.pattern"> <span>PASSWORD DE USUARIO: Valor incorrecto (min. 8 carácteres)</span><br/></span>
+            <span class="source" ng-show="formAdmin.campoRepeatPassword.$error.required"> <span>REPETIR PASSWORD: Campo requerido</span><br/></span>
+            <span class="source" ng-show="formAdmin.campoRepeatPassword.$error.pattern && !formAdmin.campoPassword.$error.pattern"> <span>REPETIR PASSWORD: Valor incorrecto (min. 8 carácteres)</span><br/></span>
         </div>
+
+        <div class="formErrors">
+            <div ng-repeat="error in errors">
+                <span class="source">"{{error.fieldName}}"</span><span> {{error.message}}</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8" align="center">
+                <button type="button" class="btn btn-primary" ng-click="update()">
+                    {{mainButton}}
+                </button>
+                <!-- <button type="button" class="btn btn-default" ng-show="detailShown" ng-click="passShown = !passShown">Cambiar Contraseña</button>-->
+            </div>
+        </div>
+
 
 
     </form>
