@@ -12,7 +12,7 @@
             <th>Concepto </th>
             <th>Cantidad</th>
             <th>Fecha</th>
-            <th>Acciones</th>
+          
         </tr>
         <tr ng-repeat="movimiento in movimientos" >
             <td>{{movimiento.tipo}}</td>
@@ -20,9 +20,7 @@
             <td>{{movimiento.concepto}}</td>
             <td>{{movimiento.cantidad| currency: "€" }}</td>
             <td>{{movimiento.fecha| date :"dd/MM/yyyy"}}</td>
-            <td class="actions">
-                <button type="button" class="btn btn-danger" style="width:81px;" ng-click="deleteMovimiento(movimiento.id)"><i class="fa fa-trash"></i></button>
-            </td>
+          
         </tr>
     </table>
 </div>

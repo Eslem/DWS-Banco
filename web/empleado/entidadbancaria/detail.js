@@ -86,7 +86,6 @@ app.controller("EntidadBancariaUpdateController", ["$scope", "$http", "$routePar
                     data: $scope.entidadBancaria,
                     url: contextPath + "/api/entidadBancaria/"
                 }).success(function (data) {
-                    alert("fuck");
                     goToListEntidad();
                 }).error(function (data, status) {
                     if (status === 400)

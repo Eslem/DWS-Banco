@@ -83,7 +83,7 @@ public class MovimientoController {
             catchException(httpServletResponse, ex);
         }
     }
-
+/*
     @RequestMapping(value = {"/movimiento/{id}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @PathVariable("id") int id) throws IOException {
         try {
@@ -92,7 +92,7 @@ public class MovimientoController {
         } catch (BusinessException ex) {
             catchException(httpServletResponse, ex);
         }
-    }
+    }*/
     
    
     

@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label" for="nombre">Nombre</label>
             <div class="col-sm-8">
-                <input id="nombre" type="text" class="form-control" placeholder="Nombre" ng-model="entidadBancaria.nombre" required ng-minlenth="3" ng-maxlength="50"  name="campoNombre">
+                <input id="nombre" type="text" class="form-control" placeholder="Nombre" ng-model="entidadBancaria.nombre" required ng-minlength="3" ng-maxlength="50"  name="campoNombre">
             </div>
         </div>
 
@@ -38,11 +38,11 @@
             
             
         <div  ng-show="formEntidad.$invalid && mostrarErrores" class="formErrors">
-            <span class="source" ng-show="formEntidad.campoNombre.$error.required"><span>NOMBRE ENTIDAD: Campo requerido</span></span><br/>
-            <span class="source" ng-show="formEntidad.campoNombre.$error.minlength"><span>NOMBRE ENTIDAD: Valor incorrecto</span></span><br/>
-            <span class="source" ng-show="formEntidad.campoCodigo.$error.minlength"><span>CODIGO: Valor incorrecto</span></span><br/>
-            <span class="source" ng-show="formEntidad.campoCodigo.$error.required"><span>CODIGO: Campo requerido</span></span><br/>
-            <span class="source"ng-show="formEntidad.campoFecha.$error.required"><span>FECHA: Campo requerido</span></span><br/>
+            <span class="source" ng-show="formEntidad.campoNombre.$error.required"><span>NOMBRE ENTIDAD: Campo requerido</span><br/></span>
+            <span class="source" ng-show="formEntidad.campoNombre.$error.minlength"><span>NOMBRE ENTIDAD: Valor incorrecto ( min. 3 carácteres )</span><br/></span>
+            <span class="source" ng-show="formEntidad.campoCodigo.$error.minlength"><span>CODIGO: Valor incorrecto ( min. 3 dígitos )</span><br/></span>
+            <span class="source" ng-show="formEntidad.campoCodigo.$error.required"><span>CODIGO: Campo requerido</span><br/></span>
+            <span class="source"ng-show="formEntidad.campoFecha.$error.required"><span>FECHA: Campo requerido</span><br/></span>
 
         </div>
 

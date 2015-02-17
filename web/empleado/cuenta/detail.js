@@ -26,7 +26,7 @@ function initializeCuenta($scope, $http, $routeParams) {
         location.replace('#/movimiento/update/' + id);
     };
 
-    $scope.borrarMovimiento = function (id) {
+ /* $scope.borrarMovimiento = function (id) {
         ok = confirm("¿Confirma el borrado del movimiento de ID " + id + "?");
         if (ok) {
             $http({
@@ -44,10 +44,7 @@ function initializeCuenta($scope, $http, $routeParams) {
             var idM = getCuentaScoperId($scope.movimientos, id);
             $scope.cuenta.splice($scope.movimientos, 1);
         }
-
-
-
-    };
+    };*/
 }
 
 function getMovimientos($scope, $http) {
@@ -106,10 +103,10 @@ app.controller("CuentaEditController", ["$scope", "$http", "$routeParams", funct
                     data: $scope.cuenta,
                     url: contextPath + "/api/cuenta/"
                 }).success(function (data) {
+                    
                     alert("Cuenta correctamente actualizado.");
                     goToListCuenta();
-                    $scope.getCuenta($scope.cuenta.id);
-                    $scope.mostrarErrores=false;
+                   // $scope.getCuenta($scope.cuenta.id);
                 }).error(function (data, status) {
                     if (status === 400)
                         $scope.errors = data.businessMessages;

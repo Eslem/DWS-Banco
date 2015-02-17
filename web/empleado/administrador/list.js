@@ -45,7 +45,7 @@ function ListAdministradores($http, baseUrl) {
         }).error(function (data, status, headers, config) {
             fnError(data, status);
         });
-    }
+    };
 }
 
 function ListAdministradoresController($scope, ListAdministradores) {

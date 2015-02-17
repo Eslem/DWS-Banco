@@ -23,6 +23,12 @@
             <label class="col-sm-2 control-label" for="sucursal">Usuario</label>
             <div class="col-sm-8">
                 <input id="sucursal" type="text" class="form-control" placeholder="ID Sucursal" ng-model="cuenta.idSucursal" required name="campoSucursal"> 
+            </div>
+        </div>
+        
+         <div class="form-group">
+            <label class="col-sm-2 control-label" for="clienteCuenta">Cliente</label>
+            <div class="col-sm-8">
                 <input id="clienteCuenta" type="text" class="form-control" placeholder="usuario" ng-model="cuenta.clienteCuenta" required name="campoCuentaCliente">
             </div>
         </div>
@@ -56,11 +62,11 @@
 
         <div  ng-show="formCuenta.$invalid && mostrarErrores" class="formErrors">
 
-            <span class="source" ng-show="formCuenta.campoSucursal.$error.required"><span>SUCURSAL BANCARIA: Campo requerido</span></span>
-            <span class="source" ng-show="formCuenta.campoCuentaCliente.$error.required"><span>CUENTA CLIENTE: Campo requerido</span></span>
-            <span class="source"ng-show="formCuenta.campoSaldo.$error.required"><span>SALDO: Campo requerido</span></span>
-            <span class="source" ng-show="formCuenta.campoSaldo.$error.min" ><span>SALDO: Valor incorrecto (minimo = 0)</span></span>
-            <span class="source" ng-show="formCuenta.campoTipo.$error.required"><span>TIPO DE CUENTA: Campo requerido</span></span>
+            <span class="source" ng-show="formCuenta.campoSucursal.$error.required"><span>SUCURSAL BANCARIA: Campo requerido</span><br></span>
+            <span class="source" ng-show="formCuenta.campoCuentaCliente.$error.required"><span>CUENTA CLIENTE: Campo requerido</span><br></span>
+            <span class="source"ng-show="formCuenta.campoSaldo.$error.required"><span>SALDO: Campo requerido</span><br></span>
+            <span class="source" ng-show="formCuenta.campoSaldo.$error.min" ><span>SALDO: Valor incorrecto (minimo = 0)</span><br></span>
+            <span class="source" ng-show="formCuenta.campoTipo.$error.required"><span>TIPO DE CUENTA: Campo requerido</span><br></span>
 
         </div>
         
@@ -76,20 +82,18 @@
 
         <table ng-show="{{mostrar}}" class="table table-striped table-hover table-bordered table-shadow">
             <tr>
-                <th>Saldo</th>
-                <th>Id Sucursal</th>
                 <th>Tipo</th>
+                <th>Concepto</th>
+                <th>Cantidad</th>
                 <th>Fecha</th>
-                <th>Acciones</th>
+               
             </tr>
             <tr ng-repeat="movimiento in movimientos">
                 <td>{{movimiento.tipo}}</td>
                 <td>{{movimiento.concepto}}</td>
                 <td>{{movimiento.cantidad}}</td>
                 <td>{{movimiento.fecha| date: "dd/MM/yyyy"}}</td>
-                <td class="actions">
-                    <button type="button" ng-click="borrarMovimiento(movimiento.id)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                </td>
+               
             </tr>
         </table>
 
