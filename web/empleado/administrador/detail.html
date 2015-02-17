@@ -45,22 +45,22 @@
                 <input type="email" class="form-control" placeholder="email" ng-model="user.email" name="campoEmail">
             </div>
         </div>
-        <div ng-show="passShown">
+        <div >          <!--ng-show="passShown"-->
             <div class="form-group">
                 <label class="col-sm-2 control-label">Contraseña</label>
                 <div class="col-sm-8">
-                    <input type="password" class="form-control" placeholder="contraseña" ng-model="password" ng-pattern="/[a-zA-Z]{8,25}/" name="campoPassword">
+                    <input type="password" class="form-control" placeholder="contraseña" ng-model="password" ng-pattern="/[a-zA-Z]{8,25}/" name="campoPassword" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Repetir contraseña</label>
                 <div class="col-sm-8">
-                    <input type="password" class="form-control" placeholder="repetir contraseña" ng-model="passrepeat" ng-pattern="/[a-zA-Z]{8,25}/" name="campoRepeatPassword">
+                    <input type="password" class="form-control" placeholder="repetir contraseña" ng-model="passrepeat" ng-pattern="/[a-zA-Z]{8,25}/" name="campoRepeatPassword" required>
                 </div>
             </div>
-            <div class="col-sm-offset-2 col-sm-8">
-                <button type="button" class="btn btn-danger" ng-click="changePass()" ng-show="detailShown">Cambiar</button>
-            </div>
+            <!-- <div class="col-sm-offset-2 col-sm-8">
+                 <button type="button" class="btn btn-danger" ng-click="changePass()" ng-show="detailShown">Cambiar</button>
+             </div>-->
         </div>
 
         <div class="formErrors">
@@ -69,16 +69,16 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8" align="center">
-                <button type="button" class="btn btn-primary" ng-click="update()">
-                    {{mainButton}}
-                </button>
-                <button type="button" class="btn btn-default" ng-show="detailShown" ng-click="passShown = !passShown">Cambiar Contraseña</button>
-            </div>
-        </div>
-        
-        
+        <!--   <div class="form-group">
+               <div class="col-sm-offset-2 col-sm-8" align="center">
+                   <button type="button" class="btn btn-primary" ng-click="update()">
+                       {{mainButton}}
+                   </button>
+                   <button type="button" class="btn btn-default" ng-show="detailShown" ng-click="passShown = !passShown">Cambiar Contraseña</button>
+               </div>
+           </div>
+        -->
+
         <div  ng-show="formAdmin.$invalid && mostrarErrores" class="formErrors">
 
             <span class="source" ng-show="formAdmin.campoNombre.$error.required"><span>NOMBRE DE USUARIO: Campo requerido</span><br></span>
@@ -87,8 +87,10 @@
             <span class="source" ng-show="formAdmin.campoDNI.$error.pattern" ><span>DNI DE USUARIO: Valor incorrecto (Ejemplo: 12345678X)</span><br></span>
             <span class="source" ng-show="formAdmin.campoDireccion.$error.required"><span>DIRECCION DE USUARIO: Campo requerido</span><br></span>
             <span class="source" ng-show="formAdmin.campoEmail.$error.required" ><span>EMAIL DE USUARIO: Campo requerido </span> <br> </span>
-            <span class="source" ng-show="formAdmin.campoEmail.$error.email" ><span>EMAIL DE USUARIO: Valor incorrecto (Ejemplo: x@x.x)</span><br> </span>
-            
+            <span class="source" ng-show="formAdmin.campoEmail.$error.email" ><span>EMAIL DE USUARIO: Valor incorrecto (Ejemplo: x@x.x)</span><br></span>
+            <span class="source" ng-show="formAdin.campoPassword.$error.required"> <span>PASSWORD DE USUARIO: Campo requerido</span><br/></span>
+            <span class="source" ng-show="formAdin.campoPassword.$error.pattern"> <span>PASSWORD DE USUARIO: Valor incorrecto (min. 8 carácteres)</span><br/></span>
+
             <!-- <p ng-show="formClient.pass.$error.required">PASSWORD DE USUARIO: Campo requerido</p>
              <p ng-show="formClient.passrepeat.$error.required">CONFIRMACION PASSWORD DE USUARIO: Campo requerido</p>-->
         </div>

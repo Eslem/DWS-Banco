@@ -63,7 +63,6 @@ app.controller("EntidadBancariaInsertController", ["$scope", "$http", function (
                     url: contextPath + "/api/entidadBancaria/"
                 }).success(function (data) {
                     goToListEntidad();
-                    $scope.mostrarErrores = false;
                 }).error(function (data, status) {
                     if (status === 400)
                         $scope.errors = data.businessMessages;

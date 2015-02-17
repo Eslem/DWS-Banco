@@ -77,7 +77,6 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
 
     UpdateAdministrador.get($routeParams.id,
             function (data, status) {
-                  alert(JSON.stringify($scope.user));
                 $scope.user = data;
             },
             function (data, status) {
@@ -87,23 +86,26 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
     );
 
     $scope.update = function () {
-           $scope.mostrarErrores = true;
+        $scope.mostrarErrores = true;
         // delete $scope.user.password;
         if (!$scope.formAdmin.$invalid) {
-            alert(JSON.stringify($scope.user));
-            UpdateAdministrador.update($scope.user
-                    , function (data, status) {
-                        location.replace("#/administrador/");
-                    }, function (data, status) {
-                if (status === 400)
-                    $scope.errors = data.businessMessages;
-            });
+            if ($scope.password !== $scope.passrepeat) {
+                alert("Las contraseñas no coinciden");
+            } else {
+                $scope.user.password = $scope.password;
+                UpdateAdministrador.update($scope.user
+                        , function (data, status) {
+                            location.replace("#/administrador/");
+                        }, function (data, status) {
+                    if (status === 400)
+                        $scope.errors = data.businessMessages;
+                });
+            }
         }
-        $scope.mostrarErrores = false;
     };
 
     $scope.changePass = function () {
-        if (!scope.formAdmin.$invalid) {
+        if (!$scope.formAdmin.$invalid) {
             if ($scope.password !== $scope.passrepeat) {
                 alert("Las contraseñas no coinciden");
             } else {
@@ -137,8 +139,7 @@ function AdministradorInsertController($scope, $rootScope, UpdateAdministrador) 
             if ($scope.password !== $scope.passrepeat) {
                 alert("Las contraseñas no coinciden");
             } else {
-                console.log($scope.password);
-                //$scope.user.password = $scope.password;
+                $scope.user.password = $scope.password;
                 UpdateAdministrador.insert($scope.user
                         , function (data, status) {
                             location.replace("#/administrador/");

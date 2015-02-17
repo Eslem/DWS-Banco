@@ -90,20 +90,24 @@ function UpdateUserController($scope, $routeParams, UpdateUsuario) {
             }
     );
 
+   
     $scope.update = function () {
         $scope.mostrarErrores = true;
+        // delete $scope.user.password;
         if (!$scope.formClient.$invalid) {
-            UpdateUsuario.update($scope.user
-                    , function (data, status) {
-                        location.replace("#/usuario/");
-                        $scope.mostrarErrores = false;
-                    }, function (data, status) {
-                if (status === 400)
-                    $scope.errors = data.businessMessages;
-            });
+            if ($scope.password !== $scope.passrepeat) {
+                alert("Las contraseñas no coinciden");
+            } else {
+                $scope.user.password = $scope.password;
+                UpdateUsuario.update($scope.user
+                        , function (data, status) {
+                            location.replace("#/usuario/");
+                        }, function (data, status) {
+                    if (status === 400)
+                        $scope.errors = data.businessMessages;
+                });
+            }
         }
-
-
     };
 
     $scope.changePass = function () {
