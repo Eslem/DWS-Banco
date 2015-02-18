@@ -28,6 +28,7 @@
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
  
         <taskdef  resource="es/logongas/openshift/ant/antlib.xml" />
+        
         <gitcloneapplication    
             userName="eslemalzate@gmail.com"
             password="${password}"
@@ -39,8 +40,7 @@
         
         <delete dir="../banco/src"></delete>
         <delete file="../banco/pom.xml"></delete>
-        
-        <git dir="../banco" command="add" options="-all" />
+        <git dir="../banco" command="add" options="--all" />
         <git dir="../banco" command="commit" options="-am 'mensaje'" />
         
           <gitpusheapplication    
@@ -51,8 +51,6 @@
             privateKeyFile="../.ssh/id_rsa"
             path="../banco"
         />
-        
-        
         <!--<git command="clone" options="${openshift.ssh}" />
         <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
         <git dir="${openshift.name}/" command="add" options="-all" />
