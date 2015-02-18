@@ -20,7 +20,7 @@
  
     
     <target name="clear-openshift">
-        <delete dir="${openshift.name}" />
+        <delete dir="../banco" />
     </target>
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
@@ -34,11 +34,11 @@
             path="../banco"
         />
         
-        <delete dir="../${openshift.name}/src"></delete>
-        <delete file="../${openshift.name}/pom.xml"></delete>
+        <delete dir="../banco/src"></delete>
+        <delete file="../banco/pom.xml"></delete>
         
-        <git dir="${openshift.name}/" command="add" options="-all" />
-        <git dir="${openshift.name}/" command="commit" options="-am 'mensaje'" />
+        <git dir="../banco" command="add" options="-all" />
+        <git dir="../banco" command="commit" options="-am 'mensaje'" />
         
         <gitcloneapplication    
             userName="eslemalzate@gmail.com"
