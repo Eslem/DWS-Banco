@@ -18,36 +18,37 @@
     <property name="openshift.name" value="banco" />
  
  
-    
+    <property name="libs.CopyLibs.classpath" value="${antlib.dir}org-netbeans-modules-java-j2seproject-copylibstask.jar" />
+    <property name="j2ee.server.home" value="ant" />
+ 
     <target name="clear-openshift">
-        <delete dir="../desplegar-banco" />
+        <delete dir="${openshift.name}" />
     </target>
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
-        
-        <taskdef  resource="es/logongas/openshift/ant/antlib.xml"/>
+ 
         <gitcloneapplication    
             userName="eslemalzate@gmail.com"
             password="${password}"
-            domainName="slem"
+            domainName="banco-slem"
             applicationName="banco" 
             privateKeyFile="../.ssh/id_rsa"
-            path="../desplegar-banco"
+            path="../banco"
         />
         
-        <delete dir="../desplegar-banco/src"></delete>
-        <delete file="../desplegar-banco/pom.xml"></delete>
+        <delete dir="../banco/src"></delete>
+        <delete file="../banco/pom.xml"></delete>
         
-        <git dir="../desplegar-banco" command="add" options="-all" />
-        <git dir="../desplegar-banco" command="commit" options="-am 'mensaje'" />
+        <git dir="../banco" command="add" options="-all" />
+        <git dir="../banco" command="commit" options="-am 'mensaje'" />
         
-        <gitcloneapplication    
+          <gitpusheapplication    
             userName="eslemalzate@gmail.com"
             password="${password}"
-            domainName="slem"
+            domainName="banco-slem"
             applicationName="banco" 
             privateKeyFile="../.ssh/id_rsa"
-            path="../desplegar-banco"
+            path="../banco"
         />
         
         
@@ -59,9 +60,6 @@
     </target>
  
     <target name="enable-openshift">
-        <property name="libs.CopyLibs.classpath" value="${antlib.dir}org-netbeans-modules-java-j2seproject-copylibstask.jar" />
-        <property name="j2ee.server.home" value="ant" />
- 
         <property name="openshift" value="true" />
     </target>
  
@@ -72,4 +70,11 @@
     <target name="-post-dist" if="openshift">
         <move file="${dist.dir}${ant.project.name}.war" toFile="${dist.dir}/webapps/ROOT.war" />
     </target>
+ 
+ 
+ 
+    
+    
+   
+	
 </project>
