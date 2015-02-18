@@ -40,17 +40,19 @@
         
         <delete dir="../banco/src"></delete>
         <delete file="../banco/pom.xml"></delete>
+        <move file="${dist.dir}/webapps/ROOT.war" toFile="../banco/webapps/ROOT.war" />
+
         <git dir="../banco" command="add" options="--all" />
         <git dir="../banco" command="commit" options="-am 'mensaje'" />
         
-          <!-- <gitpushapplication    
+        <gitpushapplication    
             userName="eslemalzate@gmail.com"
             password="${password}"
             domainName="slem"
             applicationName="banco" 
             privateKeyFile="../.ssh/id_rsa"
             path="../banco"
-        />-->
+        />
         <!--<git command="clone" options="${openshift.ssh}" />
         <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
         <git dir="${openshift.name}/" command="add" options="-all" />
