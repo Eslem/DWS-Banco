@@ -22,7 +22,7 @@
     <property name="j2ee.server.home" value="ant" />
  
     <target name="clear-openshift">
-        <delete dir="${openshift.name}" />
+        <delete dir="../banco" />
     </target>
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
