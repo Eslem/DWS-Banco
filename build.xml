@@ -43,7 +43,7 @@
         <git dir="../banco" command="add" options="--all" />
         <git dir="../banco" command="commit" options="-am 'mensaje'" />
         
-          <gitpusheapplication    
+          <gitpushapplication    
             userName="eslemalzate@gmail.com"
             password="${password}"
             domainName="slem"
