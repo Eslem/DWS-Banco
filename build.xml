@@ -24,6 +24,7 @@
     </target>
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
+        <taskdef  resource="es/logongas/openshift/ant/antlib.xml"/>
         <gitcloneapplication    
             userName="eslemalzate@gmail.com"
             password="${password}"
