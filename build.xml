@@ -20,7 +20,7 @@
  
     
     <target name="clear-openshift">
-        <delete dir="../banco" />
+        <delete dir="../desplegar-banco" />
     </target>
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
@@ -32,14 +32,14 @@
             domainName="slem"
             applicationName="banco" 
             privateKeyFile="../.ssh/id_rsa"
-            path="../banco"
+            path="../desplegar-banco"
         />
         
-        <delete dir="../banco/src"></delete>
-        <delete file="../banco/pom.xml"></delete>
+        <delete dir="../desplegar-banco/src"></delete>
+        <delete file="../desplegar-banco/pom.xml"></delete>
         
-        <git dir="../banco" command="add" options="-all" />
-        <git dir="../banco" command="commit" options="-am 'mensaje'" />
+        <git dir="../desplegar-banco" command="add" options="-all" />
+        <git dir="../desplegar-banco" command="commit" options="-am 'mensaje'" />
         
         <gitcloneapplication    
             userName="eslemalzate@gmail.com"
@@ -47,7 +47,7 @@
             domainName="slem"
             applicationName="banco" 
             privateKeyFile="../.ssh/id_rsa"
-            path="../banco"
+            path="../desplegar-banco"
         />
         
         
