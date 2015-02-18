@@ -11,31 +11,56 @@
     <description>Builds, tests, and runs the project DAW-Banco.</description>
     <import file="nbproject/build-impl.xml"/>
     
-	
-	<property name="dist.dir" value="dist/" />
-    <property name="context.dir" value="web/META-INF/" />
+    <property name="dist.dir" value="dist/" />
+    <property name="context.dir" value="build/web/META-INF/" />
     <property name="antlib.dir" value="ant/lib/" />
     <property name="openshift.ssh" value="ssh://54c969cafcf933756a000160@banco-slem.rhcloud.com/~/git/banco.git/" />
     <property name="openshift.name" value="banco" />
  
  
-    <property name="libs.CopyLibs.classpath" value="${antlib.dir}org-netbeans-modules-java-j2seproject-copylibstask.jar" />
-    <property name="j2ee.server.home" value="ant" />
- 
+    
     <target name="clear-openshift">
         <delete dir="${openshift.name}" />
     </target>
  
     <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
  
-        <git command="clone" options="${openshift.ssh}" />
-        <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
-        <git dir="${openshift.name}/" command="add" options="--all" />
+        <gitcloneapplication    
+            userName="eslemalzate@gmail.com"
+            password="${password}"
+            domainName="banco-slem"
+            applicationName="banco" 
+            privateKeyFile="../.ssh/id_rsa"
+            path="../banco"
+        />
+        
+        <delete dir="../${openshift.name}/src"></delete>
+        <delete file="../${openshift.name}/pom.xml"></delete>
+        
+        <git dir="${openshift.name}/" command="add" options="-all" />
         <git dir="${openshift.name}/" command="commit" options="-am 'mensaje'" />
-        <git dir="${openshift.name}/" command="push" />
+        
+        <gitcloneapplication    
+            userName="eslemalzate@gmail.com"
+            password="${password}"
+            domainName="banco-slem"
+            applicationName="banco" 
+            privateKeyFile="../.ssh/id_rsa"
+            path="../banco"
+        />
+        
+        
+        <!--<git command="clone" options="${openshift.ssh}" />
+        <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
+        <git dir="${openshift.name}/" command="add" options="-all" />
+        <git dir="${openshift.name}/" command="commit" options="-am 'mensaje'" />
+        <git dir="${openshift.name}/" command="push" />-->
     </target>
  
     <target name="enable-openshift">
+        <property name="libs.CopyLibs.classpath" value="${antlib.dir}org-netbeans-modules-java-j2seproject-copylibstask.jar" />
+        <property name="j2ee.server.home" value="ant" />
+ 
         <property name="openshift" value="true" />
     </target>
  
@@ -46,27 +71,4 @@
     <target name="-post-dist" if="openshift">
         <move file="${dist.dir}${ant.project.name}.war" toFile="${dist.dir}/webapps/ROOT.war" />
     </target>
- 
- 
- 
-   <macrodef name="git">
-        <!-- https://github.com/FrancisVarga/ant-git-macros/blob/master/LICENSE.md -->
-        <attribute name="command" />
-        <attribute name="options" default="" />
-        <attribute name="dir" default="" />
-        <attribute name="failerror" default="true" />
-        <element name="args" optional="true" />
-        <sequential>
-            <echo message="git dir @{dir}" />
-            <echo message="git @{command} @{options}" />
-            <exec executable="git" dir="@{dir}" failonerror="@{failerror}">
-                <arg line="@{command} @{options}" />
-                <args />
-            </exec>
-        </sequential>
-    </macrodef>
-    
-    
-   
-	
 </project>
