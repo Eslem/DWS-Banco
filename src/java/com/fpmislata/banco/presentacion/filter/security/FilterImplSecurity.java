@@ -42,9 +42,7 @@ public class FilterImplSecurity implements Filter {
         } else {
             if (logged ) {
                 filterChain.doFilter(servletRequest, servletResponse);
-                
             } else {
-
                 HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
                 httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
             }

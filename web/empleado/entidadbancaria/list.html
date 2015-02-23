@@ -15,7 +15,7 @@
         <tr ng-repeat="entidadBancaria in entidadesBancarias">
             <td>{{entidadBancaria.nombre}}</td>
             <td>{{entidadBancaria.codigo}}</td>
-            <td>{{entidadBancaria.fecha| date :"dd/MM/yyyy"}}</td>
+            <td>{{entidadBancaria.fecha | date :"dd/MM/yyyy"}}</td>
 
             <td class="actions">
                 <button ng-click="edit(entidadBancaria.id)" class="btn btn-primary">
