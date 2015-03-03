@@ -81,6 +81,29 @@ public class Transferencia {
     public void setPin(String pin) {
         this.pin = pin;
     }
-
+    
+    public Movimiento getMovimientoDEBE(Cuenta cuentaBancariaOrigen){
+        Movimiento movimientoMovimientoDEBE=new Movimiento();
+       
+            movimientoMovimientoDEBE.setConcepto(this.concepto);
+            movimientoMovimientoDEBE.setIdCuenta(cuentaBancariaOrigen.getIdCuenta());
+            movimientoMovimientoDEBE.setTipo("DEBE");
+            movimientoMovimientoDEBE.setCantidad(this.cantidad);
+            
+        
+        return movimientoMovimientoDEBE;
+    }
+     
+    public Movimiento getMovimientoHABER(Cuenta cuentaBancariaDestino){
+        Movimiento movimientoMovimientoHABER=new Movimiento();
+       
+            movimientoMovimientoHABER.setConcepto(this.concepto);
+            movimientoMovimientoHABER.setIdCuenta(cuentaBancariaDestino.getIdCuenta());
+            movimientoMovimientoHABER.setTipo("HABER");
+            movimientoMovimientoHABER.setCantidad(this.cantidad);
+            
+        
+        return movimientoMovimientoHABER;
+    }
     
 }

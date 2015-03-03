@@ -36,4 +36,9 @@ public class BusinessException extends Exception {
     public List<BusinessMessage> getBusinessMessages() {
         return bussinessMessages;
     }
+    
+     public BusinessException(String fieldName, String message) {
+        BusinessMessage bussinessMessage = new BusinessMessage(fieldName, message);
+        this.bussinessMessages.add(bussinessMessage);
+    }
 }

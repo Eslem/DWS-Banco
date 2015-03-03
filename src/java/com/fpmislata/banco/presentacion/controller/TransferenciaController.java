@@ -10,7 +10,7 @@ import com.fpmislata.banco.dominio.Cuenta;
 import com.fpmislata.banco.dominio.Transferencia;
 import com.fpmislata.banco.persistencia.common.BusinessException;
 import com.fpmislata.banco.persistencia.dao.CuentaDAO;
-import com.fpmislata.banco.persistencia.dao.impl.hibernate.TransferenciaDAOImplHibernate;
+import com.fpmislata.banco.persistencia.dao.MovimientoDAO;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class TransferenciaController {
 
     @Autowired
-    TransferenciaDAOImplHibernate transferencia;
+    MovimientoDAO movimientoDAO;
     @Autowired
     JSONConverter jsonConverter;
     @Autowired
@@ -37,19 +37,23 @@ public class TransferenciaController {
     @RequestMapping(value = {"/transferencia"}, method = RequestMethod.POST)
     public void insertTransferencia(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestBody String jsonEntrada) throws IOException, BusinessException {
 
-        Transferencia trans = jsonConverter.fromJSON(jsonEntrada, Transferencia.class);
-        Cuenta cuentaOrigen = cuenta.get(trans.getCuentaOrigen());
-        Cuenta cuentaDestino = cuenta.get(trans.getCuentaDestino());
+        Transferencia transferencia = jsonConverter.fromJSON(jsonEntrada, Transferencia.class);
+        Cuenta cuentaOrigen = cuenta.get(transferencia.getCuentaOrigen());
+        Cuenta cuentaDestino = cuenta.get(transferencia.getCuentaDestino());
 
         if ((cuentaDestino != null) && (cuentaOrigen != null)) {
-            if (cuentaDestino.getPin().equals(trans.getPin())) {
-                transferencia.generarTransferencia(jsonConverter.fromJSON(jsonEntrada, Transferencia.class));
+            if (cuentaDestino.getPin().equals(transferencia.getPin())) {
+                movimientoDAO.insert(transferencia.getMovimientoDEBE(cuentaOrigen));
+                movimientoDAO.insert(transferencia.getMovimientoHABER(cuentaDestino));
                 httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             } else {
                 httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+               throw new BusinessException("Pin", "La cuenta destino o la cuenta origen no son correctas");
 
             }
 
+        } else {
+            throw new BusinessException("Cuentas", "La cuenta destino o la cuenta origen no son correctas");
         }
 
     }

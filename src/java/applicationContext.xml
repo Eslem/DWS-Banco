@@ -15,7 +15,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.CuentaDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.ClienteDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.EmpleadoDAOImplHibernate"/>
-    <bean class="com.fpmislata.banco.persistencia.dao.impl.hibernate.TransferenciaDAOImplHibernate"/>
     <bean class="com.fpmislata.banco.persistencia.migration.DatabaseMigrationImplFlyway"/>
     <bean class="com.fpmislata.banco.common.json.impl.JSONConverterImplJackson"/>
     <bean class="com.fpmislata.banco.common.encrypting.PasswordEncryptingImplJasypt"/>
