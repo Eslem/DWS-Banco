@@ -85,10 +85,10 @@ public class Transferencia {
     public Movimiento getMovimientoDEBE(Cuenta cuentaBancariaOrigen){
         Movimiento movimientoMovimientoDEBE=new Movimiento();
        
-            movimientoMovimientoDEBE.setConcepto("TEST");
+            movimientoMovimientoDEBE.setConcepto(this.getConcepto());
             movimientoMovimientoDEBE.setIdCuenta(cuentaBancariaOrigen.getIdCuenta());
             movimientoMovimientoDEBE.setTipo("DEBE");
-            movimientoMovimientoDEBE.setCantidad(cantidad);
+            movimientoMovimientoDEBE.setCantidad(this.getCantidad());
             
         
         return movimientoMovimientoDEBE;
