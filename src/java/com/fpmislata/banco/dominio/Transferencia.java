@@ -85,10 +85,10 @@ public class Transferencia {
     public Movimiento getMovimientoDEBE(Cuenta cuentaBancariaOrigen){
         Movimiento movimientoMovimientoDEBE=new Movimiento();
        
-            movimientoMovimientoDEBE.setConcepto(this.concepto);
+            movimientoMovimientoDEBE.setConcepto(concepto);
             movimientoMovimientoDEBE.setIdCuenta(cuentaBancariaOrigen.getIdCuenta());
             movimientoMovimientoDEBE.setTipo("DEBE");
-            movimientoMovimientoDEBE.setCantidad(this.cantidad);
+            movimientoMovimientoDEBE.setCantidad(cantidad);
             
         
         return movimientoMovimientoDEBE;
@@ -97,10 +97,10 @@ public class Transferencia {
     public Movimiento getMovimientoHABER(Cuenta cuentaBancariaDestino){
         Movimiento movimientoMovimientoHABER=new Movimiento();
        
-            movimientoMovimientoHABER.setConcepto(this.concepto);
+            movimientoMovimientoHABER.setConcepto(concepto);
             movimientoMovimientoHABER.setIdCuenta(cuentaBancariaDestino.getIdCuenta());
             movimientoMovimientoHABER.setTipo("HABER");
-            movimientoMovimientoHABER.setCantidad(this.cantidad);
+            movimientoMovimientoHABER.setCantidad(cantidad);
             
         
         return movimientoMovimientoHABER;
