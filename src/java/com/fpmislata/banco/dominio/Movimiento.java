@@ -32,7 +32,7 @@ public class Movimiento {
         this.idCuenta = idCuenta;
         this.concepto = concepto;
         this.cantidad = cantidad;
-        this.fecha = fecha;
+        this.fecha = new Date();
     }
 
     public int getId() {
