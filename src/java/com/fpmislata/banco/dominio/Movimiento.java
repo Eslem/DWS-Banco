@@ -9,18 +9,18 @@ import javax.validation.constraints.Size;
 public class Movimiento {
 
     private int id;
-   // @NotNull
-   // @Size(min = 3, max = 50)
+    @NotNull
+    @Size(min = 3, max = 50)
     private String tipo;
-   // @NotNull
+    @NotNull
     private int idCuenta;
-   // @NotNull
-   // @Size(min = 3, max = 50)
+    @NotNull
+    @Size(min = 3, max = 50)
     private String concepto;
-    //@NotNull
+    @NotNull
     private BigDecimal cantidad;
-   // @NotNull
-   // @Past
+   //@NotNull
+    //@Past
     private Date fecha;
 
     public Movimiento() {
