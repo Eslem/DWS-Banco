@@ -5,6 +5,7 @@
  */
 package com.fpmislata.banco.persistencia.dao;
 
+import com.fpmislata.banco.persistencia.common.BusinessException;
 import java.util.List;
 
 /**
@@ -13,14 +14,14 @@ import java.util.List;
  */
 public interface GenericDAO <T>{
     
-    public T get(int id);
+    public T get(int id) throws BusinessException;
     
-    public T insert(T entidad);
+    public T insert(T entidad) throws BusinessException;
     
-    public T update(T entidad);
+    public T update(T entidad) throws BusinessException;
     
-    public void delete(int id);
+    public void delete(int id) throws BusinessException;
     
-    public List<T> findAll();
+    public List<T> findAll() throws BusinessException;
     
 }

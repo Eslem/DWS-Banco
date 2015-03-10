@@ -50,6 +50,11 @@ public class ClienteDAOImplHibernate extends GenericDAOImplHibernate<Cliente> im
     protected void preInsert(Session session, Cliente usuario) {
         usuario.setPassword(passwordEncrypting.encrypt(usuario.getPassword()));
     }
+    
+    @Override
+    protected void preUpdate(Session session, Cliente usuario) {
+        usuario.setPassword(passwordEncrypting.encrypt(usuario.getPassword()));
+    }
 
     @Override
     protected void postGet(Session session, Cliente usuario) {

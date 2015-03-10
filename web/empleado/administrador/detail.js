@@ -1,10 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 app.provider("UpdateAdministrador", UpdateAdministradorProvider);
 
 app.config(['baseUrl', 'UpdateAdministradorProvider', function (baseUrl, UpdateAdministradorProvider) {
@@ -69,7 +62,7 @@ function UpdateAdministrador($http, baseUrl) {
         }).error(function (data, status, headers, config) {
             fnError(data, status);
         });
-    }
+    };
 
 }
 
@@ -77,64 +70,84 @@ function UpdateAdministradoresController($scope, $routeParams, UpdateAdministrad
     $scope.detailShown = true;
     $scope.passwordShown = false;
     $scope.mainButton = "Actualizar";
-    if(!$rootScope.login){
+    $scope.mostrarErrores = false;
+    if (!$rootScope.login) {
         location.replace('#/login/');
     }
-    
+
     UpdateAdministrador.get($routeParams.id,
             function (data, status) {
                 $scope.user = data;
             },
             function (data, status) {
-                alert(status + ": " + data);
+                if (status === 400)
+                    $scope.errors = data.businessMessages;
             }
     );
 
     $scope.update = function () {
+        $scope.mostrarErrores = true;
         // delete $scope.user.password;
-        UpdateAdministrador.update($scope.user
-                , function (data, status) {
-                    location.replace("#/administrador/");
-                }, function (data, status) {
-            alert(status + ": " + data);
-        });
+        if (!$scope.formAdmin.$invalid) {
+            if ($scope.password !== $scope.passrepeat) {
+                alert("Las contraseñas no coinciden");
+            } else {
+                //$scope.user.password = $scope.password;
+                UpdateAdministrador.update($scope.user
+                        , function (data, status) {
+                            location.replace("#/administrador/");
+                        }, function (data, status) {
+                    if (status === 400)
+                        $scope.errors = data.businessMessages;
+                });
+            }
+        }
     };
 
     $scope.changePass = function () {
-        if ($scope.password !== $scope.passrepeat) {
-            alert("Las contraseñas no coinciden");
-        } else {
-            $scope.user.password = $scope.password;
-            UpdateAdministrador.changePass($scope.user, function (data, status) {
-                location.replace("#/administrador/");
-            }, function (data, status) {
-                alert(status + ": " + data);
-            });
+        if (!$scope.formAdmin.$invalid) {
+            if ($scope.password !== $scope.passrepeat) {
+                alert("Las contraseñas no coinciden");
+            } else {
+                $scope.user.password = $scope.password;
+                UpdateAdministrador.changePass($scope.user, function (data, status) {
+                    location.replace("#/administrador/");
+                }, function (data, status) {
+                    if (status === 400)
+                        $scope.errors = data.businessMessages;
+                });
+            }
         }
     };
 }
 
 function AdministradorInsertController($scope, $rootScope, UpdateAdministrador) {
+    $scope.user = {};
     $scope.detailShown = false;
     $scope.passShown = true;
     $scope.mainButton = "Insertar";
-    
-     if(!$rootScope.login){
+    $scope.mostrarErrores = false;
+
+    if (!$rootScope.login) {
         location.replace('#/login/');
     }
-    
+
     $scope.update = function () {
-        if ($scope.password !== $scope.passrepeat) {
-            alert("Las contraseñas no coinciden");
-        } else {
-            console.log($scope.password);
-            $scope.user.password = $scope.password;
-            UpdateAdministrador.insert($scope.user
-                    , function (data, status) {
-                        location.replace("#/administrador/");
-                    }, function (data, status) {
-                alert(status + ": " + data);
-            });
+        $scope.mostrarErrores = true;
+        if (!scope.formAdmin.$invalid) {
+            if ($scope.password !== $scope.passrepeat) {
+                alert("Las contraseñas no coinciden");
+            } else {
+                $scope.user.password = $scope.password;
+                UpdateAdministrador.insert($scope.user
+                        , function (data, status) {
+                            location.replace("#/administrador/");
+
+                        }, function (data, status) {
+                    if (status === 400)
+                        $scope.errors = data.businessMessages;
+                });
+            }
         }
     };
 }
