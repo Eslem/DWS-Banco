@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<!-- By default, only the Clean and Build commands use this build script. -->
+<!-- Commands such as Run, Debug, and Test only use this build script if -->
+<!-- the Compile on Save feature is turned off for the project. -->
+<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
+<!-- in the project's Project Properties dialog box.-->
+<project name="DAW-Banco" default="default" basedir=".">
+    <description>Builds, tests, and runs the project DAW-Banco.</description>
+    <import file="nbproject/build-impl.xml"/>
+    
+    <property name="dist.dir" value="dist/" />
+    <property name="context.dir" value="build/web/META-INF/" />
+    <property name="antlib.dir" value="ant/lib/" />
+    <property name="openshift.ssh" value="ssh://54c969cafcf933756a000160@banco-slem.rhcloud.com/~/git/banco.git/" />
+    <property name="openshift.name" value="banco" />
+ 
+ 
+    <property name="libs.CopyLibs.classpath" value="${antlib.dir}org-netbeans-modules-java-j2seproject-copylibstask.jar" />
+    <property name="j2ee.server.home" value="ant" />
+ 
+    <target name="clear-openshift">
+        <delete dir="../banco" />
+    </target>
+ 
+    <target depends="clear-openshift, enable-openshift, default" name="deploy-openshift">
+ 
+        <taskdef  resource="es/logongas/openshift/ant/antlib.xml" />
+        
+        <gitcloneapplication    
+            userName="eslemalzate@gmail.com"
+            password="${password}"
+            domainName="slem"
+            applicationName="banco" 
+            privateKeyFile="../.ssh/id_rsa"
+            path="../banco"
+        />
+        
+        <delete dir="../banco/src"></delete>
+        <delete file="../banco/pom.xml"></delete>
+        <move file="${dist.dir}/webapps/ROOT.war" toFile="../banco/webapps/ROOT.war" />
+
+        <git dir="../banco" command="add" options="--all" />
+        <git dir="../banco" command="commit" options="-am 'mensaje'" />
+        
+        <gitpushapplication    
+            userName="eslemalzate@gmail.com"
+            password="${password}"
+            domainName="slem"
+            applicationName="banco" 
+            privateKeyFile="../.ssh/id_rsa"
+            path="../banco"
+        />
+        <!--<git command="clone" options="${openshift.ssh}" />
+        <move file="${dist.dir}ROOT.war" tofile="${openshift.name}/ROOT.war" />
+        <git dir="${openshift.name}/" command="add" options="-all" />
+        <git dir="${openshift.name}/" command="commit" options="-am 'mensaje'" />
+        <git dir="${openshift.name}/" command="push" />-->
+    </target>
+ 
+    <target name="enable-openshift">
+        <property name="openshift" value="true" />
+    </target>
+ 
+    <target name="-pre-dist" if="openshift">
+        <copy file="${context.dir}context.openshift.xml" toFile="${context.dir}context.xml" />
+    </target>
+ 
+    <target name="-post-dist" if="openshift">
+        <move file="${dist.dir}${ant.project.name}.war" toFile="${dist.dir}/webapps/ROOT.war" />
+    </target>
+ 
+ 
+ 
+    
+    
+   
+	
+</project>

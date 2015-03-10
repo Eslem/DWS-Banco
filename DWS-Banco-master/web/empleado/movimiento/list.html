@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <h1 class="primary">Movimientos</h1>
+
+    <button class="btn btn-primary pull-right margin-small" ng-click="crear()">
+        <i class="fa fa-plus"></i> Añadir
+    </button>
+
+    <table class="table table-striped table-hover table-bordered table-shadow">
+        <tr>
+            <th>Tipo</th>
+            <th>Cuenta</th>
+            <th>Concepto </th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+          
+        </tr>
+        <tr ng-repeat="movimiento in movimientos" >
+            <td>{{movimiento.tipo}}</td>
+            <td>{{movimiento.idCuenta}}</td>
+            <td>{{movimiento.concepto}}</td>
+            <td>{{movimiento.cantidad| currency: "€" }}</td>
+            <td>{{movimiento.fecha| date :"dd/MM/yyyy"}}</td>
+          
+        </tr>
+    </table>
+</div>

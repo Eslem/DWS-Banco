@@ -1,0 +1,99 @@
+<div class="container-fluid">
+    <h2 class="center-block">{{mainButton}} Usuario</h2>
+    <hr/>
+
+    <form class="form-horizontal" role="form" name="formClient">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Id</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="id" ng-model="user.id" disabled >                
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Nombre</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="nombre" ng-model="user.nombre" required="true" name="campoNombre">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Apellidos</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="apellidos" ng-model="user.apellidos" required="true" name="campoApellidos">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">DNI</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="DNI" ng-model="user.dni" required="true" ng-pattern="/(\d{8})([a-zA-Z]{1})/" name="campoDNI">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Direccion</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="direccion" ng-model="user.direccion" required="true" name="campoDireccion">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Telefono</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="telefono" ng-model="user.telefono" name="campoTelefono" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-8">
+                <input type="email" class="form-control" placeholder="email" ng-model="user.email" required="true" name="campoEmail">
+            </div>
+        </div>
+        <div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Contraseña</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" placeholder="contraseña" ng-model="password" ng-pattern="/[a-zA-Z]{8,25}/" name="campoPassword" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Repetir contraseña</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" placeholder="repetir contraseña" ng-model="passrepeat" ng-pattern="/[a-zA-Z]{8,25}/" name="campoRepeatPassword" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="formErrors">
+            <div ng-repeat="error in errors">
+                <span class="source">"{{error.fieldName}}"</span><span> {{error.message}}</span>
+            </div>
+        </div>
+        
+         <div  ng-show="formClient.$invalid && mostrarErrores" class="formErrors">
+            <span class="source" ng-show="formClient.campoNombre.$error.required"><span>NOMBRE DE USUARIO: Campo requerido</span></span>
+            <span class="source" ng-show="formClient.campoApellidos.$error.required"><span>APELLIDOS DE USUARIO: Campo requerido</span></span>
+            <span class="source"ng-show="formClient.campoDNI.$error.required"><span>DNI DE USUARIO: Campo requerido</span></span>
+            <span class="source" ng-show="formClient.campoDNI.$error.pattern" ><span>DNI DE USUARIO: Valor incorrecto (Ejemplo: 12345678X)</span></span>
+            <span class="source" ng-show="formClient.campoDireccion.$error.required"><span>DIRECCION DE USUARIO: Campo requerido</span></span>
+            <span class="source" ng-show="formClient.campoEmail.$error.required" ><span>EMAIL DE USUARIO: Campo requerido </span>  </span>
+            <span class="source" ng-show="formClient.campoEmail.$error.email" ><span>EMAIL DE USUARIO: Valor incorrecto (Ejemplo: x@x.x)</span>  </span>
+            <span class="source" ng-show="formClient.campoPassword.$error.required"> <span>PASSWORD DE USUARIO: Campo requerido</span><br/></span>
+            <span class="source" ng-show="formClient.campoPassword.$error.pattern"> <span>PASSWORD DE USUARIO: Valor incorrecto (min. 8 carácteres)</span><br/></span>
+             <span class="source" ng-show="formClient.campoRepeatPassword.$error.required"> <span>REPETIR PASSWORD: Campo requerido</span><br/></span>
+            <span class="source" ng-show="formClient.campoRepeatPassword.$error.pattern && !formClient.campoRepeatPassword.$error.pattern"> <span>REPETIR PASSWORD: Valor incorrecto (min. 8 carácteres)</span><br/></span>
+        </div>
+
+        <!--
+        <div class="col-sm-offset-2 col-sm-8">
+             <button type="button" class="btn btn-danger" ng-click="changePass()" ng-show="passShown">Cambiar</button>
+         </div>
+        -->
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8" align="center">
+                <button type="button" class="btn btn-primary" ng-click="update(); changePass()">
+                    {{mainButton}}
+                </button>
+                <!--<button type="button" class="btn btn-default" ng-show="detailShown" ng-click="passShown = !passShown">Cambiar Contraseña</button>-->
+            </div>
+        </div>
+       
+    </form>
+</div>

@@ -1,0 +1,167 @@
+.table {
+  width: 100%; }
+  .table tr {
+    /*&:first-child {
+        background:#a6c2e0;
+    }
+    &:not(:first-child):nth-child(odd) {
+        background:#DFE7F7;
+    }
+    &:nth-child(even) {
+        background:#EAEFFA;
+    }*/ }
+    .table tr td {
+      padding: 4px !important;
+      vertical-align: middle !important; }
+      .table tr td:first-child {
+        width: 48px;
+        text-align: right; }
+      .table tr td.actions {
+        width: 90px; }
+        .table tr td.actions .btn {
+          padding: 2px 12px; }
+
+body, html {
+  margin: 0px;
+  padding: 0px; }
+
+hr.colored {
+  background-color: #008C9E;
+  color: #008C9E; }
+
+nav.sidebar {
+  background-color: #1d1f21;
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  z-index: 1000;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
+  nav.sidebar i.fa {
+    font-size: 2en; }
+  nav.sidebar:hover h3, nav.sidebar:hover a {
+    opacity: 1; }
+  nav.sidebar h3 {
+    font-size: 1.9em;
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: center;
+    background-color: #131516; }
+  nav.sidebar a {
+    display: block;
+    color: #9d9d9d;
+    font-size: 1.1em;
+    font-weight: 300;
+    padding: 1em;
+    text-decoration: none; }
+    nav.sidebar a:hover {
+      color: #ffffff; }
+    nav.sidebar a.active {
+      color: #ffffff;
+      background-color: #080808;
+      border-right: 4px solid #008C9E; }
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0px !important; }
+
+.navbar-toggle {
+  margin-right: 45px; }
+
+.form-div {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  height: 60%;
+  width: 50%;
+  margin-left: 20%;
+  padding-top: 4%;
+  border: 1px solid #DDD;
+  border-radius: 4px; }
+
+@media screen and (max-width: 480px) {
+  nav.sidebar {
+    width: 50px; }
+    nav.sidebar a span {
+      display: none; }
+    nav.sidebar a i {
+      display: block; }
+    nav.sidebar h3 {
+      padding: 10px 5px; }
+      nav.sidebar h3 img {
+        width: 100%; }
+      nav.sidebar h3 span {
+        display: none; }
+
+  div.wrap-body {
+    padding-left: 55px !important; } }
+div.wrap-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-left: 245px;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
+  div.wrap-body.ng-leave {
+    opacity: 0; }
+  div.wrap-body.ng-enter {
+    opacity: 1; }
+  div.wrap-body.login {
+    padding-left: 0px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #ddd;
+    height: 100%; }
+    div.wrap-body.login .form-signin {
+      box-shadow: 4px 4px 16px 4px rgba(0, 0, 0, 0.1);
+      max-width: 330px;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 0 auto;
+      background: #eee; }
+      div.wrap-body.login .form-signin .form-signin-heading {
+        text-align: center; }
+      div.wrap-body.login .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px; }
+        div.wrap-body.login .form-signin .form-control:focus {
+          z-index: 2; }
+      div.wrap-body.login .form-signin input[type="email"], div.wrap-body.login .form-signin input[type="password"] {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0; }
+      div.wrap-body.login .form-signin input {
+        margin-bottom: 8px; }
+  div.wrap-body select.form-control {
+    padding-left: 8px; }
+
+.table-shadow {
+  box-shadow: 2px 2px 6px gray; }
+
+.animate.ng-enter, .animate.ng-leave {
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  opacity: 0; }
+
+.animate.ng-enter.ng-enter-active, .animate.ng-leave {
+  opacity: 1; }
+
+.animate.ng-leave.ng-leave-active, .animate.ng-enter {
+  opacity: 0; }
+
+.margin-small {
+  margin: 4px; }
+
+.formErrors {
+  text-align: center;
+  color: #C22; }
+  .formErrors:not(:empty) {
+    margin-bottom: 16px; }
+  .formErrors .source {
+    font-weight: bold; }
